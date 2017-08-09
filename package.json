@@ -1,0 +1,10 @@
+{
+  "name": "ui-components",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@repo.avantrip.com:mzapaia/ui-components.git",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^7.1.2"
+  }
+}
