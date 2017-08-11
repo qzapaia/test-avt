@@ -10,6 +10,9 @@ module.exports = {
   entry: entries,
   output: {
     path:path.join(__dirname,'dist'),
-    filename: "[name].js"
+    filename: "[name].js",
+    library: 'ui-components',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   }
 }

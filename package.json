@@ -1,10 +1,30 @@
 {
   "name": "ui-components",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@repo.avantrip.com:mzapaia/ui-components.git",
-  "license": "MIT",
+  "description": "Avantrip React Components",
+  "main": "/dist/index.js",
+  "scripts": {
+    "build": "...",
+    "dev": "webpack --watch",
+    "test": "...",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@repo.avantrip.com:mzapaia/ui-components.git"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "glob": "^7.1.2"
+    "@storybook/react": "^3.2.3",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-apollo": "^1.4.12",
+    "react-dom": "^15.6.1",
+    "styled-components": "^2.1.2"
   }
 }
