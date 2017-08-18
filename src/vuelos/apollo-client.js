@@ -1,7 +1,7 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 
 const networkInterface = createNetworkInterface({
-  uri: 'http://product.api.stage.devtrip.com.ar/data'
+  uri: '//product.api.stage.devtrip.com.ar/data'
 });
 
 const client = new ApolloClient({

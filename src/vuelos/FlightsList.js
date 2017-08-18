@@ -12,7 +12,7 @@ const Item = styled.div`
 const FlightsList = ({ items=[] }) => {
 
   return <div>
-    <h2>Listado</h2>
+    <h2>Listado de hoteles</h2>
     {items.map(i=>(
       <Item>{i.name}</Item>
     ))}

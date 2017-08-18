@@ -6,9 +6,9 @@ import FlightsList from './FlightsList'
 import FlightsListWithData from './FlightsListWithData'
 import client from './apollo-client'
 
-storiesOf('Flights List', module)
+storiesOf('vuelos/Hotels List', module)
   .add('Dumb', () => (
-    <FlightsList items={[{name:'mock data'}]} />
+    <FlightsList items={[{name:'mock hotel item'}]} />
   ))
   .add('With data', () => (
     <ApolloProvider client={client}>
