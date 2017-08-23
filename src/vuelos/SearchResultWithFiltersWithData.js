@@ -19,10 +19,9 @@ export const query = gql`{
   }
 }`
 
-const SelectorComponent = ({data:{orchestrator}}) => {
-  // data from graphql
-  console.log(orchestrator);
-  return <SearchResultWithFilters data={orchestrator} />;
+const SelectorComponent = (props) => {
+  const {data:{orchestrator}} = props;
+  return <SearchResultWithFilters data={orchestrator} {...props} />;
 }
 
 export default graphql(query)(SelectorComponent);
