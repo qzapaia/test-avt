@@ -20,8 +20,13 @@ export const query = gql`{
 }`
 
 const SelectorComponent = (props) => {
-  const {data:{orchestrator}} = props;
-  return <SearchResultWithFilters data={orchestrator} {...props} />;
+  const {data:{orchestrator},filter} = props;
+  console.log(props);
+  // recorro orchestrator basado en filters
+
+  return <SearchResultWithFilters
+                {...props}
+                data={orchestrator} />;
 }
 
 export default graphql(query)(SelectorComponent);

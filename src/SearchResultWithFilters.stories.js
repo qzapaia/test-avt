@@ -5,10 +5,16 @@ import SearchResultWithFilters from './SearchResultWithFilters'
 import SearchResultWithFiltersWithData from './SearchResultWithFiltersWithData'
 import { Provider as ApolloClientProvider } from './apollo-client'
 
-class StateComponent extends Component{
+class StatefulComponent extends Component{
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {
+      filters:{
+        escalas:{
+          ida:1
+        }
+      }
+    }
     this.filterHasChanged = this.filterHasChanged.bind(this);
   }
   filterHasChanged(filterGroup,filterName,value){
@@ -21,20 +27,19 @@ class StateComponent extends Component{
     })
   }
   render(){
-    console.log(this.state.filters);
     return <SearchResultWithFiltersWithData onFilterUpdated={this.filterHasChanged}
-                                     filter={this.state.filters}>
+                                            filter={this.state.filters}>
       SearchResultWithFiltersWithData component
     </SearchResultWithFiltersWithData>
   }
 }
 
-storiesOf('vuelos/SearchResultWithFilters', module)
+storiesOf('SearchResultWithFilters', module)
   .add('Default', () => (
     <SearchResultWithFilters>SearchResultWithFilters component</SearchResultWithFilters>
   ))
   .add('With data', () => (
     <ApolloClientProvider>
-      <StateComponent></StateComponent>
+      <StatefulComponent></StatefulComponent>
     </ApolloClientProvider>
   ))

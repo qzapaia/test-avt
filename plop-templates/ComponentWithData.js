@@ -29,10 +29,10 @@ export const query = gql`{
   }
 }`
 
-const SelectorComponent = ({data}) => {
+const SelectorComponent = (props) => {
   // data from graphql
-  console.log(data);
-  return <{{componentName}} data={data} />;
+  console.log(props.data);
+  return <{{componentName}} {...props} />;
 }
 
 export default graphql(query)(SelectorComponent);
