@@ -4,6 +4,9 @@ import { storiesOf } from '@storybook/react';
 import SearchResultWithFilters from './SearchResultWithFilters'
 import SearchResultWithFiltersWithData from './SearchResultWithFiltersWithData'
 import { Provider as ApolloClientProvider } from './apollo-client'
+import { action } from '@storybook/addon-actions';
+
+
 
 class StatefulComponent extends Component{
   constructor(props){
@@ -27,6 +30,7 @@ class StatefulComponent extends Component{
     })
   }
   render(){
+    action('filter')(this.state.filters)
     return <SearchResultWithFiltersWithData onFilterUpdated={this.filterHasChanged}
                                             filter={this.state.filters}>
       SearchResultWithFiltersWithData component

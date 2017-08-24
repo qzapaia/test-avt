@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 // {
 //   escalas:{
 //     ida:[{
@@ -21,6 +20,7 @@ const SearchResultWithFilters = ({text, onFilterUpdated, filter }) => (
     <input type="checkbox"
            onChange={(e)=>{ onFilterUpdated('aerolineas','airfrance', e.target.checked) }} />
     <button onClick={()=>{ onFilterUpdated('aerolineas','airfrance',true) }}>Cambiar Filtros</button>
+    <button onClick={()=>{console.log('ttttt')}}>tttt</button>
     {/* <SearchFilters ></SearchFilters>
     <SearchResults ></SearchResults> */}
   </div>
