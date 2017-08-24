@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
-import {{componentName}} from './{{componentName}}{{componentExtension}}'
+import {{componentName}} from './'
 import _ from 'lodash';
 
 
@@ -30,8 +30,7 @@ export const query = gql`{
 }`
 
 const SelectorComponent = (props) => {
-  // data from graphql
-  console.log(props.data);
+  console.log('data from graphql', props.data);
   return <{{componentName}} {...props} />;
 }
 

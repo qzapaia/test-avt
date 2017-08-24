@@ -26,4 +26,4 @@ class DefaultStory extends React.Component{
   }
 }
 
-storiesOf('Translations', module).add('Default', () => <DefaultStory />)
+storiesOf('global/Translations', module).add('Default', () => <DefaultStory />)

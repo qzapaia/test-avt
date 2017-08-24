@@ -1,7 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
-console.log(process.argv[6]);
+
 module.exports = {
+  module: {
+    rules: [{
+      test: /\.md$/,
+      use: "raw-loader"
+    }]
+  },
   plugins:[
     new webpack.DefinePlugin({
       'process.ui':JSON.stringify(process.argv[6])

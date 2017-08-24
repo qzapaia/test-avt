@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import SearchResultWithFilters from './SearchResultWithFilters'
+import SearchResultWithFiltersReadme from './SearchResultWithFiltersREADME.md';
 import SearchResultWithFiltersWithData from './SearchResultWithFiltersWithData'
-import { Provider as ApolloClientProvider } from './apollo-client'
+import { Provider as ApolloClientProvider } from '../../apollo-client'
 import { action } from '@storybook/addon-actions';
+import withReadme from 'storybook-readme/with-readme';
 
-
+const addReadme = comp => withReadme(SearchResultWithFiltersReadme, comp);
 
 class StatefulComponent extends Component{
   constructor(props){
@@ -38,10 +40,10 @@ class StatefulComponent extends Component{
   }
 }
 
-storiesOf('SearchResultWithFilters', module)
-  .add('Default', () => (
+storiesOf('global/SearchResultWithFilters', module)
+  .add('Default', addReadme(() => (
     <SearchResultWithFilters>SearchResultWithFilters component</SearchResultWithFilters>
-  ))
+  )))
   .add('With data', () => (
     <ApolloClientProvider>
       <StatefulComponent></StatefulComponent>

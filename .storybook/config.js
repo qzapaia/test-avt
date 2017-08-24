@@ -3,9 +3,8 @@ import { configure } from '@storybook/react';
 const ui = process.ui || 'global';
 
 const reqs = {
-  quiero:require.context('../src/quiero', true, /\.stories\.js$/),
-  global:require.context('../src/', true, /\.stories\.js$/),
-
+  quiero:require.context('../src/quiero', true, /stories\.js$/),
+  global:require.context('../src/', true, /stories\.js$/),
 }
 
 const req = reqs[ui];
