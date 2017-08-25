@@ -4,13 +4,15 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import Header from 'avantrip-react/vuelos/Header';
+import Subscribe from 'avantrip-react/vuelos/Subscribe';
 
-<Header
+export default () => (
+  <Subscribe
   onEvent={function}
   message={string}
   isActive={boolean}
-/>
+  />
+)
 ```
 
 

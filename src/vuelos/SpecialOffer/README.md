@@ -4,13 +4,15 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import Header from 'avantrip-react/vuelos/Header';
+import SpecialOffer from 'avantrip-react/vuelos/SpecialOffer';
 
-<Header
+export default () => (
+  <SpecialOffer
   onEvent={function}
   message={string}
   isActive={boolean}
-/>
+  />
+)
 ```
 
 

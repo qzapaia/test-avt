@@ -4,13 +4,15 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import Header from 'avantrip-react/vuelos/Header';
+import MainSlider from 'avantrip-react/vuelos/MainSlider';
 
-<Header
+export default () => (
+  <MainSlider
   onEvent={function}
   message={string}
   isActive={boolean}
-/>
+  />
+)
 ```
 
 

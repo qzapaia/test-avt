@@ -4,13 +4,15 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import { {{componentName}} } from 'avantrip-react/{{ui}}';
+import {{componentName}} from 'avantrip-react/{{ui}}/{{componentName}}';
 
-<{{componentName}}
+export default () => (
+  <{{componentName}}
   onEvent={function}
   message={string}
   isActive={boolean}
-/>
+  />
+)
 ```
 
 
