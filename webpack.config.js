@@ -3,18 +3,17 @@ const path = require('path');
 
 const entries = {};
 
-glob
-  .sync('./src/**/!(stories).*')
-  .forEach(p=>{
-    const entryKey = p.split('src/')[1];
-    entries[entryKey] = p;
-  });
+glob.sync('./src/**/!(stories|*stories).js')
+    .forEach(p=>{
+      const entryKey = p.split('src/')[1];
+      entries[entryKey] = p;
+    });
 
 module.exports = {
   entry: entries,
   output: {
     path:path.join(__dirname,'dist'),
-    filename: "[name].js",
+    filename: "[name]",
     library: 'ui-components',
     libraryTarget: 'umd',
     umdNamedDefine: true

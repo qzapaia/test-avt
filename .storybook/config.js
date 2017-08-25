@@ -4,6 +4,7 @@ const ui = process.ui || 'global';
 
 const reqs = {
   quiero:require.context('../src/quiero', true, /stories\.js$/),
+  vuelos:require.context('../src/vuelos', true, /stories\.js$/),
   global:require.context('../src/', true, /stories\.js$/),
 }
 
