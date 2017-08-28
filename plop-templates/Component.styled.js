@@ -5,5 +5,8 @@ const Styled{{componentName}} = styled.button`
   padding:20px;
   font-size: 16px;
 `
+Styled{{componentName}}.defaultProps = {
+  size:'s'
+}
 
 export default Styled{{componentName}};

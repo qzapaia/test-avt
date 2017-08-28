@@ -2,14 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import withReadme from 'storybook-readme/with-readme';
 
-import Subscribe from './'
+import MainSlider from './'
 
 
 import readme from './README.md';
 
 const addReadme = comp => withReadme(readme, comp);
 
-storiesOf('vuelos/Subscribe', module)
+storiesOf('global/MainSlider', module)
   .add('Default', addReadme(() => (
-    <Subscribe>Subscribe component</Subscribe>
+    <MainSlider>MainSlider component</MainSlider>
   )))

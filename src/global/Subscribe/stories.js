@@ -2,14 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import withReadme from 'storybook-readme/with-readme';
 
-import Header from './'
+import Subscribe from './'
 
 
 import readme from './README.md';
 
 const addReadme = comp => withReadme(readme, comp);
 
-storiesOf('vuelos/Header', module)
+storiesOf('global/Subscribe', module)
   .add('Default', addReadme(() => (
-    <Header>Header component</Header>
+    <Subscribe>Subscribe component</Subscribe>
   )))

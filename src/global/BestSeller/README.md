@@ -4,10 +4,10 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import Footer from 'avantrip-react/vuelos/Footer';
+import BestSeller from 'avantrip-react/global/BestSeller';
 
 export default () => (
-  <Footer
+  <BestSeller
   onEvent={function}
   message={string}
   isActive={boolean}

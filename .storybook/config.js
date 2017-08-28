@@ -1,6 +1,13 @@
 import { configure } from '@storybook/react';
-
+import './storybook.css';
 const ui = process.ui || 'global';
+import { setOptions } from '@storybook/addon-options';
+
+setOptions({
+  // hierarchySeparator: null,
+  sidebarAnimations: false,
+});
+
 
 const reqs = {
   quiero:require.context('../src/quiero', true, /stories\.js$/),

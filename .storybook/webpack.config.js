@@ -6,6 +6,10 @@ module.exports = {
     rules: [{
       test: /\.md$/,
       use: "raw-loader"
+    },
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
     }]
   },
   plugins:[

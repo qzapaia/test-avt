@@ -4,10 +4,10 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import SpecialOffer from 'avantrip-react/vuelos/SpecialOffer';
+import Subscribe from 'avantrip-react/global/Subscribe';
 
 export default () => (
-  <SpecialOffer
+  <Subscribe
   onEvent={function}
   message={string}
   isActive={boolean}

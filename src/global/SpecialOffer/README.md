@@ -4,10 +4,10 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import BestSeller from 'avantrip-react/vuelos/BestSeller';
+import SpecialOffer from 'avantrip-react/global/SpecialOffer';
 
 export default () => (
-  <BestSeller
+  <SpecialOffer
   onEvent={function}
   message={string}
   isActive={boolean}

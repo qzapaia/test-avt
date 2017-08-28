@@ -4,10 +4,10 @@ Componente para usos sarlanga.
 ### Basic use
 
 ```javascript
-import OffersLinkList from 'avantrip-react/vuelos/OffersLinkList';
+import HomePage from 'avantrip-react/global/HomePage';
 
 export default () => (
-  <OffersLinkList
+  <HomePage
   onEvent={function}
   message={string}
   isActive={boolean}

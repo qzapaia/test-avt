@@ -2,14 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import withReadme from 'storybook-readme/with-readme';
 
-import BestSeller from './'
+import OffersLinkList from './'
 
 
 import readme from './README.md';
 
 const addReadme = comp => withReadme(readme, comp);
 
-storiesOf('vuelos/BestSeller', module)
+storiesOf('global/OffersLinkList', module)
   .add('Default', addReadme(() => (
-    <BestSeller>BestSeller component</BestSeller>
+    <OffersLinkList>OffersLinkList component</OffersLinkList>
   )))

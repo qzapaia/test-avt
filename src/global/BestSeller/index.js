@@ -10,7 +10,7 @@ BestSeller.propTypes = {
 }
 
 BestSeller.defaultProps = {
-  text:'BestSeller component'
+  text:'Mas Vendidos'
 }
 
 export default BestSeller;
