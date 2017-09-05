@@ -16,3 +16,6 @@ Example: Load only **quiero** components.
 
 ## Style Guide (JS & React)
 https://github.com/airbnb/javascript/tree/master/react
+
+## Styled Components
+https://www.styled-components.com/ 
