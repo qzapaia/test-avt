@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const {{componentName}} = ({text, onClick}) => (
-  <div onClick={onClick}>{text}</div>
+  <div onClick={onClick}>
+    {{componentName}} component
+    <br/>
+    Counter {text}
+  </div>
 )
 
 {{componentName}}.propTypes = {
@@ -10,7 +14,7 @@ const {{componentName}} = ({text, onClick}) => (
 }
 
 {{componentName}}.defaultProps = {
-  text:'{{componentName}} component'
+  text:''
 }
 
 export default {{componentName}};

@@ -18,4 +18,7 @@ Example: Load only **quiero** components.
 https://github.com/airbnb/javascript/tree/master/react
 
 ## Styled Components
-https://www.styled-components.com/ 
+https://www.styled-components.com/
+
+## Recompose
+https://github.com/acdlite/recompose
