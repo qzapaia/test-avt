@@ -7,17 +7,14 @@ import { withState, compose } from 'recompose';
 
 import ContactAndPhoneInfo from './'
 
-
-
 import readme from './README.md';
 
 const addReadme = comp => withReadme(readme, comp);
 
-
 // el enhace aplica todos los HOC de recompose ,
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
-const enhace = withState('phoneText','increment', '0810-222-2826');
+const enhace = withState('counter','increment',0);
 
 const ContactAndPhoneInfoWithState =  enhace((props) => {
   // enchufar tu component con el estado simulado
@@ -31,5 +28,5 @@ const ContactAndPhoneInfoWithState =  enhace((props) => {
 
 storiesOf('avantrip/ContactAndPhoneInfo', module)
   .add('Default', addReadme(() => (
-    <ContactAndPhoneInfoWithState></ContactAndPhoneInfoWithState>
+    <ContactAndPhoneInfoWithState phoneText="0810-222-2826"></ContactAndPhoneInfoWithState>
   )))

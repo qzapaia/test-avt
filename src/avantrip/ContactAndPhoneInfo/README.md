@@ -1,5 +1,5 @@
 ### Description
-Componente para usos sarlanga.
+Componente para el header de Avantrip
 
 ### Basic use
 
@@ -8,22 +8,13 @@ import ContactAndPhoneInfo from 'avantrip-react/avantrip/ContactAndPhoneInfo';
 
 export default () => (
   <ContactAndPhoneInfo
-  onEvent={function}
-  message={string}
-  isActive={boolean}
-  />
+  phoneText={string}/>
 )
 ```
 
 
 ### Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `phoneText={<String>}`
+Teléfono para mostrar
 
-#### `message={<String> || <Function>}`
-Message to receive and show. String or function allowed
-
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
