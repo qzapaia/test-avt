@@ -3,9 +3,11 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
 import React from 'react'
-import { withState, compose } from 'recompose';
-
 import {{componentName}} from './'
+
+{{^styledComponent}}
+import { withState, compose } from 'recompose';
+{{/styledComponent}}
 
 {{#redux}}
 import {createStore} from 'redux'
@@ -27,7 +29,8 @@ const addReadme = comp => withReadme(readme, comp);
 const store = createStore(reducer);
 {{/redux}}
 
-// el enhace aplica todos los HOC de recompose ,
+{{^styledComponent}}
+// el enhace concatena hocs de recompose,
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
 const enhace = withState('counter','increment',0);
@@ -46,11 +49,21 @@ const {{componentName}}WithState =  enhace((props) => {
     </{{componentName}}>
   )
 })
+{{/styledComponent}}
 
 storiesOf('{{storyPath}}{{componentName}}', module)
+  {{^styledComponent}}
   .add('Default', addReadme(() => (
     <{{componentName}}WithState></{{componentName}}WithState>
   )))
+  {{/styledComponent}}
+
+  {{#styledComponent}}
+  .add('Default', addReadme(() => (
+    <{{componentName}}>{{componentName}} component</{{componentName}}>
+  )))
+  {{/styledComponent}}
+
   {{#redux}}
   .add('WithRedux', addReadme(() => (
     <Provider store={store}>
@@ -58,6 +71,7 @@ storiesOf('{{storyPath}}{{componentName}}', module)
     </Provider>
   )))
   {{/redux}}
+
   {{#withDataComponent}}
   .add('With data', addReadme(() => (
     <ApolloProvider>
