@@ -1,33 +1,27 @@
-import withReadme from 'storybook-readme/with-readme'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
-
 import React from 'react'
-import { withState, compose } from 'recompose';
-
 import {{componentName}} from './'
 
-{{#redux}}
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
-import * as actions from './actions'
-import reducer from './reducer'
-{{/redux}}
+import withReadme from 'storybook-readme/with-readme'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+
+{{^styledComponent}}
+import { withState, compose } from 'recompose'
+{{/styledComponent}}
 
 {{#withDataComponent}}
-import {{componentName}}WithData from './withData'
 import { Provider as ApolloProvider } from '../../apollo-client'
+import {{componentName}}WithData from './withData'
 {{/withDataComponent}}
+import { ThemeProvider } from 'styled-components'
 
-import readme from './README.md';
+import theme from '../styled.theme';
+import readme from './README.md'
 
 const addReadme = comp => withReadme(readme, comp);
 
-{{#redux}}
-const store = createStore(reducer);
-{{/redux}}
-
-// el enhace aplica todos los HOC de recompose ,
+{{^styledComponent}}
+// el enhace concatena hocs de recompose,
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
 const enhace = withState('counter','increment',0);
@@ -46,22 +40,26 @@ const {{componentName}}WithState =  enhace((props) => {
     </{{componentName}}>
   )
 })
+{{/styledComponent}}
 
 storiesOf('{{storyPath}}{{componentName}}', module)
   .add('Default', addReadme(() => (
-    <{{componentName}}WithState></{{componentName}}WithState>
+    <ThemeProvider theme={theme}>
+      {{^styledComponent}}
+      <{{componentName}}WithState></{{componentName}}WithState>
+      {{/styledComponent}}
+      {{#styledComponent}}
+      <{{componentName}}>{{componentName}} component</{{componentName}}>
+      {{/styledComponent}}
+    </ThemeProvider>
   )))
-  {{#redux}}
-  .add('WithRedux', addReadme(() => (
-    <Provider store={store}>
-      <{{componentName}} onClick={()=>{store.dispatch(actions.setData('pepe'))}}>{{componentName}} component</{{componentName}}>
-    </Provider>
-  )))
-  {{/redux}}
+
   {{#withDataComponent}}
   .add('With data', addReadme(() => (
-    <ApolloProvider>
-      <{{componentName}}WithData>{{componentName}}WithData component</{{componentName}}WithData>
-    </ApolloProvider>
+    <ThemeProvider theme={theme}>
+      <ApolloProvider>
+        <{{componentName}}WithData>{{componentName}}WithData component</{{componentName}}WithData>
+      </ApolloProvider>
+    </ThemeProvider>
   )))
   {{/withDataComponent}}
