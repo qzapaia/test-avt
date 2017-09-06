@@ -2,14 +2,9 @@ const { lstatSync, readdirSync, unlinkSync } = require('fs')
 const { join, sep, resolve } = require('path')
 const rimraf = require('rimraf');
 
-
-const isDirectory = source => lstatSync(source).isDirectory()
-const getDirectories = source =>
-  readdirSync(source).map(name => join(source, name)).filter(isDirectory)
-
-const getDirectDirectories = source => getDirectories(source).map(p=>p.split(sep).pop())
-
 const GLOBAL_UI = 'global';
+const AVANTRIP_UI = 'avantrip';
+const QUIERO_UI = 'quiero';
 
 const YES = 'Yes';
 const NO = 'No';
@@ -17,8 +12,10 @@ const NO = 'No';
 const STYLED_COMPONENT_TYPE = 'Styled Component';
 const COMPONENT_TYPE = 'Stateless Component';
 
-const toPascalCase = require('to-pascal-case');
+const ui_options = [GLOBAL_UI,AVANTRIP_UI,QUIERO_UI];
+const component_types = [COMPONENT_TYPE, STYLED_COMPONENT_TYPE];
 
+const toPascalCase = require('to-pascal-case');
 
 module.exports = function (plop) {
   plop.setGenerator('Create', {
@@ -46,23 +43,24 @@ module.exports = function (plop) {
           type: 'list',
           name: 'type',
           message: 'Type?',
-          choices: [COMPONENT_TYPE, STYLED_COMPONENT_TYPE]
+          choices: component_types
       },
       {
           type: 'list',
           name: 'ui',
           message: 'UI?',
-          choices: getDirectDirectories('./src')
+          choices: ui_options
       }],
       actions: function(data){
         const dirName = 'src/'+data.ui;
         const actions = [];
+        const isStyled = data.type == STYLED_COMPONENT_TYPE;
 
         data.componentName = toPascalCase(data.name);
-        data.storyPath = data.ui + '/';
+        data.storyPath = data.ui + '/' + (isStyled ? 'styled/' : '');
 
         data.withDataComponent = data.withData;
-        data.styledComponent = data.type == STYLED_COMPONENT_TYPE;
+        data.styledComponent = isStyled;
 
         actions.push({
           type: 'add',
@@ -125,7 +123,7 @@ module.exports = function (plop) {
           type: 'list',
           name: 'ui',
           message: 'UI?',
-          choices: getDirectDirectories('./src')
+          choices: ui_options
       }],
       actions: function(data){
         const actions = [];

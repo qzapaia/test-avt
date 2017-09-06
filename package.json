@@ -11,7 +11,8 @@
     "storybook": "start-storybook -p 9001 -s ./statics",
     "copypackage": "cp -rf package.json dist",
     "dist": "cd dist && npm publish",
-    "gen": "plop"
+    "gen": "plop",
+    "gentest": "rimraf src/global/test && plop"
   },
   "repository": {
     "type": "git",

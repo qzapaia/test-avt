@@ -1,6 +1,8 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import withReadme from 'storybook-readme/with-readme'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions';
+
+import React from 'react'
 import { withState, compose } from 'recompose';
 
 import {{componentName}} from './'
@@ -30,11 +32,16 @@ const store = createStore(reducer);
 // ver más en https://github.com/acdlite/recompose
 const enhace = withState('counter','increment',0);
 const {{componentName}}WithState =  enhace((props) => {
-  // enchufar tu com con el estado "falso"
+  // enchufar tu component con el estado simulado
   const { counter, increment } = props;
 
+  const clickHandler = () => {
+    action('click')(counter+1);
+    increment(counter+1);
+  }
+
   return (
-    <{{componentName}} {...props} text={counter} onClick={()=>increment(counter+1)}>
+    <{{componentName}} {...props} text={counter} onClick={clickHandler}>
       {{componentName}} component
     </{{componentName}}>
   )

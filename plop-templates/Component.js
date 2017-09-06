@@ -6,6 +6,8 @@ const {{componentName}} = ({text, onClick}) => (
     {{componentName}} component
     <br/>
     Counter {text}
+    <br/>
+    <strong>Click to increment</strong>
   </div>
 )
 
