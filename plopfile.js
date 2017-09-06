@@ -30,20 +30,22 @@ module.exports = function (plop) {
           }
       },
       {
+        type: 'list',
+        name: 'type',
+        message: 'Type?',
+        choices: component_types
+      },
+      {
           type: 'confirm',
           name: 'redux',
-          message: 'Include Redux reducer/actions?'
+          message: 'Include Redux reducer/actions?',
+          when: res=>res.type != STYLED_COMPONENT_TYPE
       },
       {
           type: 'confirm',
           name: 'withData',
-          message: 'Include Apollo "withData" component?'
-      },
-      {
-          type: 'list',
-          name: 'type',
-          message: 'Type?',
-          choices: component_types
+          message: 'Include Apollo "withData" component?',
+          when: res=>res.type != STYLED_COMPONENT_TYPE
       },
       {
           type: 'list',
