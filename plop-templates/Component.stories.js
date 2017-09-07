@@ -1,19 +1,19 @@
-import React from 'react'
-import {{componentName}} from './'
+import React from 'react';
+import {{componentName}} from './';
 
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 {{^styledComponent}}
-import { withState, compose } from 'recompose'
+import { withState, compose } from 'recompose';
 {{/styledComponent}}
 
 import generalDecorator from '../../stories.decorator.js';
 {{#withDataComponent}}
-import {{componentName}}WithData from './withData'
+import {{componentName}}WithData from './withData';
 {{/withDataComponent}}
 
 import theme from '../styled.theme';
-import readme from './README.md'
+import readme from './README.md';
 
 {{^styledComponent}}
 const enhace = withState('counter','increment',0);

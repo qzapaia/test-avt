@@ -8,9 +8,9 @@ import {{componentName}} from 'avantrip-react/{{ui}}/{{componentName}}';
 
 export default () => (
   <{{componentName}}
-  onEvent={function}
-  message={string}
-  isActive={boolean}
+    onEvent={function}
+    message={string}
+    isActive={boolean}
   />
 )
 ```
