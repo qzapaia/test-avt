@@ -1,5 +1,5 @@
 ### Description
-Componente para usos sarlanga.
+Componente de textos.
 
 ### Basic use
 
@@ -7,23 +7,14 @@ Componente para usos sarlanga.
 import Text from 'avantrip-react/avantrip/Text';
 
 export default () => (
-  <Text
-  onEvent={function}
-  message={string}
-  isActive={boolean}
-  />
+  <Text type={string} color={string} />
 )
 ```
 
 
 ### Props
+#### `type={hxxl|xxl|xl|l|m|s|xs}`
+Tipo de texto a utilizar. Los valores de cada tipo están establecidos
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
-
-#### `message={<String> || <Function>}`
-Message to receive and show. String or function allowed
-
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `color={<String>}`
+Identificador de color. Ver styled@Colors para más info.
