@@ -12,11 +12,11 @@ const {{componentName}} = ({text, onClick}) => (
 )
 
 {{componentName}}.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.node.isRequired
 }
 
 {{componentName}}.defaultProps = {
-  text:''
+  text:'no value yet :('
 }
 
 export default {{componentName}};
