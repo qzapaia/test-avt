@@ -5,7 +5,6 @@ Demo de colores disponibles y sus nombres. Los inyecta el theme.
 ## Ejemplos
 
 ### Uso dentro de un styled component
-
 ```javascript
 const ComponenteLoco = styled.span`
   color: ${props=>props.theme.colors[props.color]};
