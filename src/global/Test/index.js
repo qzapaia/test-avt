@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const {{componentName}} = ({text, onClick}) => (
+const Test = ({text, onClick}) => (
   <div onClick={onClick}>
-    {{componentName}} component
+    Test component
     <br/>
     Counter {text}
     <br/>
@@ -11,12 +11,12 @@ const {{componentName}} = ({text, onClick}) => (
   </div>
 )
 
-{{componentName}}.propTypes = {
+Test.propTypes = {
   text: PropTypes.node.isRequired
 }
 
-{{componentName}}.defaultProps = {
+Test.defaultProps = {
   text:'no value yet :('
 }
 
-export default {{componentName}};
+export default Test;

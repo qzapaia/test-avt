@@ -59,7 +59,7 @@ module.exports = function (plop) {
         const isStyled = data.type == STYLED_COMPONENT_TYPE;
 
         data.componentName = toPascalCase(data.name);
-        data.storyPath = data.ui + '/' + (isStyled ? 'styled/' : '');
+        data.storyPath = data.ui + '/' + (isStyled ? 'styled@' : '');
 
         data.withDataComponent = data.withData;
         data.styledComponent = isStyled;
