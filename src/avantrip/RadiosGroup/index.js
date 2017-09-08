@@ -1,26 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RadiosGroup = ({options, onChange, label}) => (
-  <div>
-        {label}
-  {
-      options.map(c => (
-        <label>
-          <input id={ c.key } name="radio{c.key}" type="radio" value={ c.key } checked={c.checked} onChange={(e)=>(
-              onChange(c.key)
-          )}/>
-          {c.label}
-        </label>
-      ))
-  }
-  </div>
+import InputRadio from '../InputRadio';
+
+const RadiosGroup = ({options, onChange, label, selectedOption}) => (
+  <span>
+    {label}
+    {options.map(c => (
+          <InputRadio
+            key={ c.key }
+            id ={ c.key }
+            name ={ "radio"+c.key }
+            type ="radio"
+            value ={ c.key }
+            label ={ c.label }
+            checked ={ selectedOption == c.key }
+            onChange ={ e => onChange(c.key) }
+          />
+    ))}
+  </span>
 )
 
 RadiosGroup.propTypes = {
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func,
-    label: PropTypes.node
+    label: PropTypes.node,
+    selectedOption: PropTypes.number
 }
 
 export default RadiosGroup;

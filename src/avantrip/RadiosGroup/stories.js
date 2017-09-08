@@ -18,51 +18,42 @@ const addReadme = comp => withReadme(readme, comp);
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
 let initialOptions = [{
-    key: 1,
-    label: "Todos los horarios",
-    checked: true
+  key: 1,
+  label: "Todos los horarios"
 },
 {
     key: 2,
-    label: "8hs a 12hs",
-    checked: false
+    label: "8hs a 12hs"
 }];
 
-const enhace = withState('options','increment',initialOptions);
+const enhace = withState('selectedOption','selectOption',1);
 const RadiosGroupWithState =  enhace((props) => {
-  const { options, increment } = props;
+  const { selectOption, selectedOption } = props;
 
-  const onChangeHandler = (e) => {
-    options.map((option) => {
-        if(option.key == e){
-            option.checked = !option.checked;
-            action('onChange')(option.label);
-            return true;
-        }
-        option.checked = false;
-        return false;
-    });
-
-    increment(options);
+  const onChangeHandler = (selectedOption) => {
+    action('onChange')('Selected Option: ' + selectedOption);
+    selectOption(selectedOption);
   }
 
   return (
-    <RadiosGroup options={options}
-        onChange={onChangeHandler} label={props.children}>
-    </RadiosGroup>
+    <RadiosGroup
+      options={initialOptions}
+      onChange={onChangeHandler}
+      label={props.children}
+      selectedOption={selectedOption} />
   )
 })
 
 storiesOf('avantrip/RadiosGroup', module)
   .add('Default', addReadme(() => (
     <ThemeProvider theme={theme}>
-        <RadiosGroupWithState />
+      <RadiosGroupWithState />
     </ThemeProvider>
   )))
   .add('With a Label', addReadme(() => (
     <ThemeProvider theme={theme}>
-        <RadiosGroupWithState>
-            <label>Horarios</label>
-        </RadiosGroupWithState>
+      <RadiosGroupWithState>
+        <label>Horarios</label>
+      </RadiosGroupWithState>
     </ThemeProvider>
   )))

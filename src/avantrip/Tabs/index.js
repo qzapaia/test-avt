@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 const Tabs = ({selectedTab, onChange, children}) => (
   <div>
-
     <nav>
         {children.map((c,i)=>(
             <button key={i} onClick={e=>onChange(i)}>
-                {c.props.title} 
+                {c.props.title}
             </button>
         ))}
     </nav>
     <div>
-        {children.find((c,i)=>selectedTab==i)}
+        {children.find((c,i)=>(selectedTab==i)).props.content}
     </div>
   </div>
 )

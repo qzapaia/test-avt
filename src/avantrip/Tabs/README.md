@@ -1,5 +1,6 @@
 ### Description
-Componente para usos sarlanga.
+Muestra los children pasados como tabs. Devuelve la key
+del tab seleccionado.
 
 ### Basic use
 
@@ -14,12 +15,12 @@ export default () => (
 )
 ```
 
-
 ### Props
 
 #### `onChange={<Function>}`
-Event handler
+Recibe el valor de la key del tab clickeado.
 
 #### `selectedTab={<Number>}`
-Tabs add to each children a number key. This prop contains
-the number of the key that was selected
+Tabs agrega a cada children una key que corresponde al indice
+de que le coresponde al array de children. Esta prop contiene
+el valor de la key del tab clickeado.
