@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
+const ERROR_STATE = 'error';
+const SUCCESS_STATE = 'success';
+
 const preventFormatAndContinueWith = next => e => {
   e.preventDefault();
   next({
@@ -29,10 +32,10 @@ const Subscribe = ({onSubscribe, title, state}) => (
         </form>
       </PlaceholderContainer>
     }
-    {state =='success' &&
+    {state == SUCCESS_STATE &&
       <div>Todo joya</div>
     }
-    {state =='error' &&
+    {state == ERROR_STATE &&
       <div>Todo mal</div>
     }
   </div>
@@ -41,7 +44,7 @@ const Subscribe = ({onSubscribe, title, state}) => (
 Subscribe.propTypes = {
   onSubscribe:PropTypes.func.isRequired,
   title:PropTypes.string.isRequired,
-  state:PropTypes.string
+  state:PropTypes.oneOf([SUCCESS_STATE, ERROR_STATE])
 }
 
 Subscribe.defaultProps = {
