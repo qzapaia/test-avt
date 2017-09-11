@@ -46,3 +46,8 @@ storiesOf('avantrip/InputCheckbox', module)
   .add('Checkeado', () => (
     <InputCheckboxWithStateTrue />
   ))
+  .add('Deshabilitado', () => (
+    <InputCheckboxWithState
+      disabled={true}
+      label = {<span>Checkbox Deshabilitado</span>}/>
+  ))
