@@ -11,4 +11,8 @@ const List = ({type, children}) => (
   </ContainerList>
 )
 
+List.propTypes = {
+  type: PropTypes.oneOf(['list', 'grid'])
+}
+
 export default List;
