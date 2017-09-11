@@ -30,6 +30,9 @@ storiesOf('avantrip/Select', module)
     theme
   }))
   .add('Default', () => (
-    <SelectWithState></SelectWithState>
+    <SelectWithState onChange={action('onChange')}>
+      <option value="1">label 1</option>
+      <option value="2">label 2</option>
+      <option value="3">label 3</option>
+    </SelectWithState>
   ))
-

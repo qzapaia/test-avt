@@ -1,13 +1,13 @@
 export const SUBSCRIPTION_INIT = 'SUBSCRIPTION_INIT';
 export const SUBSCRIPTION_COMPLETE = 'SUBSCRIPTION_COMPLETE';
 
-export const subscribe = data => (
-  fetch(`https://api.com/${id}`,{
+export const async subscribe = data => (
+  const res = await fetch(`https://api.com/${id}`,{
     method:'POST',
     body:data
   })
-  .then(res=>res.json())
-  .then(state=>dispatch(subscriptionResult(state)))
+  const state = await res.json();
+  dispatch(subscriptionResult(state))
 )
 
 export const subscriptionResult = state => ({
