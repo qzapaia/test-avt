@@ -9,9 +9,9 @@ import InputCheckbox from 'avantrip-react/avantrip/InputCheckbox';
 
 export default () => (
   <InputCheckbox
-    id={string}
+    value={string}
     onChange={function}
-    name={string}
+    type={string}
     label={node}
     checked={boolean}
     disabled={boolean}
@@ -22,11 +22,12 @@ export default () => (
 
 ## Props
 
-#### `id={<String>}`
-Identificador univoco de input.
+#### `type={<String>}`
+Especifica el tipo de input. Los valores son "checkbox" ||
+"radio". Por defecto es "checkbox".
 
-#### `name={<String>}`
-Nombre del input.
+#### `value={<String>}`
+Identificador univoco de input.
 
 #### `label={<Node>}`
 Nodo utilizado como label para el input. NO utilizar componente

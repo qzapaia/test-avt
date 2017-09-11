@@ -51,3 +51,6 @@ storiesOf('avantrip/InputCheckbox', module)
       disabled={true}
       label = {<span>Checkbox Deshabilitado</span>}/>
   ))
+  .add('Tipo radio', () => (
+    <InputCheckboxWithState type="radio"/>
+  ))
