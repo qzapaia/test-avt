@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components'
+import Container from './container.styled';
+
+const ERROR_STATE = 'error';
+const SUCCESS_STATE = 'success';
 
 const preventFormatAndContinueWith = next => e => {
   e.preventDefault();
@@ -9,15 +12,10 @@ const preventFormatAndContinueWith = next => e => {
   })
 }
 
-const PlaceholderContainer = styled.div`
-  display: flex;
-  background-color: #ff0012;
-`
-
 const Subscribe = ({onSubscribe, title, state}) => (
   <div>
     {!state &&
-      <PlaceholderContainer>
+      <Container>
         <h4>{title}</h4>
         <form onSubmit={preventFormatAndContinueWith(onSubscribe)}>
           <input
@@ -27,12 +25,12 @@ const Subscribe = ({onSubscribe, title, state}) => (
           />
           <button>Enviar</button>
         </form>
-      </PlaceholderContainer>
+      </Container>
     }
-    {state =='success' &&
+    {state == SUCCESS_STATE &&
       <div>Todo joya</div>
     }
-    {state =='error' &&
+    {state == ERROR_STATE &&
       <div>Todo mal</div>
     }
   </div>
@@ -41,7 +39,7 @@ const Subscribe = ({onSubscribe, title, state}) => (
 Subscribe.propTypes = {
   onSubscribe:PropTypes.func.isRequired,
   title:PropTypes.string.isRequired,
-  state:PropTypes.string
+  state:PropTypes.oneOf([SUCCESS_STATE, ERROR_STATE])
 }
 
 Subscribe.defaultProps = {
