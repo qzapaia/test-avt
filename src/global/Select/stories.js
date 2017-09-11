@@ -24,7 +24,7 @@ const SelectWithState =  enhace((props) => {
   )
 })
 
-storiesOf('avantrip/Select', module)
+storiesOf('global/Select', module)
   .addDecorator(generalDecorator({
     readme,
     theme
