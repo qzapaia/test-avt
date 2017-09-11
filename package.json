@@ -43,5 +43,8 @@
     "storybook-readme": "^3.0.6",
     "styled-components": "^2.1.2",
     "to-pascal-case": "^1.0.0"
+  },
+  "devDependencies": {
+     "webpack": "^3.5.6"
   }
 }

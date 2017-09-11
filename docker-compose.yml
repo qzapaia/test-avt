@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  avantrip-react:
+    build: .
+    ports:
+      - 3899:3899
+      - 9001:9001
+    volumes:
+      - ./server.js:/app/server.js
+      - ./src/:/app/src
