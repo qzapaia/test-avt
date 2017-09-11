@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import utils from '../../utils';
 
 const Styled{{componentName}} = styled.button`
   border:solid 2px red;

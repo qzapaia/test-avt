@@ -1,7 +1,7 @@
-### Description
+## Description
 Componente para usos sarlanga.
 
-### Basic use
+## Basic use
 
 ```javascript
 import {{componentName}} from 'avantrip-react/{{ui}}/{{componentName}}';
@@ -16,14 +16,38 @@ export default () => (
 ```
 
 
-### Props
+## Props
 
 #### `onEvent={<Boolean> || <Function>}`
 Event handler
 
-#### `message={<String> || <Function>}`
-Message to receive and show. String or function allowed
-
-
 #### `isActive={<Boolean>}`
 Enable an action within the component
+
+{{#redux}}
+
+## Redux
+
+#### Actions
+```javascript
+import { sendData } from 'avantrip-react/{{ui}}/{{componentName}}/actions';
+import store from 'somewhere';
+
+store.dispatch(sendData({ email:"email@email.com" });
+// ...
+```
+
+#### Reducer
+```javascript
+import {{camelCase name}}Reducer from 'avantrip-react/{{ui}}/{{componentName}}/reducer';
+import { createStore, combineReducers } from 'redux';
+
+const reducer = combineReducers({
+  {{camelCase name}}:{{camelCase name}}Reducer,
+  todos
+})
+
+const store = createStore(reducer);
+// ...
+```
+{{/redux}}

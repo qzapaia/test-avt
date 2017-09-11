@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledColors = styled.div`
-  background-color: ${props=>props.theme.colors[props.color]};
+  background-color: ${props => props.theme.colors[props.color]};
   width: 150px;
   height: 150px;
   display: flex;
@@ -14,7 +14,7 @@ const StyledColors = styled.div`
 `
 
 StyledColors.propTypes = {
-  color: PropTypes.string.required
+  color: PropTypes.string.isRequired
 }
 
 

@@ -10,7 +10,6 @@ Example: Load only **quiero** components.
 
 `yarn run dev quiero`
 
-
 ## Generate or remove components
 `yarn run gen`
 
