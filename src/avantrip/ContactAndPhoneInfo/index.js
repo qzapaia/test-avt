@@ -18,7 +18,7 @@ ContactAndPhoneInfo.propTypes = {
 }
 
 ContactAndPhoneInfo.defaultProps = {
-  phoneText:'999'
+  phoneText:'0810-222-2826'
 }
 
 export default ContactAndPhoneInfo;

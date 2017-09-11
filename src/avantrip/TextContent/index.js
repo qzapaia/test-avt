@@ -18,8 +18,8 @@ TextContent.propTypes = {
 }
 
 TextContent.defaultProps = {
-  title: '',
-  subtitle: ''
+  title: 'Título',
+  subtitle: 'Descripción'
 }
 
 export default TextContent;
