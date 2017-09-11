@@ -14,12 +14,3 @@ export default () => (
     </Slider>
 )
 ```
-```javascript
-
-//Pluing utilizado https://github.com/akiran/react-slick
-import SliderCarousel from 'react-slick';
-
-<SliderCarousel {...settings}>
-  {children}
-</SliderCarousel>
-```

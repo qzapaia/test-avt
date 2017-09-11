@@ -16,14 +16,8 @@ const InputRadio = ({ id, onChange, value, name, checked, label }) => (
 )
 
 InputRadio.propTypes = {
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  value:  PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  id: PropTypes.string,
+  value:  PropTypes.string,
   name: PropTypes.string,
   checked: PropTypes.bool,
   label: PropTypes.node,

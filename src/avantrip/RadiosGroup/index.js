@@ -9,10 +9,10 @@ const RadiosGroup = ({options, onChange, label, selectedOption}) => (
     {options.map(c => (
           <InputRadio
             key={ c.key }
-            id ={ c.key }
+            id={ c.key.toString() }
             name ={ "radio"+c.key }
             type ="radio"
-            value ={ c.key }
+            value ={ c.key.toString() }
             label ={ c.label }
             checked ={ selectedOption == c.key }
             onChange ={ e => onChange(c.key) }

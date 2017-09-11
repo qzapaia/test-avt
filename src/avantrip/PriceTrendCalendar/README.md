@@ -1,5 +1,5 @@
 ### Description
-Componente para usos sarlanga.
+Dibuja el gráfico de tendencia de precio.
 
 ### Basic use
 
@@ -8,22 +8,28 @@ import PriceTrendCalendar from 'avantrip-react/avantrip/PriceTrendCalendar';
 
 export default () => (
   <PriceTrendCalendar
-  onEvent={function}
-  message={string}
-  isActive={boolean}
+  data={colelction}
+  disclaimer={string}
+  onClick={function}
   />
 )
 ```
 
-
 ### Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `data={<Collection>}`
+Coleccion con información para el gráfico.
+Debe tener los siguientes atributos:
+```javascript
+  {
+    price: 14520,
+    name: "Ju 3"
+  }
+```
 
-#### `message={<String> || <Function>}`
-Message to receive and show. String or function allowed
+#### `disclaimer={<String>}`
+Mensaje informativo para el gráfico.
 
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `onClick={<Function>}`
+Evento que se ejecuta al hacer click sobre alguna barra del
+gráfico.

@@ -1,28 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import {BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine} from 'recharts';
 
-const Chart = ({data, keyValue, keyName, onClick, setting}) => {
-  let max = Math.max.apply(Math,data.map(o => o[keyName]));
-  let min = Math.min.apply(Math,data.map(o => o[keyName]));
+const onClickHandler = (e, onClick) => {
+  onClick({
+    value: e.value,
+    label: e.name
+  });
+}
+
+const Chart = ({data, value, label, onClick, setting}) => {
+  setting = _.pick(setting, ['width', 'height', 'barColor']);
+
+  let max = Math.max.apply(Math,data.map(o => o[label]));
+  let min = Math.min.apply(Math,data.map(o => o[label]));
   return (
     <div>
       <BarChart
         width={setting.width}
         height={setting.height}
         data={data}
-        margin={setting.margin}>
+        margin={{top: 5, right: 30, left: 20, bottom: 5}}>
         <XAxis
-          dataKey={keyName}/>
+          dataKey={label}/>
         <YAxis />
         <Tooltip />
         <Bar
-          maxBarSizeNumber={ setting.bar.maxBarSizeNumber }
-          barSize={ setting.bar.barSize }
-          dataKey={ keyValue }
-          fill={ setting.bar.fill }
-          onClick={e => onClick(e[0].activePayload.value)} />
+          maxBarSizeNumber={3}
+          barSize={34}
+          dataKey={ value }
+          fill={ setting.barColor }
+          onClick={e => onClickHandler(e, onClick)} />
         <ReferenceLine y={max} label={max} stroke="red" />
         <ReferenceLine y={min} label={min} stroke="green" />
       </BarChart>
@@ -32,22 +42,17 @@ const Chart = ({data, keyValue, keyName, onClick, setting}) => {
 
 Chart.propTypes = {
   data: PropTypes.array.isRequired,
-  keyValue: PropTypes.string.isRequired,
-  keyName: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   setting: PropTypes.object,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
 
 Chart.defaultProps = {
   setting: {
     width: 600,
     height: 150,
-    margin: {top: 5, right: 30, left: 20, bottom: 5},
-    bar: {
-      fill: '#8884d8',
-      barSize: 34,
-      maxBarSizeNumber: 3
-    }
+    barColor: '#8884d8'
   },
 }
 

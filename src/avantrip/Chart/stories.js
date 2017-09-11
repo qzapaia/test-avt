@@ -1,5 +1,6 @@
 import React from 'react'
 import Chart from './'
+import moment from 'moment'
 
 import withReadme from 'storybook-readme/with-readme'
 import { storiesOf } from '@storybook/react'
@@ -14,39 +15,16 @@ import readme from './README.md'
 
 const addReadme = comp => withReadme(readme, comp);
 
-const data = [
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000}
-];
+const data = [];
+
+let date = moment();
+for (var i = 0; i < 31; i++) {
+  date = date.add(1, 'days');
+  data.push({
+    name: date.format("DD MMM"),
+    price: Math.random() * (20000 - 1000) + 1000
+  });
+}
 
 const clickHandler = (value) => {
   action('click')(value);
@@ -55,6 +33,6 @@ const clickHandler = (value) => {
 storiesOf('avantrip/Chart', module)
   .add('Default', addReadme(() => (
     <ThemeProvider theme={theme}>
-      <Chart data={data} keyValue="price" keyName="name" onClick={clickHandler} />
+      <Chart data={data} value="price" label="name" onClick={clickHandler} />
     </ThemeProvider>
   )))

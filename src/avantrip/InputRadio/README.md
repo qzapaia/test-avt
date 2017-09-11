@@ -8,7 +8,7 @@ import InputRadio from 'avantrip-react/avantrip/InputRadio';
 
 export default () => (
   <InputRadio
-    id={string}
+    key={string}
     value={string}
     name={string}
     checked={boolean}
@@ -30,7 +30,7 @@ Valor del input.
 #### `name={<String>}`
 Nombre del input.
 
-#### `id={<String | Number>}`
+#### `key={<String | Number>}`
 Identificador unívico del input.
 
 #### `checked={<Boolean>}`

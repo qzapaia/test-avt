@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 
 import Chart from '../Chart';
 
-const PriceTrendCalendar = ({data, disclaimer}) => {
-    return (
+const PriceTrendCalendar = ({data, disclaimer, onClick}) => {
+  return (
+    <div>
+      <Chart
+        data={data}
+        value="price"
+        label="name"
+        onClick={onClick}/>
+      {disclaimer &&
         <div>
-            <Chart data={data} keyValue="price" keyName="name"/>
-            {disclaimer &&
-                <div>
-                    {disclaimer}
-                </div>
-            }
+          {disclaimer}
         </div>
-    )
+      }
+    </div>
+  )
 }
 
 PriceTrendCalendar.propTypes = {
   data: PropTypes.array.isRequired,
-  disclaimer: PropTypes.string
+  disclaimer: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 export default PriceTrendCalendar;

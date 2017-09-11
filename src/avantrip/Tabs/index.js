@@ -4,25 +4,21 @@ import PropTypes from 'prop-types';
 const Tabs = ({selectedTab, onChange, children}) => (
   <div>
     <nav>
-        {children.map((c,i)=>(
-            <button key={i} onClick={e=>onChange(i)}>
+        {children.map(c =>(
+            <button key={c.props.id} onClick={e=>onChange(c.props.id)}>
                 {c.props.title}
             </button>
         ))}
     </nav>
     <div>
-        {children.find((c,i)=>(selectedTab==i)).props.content}
+        {children.find(c =>(selectedTab==c.props.id))}
     </div>
   </div>
 )
 
 Tabs.propTypes = {
-  selectedTab: PropTypes.number,
+  selectedTab: PropTypes.string.isRequired,
   onChange: PropTypes.func
-}
-
-Tabs.default = {
-  selectedTab: 0
 }
 
 export default Tabs;

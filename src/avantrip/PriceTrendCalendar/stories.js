@@ -1,16 +1,17 @@
-import React from 'react'
-import PriceTrendCalendar from './'
+import React from 'react';
+import PriceTrendCalendar from './';
+import moment from 'moment';
 
-import withReadme from 'storybook-readme/with-readme'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
+import withReadme from 'storybook-readme/with-readme';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
-import { withState, compose } from 'recompose'
+import { withState, compose } from 'recompose';
 
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components';
 
 import theme from '../styled.theme';
-import readme from './README.md'
+import readme from './README.md';
 
 const addReadme = comp => withReadme(readme, comp);
 
@@ -18,39 +19,16 @@ const addReadme = comp => withReadme(readme, comp);
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
 
-const data = [
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000},
-    {name: 'Do 4', price: 12780},
-    {name: 'Lu 5', price: 11890},
-    {name: 'Ma 6', price: 12390},
-    {name: 'Mi 7', price: 13490},
-    {name: 'Ju 1', price: 14000},
-    {name: 'Vi 2', price: 13000},
-    {name: 'Sa 3', price: 12000}
-];
+const data = [];
+
+let date = moment();
+for (var i = 0; i < 31; i++) {
+  date = date.add(1, 'days');
+  data.push({
+    name: date.format("DD MMM"),
+    price: Math.random() * (20000 - 1000) + 1000
+  });
+}
 
 const enhace = withState('counter','increment',data);
 const PriceTrendCalendarWithState =  enhace((props) => {
@@ -63,9 +41,13 @@ const PriceTrendCalendarWithState =  enhace((props) => {
   )
 })
 
+const clickHandler = (value) => {
+  action('click')(value);
+}
+
 storiesOf('avantrip/PriceTrendCalendar', module)
   .add('Default', addReadme(() => (
     <ThemeProvider theme={theme}>
-      <PriceTrendCalendarWithState data={data}/>
+      <PriceTrendCalendarWithState data={data} onClick={clickHandler}/>
     </ThemeProvider>
   )))
