@@ -21,12 +21,11 @@ const ContactAndPhoneInfoWithState =  enhace((props) => {
   const { phoneText } = props;
 
   return (
-    <ContactAndPhoneInfo phoneText={phoneText} >
-    </ContactAndPhoneInfo>
+    <ContactAndPhoneInfo phoneText={phoneText} />
   )
 })
 
 storiesOf('avantrip/ContactAndPhoneInfo', module)
   .add('Default', addReadme(() => (
-    <ContactAndPhoneInfoWithState phoneText="0810-222-2826"></ContactAndPhoneInfoWithState>
+    <ContactAndPhoneInfoWithState phoneText="0810-222-2826" />
   )))

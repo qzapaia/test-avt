@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ContactAndPhoneInfo = ({phoneText, onClick}) => (
+const ContactAndPhoneInfo = ({phoneText}) => (
 	<div>
 		<div>
 			<div>Comprá también por teléfono</div>

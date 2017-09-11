@@ -19,7 +19,7 @@ const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) =>
     		-----------------------
     	</div>
     	<div>
-    		arrivalCity
+    		{arrivalCity}
     	</div>
     </div>
     {children}

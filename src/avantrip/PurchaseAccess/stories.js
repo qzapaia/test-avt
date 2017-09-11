@@ -41,10 +41,10 @@ storiesOf('avantrip/PurchaseAccess', module)
     theme
   }))
   .add('Success', () => (
-    <PurchaseAccessWithState stateForTesting="success"></PurchaseAccessWithState>
+    <PurchaseAccessWithState stateForTesting="success" />
   ))
   .add('Fail', () => (
-    <PurchaseAccessWithState stateForTesting="fail"></PurchaseAccessWithState>
+    <PurchaseAccessWithState stateForTesting="fail" />
   ))
 
 

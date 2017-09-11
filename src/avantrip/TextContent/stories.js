@@ -23,7 +23,7 @@ const TextContentWithState =  enhace((props) => {
   const { title, subtitle } = props;
 
   return (
-    <TextContent title={title} subtitle={subtitle}></TextContent>
+    <TextContent title={title} subtitle={subtitle} />
   )
 })
 
@@ -31,8 +31,7 @@ storiesOf('avantrip/TextContent', module)
   .add('Default', addReadme(() => (
     <TextContentWithState 
       title="Avantrip.com: Agencia de turismo y viajes" 
-      subtitle="Somos una agencia de viajes con años de experiencia en la industria turística. En Avantrip.com podés elegir entre cientos de vuelos a destinos de todo el mundo, encontrar tu hotel ideal, seleccionar paquetes turísticos a medida...">
-    </TextContentWithState>
+      subtitle="Somos una agencia de viajes con años de experiencia en la industria turística. En Avantrip.com podés elegir entre cientos de vuelos a destinos de todo el mundo, encontrar tu hotel ideal, seleccionar paquetes turísticos a medida..." />
   )))
 
 
