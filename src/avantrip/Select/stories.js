@@ -10,17 +10,17 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('counter','increment',0);
+const enhace = withState('value','changeSelected',null);
 const SelectWithState =  enhace((props) => {
-  const { counter, increment } = props;
+  const { value, changeSelected } = props;
 
-  const clickHandler = () => {
-    action('click')(counter+1);
-    increment(counter+1);
+  const changeHandler = (newValue) => {
+    action('with state change')(newValue);
+    changeSelected(newValue);
   }
 
   return (
-    <Select {...props} text={counter} onClick={clickHandler} />
+    <Select {...props} value={value} onChange={changeHandler} />
   )
 })
 
@@ -30,7 +30,7 @@ storiesOf('avantrip/Select', module)
     theme
   }))
   .add('Default', () => (
-    <SelectWithState onChange={action('onChange')}>
+    <SelectWithState>
       <option value="1">label 1</option>
       <option value="2">label 2</option>
       <option value="3">label 3</option>
