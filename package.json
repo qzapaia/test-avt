@@ -48,6 +48,9 @@
     "to-pascal-case": "^1.0.0"
   },
   "devDependencies": {
-    "webpack": "^3.5.6"
+     "webpack": "^3.5.6"
+  },
+  "peerDependencies": {
+    "moment": "^2.18.1"
   }
 }
