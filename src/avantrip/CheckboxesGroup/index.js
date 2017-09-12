@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import _ from 'lodash';
-
 import InputCheckbox from '../InputCheckbox';
 
 const CheckboxesGroup = ({options, onChange, label, values}) => (
