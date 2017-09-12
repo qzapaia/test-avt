@@ -1,7 +1,6 @@
 ## Description
-Es un componente que contiene dos nodos. Siempre mostrará el
-nodo summaryInformation y solo mostrará el nodo extendedInformation
-cuando la prop expanded sea TRUE.
+Muestra **summaryInformation** y solo muestra **extendedInformation**
+cuando **expanded** sea true.
 
 ## Basic use
 
@@ -10,22 +9,23 @@ import ExpansionPanel from 'avantrip-react/avantrip/ExpansionPanel';
 
 export default () => (
   <ExpansionPanel
-    expanded={boolean}
-    onChange={function}
-    summaryInformation={node}
-    extendedInformation={node}/>
+   expanded={boolean}
+   onChange={function}
+   SummaryInformation={({onChange}) => <Button onClick={onChange} />}
+   ExtendedInformation={({onChange}) => <Button onClick={onChange} />}/>
 )
 ```
 
-
 ## Props
-#### `extendedInformation={<Node>}`
-Este nodo se visualizará cuando la prop extended sea true.
 
-#### `summaryInformation={<Node>}`
-Este nodo se visualizará en todo momento y el hacer click
-sobre el mismo ejecutará la función recibida en la prop
-onChange.
+#### `SummaryInformation={<Function>}`
+Componente que contiene información reducida y al momento de
+crear el nodo se le pasa **onChange**.
+
+#### `ExtendedInformation={<Function>}`
+Componente que contiene información extendida. Si **expanded**
+es true se visualizará, de lo contrario, no.
+Al momento de crear el nodo se le pasa **onChange**.
 
 #### `onChange={<Function>}`
 Al hacer click sobre el componente summaryInformation se
@@ -34,5 +34,5 @@ como parametro el estado contrario al recibido en la prop
 expanded.
 
 #### `expanded={<Boolean>}`
-En TRUE muestra el nodo extendedInformation, caso contrario,
+En true muestra el nodo extendedInformation, de lo contrario,
 lo oculta.

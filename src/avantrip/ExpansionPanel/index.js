@@ -2,24 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ExpansionPanel = ({
-    summaryInformation,
-    extendedInformation,
+    SummaryInformation,
+    ExtendedInformation,
     expanded,
     onChange}) => (
-
-  <div>
-    <div onClick={e => onChange(!expanded)}>
-      {summaryInformation}
-    </div>
-    <div onClick={e => onChange(!expanded)}>
-      {expanded && extendedInformation}
-    </div>
-  </div>
+      <div>
+       <SummaryInformation
+         onChange={()=>onChange(!expanded)} />
+       { expanded && <ExtendedInformation
+           onChange={()=>onChange(!expanded)} />}
+      </div>
 )
 
 ExpansionPanel.propTypes = {
-  summaryInformation: PropTypes.node,
-  extendedInformation: PropTypes.node,
+  SummaryInformation: PropTypes.func,
+  ExtendedInformation: PropTypes.func,
   expanded:PropTypes.bool,
   onChange: PropTypes.func
 }

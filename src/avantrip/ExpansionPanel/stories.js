@@ -33,6 +33,13 @@ storiesOf('avantrip/ExpansionPanel', module)
   }))
   .add('Con los dos nodos completos', () => (
     <ExpansionPanelWithState
-      summaryInformation={<div>summaryInformation</div>}
-      extendedInformation={<div>extendedInformation</div>}/>
+      SummaryInformation={({onChange}) =>
+        <div>SummaryInformation
+          <button onClick={onChange}> v </button>
+        </div>
+      }
+      ExtendedInformation={({onChange}) =>
+        <div>ExtendedInformation
+          <button onClick={onChange}> Ver menos </button>
+        </div>} />
   ))
