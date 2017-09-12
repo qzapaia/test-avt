@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Card de descripción para productos.
 
 ## Basic use
 
@@ -8,9 +8,14 @@ import ProductCard from 'avantrip-react/avantrip/ProductCard';
 
 export default () => (
   <ProductCard
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    href={string}
+    target={string}
+    listMode={boolean}
+    media={string}
+    price={string}
+    supportingInfo={string}
+    subtitle={string}
+    title={string}
   />
 )
 ```
@@ -18,9 +23,26 @@ export default () => (
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `title={<String>}`
+Titulo
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `subtitle={<String>}`
+Subtitulo
 
+#### `supportingInfo={<String>}`
+Texto de soporte
+
+#### `media={<String>}`
+URL de la imagen de soporte
+
+#### `price={<String>}`
+Precio del producto
+
+#### `href={<String>}`
+Link de la card
+
+#### `target={<String>}`
+Target del link
+
+#### `listMode={<String>}`
+Le informa a la card que se muestre en modo lista si corresponde
