@@ -1,5 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
+
+// TODO: Resolver locales
+
+const FORMAT_DATE = 'ddd. DD MMM de YYYY'; 
+
+const parseDate = date => {
+  return Moment(date).format(FORMAT_DATE);
+
+}
 
 const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) => (
   <div>
@@ -8,7 +18,7 @@ const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) =>
     		{title}
     	</div>
     	<div>
-    		{date}
+    		{parseDate(date)}
     	</div>
     </div>
     <div>
@@ -28,7 +38,7 @@ const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) =>
 
 FlightClusterRoute.propTypes = {
   title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.object.isRequired,
   departureCity: PropTypes.string.isRequired,
   arrivalCity: PropTypes.string.isRequired
 }

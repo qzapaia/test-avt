@@ -10,27 +10,18 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md'
 
-const enhace = compose(
-  withState('errorMessage','showPurchaseError', ''),
-  withState('submitState','changeSubmitState', '')
-)
+const enhace = compose()
 
 const PurchaseAccessWithState =  enhace((props) => {
-  const { errorMessage, showPurchaseError, 
-          submitState, changeSubmitState, 
-          stateForTesting } = props;
+  const { errorMessage } = props;
 
   const onSubmit = () => {
-    if(stateForTesting == 'fail'){
-      changeSubmitState('fail');
-      showPurchaseError('No se ha encontrado una compra asociada. Por favor ingresá tus datos de nuevo.');
-    }
+
   }
 
   return (
     <PurchaseAccess 
       onSubmit={onSubmit} 
-      state={submitState}
       errorMessage={errorMessage}/>
   )
 })
@@ -41,10 +32,10 @@ storiesOf('avantrip/PurchaseAccess', module)
     theme
   }))
   .add('Success', () => (
-    <PurchaseAccessWithState stateForTesting="success" />
+    <PurchaseAccessWithState />
   ))
   .add('Fail', () => (
-    <PurchaseAccessWithState stateForTesting="fail" />
+    <PurchaseAccessWithState errorMessage="No se ha encontrado una compra asociada. Por favor ingresá tus datos de nuevo." />
   ))
 
 

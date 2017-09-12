@@ -9,10 +9,10 @@ import FlightClusterRoute from 'avantrip-react/avantrip/FlightClusterRoute';
 
 export default () => (
   <FlightClusterRoute
-  title={string} 
-  date={string} 
-  departureCity={string} 
-  arrivalCity={string}
+  	title={string} 
+  	date={string} 
+  	departureCity={string} 
+  	arrivalCity={string}
   />
 )
 ```
