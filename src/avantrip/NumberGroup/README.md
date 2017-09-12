@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Componente de grupo de input numbers.
 
 ## Basic use
 
@@ -8,9 +8,9 @@ import NumberGroup from 'avantrip-react/avantrip/NumberGroup';
 
 export default () => (
   <NumberGroup
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    options={collection}
+    onChange={function}
+    label={string}
   />
 )
 ```
@@ -18,9 +18,29 @@ export default () => (
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `options={<Collection>}`
+Colección de optiones para crear los input numbers. Son los mismos que InputNumber.
+Ejemplo:
+```javascript
+[{
+  label:'numero a',
+  id:'a',
+  value:1
+},{
+  label:'numero b',
+  id:'b',
+  value:2
+}]
+```
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `onChange={<Function>}`
+Recibe la opción que cambió con el nuevo valor
+```javascript
+{
+  id:'a',
+  value:1
+}
+```
 
+#### `label={<String>}`
+Label del grupo.

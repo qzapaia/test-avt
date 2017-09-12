@@ -29,6 +29,7 @@ const NumberGroupWithState =  enhace((props) => {
   const { options, change } = props;
 
   const clickHandler = (option) => {
+    action('option changed')(option);
     find(options,{ id:option.id }).value = option.value;
     change(options)
   }
