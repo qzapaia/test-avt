@@ -1,11 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const InputNumber = ({value, label, step, min, max, onChange}) => (
-	<div>
-		<label>{label}</label>
-		<input type="number" min={min} max={max} step={step} value={value} onChange={ e => onChange(e.target.value) }/>
-	</div>
+const InputNumber = ({
+											value,
+											label,
+											step,
+											min,
+											max,
+											onChange}) => (
+	<label>
+		<span>{label}</span>
+		<input
+			type="number"
+			min={min}
+			max={max}
+			step={step}
+			value={value}
+			onChange={ e => onChange(e.target.value) }
+		/>
+	</label>
 )
 
 InputNumber.propTypes = {
@@ -18,7 +31,7 @@ InputNumber.propTypes = {
 }
 
 InputNumber.defaultProps = {
-  
+
 }
 
 export default InputNumber;
