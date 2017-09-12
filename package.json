@@ -29,6 +29,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "express": "^4.15.4",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "plop": "^1.8.0",
     "prop-types": "^15.5.10",
     "raw-loader": "^0.5.1",
@@ -37,6 +38,8 @@
     "react-dom": "^15.6.1",
     "react-i18n-q": "^1.0.5",
     "react-redux": "^5.0.6",
+    "react-slick": "^0.15.4",
+    "recharts": "^1.0.0-alpha.4",
     "recompose": "^0.25.0",
     "redux": "^3.7.2",
     "rimraf": "^2.6.1",
@@ -45,9 +48,13 @@
     "to-pascal-case": "^1.0.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
      "webpack": "^3.5.6"
   },
   "peerDependencies": {
     "moment": "^2.18.1"
+=======
+    "webpack": "^3.5.6"
+>>>>>>> dd84fa667f5dc2f75d0e7b3ed2409b2a4aeaeb1f
   }
 }
