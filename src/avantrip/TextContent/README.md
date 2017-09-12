@@ -8,8 +8,8 @@ import TextContent from 'avantrip-react/avantrip/TextContent';
 
 export default () => (
   <TextContent
-  title={string}
-  subtitle={string}
+  	title={string}
+  	subtitle={string}
   />
 )
 ```

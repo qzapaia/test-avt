@@ -17,8 +17,11 @@ const addReadme = comp => withReadme(readme, comp);
 // el enhace concatena hocs de recompose,
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
-const enhace = withState('counter','increment',0);
 
+const enhace = compose(
+  withState('counter','increment',0),
+  withState('date','changeDate', new Date())
+)
 
 const FlightClusterRouteWithState =  enhace((props) => {
   // enchufar tu component con el estado simulado
@@ -36,8 +39,7 @@ const FlightClusterRouteWithState =  enhace((props) => {
 storiesOf('avantrip/FlightClusterRoute', module)
   .add('Default', addReadme(() => (
     <FlightClusterRouteWithState 
-      title="IDA" 
-      date="Mié. 01 Nov. de 2017" 
+      title="IDA"  
       departureCity="Buenos Aires" 
       arrivalCity="Nueva York">
     </FlightClusterRouteWithState>
