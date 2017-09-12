@@ -36,8 +36,7 @@ const PriceTrendCalendarWithState =  enhace((props) => {
   const { counter, increment } = props;
 
   return (
-    <PriceTrendCalendar {...props}>
-    </PriceTrendCalendar>
+    <PriceTrendCalendar {...props} />
   )
 })
 

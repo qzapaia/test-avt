@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InputRadio from '../InputRadio';
+import InputCheckbox from '../InputCheckbox';
 
-const RadiosGroup = ({options, onChange, label, selectedOption}) => (
+const RadiosGroup = ({options, onChange, label, value}) => (
   <span>
     {label}
-    {options.map(c => (
-          <InputRadio
-            key={ c.key }
-            id={ c.key.toString() }
-            name ={ "radio"+c.key }
+    {options.map(option => (
+          <InputCheckbox
+            key={ option.value }
+            id={ option.value.toString() }
             type ="radio"
-            value ={ c.key.toString() }
-            label ={ c.label }
-            checked ={ selectedOption == c.key }
-            onChange ={ e => onChange(c.key) }
+            value ={ option.value.toString() }
+            label ={ option.label }
+            checked ={ value == option.value }
+            onChange ={ e => onChange(option.value.toString()) }
           />
     ))}
   </span>
@@ -25,7 +24,7 @@ RadiosGroup.propTypes = {
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func,
     label: PropTypes.node,
-    selectedOption: PropTypes.number
+    value: PropTypes.string
 }
 
 export default RadiosGroup;

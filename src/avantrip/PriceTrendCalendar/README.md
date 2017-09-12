@@ -8,7 +8,7 @@ import PriceTrendCalendar from 'avantrip-react/avantrip/PriceTrendCalendar';
 
 export default () => (
   <PriceTrendCalendar
-  data={colelction}
+  data={collection}
   disclaimer={string}
   onClick={function}
   />

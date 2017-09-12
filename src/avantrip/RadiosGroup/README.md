@@ -11,6 +11,7 @@ export default () => (
     label={Node}
     onChange={Function}
     options={Collection}
+    value={string}
   />
 )
 ```
@@ -28,8 +29,11 @@ Specifies a label for an option-group
 Collection to related options. They must respect the format:
 ´´´
 [{
-  key: 1,
+  value: 1,
   label: "Todos los horarios",
   checked: true
 }]
 ´´´
+
+#### `value={<String>}`
+Valor seleccionado.

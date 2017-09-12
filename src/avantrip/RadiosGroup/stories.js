@@ -18,21 +18,21 @@ const addReadme = comp => withReadme(readme, comp);
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
 let initialOptions = [{
-  key: 1,
+  value: 1,
   label: "Todos los horarios"
 },
 {
-    key: 2,
+    value: 2,
     label: "8hs a 12hs"
 }];
 
-const enhace = withState('selectedOption','selectOption',1);
+const enhace = withState('value','selectOption',"1");
 const RadiosGroupWithState =  enhace((props) => {
-  const { selectOption, selectedOption } = props;
+  const { selectOption, value } = props;
 
-  const onChangeHandler = (selectedOption) => {
-    action('onChange')('Selected Option: ' + selectedOption);
-    selectOption(selectedOption);
+  const onChangeHandler = (value) => {
+    action('onChange')('Selected Option: ' + value);
+    selectOption(value);
   }
 
   return (
@@ -40,7 +40,7 @@ const RadiosGroupWithState =  enhace((props) => {
       options={initialOptions}
       onChange={onChangeHandler}
       label={props.children}
-      selectedOption={selectedOption} />
+      value={value} />
   )
 })
 
