@@ -16,7 +16,7 @@ const InputNumber = ({
 			max={max}
 			step={step}
 			value={value}
-			onChange={ e => onChange(e.target.value) }
+			onChange={e => onChange(parseFloat(e.target.value))}
 		/>
 	</label>
 )
