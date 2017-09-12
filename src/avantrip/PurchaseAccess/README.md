@@ -10,7 +10,6 @@ export default () => (
   <PurchaseAccess
   	errorMessage={string}
   	onSubmit={function}
-  	state={string}
   />
 )
 ```
@@ -22,6 +21,3 @@ Envío del form
 
 #### `errorMessage={<String>}`
 Mensaje de error génerico para un submit fallido
-
-#### `state={<String>}`
-Estado de error del form

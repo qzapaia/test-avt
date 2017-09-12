@@ -9,17 +9,17 @@ const preventFormatAndContinueWith = next => e => {
   })
 }
 
-const PurchaseAccess = ({errorMessage, onSubmit, state}) => (
+const PurchaseAccess = ({errorMessage, onSubmit}) => (
   <div>
     <form onSubmit={preventFormatAndContinueWith(onSubmit)}>
     	<div>¿Compraste un vuelo?</div>
 
-    	<input type="text" 
+    	<input type="text"
     		name="purchaseId"
     		placeholder="Número de solicitud de compra" />
 
-    	<input type="email" 
-    		name="purchaseEmail" 
+    	<input type="email"
+    		name="purchaseEmail"
     		placeholder="Ingresá el email de compra" />
 
     	<button>Ingresar</button>
@@ -40,7 +40,7 @@ const PurchaseAccess = ({errorMessage, onSubmit, state}) => (
 )
 
 PurchaseAccess.defaultProps = {
-  
+
 }
 
 export default PurchaseAccess;
