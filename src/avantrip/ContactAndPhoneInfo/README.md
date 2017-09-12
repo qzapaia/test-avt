@@ -8,7 +8,7 @@ import ContactAndPhoneInfo from 'avantrip-react/avantrip/ContactAndPhoneInfo';
 
 export default () => (
   <ContactAndPhoneInfo
-  phoneText={string}/>
+  	phoneText={string}/>
 )
 ```
 

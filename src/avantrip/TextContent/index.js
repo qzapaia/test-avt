@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const TextContent = ({title, subtitle}) => (
   <div>
-    <div>
+    <h1>
     	{title}
-    </div>
-    <div>
+    </h1>
+    <h2>
     	{subtitle}
-    </div>
+    </h2>
   </div>
 )
 
@@ -18,8 +18,8 @@ TextContent.propTypes = {
 }
 
 TextContent.defaultProps = {
-  title: 'Título',
-  subtitle: 'Descripción'
+  title: '',
+  subtitle: ''
 }
 
 export default TextContent;

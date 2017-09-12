@@ -23,7 +23,7 @@ const PurchaseAccess = ({errorMessage, onSubmit, state}) => (
     		placeholder="Ingresá el email de compra" />
 
     	<button>Ingresar</button>
-      {state == 'fail' &&
+      {errorMessage !== '' &&
         <div>{errorMessage}</div>
       }
   	</form>
@@ -40,7 +40,7 @@ const PurchaseAccess = ({errorMessage, onSubmit, state}) => (
 )
 
 PurchaseAccess.defaultProps = {
-  text:'no value yet :('
+  
 }
 
 export default PurchaseAccess;

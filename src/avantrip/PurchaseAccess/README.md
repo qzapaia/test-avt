@@ -8,9 +8,9 @@ import PurchaseAccess from 'avantrip-react/avantrip/PurchaseAccess';
 
 export default () => (
   <PurchaseAccess
-  errorMessage={string}
-  onSubmit={function}
-  state={string}
+  	errorMessage={string}
+  	onSubmit={function}
+  	state={string}
   />
 )
 ```
