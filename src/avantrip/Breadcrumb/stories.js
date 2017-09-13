@@ -17,7 +17,7 @@ storiesOf('avantrip/Breadcrumb', module)
     <Breadcrumb>
       <a href="https://www.avantrip.com">Avantrip.com</a>
       <a href="https://www.avantrip.com/vuelos">Vuelos</a>
-      <span href="https://www.avantrip.com">
+      <span>
         304 vuelos a Miami desde Buenos Aires
       </span>
     </Breadcrumb>

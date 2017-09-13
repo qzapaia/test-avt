@@ -5,7 +5,8 @@ import BreadcrumbSeparator from '../BreadcrumbSeparator';
 import ContainerBreadcrumb from './container.styled';
 
 const Breadcrumb = ({children}) => {
-  let numberOfChildren = children.length-1;
+  const numberOfChildren = children.length-1;
+
   return (<ContainerBreadcrumb>
     {
       children.map((child, index) =>{
