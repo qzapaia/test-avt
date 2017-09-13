@@ -7,44 +7,45 @@ const groupByAirlineName = flights => {
   return _.groupBy(flights, 'name');
 }
 
-const getBestPricesByScale = groupedFlights => {
+const getBestPriceByScale = flights => {
+	let scalesWithBestPrice = [];
 
-  let bestPriceByScale = [];
+  _.forEach(flights, ( flightData, scaleType ) => {  
 
-  _.forEach(groupedFlights, ( groupedFlightsData, airlineName ) => {
+    let smallestPrice = flightData.reduce( (minPrice, currentFlight) => {
+      if(currentFlight){
+        minPrice = minPrice < currentFlight.price ? minPrice : currentFlight.price;
+      }
+      return minPrice;
+    });
+
+		scalesWithBestPrice.push({
+			'scaleType':scaleType,
+			'price':smallestPrice
+		})
+  })  
+
+  return scalesWithBestPrice;
+}
+
+const getBestPricesByScale = groupedFlightsByAirline => {
+
+  let bestFlightsByAirlineAndScale = [];
+
+  _.forEach(groupedFlightsByAirline, ( flights , airlineName ) => {
 
     //Agrupo por escala
-    let flightsGroupedByScale = _.groupBy(groupedFlightsData, 'scaleType');
-    let scales = [];
+    let flightsGroupedByScale = _.groupBy( flights , 'scaleType');
 
-    //Busco el más barato por escala
-    _.forEach(flightsGroupedByScale, ( groudedByScaleData, scaleType ) => {  
-
-      let smallestPrice = groudedByScaleData.reduce( (price, currentFlight) => {
-        if(currentFlight){
-          price = price < currentFlight.price ? price : currentFlight.price;
-        }
-        return price;
-      });
-
-			scales.push({
-				'scaleType':scaleType,
-				'price':smallestPrice
-			})
-    })  
-
-    //Ordeno las escalas para un render más prolijo
-    scales = _.orderBy(scales, 'scaleType');
-
-    bestPriceByScale.push({
-    	scales:scales,
+    bestFlightsByAirlineAndScale.push({
     	name: airlineName,
-    	label:groupedFlightsData[0].label,
-    	logo: groupedFlightsData[0].logo
+    	label:flights[0].label,
+    	logo: flights[0].logo,
+    	scales: _.orderBy(getBestPriceByScale(flightsGroupedByScale), 'scaleType')
     });
   })
 
-  return bestPriceByScale;
+  return bestFlightsByAirlineAndScale;
 }
 
 const getBestPricesByScaleWithGroupedFlights = groupedFlights => {
@@ -52,13 +53,11 @@ const getBestPricesByScaleWithGroupedFlights = groupedFlights => {
 		return acc.concat(current.scales)
 	}, [])
  
-	let bestPricesGroupedByScales = _.groupBy(scalesAndPrices, 'scaleType');
+	const groupedByScales = _.groupBy(scalesAndPrices, 'scaleType');
 
-	bestPricesGroupedByScales = _.map(bestPricesGroupedByScales, function( f ){
-		return (_.minBy(f, 'price'))
-	})
+	const bestPricesByScales = _.map(groupedByScales, f => _.minBy(f, 'price'))
 
-	return bestPricesGroupedByScales;
+	return bestPricesByScales;
 } 
 
 const containerStyle = {

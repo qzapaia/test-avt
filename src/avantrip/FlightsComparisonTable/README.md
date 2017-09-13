@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Componente para el resultado de búsqueda. Recibe una collection de vuelos y muestra una tabla con los mejores precios agrupado por escala y aerolínea
 
 ## Basic use
 
@@ -8,9 +8,7 @@ import FlightsComparisonTable from 'avantrip-react/avantrip/FlightsComparisonTab
 
 export default () => (
   <FlightsComparisonTable
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    flights={collection}
   />
 )
 ```
@@ -18,9 +16,12 @@ export default () => (
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
-
+#### `flights={<Collection>}`
+Collection de vuelos. Espera el siguiente formato
+{
+  'name': 'AA',
+  'label': 'Aerolíneas Argentinas',
+  'logo': 'src de imagen',
+  'price': '31233',
+  'scaleType': '0'
+}
