@@ -19,7 +19,7 @@ storiesOf('avantrip/styled@Header', module)
   .add('Default', () => (
     <Header>
       <div>Logo</div>
-      <ContactAndPhoneInfo />
+      <ContactAndPhoneInfo phoneText="0810-222-2826" />
       <div>Nav</div>
     </Header>
   ))
