@@ -1,4 +1,4 @@
-import { SET_DATA } from './actions';
+import { FACEBOOK_SIGNUP_COMPLETE } from './actions';
 
 const initialState = {};
 
@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
   console.log(action);
 
   switch(type){
-    case SET_DATA:
+    case FACEBOOK_SIGNUP_COMPLETE:
       return {
         ...state,
         payload

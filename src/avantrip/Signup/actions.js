@@ -1,13 +1,16 @@
-export const SET_DATA = 'SET_DATA';
-export const SET_REPOS = 'SET_REPOS';
 
-export const getData = id => dispatch => (
-  fetch(`https://api.com/${id}`)
-  .then(res=>res.json())
-  .then(data=>dispatch(setData(data)))
+export const FACEBOOK_SIGNUP_COMPLETE = 'FACEBOOK_SIGNUP_COMPLETE';
+
+export const async facebookSignup = data => (
+  const res = await fetch(`https://api.com/${id}`,{
+    method:'POST',
+    body:data
+  })
+  const state = await res.json();
+  dispatch(facebookSignupResult(state))
 )
 
-export const setData = data => ({
-  type:SET_REPOS,
-  payload:data
+export const facebookSignupResult = state => ({
+  type:FACEBOOK_SIGNUP_COMPLETE,
+  payload:state
 })

@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Signup = ({onClick}) => (
+const facebookButoonStyle = {
+	color:'white',
+	backgroundColor:'blue'
+}
+
+const Signup = ({onFacebookSignup}) => (
 	<div>
 		<div>
 			¡Accedé y recibí ofertas exclusivas!
 		</div>
-		<div onClick={onClick}>
+		<div style={facebookButoonStyle} onClick={onFacebookSignup}>
 			Botón de Facebook
 		</div>
 		<div>

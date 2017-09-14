@@ -14,12 +14,12 @@ const enhace = withState('counter','increment',0);
 const SignupWithState =  enhace((props) => {
   const { counter, increment } = props;
 
-  const onClick = () => {
+  const handleFacebookSignup = () => {
     action('click')('Facebook Login');
   }
 
   return (
-    <Signup onClick={onClick}/>
+    <Signup onFacebookSignup={handleFacebookSignup}/>
   )
 })
 
