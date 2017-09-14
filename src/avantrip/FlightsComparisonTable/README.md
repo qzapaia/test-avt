@@ -19,9 +19,9 @@ export default () => (
 #### `flights={<Collection>}`
 Collection de vuelos. Espera el siguiente formato
 {
-  'name': 'AA',
+  'airlineName': 'AA',
   'label': 'Aerolíneas Argentinas',
   'logo': 'src de imagen',
   'price': '31233',
-  'scaleType': '0'
+  'stopType': '0'
 }

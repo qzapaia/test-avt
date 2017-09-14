@@ -10,8 +10,6 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-import { groupby } from 'lodash';
-
 const AA_AIRLINE_LOGO = 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/AA.png?adq-20170911-0';
 const AA_AIRLINE_LABEL = 'American Airlines';
 const AA_AIRLINE_NAME = 'AA';
@@ -35,11 +33,11 @@ const generateRandomFlights = (airlinesBase, randomFlightsQty) => {
   for(var i=0; i<randomFlightsQty; i++){
     let randomAirlineIndex = Math.floor(Math.random() * airlinesBase.length);
     randomFlights.push({
-      'name': airlinesBase[randomAirlineIndex].name,
+      'airlineName': airlinesBase[randomAirlineIndex].name,
       'label': airlinesBase[randomAirlineIndex].label,
       'logo': airlinesBase[randomAirlineIndex].logo,
       'price': Math.floor(Math.random() * 100000),
-      'scaleType': Math.floor(Math.random() * 3 )
+      'stopType': Math.floor(Math.random() * 3 )
     });
   }
 

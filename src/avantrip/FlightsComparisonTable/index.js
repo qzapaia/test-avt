@@ -1,63 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { groupby } from 'lodash';
+const groupByAirlineName = flights => _.groupBy(flights, 'airlineName');
 
-const groupByAirlineName = flights => {
-  return _.groupBy(flights, 'name');
-}
 
-const getBestPriceByScale = flights => {
-	let scalesWithBestPrice = [];
+const getBestPriceByStop = flights =>
+	_.map(flights, (flightData, stopType) => {
+		return {
+   		'stopType' : stopType,
+   		'price' : _.minBy(flightData,'price').price
+		}
+	})
 
-  _.forEach(flights, ( flightData, scaleType ) => {  
 
-    let smallestPrice = flightData.reduce( (minPrice, currentFlight) => {
-      if(currentFlight){
-        minPrice = minPrice < currentFlight.price ? minPrice : currentFlight.price;
-      }
-      return minPrice;
-    });
-
-		scalesWithBestPrice.push({
-			'scaleType':scaleType,
-			'price':smallestPrice
-		})
-  })  
-
-  return scalesWithBestPrice;
-}
-
-const getBestPricesByScale = groupedFlightsByAirline => {
-
-  let bestFlightsByAirlineAndScale = [];
-
-  _.forEach(groupedFlightsByAirline, ( flights , airlineName ) => {
-
-    //Agrupo por escala
-    let flightsGroupedByScale = _.groupBy( flights , 'scaleType');
-
-    bestFlightsByAirlineAndScale.push({
-    	name: airlineName,
+const getBestPricesByStop = groupedFlightsByAirline => 
+	_.map(groupedFlightsByAirline, ( flights , airlineName ) => {
+    return {
+    	airlineName: airlineName,
     	label:flights[0].label,
     	logo: flights[0].logo,
-    	scales: _.orderBy(getBestPriceByScale(flightsGroupedByScale), 'scaleType')
-    });
+    	stops: _.orderBy(getBestPriceByStop(_.groupBy( flights , 'stopType')), 'stopType')
+    }
   })
 
-  return bestFlightsByAirlineAndScale;
-}
 
-const getBestPricesByScaleWithGroupedFlights = groupedFlights => {
-	const scalesAndPrices = _.reduce(groupedFlights, ( acc, current ) => {
-		return acc.concat(current.scales)
-	}, [])
+const getBestPricesByStopWithGroupedFlights = groupedFlights => {
+
+	const stopsAndPrices = _.reduce(groupedFlights, ( acc, current ) => 
+		acc.concat(current.stops), [])
  
-	const groupedByScales = _.groupBy(scalesAndPrices, 'scaleType');
+	const groupedByStops = _.groupBy(stopsAndPrices, 'stopType');
 
-	const bestPricesByScales = _.map(groupedByScales, f => _.minBy(f, 'price'))
+	const bestPricesByStops = _.map(groupedByStops, f => _.minBy(f, 'price'))
 
-	return bestPricesByScales;
+	return bestPricesByStops;
 } 
 
 const containerStyle = {
@@ -90,9 +66,9 @@ const flightGroupStyle = {
 
 const FlightsComparisonTable = ({flights}) => {
 
-	const groupedFlightsByAirlines = getBestPricesByScale(groupByAirlineName(flights));
+	const groupedFlightsByAirlines = getBestPricesByStop(groupByAirlineName(flights));
 
-	const groupedBestFlightsByPrice = getBestPricesByScaleWithGroupedFlights(groupedFlightsByAirlines);
+	const groupedBestFlightsByPrice = getBestPricesByStopWithGroupedFlights(groupedFlightsByAirlines);
 
 	return(
 	  <div style={containerStyle}>
@@ -153,7 +129,7 @@ const FlightsComparisonTable = ({flights}) => {
 			    			</div>
 			    		</div>
 
-	    				{_.map(flights.scales, f =>
+	    				{_.map(flights.stops, f =>
 
 	    					<div>
 				    			-------------
@@ -179,7 +155,7 @@ const FlightsComparisonTable = ({flights}) => {
 }
 
 FlightsComparisonTable.propTypes = {
-  //flights: PropTypes.array.isRequired
+  flights: PropTypes.array.isRequired
 }
 
 FlightsComparisonTable.defaultProps = {
