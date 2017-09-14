@@ -7,5 +7,14 @@ export default {
     success:'#3f9f10',
     warning:'#F90',
     danger:'#F90',
+  },
+  sizes:{
+    hxxl:'40px',
+    xxl:'36px',
+    xl:'28px',
+    l:'22px',
+    m:'16px',
+    s:'14px',
+    xs:'12px',
   }
 }

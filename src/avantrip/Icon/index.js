@@ -1,18 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as SVGS from './imports.js';
+import {withTheme} from 'styled-components'
+import {get} from 'lodash';
 
 const Icon = ({
   size,
+  height,
   color,
   id,
-}) => (
-  <span> Icon {id} </span>
-)
+  theme
+}) => {
+  const SVGComp = SVGS[id];
+  return id ? <SVGComp
+           height={get(theme,['sizes',height], height)}
+           style={{fill: get(theme,['colors',color], color)}}
+         />:
+         <span />
+}
 
 Icon.propTypes = {
   size:PropTypes.oneOf(['m']),
   color:PropTypes.oneOf(['black']),
-  id:PropTypes.string.isRequired,
+  id:PropTypes.oneOf(Object.keys(SVGS)).isRequired,
 }
 
 Icon.defaultProps = {
@@ -20,4 +30,4 @@ Icon.defaultProps = {
   color:'black',
 }
 
-export default Icon;
+export default withTheme(Icon);

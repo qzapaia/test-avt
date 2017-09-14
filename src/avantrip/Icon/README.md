@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Iconos
 
 ## Basic use
 
@@ -8,9 +8,9 @@ import Icon from 'avantrip-react/avantrip/Icon';
 
 export default () => (
   <Icon
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    height={string}
+    color={string}
+    id={string}
   />
 )
 ```
@@ -18,9 +18,13 @@ export default () => (
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `height={<String>}`
+Alto del ícono. Puede recibir uno de los tamaños establecido en  [Text](/?selectedKind=avantrip%2Fstyled%40Text). (ej: **xl**)
+O una medida absoluta (ej: **26px**).
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `color={<String>}`
+Color del ícono. Puede recibir uno de los colores establecido en [Colors](/?selectedKind=avantrip%2Fstyled%40Colors). (ej: **brand**)
+O un color absoluta (ej: **black**).
 
+#### `id={<String>}`
+Identificador del ícono. Ver nombres arriba ^. (Ej: **Add**)

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import types from './types'
 
 const StyledText = styled.span`
-  font-size: ${props=>types[props.type].size};
+  font-size: ${props=>props.theme.sizes[props.type]};
   font-weight: ${props=>types[props.type].weight};
   font-family: ${props=>types[props.type].family};
   color: ${props=>props.theme.colors[props.color] || 'inherit'};

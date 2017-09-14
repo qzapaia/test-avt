@@ -11,13 +11,13 @@ const InputText = ({
   label,
   options,
   requiresExistingValue,
-  iconName,
+  icon,
   children,
 }) => (
   <label>
     <h4>{label}</h4>
     <div>
-      <Icon id={iconName}></Icon>
+      <Icon id={icon}></Icon>
       <input
         type="text"
         value={value}
@@ -36,7 +36,7 @@ InputText.propTypes = {
   options:PropTypes.arr,
   requiresExistingValue:PropTypes.node,
 
-  iconName:PropTypes.node,
+  icon:PropTypes.node,
 }
 
 InputText.defaultProps = {

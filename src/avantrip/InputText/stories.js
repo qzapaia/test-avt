@@ -30,7 +30,7 @@ storiesOf('avantrip/InputText', module)
     theme
   }))
   .add('Default', () => (
-    <InputTextWithState iconName="valijita">
+    <InputTextWithState icon="Add">
       <option value="la opción a">a</option>
       <option value="la opción b">b</option>
     </InputTextWithState>
