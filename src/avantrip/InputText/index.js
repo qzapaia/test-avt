@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SuggestionPanel from './SuggestionPanel';
-
+import { pick } from 'lodash';
+import Icon from '../Icon';
 const handleChange = () => e => onChange(e.target.value);
 
 const InputText = ({
@@ -11,13 +12,19 @@ const InputText = ({
   options,
   requiresExistingValue,
   iconName,
+  children,
 }) => (
   <label>
     <h4>{label}</h4>
     <div>
-      <input type="text" value={value} onChange={handleChange(onChange)}/>
+      <Icon id={iconName}></Icon>
+      <input
+        type="text"
+        value={value}
+        onChange={handleChange(onChange)}
+      />
     </div>
-    <SuggestionPanel onChange={onChange}></SuggestionPanel>
+    <SuggestionPanel onChange={onChange} children={children} />
   </label>
 )
 

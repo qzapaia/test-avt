@@ -1,8 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import withReadme from 'storybook-readme/with-readme'
-import readme from './README.md';
 import { withState } from 'recompose';
+
+import generalDecorator from '../../stories.decorator.js';
+
+import theme from '../styled.theme';
+import readme from './README.md';
 
 import Tabs from './';
 
@@ -17,4 +21,8 @@ const TabWithStoreAndFirstChildrenSelected = enhance(({ selectedtab, setTab }) =
 );
 
 storiesOf('avantrip/Tabs', module)
+   .addDecorator(generalDecorator({
+      readme,
+      theme
+    }))
    .add('Default', () => <TabWithStoreAndFirstChildrenSelected />)

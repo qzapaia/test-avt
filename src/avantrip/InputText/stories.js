@@ -10,17 +10,17 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('counter','increment',0);
+const enhace = withState('value','change','');
 const InputTextWithState =  enhace((props) => {
-  const { counter, increment } = props;
+  const { value, change } = props;
 
-  const clickHandler = () => {
-    action('click')(counter+1);
-    increment(counter+1);
+  const changeHandler = (newVal) => {
+    action('change')(newVal);
+    change(newVal);
   }
 
   return (
-    <InputText {...props} text={counter} onClick={clickHandler} />
+    <InputText {...props} value={value} onChange={changeHandler} />
   )
 })
 
@@ -30,6 +30,8 @@ storiesOf('avantrip/InputText', module)
     theme
   }))
   .add('Default', () => (
-    <InputTextWithState></InputTextWithState>
+    <InputTextWithState iconName="valijita">
+      <option value="la opción a">a</option>
+      <option value="la opción b">b</option>
+    </InputTextWithState>
   ))
-

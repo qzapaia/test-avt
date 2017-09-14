@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SuggestionPanel = ({
-  options
+  options,
+  onChange,
+  children,
 }) => (
-  <div onClick={onClick}>
-    {children}
+  <div>
+    {children.map(o=>(
+      <div onClick={()=>onChange(o.props.value)}>
+        {o}
+      </div>
+    ))}
   </div>
 )
 
