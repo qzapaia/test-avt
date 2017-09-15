@@ -8,9 +8,13 @@ import Header from 'avantrip-react/avantrip/Header';
 
 export default () => (
   <Header>
-    {Node}
-    {Node}
-    {Node}
+    <node/>
+    <node/>
+    <node/>
   </Header>
 )
 ```
+## Props
+
+#### `phoneText={<String>}`
+Es el número de teléfono de compra.

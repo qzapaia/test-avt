@@ -11,15 +11,14 @@ import readme from './README.md';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
 
-storiesOf('avantrip/styled@Header', module)
+storiesOf('avantrip/Header', module)
   .addDecorator(generalDecorator({
     readme,
     theme
   }))
   .add('Default', () => (
-    <Header>
-      <div>Logo</div>
-      <ContactAndPhoneInfo phoneText="0810-222-2826" />
-      <div>Nav</div>
-    </Header>
+    <Header/>
+  ))
+  .add('Con número de teléfono', () => (
+    <Header phoneText="0810-222-2826"/>
   ))

@@ -1,9 +1,20 @@
-import styled from 'styled-components';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const StyledHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`
+import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
+import Container from './container.styled';
 
-export default StyledHeader;
+const Header = ({phoneText}) => (
+  <Container>
+    <div>Logo</div>
+    <ContactAndPhoneInfo phoneText={phoneText} />
+    <div>Nav</div>
+  </Container>
+)
+
+
+Header.propTypes = {
+  phoneText: PropTypes.string
+}
+
+export default Header;
