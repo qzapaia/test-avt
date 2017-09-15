@@ -10,18 +10,13 @@ const Breadcrumb = ({children}) => {
   return (<ContainerBreadcrumb>
     {
       children.map((child, index) =>{
-        let isLastChild = index == numberOfChildren;
-        return (<BreadcrumbItem key={index}>
-          { isLastChild ||
-            <BreadcrumbSeparator>
-              {child}
-            </BreadcrumbSeparator>
-          }
-          { isLastChild &&
-            child
-          }
-        </BreadcrumbItem>
-      )})
+        return (
+          <div key={index}>
+            {child}
+            { index != numberOfChildren && ">" }
+          </div>
+        )
+      })
     }
   </ContainerBreadcrumb>
 )}

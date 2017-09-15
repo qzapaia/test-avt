@@ -1,7 +1,6 @@
 ## Description
 Organiza los childrens y los separa utilizando el
-styled-component **BreadcrumbSeparator**. Cada children es
-envuelto en el componente **BreadcrumbItem**.
+separador **>**.
 
 ## Basic use
 
@@ -10,7 +9,9 @@ import Breadcrumb from 'avantrip-react/avantrip/Breadcrumb';
 
 export default () => (
   <Breadcrumb>
-    {Node}
+    <Nodo/>
+    <Nodo/>
+    <Nodo/>
   </Breadcrumb>
 )
 ```
