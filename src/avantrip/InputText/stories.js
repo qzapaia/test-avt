@@ -30,7 +30,11 @@ storiesOf('avantrip/InputText', module)
     theme
   }))
   .add('Default (Requiere elegir de la lista)', () => (
-    <InputTextWithState icon="Add" requiresExistingValue={true}>
+    <InputTextWithState
+      icon="Add"
+      requiresExistingValue={true}
+      label="Nombre:"
+    >
       <option value="a">la opción a</option>
       <option value="b">la opción b</option>
     </InputTextWithState>
