@@ -1,7 +1,5 @@
 import React from 'react';
 
-import BreadcrumbItem from '../BreadcrumbItem';
-import BreadcrumbSeparator from '../BreadcrumbSeparator';
 import ContainerBreadcrumb from './container.styled';
 
 const Breadcrumb = ({children}) => {
