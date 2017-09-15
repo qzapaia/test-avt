@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DateRangePicker } from 'react-dates';
+import datePickerCSS from 'react-dates/lib/css/_datepicker.css';
+import { injectGlobal } from 'styled-components';
+console.log(datePickerCSS);
+injectGlobal`${datePickerCSS}`
 
-const InputDate = ({text, onClick}) => (
-  <div onClick={onClick}>
-    InputDate component
-    <br/>
-    Counter {text}
-    <br/>
-    <strong>Click to increment</strong>
+const InputDate = ({dates, onChange, focused, onFocus}) => (
+  <div>
+    <DateRangePicker
+      startDate={dates.startDate} // momentPropTypes.momentObj or null,
+      endDate={dates.endDate} // momentPropTypes.momentObj or null,
+      onDatesChange={onChange} // PropTypes.func.isRequired,
+      focusedInput={focused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+      onFocusChange={onFocus} // PropTypes.func.isRequired,
+    />
   </div>
 )
 

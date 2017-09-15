@@ -10,17 +10,20 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('counter','increment',0);
+const enhace = compose(
+  withState('dates','onChange',{}),
+  withState('focused','onFocus',false),
+);
 const InputDateWithState =  enhace((props) => {
-  const { counter, increment } = props;
+  const { dates, onChange } = props;
 
-  const clickHandler = () => {
-    action('click')(counter+1);
-    increment(counter+1);
+  const changeHandler = (val) => {
+    action('change')(val);
+    onChange(val);
   }
 
   return (
-    <InputDate {...props} text={counter} onClick={clickHandler} />
+    <InputDate {...props} onChange={changeHandler} />
   )
 })
 
@@ -32,4 +35,3 @@ storiesOf('avantrip/InputDate', module)
   .add('Default', () => (
     <InputDateWithState></InputDateWithState>
   ))
-
