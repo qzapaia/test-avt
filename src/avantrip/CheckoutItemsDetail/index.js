@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CheckoutItemsDetail = ({stages}) => (
- (<div> 
-   {stages.map((stage, index) => (
-      <div key={index}>
+ <div> 
+   {stages.map(stage => (
+      <div>
         <div>
           <span>{stage.leg}</span>
           <span>Duration <strong>{stage.duration}</strong></span>
           <span>{stage.stops}</span>
             {
               stage.flights.map((flight, idx) => (
-                <div key={idx}>
+                <div>
                   <div>
                     <img src={flight.marketingCarrier.logo} alt="logo" />
                     <span>{flight.marketingCarrier.name}</span>
@@ -41,8 +41,8 @@ const CheckoutItemsDetail = ({stages}) => (
                     </div>
                   </div>
                   <div>          
-                    {
-                      (flight.stopTime) ? `Escala en ${flight.arrival.location} con espera ${flight.stopTime}` : ''
+                    {flight.stopTime && 
+                      `Escala en ${flight.arrival.location} con espera ${flight.stopTime}`
                     }
                   </div>
                 </div>
@@ -53,7 +53,7 @@ const CheckoutItemsDetail = ({stages}) => (
       </div>
     ))
     }
-  </div>)
+  </div>
 )
 
 CheckoutItemsDetail.propTypes = {

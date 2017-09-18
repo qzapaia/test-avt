@@ -10,7 +10,7 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-let stages = [{
+const stages = [{
   leg: 'IDA',
   duration: '19 hs 10 m',
   stops: '1 escala',
@@ -89,6 +89,7 @@ let stages = [{
 const enhace = withState('counter','increment',0);
 const CheckoutItemsDetailWithState =  enhace((props) => {
   return (
+    // cambiar stages por items
     <CheckoutItemsDetail stages={stages} />
   )
 })
