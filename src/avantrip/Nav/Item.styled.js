@@ -10,12 +10,4 @@ const StyledItem = styled.li`
   z-index: 100;
 `
 
-StyledItem.propTypes = {
-  isActive: PropTypes.bool
-}
-
-StyledItem.defaultProps = {
-  isActive: false
-}
-
 export default StyledItem;

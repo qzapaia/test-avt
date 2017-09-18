@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Barra de navegación de Avantrip.
 
 ## Basic use
 
@@ -7,20 +7,13 @@ Componente para usos sarlanga.
 import Nav from 'avantrip-react/avantrip/Nav';
 
 export default () => (
-  <Nav
-    onEvent={function}
-    message={string}
-    isActive={boolean}
-  />
+  <Nav locationPathname="/hoteles/" />
 )
 ```
 
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
-
+#### `locationPathname={<String>}`
+Especifica el Pathname. Según este valor selecciona una de
+las opciones del menu de navegación.
