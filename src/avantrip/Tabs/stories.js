@@ -5,14 +5,15 @@ import readme from './README.md';
 import { withState } from 'recompose';
 
 import Tabs from './';
+import Tab from './Tab';
 
-let enhance = withState('selectedtab', 'setTab', "1");
+let enhance = withState('selectedtab', 'setTab', "tab1");
 
 const TabWithStoreAndFirstChildrenSelected = enhance(({ selectedtab, setTab }) =>
     <Tabs onChange={setTab} selectedTab={selectedtab}>
-        <div id="1" title="title1">content 1</div>
-        <div id="2" title="title2">content 2</div>
-        <div id="3" title="title3">content 3</div>
+      <Tab id="tab1" title="title1">content 1</Tab>
+      <Tab id="tab2" title="title2">content 2</Tab>
+      <Tab id="tab3" title="title3">content 3</Tab>
     </Tabs>
 );
 

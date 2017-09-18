@@ -18,7 +18,18 @@ const Tabs = ({selectedTab, onChange, children}) => (
 
 Tabs.propTypes = {
   selectedTab: PropTypes.string.isRequired,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  children: (props, propName, componentName) => {
+    let isInvalid = props[propName].some(child => {
+      return !/Tab/.test(child.type.name);
+    })
+    if (isInvalid) {
+      return new Error(
+        'Invalid children. Only accept `Tab` children for ' +
+        ' `' + componentName + '`.'
+      );
+    }
+  }
 }
 
 export default Tabs;
