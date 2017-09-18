@@ -3,21 +3,17 @@ import PropTypes from 'prop-types';
 
 const CurrencySelector = ({options, onClick, value}) => (
   <span>
-    {options.map(option => (
+    {options.map((option, idx) => (
       <span>
         {(option.value != value) ? 
           <a
-            key={option.value}
             onClick = { () => onClick(option.value.toString()) }
             value={option.value}>{option.label}</a>
-            :
+          :
             <span key={option.value}>{option.label}</span>
           }
-          {
-            (!option.isLast) ? 
+          { options.length - 1 != idx &&
               <span> - </span>
-            :
-              ''
           }
         </span>
       ))}
@@ -25,11 +21,9 @@ const CurrencySelector = ({options, onClick, value}) => (
 );
 
 CurrencySelector.propTypes = {
-  value: PropTypes.node.isRequired
-}
-
-CurrencySelector.defaultProps = {
-  value: 1
+  value: PropTypes.number.isRequired,
+  option: PropTypes.array.isRequired,
+  onClick: PropTypes.func
 }
 
 export default CurrencySelector;

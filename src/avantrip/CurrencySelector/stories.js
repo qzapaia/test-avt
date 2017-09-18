@@ -14,18 +14,15 @@ const enhace = withState('value','changeCurrency','1');
 
 let initialOptions = [{
   value: 1,
-  label: "ARS",
-  isLast: false
+  label: "ARS"
 },
 {
   value: 2,
-  label: "USD",
-  isLast: false
+  label: "USD"
 },
 {
   value: 3,
-  label: "REAL",
-  isLast: true
+  label: "REAL"
 }];
 
 
