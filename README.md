@@ -21,3 +21,9 @@ https://www.styled-components.com/
 
 ## Recompose
 https://github.com/acdlite/recompose
+
+
+## Uso de lodash básico
+```javascript
+import { get, map } from 'lodash';
+```

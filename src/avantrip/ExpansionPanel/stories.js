@@ -10,18 +10,18 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('expanded','changeState',false);
+const enhace = withState('isExpanded','changeState',false);
 const ExpansionPanelWithState =  enhace((props) => {
-  const { expanded, changeState } = props;
+  const { isExpanded, changeState } = props;
 
-  const changeHandler = (expandedParam) => {
-    action('Is Extended')(expandedParam);
-    changeState(expandedParam);
+  const changeHandler = (isExpandedParam) => {
+    action('Is Extended')(isExpandedParam);
+    changeState(isExpandedParam);
   }
 
   return (
     <ExpansionPanel {...props}
-      expanded={expanded}
+      isExpanded={isExpanded}
       onChange={changeHandler} />
   )
 })
