@@ -24,3 +24,6 @@ storiesOf('avantrip/Link', module)
   .add('Con un icono TODO', () => (
     <Link icon={<span>Usar Componente Icon</span>}>Vuelos</Link>
   ))
+  .add('Con target _blank', () => (
+    <Link target="_blank">Link _blank</Link>
+  ))

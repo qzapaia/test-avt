@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Link from '../Link';
+
 const ContactAndPhoneInfo = ({phoneText}) => (
 	<div>
 		<div>
 			<div>Comprá también por teléfono</div>
 			<div><span>'''ícono tel @'''</span>{phoneText}</div>
 		</div>
-		<a href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
+		<Link href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
 			ícono de ayuda (link)
-		</a>
+		</Link>
 	</div>
 )
 
@@ -18,7 +20,7 @@ ContactAndPhoneInfo.propTypes = {
 }
 
 ContactAndPhoneInfo.defaultProps = {
-  
+
 }
 
 export default ContactAndPhoneInfo;

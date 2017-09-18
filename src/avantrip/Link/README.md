@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Funciona como link de una paágina a otra.
 
 ## Basic use
 
@@ -8,9 +8,9 @@ import Link from 'avantrip-react/avantrip/Link';
 
 export default () => (
   <Link
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    target={string}
+    href={string}
+    icon={node}
   />
 )
 ```
@@ -18,9 +18,11 @@ export default () => (
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `target={_blank || _ self || _parent || _top || framename}`
+Especifica el tipo de target del link. Por defecto es self.
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `href={<Boolean>}`
+Dirección de url a donde apunta el link. Por defecto es #.
 
+#### `icon={<Node>}`
+Instancia de un icono

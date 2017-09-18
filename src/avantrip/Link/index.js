@@ -4,20 +4,22 @@ import PropTypes from 'prop-types';
 
 import ContainerLink from './container.styled';
 
-const Link = ({href, icon, children}) => (
-  <ContainerLink href={href}>
+const Link = ({href, icon, target, children}) => (
+  <ContainerLink href={href} target={target}>
     {icon}{children}
   </ContainerLink>
 )
 
 Link.propTypes = {
+  target: PropTypes.oneOf("_blank", "_self","_parent","_top", "framename"),
   href: PropTypes.string,
   icon: PropTypes.node
 }
 
 
 Link.defaultProps = {
-  href:'#'
+  href:'#',
+  target: '_self'
 }
 
 export default Link;
