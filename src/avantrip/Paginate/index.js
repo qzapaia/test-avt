@@ -24,9 +24,7 @@ const currentPageStyle = {
 
 const Paginate = ({pages, currentPage, onClick}) => {
 
-	if(pages.length < 0 ){
-		return(<div></div>)
-	} else {
+	if(pages.length > 0 ){
 		return(
 			<div style={paginateStyle}>
 
@@ -72,7 +70,9 @@ const Paginate = ({pages, currentPage, onClick}) => {
 }
 
 Paginate.propTypes = {
-  
+  pages:PropTypes.array.isRequired,
+  currentPage:PropTypes.object.isRequired,
+  onClick:PropTypes.func.isRequired
 }
 
 Paginate.defaultProps = {

@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Componente para el paginado del resultado de búsqueda
 
 ## Basic use
 
@@ -8,9 +8,9 @@ import Paginate from 'avantrip-react/avantrip/Paginate';
 
 export default () => (
   <Paginate
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    pages={collection}
+    currentPage={object}
+    onClick={function}
   />
 )
 ```
@@ -18,12 +18,14 @@ export default () => (
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `pages={<Collection>}`
+Recibe una collection de objetos. Cada objeto debe poseer una propiedad integer "value"
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `currentPage={<Object>}`
+Objeto con una propiedad integer llamada "value". 
 
+#### `onClick={<Function>}`
+Handler de la acción de cambio de ṕágina
 
 ## Redux
 

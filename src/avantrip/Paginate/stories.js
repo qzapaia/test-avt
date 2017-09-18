@@ -11,7 +11,7 @@ import PaginateWithData from './withData';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('currentPage','selectPage', 0);
+const enhace = withState('currentPage','selectPage', {'value': 0});
 
 const getRandomPagesQty = () => Math.floor(Math.random() * 20);
 
