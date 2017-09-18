@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckboxesGroup from './';
+import CheckboxGroup from './';
 import _ from 'lodash';
 
 import withReadme from 'storybook-readme/with-readme';
@@ -28,7 +28,7 @@ let initialOptions = [{
 }];
 
 const enhace = withState('values','selectOption',[]);
-const CheckboxesGroupWithState =  enhace((props) => {
+const CheckboxGroupWithState =  enhace((props) => {
   const { selectOption, values } = props;
 
   const onChangeHandler = (changedObj) => {
@@ -43,7 +43,7 @@ const CheckboxesGroupWithState =  enhace((props) => {
   }
 
   return (
-    <CheckboxesGroup
+    <CheckboxGroup
       options={initialOptions}
       onChange={onChangeHandler}
       label={props.children}
@@ -51,16 +51,16 @@ const CheckboxesGroupWithState =  enhace((props) => {
   )
 });
 
-storiesOf('avantrip/CheckboxesGroup', module)
+storiesOf('avantrip/CheckboxGroup', module)
   .add('Default', addReadme(() => (
     <ThemeProvider theme={theme}>
-      <CheckboxesGroupWithState />
+      <CheckboxGroupWithState />
     </ThemeProvider>
   )))
   .add('With a Label', addReadme(() => (
     <ThemeProvider theme={theme}>
-      <CheckboxesGroupWithState>
+      <CheckboxGroupWithState>
         <label>Horarios</label>
-      </CheckboxesGroupWithState>
+      </CheckboxGroupWithState>
     </ThemeProvider>
   )));

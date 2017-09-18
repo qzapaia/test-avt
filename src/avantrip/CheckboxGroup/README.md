@@ -5,10 +5,10 @@ como input checkbox.
 ### Basic use
 
 ```javascript
-import CheckboxesGroup from 'avantrip-react/avantrip/CheckboxesGroup';
+import CheckboxGroup from 'avantrip-react/avantrip/CheckboxGroup';
 
 export default () => (
-  <CheckboxesGroup
+  <CheckboxGroup
     label={Node}
     onChange={Function}
     options={Collection}

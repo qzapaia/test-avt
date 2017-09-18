@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import InputCheckbox from '../InputCheckbox';
 
-const CheckboxesGroup = ({options, onChange, label, values}) => (
+const CheckboxGroup = ({options, onChange, label, values}) => (
   <span>
     {label}
     {options.map(option => (
@@ -22,15 +22,15 @@ const CheckboxesGroup = ({options, onChange, label, values}) => (
   </span>
 )
 
-CheckboxesGroup.propTypes = {
+CheckboxGroup.propTypes = {
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func,
     label: PropTypes.node,
     values: PropTypes.array
 }
 
-CheckboxesGroup.defaultProps = {
+CheckboxGroup.defaultProps = {
   options: []
 }
 
-export default CheckboxesGroup;
+export default CheckboxGroup;
