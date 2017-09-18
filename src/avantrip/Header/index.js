@@ -3,15 +3,27 @@ import PropTypes from 'prop-types';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
 import Container from './container.styled';
+import Logo from '../Logo';
+import Text from '../Text';
+import Nav from '../Nav';
+import Link from '../Link';
 
-const Header = ({phoneText}) => (
+const Header = ({locationPathname, phoneText}) => (
   <Container>
-    <div>Logo</div>
+    <div>
+      <Logo href="http://www.avantrip.com/"/>
+      <Text
+        size="16px"
+        color="brand"
+        weight="600"
+        family="Stag Sans Web">
+          Viajar es la guita mejor invertida
+      </Text>
+    </div>
     <ContactAndPhoneInfo phoneText={phoneText} />
-    <div>Nav</div>
+    <Nav locationPathname={locationPathname}/>
   </Container>
 )
-
 
 Header.propTypes = {
   phoneText: PropTypes.string
