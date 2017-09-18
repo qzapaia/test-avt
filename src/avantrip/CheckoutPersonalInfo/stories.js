@@ -13,7 +13,9 @@ import readme from './README.md';
 import { defaultsDeep } from 'lodash';
 
 const enhace = withState('personalInfo','changeValue',{});
-const CheckoutPersonalInfoWithState =  enhace((props) => {
+const enhaceWithData = withState('personalInfo','changeValue',{"docType":"passport","residencePlace":"BR", "birthday":{"year":"1985","month":"9","day":"17"},"docNumber":31824514,"lastname":"Garcia","firstname":"Alejandro"});
+
+const comp = (props) => {
   const { personalInfo, changeValue } = props;
 
   const changeHandler = (info) => {
@@ -29,10 +31,14 @@ const CheckoutPersonalInfoWithState =  enhace((props) => {
       docType={personalInfo.docType}
       docNumber={personalInfo.docNumber}
       birthday={personalInfo.birthday}
+      residencePlace={personalInfo.residencePlace}
       gender={personalInfo.gender}
       onChange={changeHandler} />
   )
-})
+}
+
+const CheckoutPersonalInfoWithState =  enhace(comp);
+const CheckoutPersonalInfoWithData =  enhaceWithData(comp);
 
 storiesOf('avantrip/CheckoutPersonalInfo', module)
   .addDecorator(generalDecorator({
@@ -40,5 +46,8 @@ storiesOf('avantrip/CheckoutPersonalInfo', module)
     theme
   }))
   .add('Default', () => (
-    <CheckoutPersonalInfoWithState></CheckoutPersonalInfoWithState>
+    <CheckoutPersonalInfoWithState />
+  ))
+  .add('Con los datos completos', () => (
+    <CheckoutPersonalInfoWithData />
   ))

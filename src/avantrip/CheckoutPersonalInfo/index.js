@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import InputBirthday from '../InputBirthday';
 import InputNumber from '../InputNumber';
+import Select from '../Select';
 
 const customOnChange = (next, name) => value => {
   if(value.target){
@@ -22,6 +23,7 @@ const CheckoutPersonalInfo = ({
   docType,
   docNumber,
   birthday,
+  residencePlace,
   gender }) => (
 
   <div>
@@ -47,10 +49,21 @@ const CheckoutPersonalInfo = ({
     </label>
     <label>
       Tipo de Documento
-      <select onChange={customOnChange(onChange, 'docType')}>
+      <Select
+        onChange={customOnChange(onChange, 'docType')}
+        value={docType}>
         <option value="dni">DNI</option>
         <option value="passport">Pasaporte</option>
-      </select>
+      </Select>
+    </label>
+    <label>
+      Residencia
+      <Select
+        onChange={customOnChange(onChange, 'residencePlace')}
+        value={residencePlace}>
+        <option value="AR">Argentina</option>
+        <option value="BR">Brasil</option>
+      </Select>
     </label>
     <InputNumber
       value={docNumber}
@@ -72,6 +85,8 @@ CheckoutPersonalInfo.propTypes = {
   docType: PropTypes.string,
   docNumber: PropTypes.number,
   birthday: PropTypes.number,
+  residencePlace: PropTypes.string,
+  gender: PropTypes.string,
   onChange: PropTypes.func
 }
 
