@@ -2,25 +2,21 @@ import React from 'react';
 import CheckboxGroup from './';
 import _ from 'lodash';
 
-import withReadme from 'storybook-readme/with-readme';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import { withState, compose } from 'recompose';
 
-import { ThemeProvider } from 'styled-components';
+import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
 import readme from './README.md';
-
-const addReadme = comp => withReadme(readme, comp);
 
 // el enhace concatena hocs de recompose,
 // en este caso le inyecta un estado falso
 // ver más en https://github.com/acdlite/recompose
 let initialOptions = [{
   value: 1,
-  label: "Todos los horarios"
+  label: "13hs a 17hs"
 },
 {
     value: 2,
@@ -42,25 +38,38 @@ const CheckboxGroupWithState =  enhace((props) => {
     }
   }
 
+  const onClear = () => {
+    action('onClear')();
+    selectOption([]);
+  }
+
   return (
-    <CheckboxGroup
+    <CheckboxGroup {...props}
       options={initialOptions}
       onChange={onChangeHandler}
+      onClear={onClear}
       label={props.children}
       values={values} />
   )
 });
 
 storiesOf('avantrip/CheckboxGroup', module)
-  .add('Default', addReadme(() => (
-    <ThemeProvider theme={theme}>
-      <CheckboxGroupWithState />
-    </ThemeProvider>
-  )))
-  .add('With a Label', addReadme(() => (
-    <ThemeProvider theme={theme}>
-      <CheckboxGroupWithState>
-        <label>Horarios</label>
-      </CheckboxGroupWithState>
-    </ThemeProvider>
-  )));
+  .addDecorator(generalDecorator({
+    readme,
+    theme
+  }))
+  .add('Default', () => (
+    <CheckboxGroupWithState />
+  ))
+  .add('With a Label', () => (
+    <CheckboxGroupWithState>
+      <label>Horarios</label>
+    </CheckboxGroupWithState>
+  ))
+  .add('Con la opcion de Todas', () => (
+    <CheckboxGroupWithState
+      allOptions={{
+        label:<span>Todas los horarios</span>,
+        checked:false}}
+    />
+  ));
