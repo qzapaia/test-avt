@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const Tab = ({id, title, children}) => (
+  <div>
+    {children}
+  </div>
+)
+
+Tab.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+}
+
 const Tabs = ({selectedTab, onChange, children}) => (
   <div>
     <nav>
@@ -32,4 +43,4 @@ Tabs.propTypes = {
   }
 }
 
-export default Tabs;
+export { Tabs as default, Tab};

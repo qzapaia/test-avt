@@ -12,7 +12,6 @@ export default () => (
       <Tab id="1" title="title1">content 1</Tab>
       <Tab id="2" title="title2">content 2</Tab>
       <Tab id="3" title="title3">content 3</Tab>
-      <span id="3" title="title3">content 3</span>
   </Tabs>
 )
 ```

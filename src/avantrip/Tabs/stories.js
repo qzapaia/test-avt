@@ -4,8 +4,7 @@ import withReadme from 'storybook-readme/with-readme'
 import readme from './README.md';
 import { withState } from 'recompose';
 
-import Tabs from './';
-import Tab from './Tab';
+import Tabs, {Tab} from './';
 
 let enhance = withState('selectedtab', 'setTab', "tab1");
 
