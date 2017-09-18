@@ -13,7 +13,7 @@ const preventFormatAndContinueWith = next => e => {
   })
 }
 
-const SubscribeTrip = ({onSubscribe, state, city}) => (
+const TripSubscribe = ({onSubscribe, state, city}) => (
   <div>
     {!state &&
       <Container>
@@ -43,14 +43,14 @@ const SubscribeTrip = ({onSubscribe, state, city}) => (
   </div>
 )
 
-SubscribeTrip.propTypes = {
+TripSubscribe.propTypes = {
   onSubscribe:PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   state:PropTypes.oneOf(['', SUCCESS_STATE, ERROR_STATE])
 }
 
-SubscribeTrip.defaultProps = {
+TripSubscribe.defaultProps = {
   state:''
 }
 
-export default SubscribeTrip;
+export default TripSubscribe;

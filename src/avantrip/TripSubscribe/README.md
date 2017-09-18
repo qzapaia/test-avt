@@ -4,10 +4,10 @@ Suscripcion a cosas generales del site.
 ## Basic use
 
 ```javascript
-import SubscribeTrip from 'avantrip-react/avantrip/SubscribeTrip';
+import TripSubscribe from 'avantrip-react/avantrip/TripSubscribe';
 
 export default () => (
-  <SubscribeTrip
+  <TripSubscribe
     onSubscribe={function}
     title={string}
     state={string}
@@ -31,7 +31,7 @@ Ciudad de la que se quiere recibir alertas.
 
 #### Actions
 ```javascript
-import { subscribe } from 'avantrip-react/avantrip/SubscribeTrip/actions';
+import { subscribe } from 'avantrip-react/avantrip/TripSubscribe/actions';
 import store from 'somewhere';
 
 store.dispatch(subscribe({ email:"email@email.com", city: "Miami" });
@@ -40,12 +40,11 @@ store.dispatch(subscribe({ email:"email@email.com", city: "Miami" });
 
 #### Reducer
 ```javascript
-import subscribeReducer from 'avantrip-react/avantrip/SubscribeTrip/reducer';
+import subscribeReducer from 'avantrip-react/avantrip/TripSubscribe/reducer';
 import { createStore, combineReducers } from 'redux';
 
 const reducer = combineReducers({
-  subscribe:suscribeReducer,
-  todos
+  tripSubscribe:suscribeReducer,
 })
 
 const store = createStore(reducer);

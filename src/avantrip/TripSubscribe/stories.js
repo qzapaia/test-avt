@@ -1,5 +1,5 @@
 import React from 'react'
-import SubscribeTrip from './'
+import TripSubscribe from './'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
@@ -12,19 +12,19 @@ import readme from './README.md'
 
 const city = "Miami";
 
-storiesOf('avantrip/SubscribeTrip', module)
+storiesOf('avantrip/TripSubscribe', module)
   .addDecorator(generalDecorator({
     readme,
     theme
   }))
   .add('Default', () => (
-    <SubscribeTrip
+    <TripSubscribe
       city={city}
       onSubscribe={action('subscribe sent')}
     />
   ))
   .add('Successful subscription', () => (
-    <SubscribeTrip
+    <TripSubscribe
       city={city}
       title={`Te avisamos cuando tengamos los precios más bajos a ${city}.`}
       state="success"
@@ -32,7 +32,7 @@ storiesOf('avantrip/SubscribeTrip', module)
     />
   ))
   .add('Failed subscription', () => (
-    <SubscribeTrip
+    <TripSubscribe
       city={city}
       title={`Te avisamos cuando tengamos los precios más bajos a ${city}.`}
       state="error"
