@@ -1,7 +1,11 @@
 import { configure } from '@storybook/react';
-// import './storybook.css';
-const ui = process.ui || 'all';
+import customStorybookCSS from './storybook.css';
 import { setOptions } from '@storybook/addon-options';
+import { injectGlobal } from 'styled-components';
+
+injectGlobal`${customStorybookCSS}`
+
+const ui = process.ui || 'all';
 
 setOptions({
   // hierarchySeparator: null,
