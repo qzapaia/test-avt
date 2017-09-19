@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DateRangePicker } from 'react-dates';
 import datePickerCSS from 'react-dates/lib/css/_datepicker.css';
 import { injectGlobal } from 'styled-components';
-console.log(datePickerCSS);
+
 injectGlobal`${datePickerCSS}`
 
 const InputDate = ({dates, onChange, focused, onFocus}) => (
