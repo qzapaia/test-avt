@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import moment from 'moment';
-
 import InputBirthday from '../InputBirthday';
 import InputNumber from '../InputNumber';
 import Select from '../Select';
+import CheckboxGroup from '../CheckboxGroup';
 
 const customOnChange = (next, name) => value => {
-  if(value.target){
-    value = value.target.value;
+  switch (name) {
+    case 'gender':
+      value = value.value;
+      break;
+    case 'firstname':
+    case 'lastname':
+      value = value.target.value;
   }
   const p = {}
   p[name] = value
@@ -68,14 +72,25 @@ const CheckoutPersonalInfo = ({
     <InputNumber
       value={docNumber}
       label={"Número"}
-      step={1}
-      min={10000}
-      max={99999999}
+      step={"1"}
+      min={"10000"}
+      max={"99999999"}
       onChange={customOnChange(onChange, 'docNumber')} />
     <InputBirthday
       label={"Fecha de nacimiento"}
       value={birthday}
       onChange={customOnChange(onChange, 'birthday')} />
+    <CheckboxGroup
+      options={[{
+        value: 'F',
+        label:'Femenino'
+      },{
+        value: 'M',
+        label:<span>Masculino</span>
+      }]}
+      onChange={customOnChange(onChange, 'gender')}
+      label={<span>Sexo</span>}
+      values={[gender]} />
   </div>
 )
 
