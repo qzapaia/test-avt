@@ -1,5 +1,5 @@
 import { configure } from '@storybook/react';
-import './storybook.css';
+// import './storybook.css';
 const ui = process.ui || 'all';
 import { setOptions } from '@storybook/addon-options';
 
