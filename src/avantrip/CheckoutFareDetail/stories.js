@@ -8,19 +8,20 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
+import Text from '../Text';
+
 const infoWithAllTypePassenger = {
-  'adult': {
-    'unitPrice': 12802,
-    'quantity': 2,
-  },
-  'children': {
-    'unitPrice': 12024,
-    'quantity': 2,
-  },
-  'babies': {
-    'unitPrice': 311,
-    'quantity': 2,
-  },
+  'referencePrice': 12802,
+  'items': [{
+    'label': '2 Adultos',
+    'price': 25604
+  },{
+    'label': '2 Niños',
+    'price': 24048
+  },{
+    'label': '2 Bebés',
+    'price': 622
+  }],
   'taxes': 14633,
   'charges': 0,
   'priceWithoutInterest': 64.907,
@@ -32,10 +33,11 @@ const infoWithAllTypePassenger = {
   'finalPrice': 69.177
 }
 const infoWithAdultPassengerOnly = {
-  'adult': {
-    'unitPrice': 126.878,
-    'quantity': 2,
-  },
+  'referencePrice': 126878,
+  'items': [{
+    'label': '2 Adultos',
+    'price': 253756,
+  }],
   'taxes': 22315,
   'charges': 35889,
   'priceWithoutInterest': 311960,
@@ -45,6 +47,24 @@ const infoWithAdultPassengerOnly = {
     'value': 0
   },
   'finalPrice': 311960
+}
+
+const modeClustes = {
+  'referencePrice': 12802,
+  'items': [{
+    'label': '2 Adultos',
+    'price': 25604
+  },{
+    'label': '2 Niños',
+    'price': 24048
+  },{
+    'label': '2 Bebés',
+    'price': 622
+  }],
+  'taxes': 14633,
+  'charges': 0,
+  'priceWithoutInterest': 64.907,
+  'finalPrice': 69.177
 }
 
 storiesOf('avantrip/CheckoutFareDetail', module)
@@ -64,7 +84,12 @@ storiesOf('avantrip/CheckoutFareDetail', module)
   ))
   .add('Con últimos lugares', () => (
     <CheckoutFareDetail
-      lastPlaces="9"
+      title={<Text>Últimos 9 lugares</Text>}
       currency="ARS"
       detailInfo={infoWithAdultPassengerOnly} />
+  ))
+  .add('Modo Cluster', () => (
+    <CheckoutFareDetail
+      currency="ARS"
+      detailInfo={modeClustes} />
   ))

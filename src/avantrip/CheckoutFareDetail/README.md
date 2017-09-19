@@ -18,9 +18,8 @@ export default () => (
 
 ## Props
 
-#### `lastPlaces={<String>}`
-Cantidad de últimos lugares. En caso de no especificarse,
-no sé muestra el título informativo.
+#### `title={<Node>}`
+Nodo mostrado como título.
 
 #### `currency={<String>}`
 String del tipo de moneda.
@@ -30,19 +29,20 @@ Objeto que brinda toda la información para que se dibuje el
 detalle. debe tener la forma:
 
 ```javascript
+
+//Información para mostrar FareDetail para Checkout
 {
-  'adult': {
-    'price': {12802},
-    'quantity': 2,
-  },
-  'children': {
-    'price': 12024,
-    'quantity': 2,
-  },
-  'babies': {
-    'price': 311,
-    'quantity': 2,
-  },
+  'referencePrice': 12802,
+  'items': [{
+    'label': '2 Adultos',
+    'price': 25604
+  },{
+    'label': '2 Niños',
+    'price': 24048
+  },{
+    'label': '2 Bebés',
+    'price': 622
+  }],
   'taxes': 14633,
   'charges': 0,
   'priceWithoutInterest': 64.907,
@@ -51,6 +51,26 @@ detalle. debe tener la forma:
     'CFT': 6.46,
     'value': 4271
   },
+  'finalPrice': 69.177
+}
+
+//Información para mostrar FareDetail para Resultado de Búsqueda
+
+{
+  'referencePrice': 12802,
+  'items': [{
+    'label': '2 Adultos',
+    'price': 25604
+  },{
+    'label': '2 Niños',
+    'price': 24048
+  },{
+    'label': '2 Bebés',
+    'price': 622
+  }],
+  'taxes': 14633,
+  'charges': 0,
+  'priceWithoutInterest': 64.907,
   'finalPrice': 69.177
 }
 ```

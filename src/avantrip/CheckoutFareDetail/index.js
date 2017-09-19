@@ -4,71 +4,46 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 
 const CheckoutFareDetail = ({
-                              lastPlaces,
+                              title,
                               currency,
                               detailInfo
                            }) => (
   <div>
-    { lastPlaces &&
-      <div>
-        <Text>¡ÚLTIMOS {lastPlaces} LUGARES!</Text>
-      </div>
-    }
+    <div>
+      {title}
+    </div>
     <div>
         <div>
           <Text>Tarifa por adulto</Text>
         </div>
         <div>
-          {currency} {detailInfo.adult.unitPrice}
+          {currency} {detailInfo.referencePrice}
         </div>
     </div>
     <div>
-      { detailInfo.adult &&
+      { detailInfo.items.map(item => (
         <div>
           <span>
-            {detailInfo.adult.quantity}
-            <Text>Adultos</Text>
+            {item.label}
           </span>
           <span>
             {currency}
-            {detailInfo.adult.unitPrice * detailInfo.adult.quantity}
+            {item.price}
           </span>
         </div>
-      }
-      { detailInfo.children &&
-        <div>
-          <span>
-            {detailInfo.children.quantity}
-            <Text>Niños</Text>
-          </span>
-          <span>
-            {currency}
-            {detailInfo.children.unitPrice * detailInfo.children.quantity}
-          </span>
-        </div>
-      }
-      { detailInfo.babies &&
-        <div>
-          <span>
-            {detailInfo.babies.quantity}
-            <Text>Bebés</Text>
-          </span>
-          <span>
-            {currency}
-            {detailInfo.babies.unitPrice * detailInfo.babies.quantity}
-          </span>
-        </div>
-      }
+      ))}
     </div>
     <div>
       <div>
         <span><Text>Precio contado</Text></span>
         <span>{currency} {detailInfo.priceWithoutInterest}</span>
       </div>
+      {detailInfo.interest &&
         <div>
           <span><Text>Intereses</Text></span>
           <span>{currency} {detailInfo.interest.value}</span>
         </div>
+      }
     </div>
     <div>
       <div>
@@ -77,11 +52,13 @@ const CheckoutFareDetail = ({
       <div>
         {currency} {detailInfo.finalPrice}
       </div>
-      <div>
-        <Text>TEA {detailInfo.interest.TEA}%</Text>
-        -
-        <Text>CFT {detailInfo.interest.CFT}%</Text>
-      </div>
+      { detailInfo.interest &&
+        <div>
+          <Text>TEA {detailInfo.interest.TEA}%</Text>
+          -
+          <Text>CFT {detailInfo.interest.CFT}%</Text>
+        </div>
+      }
     </div>
   </div>
 )
