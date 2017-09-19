@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckoutFareDetail from './';
+import FareDetail from './';
 
 import { storiesOf } from '@storybook/react';
 
@@ -67,29 +67,29 @@ const modeClustes = {
   'finalPrice': 69.177
 }
 
-storiesOf('avantrip/CheckoutFareDetail', module)
+storiesOf('avantrip/FareDetail', module)
   .addDecorator(generalDecorator({
     readme,
     theme
   }))
   .add('Solo adultos', () => (
-    <CheckoutFareDetail
+    <FareDetail
       currency="ARS"
       detailInfo={infoWithAdultPassengerOnly} />
     ))
   .add('Con todos los tipos de pasajeros', () => (
-    <CheckoutFareDetail
+    <FareDetail
       currency="ARS"
       detailInfo={infoWithAllTypePassenger} />
   ))
   .add('Con últimos lugares', () => (
-    <CheckoutFareDetail
+    <FareDetail
       title={<Text>Últimos 9 lugares</Text>}
       currency="ARS"
       detailInfo={infoWithAdultPassengerOnly} />
   ))
   .add('Modo Cluster', () => (
-    <CheckoutFareDetail
+    <FareDetail
       currency="ARS"
       detailInfo={modeClustes} />
   ))

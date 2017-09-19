@@ -4,10 +4,10 @@ Permite mostrar el detalle de una compra.
 ## Basic use
 
 ```javascript
-import CheckoutFareDetail from 'avantrip-react/avantrip/CheckoutFareDetail';
+import FareDetail from 'avantrip-react/avantrip/FareDetail';
 
 export default () => (
-  <CheckoutFareDetail
+  <FareDetail
     lastPlaces={string},
     currency={string},
     detailInfo={object}

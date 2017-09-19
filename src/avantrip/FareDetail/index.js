@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import Text from '../Text';
 
-const CheckoutFareDetail = ({
-                              title,
-                              currency,
-                              detailInfo
-                           }) => (
+const FareDetail = ({
+                      title,
+                      currency,
+                      detailInfo
+                   }) => (
   <div>
     <div>
       {title}
@@ -63,10 +63,10 @@ const CheckoutFareDetail = ({
   </div>
 )
 
-CheckoutFareDetail.propTypes = {
+FareDetail.propTypes = {
   lastPlaces: PropTypes.string,
   currency: PropTypes.string.isRequired,
   detailInfo: PropTypes.object.isRequired
 }
 
-export default CheckoutFareDetail;
+export default FareDetail;
