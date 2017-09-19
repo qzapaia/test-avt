@@ -7,8 +7,9 @@ import TextContent from './'
 
 import { withState, compose } from 'recompose';
 
+import generalDecorator from '../../stories.decorator.js';
 
-
+import theme from '../styled.theme';
 import readme from './README.md';
 
 const addReadme = comp => withReadme(readme, comp);
@@ -28,11 +29,12 @@ const TextContentWithState =  enhace((props) => {
 })
 
 storiesOf('avantrip/TextContent', module)
+  .addDecorator(generalDecorator({
+    readme,
+    theme
+  }))
   .add('Default', addReadme(() => (
-    <TextContentWithState 
-      title="Avantrip.com: Agencia de turismo y viajes" 
+    <TextContentWithState
+      title="Avantrip.com: Agencia de turismo y viajes"
       subtitle="Somos una agencia de viajes con años de experiencia en la industria turística. En Avantrip.com podés elegir entre cientos de vuelos a destinos de todo el mundo, encontrar tu hotel ideal, seleccionar paquetes turísticos a medida..." />
   )))
-
-
-
