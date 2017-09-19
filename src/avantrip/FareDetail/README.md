@@ -8,7 +8,7 @@ import FareDetail from 'avantrip-react/avantrip/FareDetail';
 
 export default () => (
   <FareDetail
-    lastPlaces={string},
+    title={node},
     currency={string},
     detailInfo={object}
   />
