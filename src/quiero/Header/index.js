@@ -7,8 +7,4 @@ const Header = () => (
   </div>
 )
 
-Header.propTypes = {
-  text: PropTypes.node.isRequired
-}
-
 export default Header;
