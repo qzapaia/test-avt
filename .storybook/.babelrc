@@ -5,6 +5,7 @@
       "extensions": [
         ".css"
       ]
-    }]
+    }],
+    ["inline-import-data-uri"]
   ]
 }
