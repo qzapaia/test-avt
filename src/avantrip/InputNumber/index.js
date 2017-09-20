@@ -22,12 +22,12 @@ const InputNumber = ({
 )
 
 InputNumber.propTypes = {
-  value: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  step: PropTypes.string.isRequired,
-  min: PropTypes.string.isRequired,
-  max: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  value: PropTypes.string,
+  label: PropTypes.string,
+  step: PropTypes.string,
+  min: PropTypes.string,
+  max: PropTypes.string,
+  onChange: PropTypes.func,
 }
 
 InputNumber.defaultProps = {

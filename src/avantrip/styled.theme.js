@@ -74,6 +74,6 @@ export default {
         color:'white',
         fontSize:'20px',
       }
-    },
+    }
   }
 }
