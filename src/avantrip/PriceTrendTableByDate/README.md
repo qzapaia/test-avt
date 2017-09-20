@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Componente para la tabla de Fechas Flexibles
 
 ## Basic use
 
@@ -8,22 +8,36 @@ import PriceTrendTableByDate from 'avantrip-react/avantrip/PriceTrendTableByDate
 
 export default () => (
   <PriceTrendTableByDate
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    flightDates={collection}
+    selectedArrivalDate={date}
+    selectedDepartureDate={date}
+    onClick={function}
   />
 )
 ```
 
-
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `flightDates={<Collection>>}`
+Collection que debe respetar:
+```javascript
+	[
+		{
+			vuelta:<Date>
+			ida:<Date>
+			price:<Number>
+		}
+	]
+```
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `selectedArrivalDate={<Date>}`
+Date para indicar la fecha de regreso de vuelo
 
+#### `selectedDepartureDate={<Date>}`
+Date para indicar la fecha de partida de vuelo
+
+#### `onClick={<Function>}`
+Devuelve el vuelo seleccionado
 
 ## Redux
 

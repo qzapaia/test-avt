@@ -146,7 +146,7 @@ const PriceTrendTableByDate = ({flightDates, selectedArrivalDate, selectedDepart
 		  							}
 
 		  							{ !fColumn.rowTitle &&	
-				  						<div style={getItemStyleBy(
+				  						<div onClick={ e => onClick(fColumn)} style={getItemStyleBy(
 				  								selectedArrivalDate, 
 				  								selectedDepartureDate,
 				  								flightDatesWithMinPrices,

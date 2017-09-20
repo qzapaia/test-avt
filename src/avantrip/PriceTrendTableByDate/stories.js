@@ -37,7 +37,7 @@ const generateRandomFlightDates = (departureDates, arrivalDates) => (
     acc.concat(arrivalDates.map( r => ({
       'vuelta': r, 
       'ida': d,
-      'price': Math.floor(Math.random() * 20000) + 5000
+      'price': Math.floor(Math.random() * 30000) + 11000
     })))
   ), [])
 )
@@ -45,14 +45,13 @@ const generateRandomFlightDates = (departureDates, arrivalDates) => (
 const PriceTrendTableByDateWithState =  enhace((props) => {
   const { flightDates, selectedArrivalDate, selectedDepartureDate} = props;
 
-  const clickHandler = () => {
-    //action('click')(counter+1);
+  const clickHandler = (selectedFlight) => {
+    action('click')(selectedFlight);
   }
 
   const today = moment();
   const departureDate = genererateDepartureDate(today);
   const arrivalDate = genererateArrivalDate(today);
-
 
   const randomFlightDates = 
     generateRandomFlightDates(
