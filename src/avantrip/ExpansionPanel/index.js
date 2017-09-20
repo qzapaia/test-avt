@@ -4,28 +4,27 @@ import PropTypes from 'prop-types';
 const ExpansionPanel = ({
     SummaryInformation,
     ExtendedInformation,
-    expanded,
+    isExpanded,
     onChange}) => (
       <div>
        <SummaryInformation
-         onChange={()=>onChange(!expanded)}
-         expanded={expanded}/>
-         
-       {expanded && <ExtendedInformation
-           onChange={()=>onChange(!expanded)}
-           expanded={expanded} />}
+         onChange={()=>onChange(!isExpanded)}
+         isExpanded={isExpanded}/>
+       {isExpanded && <ExtendedInformation
+           onChange={()=>onChange(!isExpanded)}
+           isExpanded={isExpanded} />}
       </div>
 )
 
 ExpansionPanel.propTypes = {
   SummaryInformation: PropTypes.func,
   ExtendedInformation: PropTypes.func,
-  expanded:PropTypes.bool,
+  isExpanded:PropTypes.bool,
   onChange: PropTypes.func
 }
 
 ExpansionPanel.defaultProps = {
-  expanded: false
+  isExpanded: false
 }
 
 export default ExpansionPanel;

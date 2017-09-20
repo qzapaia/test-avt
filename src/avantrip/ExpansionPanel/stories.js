@@ -1,5 +1,7 @@
 import React from 'react';
 import ExpansionPanel from './';
+import {ExpandButton, ExtendedInformation} from './container.styled'
+import Text from '../Text/index'
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -10,18 +12,18 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('expanded','changeState',false);
+const enhace = withState('isExpanded','changeState',false);
 const ExpansionPanelWithState =  enhace((props) => {
-  const { expanded, changeState } = props;
+  const { isExpanded, changeState } = props;
 
-  const changeHandler = (expandedParam) => {
-    action('Is Extended')(expandedParam);
-    changeState(expandedParam);
+  const changeHandler = (isExpandedParam) => {
+    action('Is Extended')(isExpandedParam);
+    changeState(isExpandedParam);
   }
 
   return (
     <ExpansionPanel {...props}
-      expanded={expanded}
+      isExpanded={isExpanded}
       onChange={changeHandler} />
   )
 })
@@ -33,13 +35,22 @@ storiesOf('avantrip/ExpansionPanel', module)
   }))
   .add('Con los dos nodos completos', () => (
     <ExpansionPanelWithState
-      SummaryInformation={({onChange, expanded}) =>
-        <div>SummaryInformation
-          <button onClick={onChange}> {expanded ? 'cerrar' : 'abrir'} </button>
-        </div>
+      SummaryInformation={({onChange, isExpanded}) =>
+        <ExpandButton onClick={onChange}>
+          {
+            isExpanded ?
+             <Text type='s'>
+               Mostrar menos
+             </Text>
+             :
+             <Text type='s'>
+               Mostrar mas
+             </Text>
+           }
+        </ExpandButton>
       }
       ExtendedInformation={({onChange}) =>
-        <div>ExtendedInformation
-          <button onClick={onChange}> Ver menos </button>
-        </div>} />
+        <ExtendedInformation>
+          ExtendedInformation
+        </ExtendedInformation>} />
   ))
