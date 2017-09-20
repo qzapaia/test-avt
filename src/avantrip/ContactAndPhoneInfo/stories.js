@@ -7,7 +7,10 @@ import { withState, compose } from 'recompose';
 
 import ContactAndPhoneInfo from './'
 
-import readme from './README.md';
+import generalDecorator from '../../stories.decorator.js';
+
+import theme from '../styled.theme';
+import readme from './README.md'
 
 const addReadme = comp => withReadme(readme, comp);
 
@@ -26,6 +29,10 @@ const ContactAndPhoneInfoWithState =  enhace((props) => {
 })
 
 storiesOf('avantrip/ContactAndPhoneInfo', module)
+  .addDecorator(generalDecorator({
+    readme,
+    theme
+  }))
   .add('Default', addReadme(() => (
     <ContactAndPhoneInfoWithState phoneText="0810-222-2826" />
   )))
