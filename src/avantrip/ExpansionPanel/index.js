@@ -8,9 +8,12 @@ const ExpansionPanel = ({
     onChange}) => (
       <div>
        <SummaryInformation
-         onChange={()=>onChange(!expanded)} />
-       { expanded && <ExtendedInformation
-           onChange={()=>onChange(!expanded)} />}
+         onChange={()=>onChange(!expanded)}
+         expanded={expanded}/>
+         
+       {expanded && <ExtendedInformation
+           onChange={()=>onChange(!expanded)}
+           expanded={expanded} />}
       </div>
 )
 
