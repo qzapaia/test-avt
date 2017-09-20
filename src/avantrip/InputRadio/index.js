@@ -1,22 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputCheckbox from '../InputCheckbox';
 
-const InputRadio = ({text, onClick}) => (
-  <div onClick={onClick}>
-    InputRadio component
-    <br/>
-    Counter {text}
-    <br/>
-    <strong>Click to increment</strong>
-  </div>
-)
+const InputRadio = (props) => <InputCheckbox {...props} type="radio" />
 
-InputRadio.propTypes = {
-  text: PropTypes.node.isRequired
-}
-
-InputRadio.defaultProps = {
-  text:'no value yet :('
-}
+InputRadio.propTypes = InputCheckbox.propTypes;
+InputRadio.defaultProps = InputCheckbox.defaultProps;
 
 export default InputRadio;

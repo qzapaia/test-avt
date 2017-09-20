@@ -26,28 +26,31 @@ Route data object
 
 ```javascript
 {
-  "airline": String,
-  "operatorAirline": String,
-  "duration": Number,
+  "airline": "JJ",
+  "airlineName": "LATAM Airlines",
+  "operatorAirline": "LH",
+  "operatorAirlineName": "Lufthansa",
+  "duration": 1140,
 
   "flights": [
     {
-      "airline": String,
-      "class":String,
-      "flightNumber":String,
+      "airline": "JJ",
+      "airlineName": "LATAM Airlines",
+      "seatingType":"Económica",
+      "flightNumber":"8080",
 
-      "departureAirport": String,
-      "departureAirportCode": String,
-      "departureCity": String,
-      "departureDate": Date,
+      "departureAirport": "AEP",
+      "departureAirportName": "Jorge Newbery",
+      "departureCity": "Buenos Aires",
+      "departureDate": 1505939480986,
 
-      "arrivalAirport": String,
-      "arrivalAirportCode": String,
-      "arrivalCity": String,
-      "arrivalDate": Date,
+      "arrivalAirport": "GRU",
+      "arrivalAirportName": "Aerop. Guarulhos",
+      "arrivalCity": "San Pablo",
+      "arrivalDate": 1505939480986,
 
-      "duration":Number
+      "connectionTime":90
     }
   ]
-},
+}
 ```
