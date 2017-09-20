@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import image from './image'
+import image from './radio-checkbox.png';
 
 export const InputContainer = styled.div`
 
