@@ -28,44 +28,43 @@ const getThreeDatesBeforeAndAfter = (date) => {
   return dates;
 }
 
-const generateRandomFlightDates = () => {
-  
-  const today = moment();
-  
-  const randomDepartureDate = moment(today).add(Math.floor(Math.random() * 15) + 1, 'days').format();
-  const randomReturnDate = moment(today).add(Math.floor(Math.random() * 30) + 20, 'days').format();
+const genererateDepartureDate = (today) => today.add(Math.floor(Math.random() * 15) + 1, 'days').format();
 
-  const departureDates = getThreeDatesBeforeAndAfter(randomDepartureDate);
-  const returnDates = getThreeDatesBeforeAndAfter(randomReturnDate);
+const genererateArrivalDate = (today) => today.add(Math.floor(Math.random() * 30) + 20, 'days').format();
 
-  const flightDatesCollection = departureDates.reduce( (acc, d) => {
-
-    return acc.concat(returnDates.map( r => {
-      return {
-        'vuelta': r, 
-        'ida': d,
-        'price': Math.floor(Math.random() * 20000) + 5000
-      }
-    }))
-
-  }, [])
-
-  return flightDatesCollection;
-}
+const generateRandomFlightDates = (departureDates, arrivalDates) => (
+  departureDates.reduce( (acc, d) => (
+    acc.concat(arrivalDates.map( r => ({
+      'vuelta': r, 
+      'ida': d,
+      'price': Math.floor(Math.random() * 20000) + 5000
+    })))
+  ), [])
+)
 
 const PriceTrendTableByDateWithState =  enhace((props) => {
-  const { flightDates, selectedReturnDate, selectedDepartureDate} = props;
+  const { flightDates, selectedArrivalDate, selectedDepartureDate} = props;
 
   const clickHandler = () => {
     //action('click')(counter+1);
-
   }
-  
+
+  const today = moment();
+  const departureDate = genererateDepartureDate(today);
+  const arrivalDate = genererateArrivalDate(today);
+
+
+  const randomFlightDates = 
+    generateRandomFlightDates(
+      getThreeDatesBeforeAndAfter(departureDate), 
+      getThreeDatesBeforeAndAfter(arrivalDate)
+    )
+
   return (
     <PriceTrendTableByDate 
-      flightDates={flightDates} 
-      selectedReturnDate={selectedReturnDate} 
-      selectedDepartureDate={selectedDepartureDate}
+      flightDates={randomFlightDates} 
+      selectedArrivalDate={arrivalDate} 
+      selectedDepartureDate={departureDate}
       onClick={clickHandler}
     />
   )
@@ -77,7 +76,7 @@ storiesOf('avantrip/PriceTrendTableByDate', module)
     theme
   }))
   .add('Default', () => (
-    <PriceTrendTableByDateWithState flightDates={generateRandomFlightDates()}>
+    <PriceTrendTableByDateWithState>
     </PriceTrendTableByDateWithState>
   ))
 
