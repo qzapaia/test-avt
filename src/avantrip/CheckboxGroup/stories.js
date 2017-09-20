@@ -1,5 +1,6 @@
 import React from 'react';
 import CheckboxGroup from './';
+import Text from '../Text/index';
 import _ from 'lodash';
 
 import { storiesOf } from '@storybook/react';
@@ -63,7 +64,9 @@ storiesOf('avantrip/CheckboxGroup', module)
   ))
   .add('With a Label', () => (
     <CheckboxGroupWithState>
-      <label>Horarios</label>
+      <Text type='m'>
+        <label>Horarios</label>
+      </Text>
     </CheckboxGroupWithState>
   ))
   .add('Con la opcion de Todas', () => (
