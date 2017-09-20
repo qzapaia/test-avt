@@ -9,7 +9,8 @@ export default {
     danger:'#F90',
     white:'#FFF',
     gray:'#efefef',
-    darkgray:'#ccc'
+    darkgray:'#ccc',
+    darkergray:'#666'
   },
   texts:{
     hxxl:{

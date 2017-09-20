@@ -1,25 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MainContainer, SecondaryContainer } from './styled';
-import Title from './title.styled'
-import Text from '../Text'
+import { Container, TelContainer, TelContent, HelpContainer, HelpLink } from './container.styled';
+import Text from '../Text';
+import Icon from '../Icon/index';
 
 const ContactAndPhoneInfo = ({phoneText}) => (
-	<MainContainer>
-		<div>
-			<Title>Comprá también por teléfono</Title>
-			<div>
-				<Text type="l">'''ícono tel @'''</Text>
-				{phoneText}
-			</div>
-		</div>
-		<SecondaryContainer>
-			<a href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
+	<Container>
+		<TelContainer>
+			<h2>
+				<Text type='s'>
+					Comprá también por teléfono
+				</Text>
+			</h2>
+			<TelContent>
+				<Icon
+			    height='21px'
+			    id='Phone'
+			  />
+				<Text type="l">{phoneText}</Text>
+			</TelContent>
+		</TelContainer>
+		<HelpContainer>
+			<HelpContainer href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
 				(I)
-			</a>
-		</SecondaryContainer>
-	</MainContainer>
+			</HelpContainer>
+		</HelpContainer>
+	</Container>
 )
 
 ContactAndPhoneInfo.propTypes = {
