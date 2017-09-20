@@ -1,11 +1,16 @@
 {
-  "presets": ["react", "stage-0", "es2015"],
+  "presets": ["react", "stage-0", "env"],
   "plugins": [
+    ["inline-react-svg"],
     ["inline-import", {
       "extensions": [
         ".css"
       ]
     }],
-    ["inline-import-data-uri"]
+    ["inline-import-data-uri", {
+      "extensions": [
+        ".png"
+      ]
+    }]
   ]
 }
