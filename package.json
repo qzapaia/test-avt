@@ -4,7 +4,7 @@
   "description": "Avantrip React Components",
   "main": "/dist/index.js",
   "scripts": {
-    "build-storybook" : "build-storybook -s ./statics",
+    "build-storybook": "build-storybook -s ./statics",
     "build": "rimraf dist && webpack -p && npm run build-storybook && npm run copypackage",
     "start": "node server",
     "dev": "npm run storybook",
