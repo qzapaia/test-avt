@@ -21,20 +21,16 @@ const customOnChange = (next, name) => value => {
 }
 
 const CheckoutPersonalInfo = ({
-  onChange,
-  firstname,
-  lastname,
-  docType,
-  docNumber,
-  birthday,
-  residencePlace,
-  gender }) => (
-
+                              onChange,
+                              traveller,
+                              minBirthdate,
+                              maxBirthdate,
+                             }) => (
   <div>
     <label>
       Nombre
       <input
-        value={firstname}
+        value={traveller.firstname}
         type="text"
         placeholder="Como figura en el documento de viaje"
         onChange={customOnChange(onChange, 'firstname')}
@@ -44,7 +40,7 @@ const CheckoutPersonalInfo = ({
     <label>
       Apellido
       <input
-        value={lastname}
+        value={traveller.lastname}
         type="text"
         placeholder="Como figura en el documento de viaje"
         onChange={customOnChange(onChange, 'lastname')}
@@ -55,7 +51,7 @@ const CheckoutPersonalInfo = ({
       Tipo de Documento
       <Select
         onChange={customOnChange(onChange, 'docType')}
-        value={docType}>
+        value={traveller.docType}>
         <option value="dni">DNI</option>
         <option value="passport">Pasaporte</option>
       </Select>
@@ -64,13 +60,13 @@ const CheckoutPersonalInfo = ({
       Residencia
       <Select
         onChange={customOnChange(onChange, 'residencePlace')}
-        value={residencePlace}>
+        value={traveller.residencePlace}>
         <option value="AR">Argentina</option>
         <option value="BR">Brasil</option>
       </Select>
     </label>
     <InputNumber
-      value={docNumber}
+      value={traveller.docNumber}
       label={"Número"}
       step={"1"}
       min={"10000"}
@@ -78,8 +74,10 @@ const CheckoutPersonalInfo = ({
       onChange={customOnChange(onChange, 'docNumber')} />
     <InputBirthday
       label={"Fecha de nacimiento"}
-      value={birthday}
-      onChange={customOnChange(onChange, 'birthday')} />
+      value={traveller.birthday}
+      onChange={customOnChange(onChange, 'birthday')}
+      min={minBirthdate}
+      max={maxBirthdate}/>
     <CheckboxGroup
       options={[{
         value: 'F',
@@ -90,19 +88,15 @@ const CheckoutPersonalInfo = ({
       }]}
       onChange={customOnChange(onChange, 'gender')}
       label={<span>Sexo</span>}
-      values={[gender]} />
+      values={[traveller.gender]} />
   </div>
 )
 
 CheckoutPersonalInfo.propTypes = {
-  firstname: PropTypes.string,
-  lastname: PropTypes.string,
-  docType: PropTypes.string,
-  docNumber: PropTypes.number,
-  birthday: PropTypes.number,
-  residencePlace: PropTypes.string,
-  gender: PropTypes.string,
-  onChange: PropTypes.func
+  traveller: PropTypes.object,
+  onChange: PropTypes.func,
+  minBirthdate: PropTypes.number,
+  maxBirthdate: PropTypes.number
 }
 
 export default CheckoutPersonalInfo;

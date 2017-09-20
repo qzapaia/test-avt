@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Componente para la carga de datos personales.
 
 ## Basic use
 
@@ -8,19 +8,42 @@ import CheckoutPersonalInfo from 'avantrip-react/avantrip/CheckoutPersonalInfo';
 
 export default () => (
   <CheckoutPersonalInfo
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    onChange={function}
+    traveller={object}
+    minBirthdate={number}
+    maxBirthdate={number}
   />
 )
 ```
 
-
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `onChange={<Function>}`
+Función lanzada cuando se realiza un cambio en algún
+componente. Devuelve el valor de cada cambio.
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `traveller={<Object>}`
+```javascript
+{
+  "docType":"passport",
+  "residencePlace":"BR",
+  "birthday":{
+    "year":"1985",
+    "month":"9",
+    "day":"17"
+  },
+  "docNumber":31824514,
+  "lastname":"Garcia",
+  "firstname":"Alejandro"
+}
+```
 
+#### `minBirthdate:{Number}`
+Fecha que se utiliza como mínimo para mostrar los datos de
+cada parte de la fecha.
+Debe ser una fecha en formato EPOCH/UNIX.
+
+#### `maxBirthdate:{Number}`
+Fecha que se utiliza como máximo para mostrar los datos de
+cada parte de la fecha.
+Debe ser una fecha en formato EPOCH/UNIX.

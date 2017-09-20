@@ -11,10 +11,11 @@ export default () => (
     label={Node}
     onChange={Function}
     value={Object}
+    min={Number}
+    max={Number}
   />
 )
 ```
-
 
 ## Props
 
@@ -41,3 +42,13 @@ label utilizado para todo el componente
 
 #### `value={<Object>}`
 Define el valor de cada parte de la fecha. Debe tener la
+
+#### `min:{Number}`
+Fecha que se utiliza como mínimo para mostrar los datos de
+cada parte de la fecha.
+Debe ser una fecha en formato EPOCH/UNIX.
+
+#### `max:{Number}`
+Fecha que se utiliza como máximo para mostrar los datos de
+cada parte de la fecha.
+Debe ser una fecha en formato EPOCH/UNIX.
