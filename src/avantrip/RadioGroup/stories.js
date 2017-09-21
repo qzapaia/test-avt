@@ -1,5 +1,5 @@
 import React from 'react'
-import RadiosGroup from './'
+import RadioGroup from './'
 
 import withReadme from 'storybook-readme/with-readme'
 import { storiesOf } from '@storybook/react'
@@ -27,7 +27,7 @@ let initialOptions = [{
 }];
 
 const enhace = withState('value','selectOption',"1");
-const RadiosGroupWithState =  enhace((props) => {
+const RadioGroupWithState =  enhace((props) => {
   const { selectOption, value } = props;
 
   const onChangeHandler = (value) => {
@@ -36,7 +36,7 @@ const RadiosGroupWithState =  enhace((props) => {
   }
 
   return (
-    <RadiosGroup
+    <RadioGroup
       options={initialOptions}
       onChange={onChangeHandler}
       label={props.children}
@@ -44,16 +44,16 @@ const RadiosGroupWithState =  enhace((props) => {
   )
 })
 
-storiesOf('avantrip/RadiosGroup', module)
+storiesOf('avantrip/RadioGroup', module)
   .add('Default', addReadme(() => (
     <ThemeProvider theme={theme}>
-      <RadiosGroupWithState />
+      <RadioGroupWithState />
     </ThemeProvider>
   )))
   .add('With a Label', addReadme(() => (
     <ThemeProvider theme={theme}>
-      <RadiosGroupWithState>
+      <RadioGroupWithState>
         <label>Horarios</label>
-      </RadiosGroupWithState>
+      </RadioGroupWithState>
     </ThemeProvider>
   )))

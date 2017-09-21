@@ -4,10 +4,10 @@ Agrupa una colección de opciones relacionadas.
 ### Basic use
 
 ```javascript
-import RadiosGroup from 'avantrip-react/avantrip/RadiosGroup';
+import RadioGroup from 'avantrip-react/avantrip/RadioGroup';
 
 export default () => (
-  <RadiosGroup
+  <RadioGroup
     label={Node}
     onChange={Function}
     options={Collection}
