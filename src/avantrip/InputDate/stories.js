@@ -12,8 +12,8 @@ import readme from './README.md';
 
 const enhace = compose(
   withState('dates','onChange',{}),
-  withState('focused','onFocus',false),
 );
+
 const InputDateWithState =  enhace((props) => {
   const { dates, onChange } = props;
 
@@ -23,7 +23,7 @@ const InputDateWithState =  enhace((props) => {
   }
 
   return (
-    <InputDate {...props} onChange={changeHandler} />
+    <InputDate {...props} label="Fecha" onChange={changeHandler} />
   )
 })
 
@@ -32,6 +32,12 @@ storiesOf('avantrip/InputDate', module)
     readme,
     theme
   }))
-  .add('Default', () => (
-    <InputDateWithState></InputDateWithState>
+  .add('SingleDate', () => (
+    <InputDateWithState placeholder="Fecha"></InputDateWithState>
+  ))
+  .add('Rango de fechas', () => (
+    <InputDateWithState range={true}></InputDateWithState>
+  ))
+  .add('Entre el 1 de enero y el 28 de enero del 2018', () => (
+    <InputDateWithState min="2018-01-01" max="2018-01-28"></InputDateWithState>
   ))
