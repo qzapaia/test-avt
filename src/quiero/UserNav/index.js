@@ -30,7 +30,7 @@ const UserNav = ({ qvUserData, onLogout }) => (
 
 UserNav.propTypes = {
   qvUserData : PropTypes.object.isRequired,
-  onLogout : PropTypes.func
+  onLogout : PropTypes.func.isRequired
 }
 
 UserNav.defaultProps = {
@@ -39,8 +39,7 @@ UserNav.defaultProps = {
       userName : "",
       points : "",
       quoteId : "", //quoteId es el identificador de cotizaciones del usuario autenticado en QV }
-    },
-    onLogout : () => {}
+    }
 }
 
 export default UserNav;
