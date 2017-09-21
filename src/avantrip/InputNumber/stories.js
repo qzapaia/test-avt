@@ -49,5 +49,6 @@ storiesOf('avantrip/InputNumber', module)
       label="Edad"
       step="1"
       min="0"
-      max="100"></InputNumberWithState>
+      max="100" 
+    />
   ))

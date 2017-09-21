@@ -8,6 +8,9 @@ export default {
     warning:'#F90',
     danger:'#F90',
     white:'#FFF',
+    gray:'#efefef',
+    darkgray:'#ccc',
+    darkergray:'#666'
   },
   texts:{
     hxxl:{
