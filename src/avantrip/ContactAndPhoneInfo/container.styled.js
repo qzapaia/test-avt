@@ -32,6 +32,7 @@ export const HelpContainer = styled.div`
   border-left: 1px solid ${props => props.theme.colors.darkgray};
 `
 export const HelpLink = styled.a`
+  display: flex;
   svg{
     fill: ${props => props.theme.colors.primary} !important;
     width: 25px;
