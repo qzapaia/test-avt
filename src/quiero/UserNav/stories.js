@@ -1,5 +1,5 @@
 import React from 'react';
-import Session from './';
+import UserNav from './';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -11,7 +11,7 @@ import theme from '../styled.theme';
 import readme from './README.md';
 
 const enhace = withState('counter','increment',0);
-const SessionWithState =  enhace((props) => {
+const UserNavWithState =  enhace((props) => {
   const { counter, increment } = props;
 
   const clickHandler = () => {
@@ -20,21 +20,30 @@ const SessionWithState =  enhace((props) => {
   }
 
   return (
-    <Session {...props} text={counter} onClick={clickHandler} />
+    <UserNav {...props} />
   )
 })
 
-storiesOf('quiero/Session', module)
+const logoutCallback = (e) => {
+  e.preventDefault();
+  console.log(`Evento`,e);
+}
+
+const data = {
+  messageNumber : '10',
+  userName :      'Mario Monticello',
+  points :        '6200',
+  quoteId :       '9999999'
+}
+
+storiesOf('quiero/UserNav', module)
   .addDecorator(generalDecorator({
     readme,
     theme
   }))
   .add('Default', () => (
-    <Session
-    messageNumber = "5"
-    userName = "Mario Monticello"
-    points = "6200"
-    quoteLink = "/messages/1234567"
-    >
-    </Session>
+    <UserNav
+      qvUserData = { data }
+      handleLogout = { logoutCallback }>
+    </UserNav>
   ))
