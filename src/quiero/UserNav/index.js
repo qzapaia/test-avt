@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const data = {
-  messageNumber : "",
-  userName : "",
-  points : "",
-  quoteId : "" //quoteId es el identificador de cotizaciones del usuario autenticado en QV
-}
-
-const UserNav = ({ qvUserData, handleLogout }) => (
+const UserNav = ({ qvUserData, onLogout }) => (
   <div>
       <div>{ qvUserData.userName }</div>
         <div>
@@ -29,7 +22,7 @@ const UserNav = ({ qvUserData, handleLogout }) => (
           <p>
             <a href="/mis-canjes" title="Mis Canjes en Viajes y Turismo">Mis Canjes en Viajes y Turismo</a>
             |
-            <a href="" title="Cerrar sesión" onClick={ handleLogout }>Cerrar sesión</a>
+            <a href="" title="Cerrar sesión" onClick={ onLogout }>Cerrar sesión</a>
           </p>
       </div>
   </div>
@@ -37,12 +30,17 @@ const UserNav = ({ qvUserData, handleLogout }) => (
 
 UserNav.propTypes = {
   qvUserData : PropTypes.object.isRequired,
-  handleLogout : PropTypes.func
+  onLogout : PropTypes.func
 }
 
 UserNav.defaultProps = {
-  qvUserData : { data },
-  handleLogout : () => {}
+  qvUserData : {
+      messageNumber : "",
+      userName : "",
+      points : "",
+      quoteId : "", //quoteId es el identificador de cotizaciones del usuario autenticado en QV }
+    },
+    onLogout : () => {}
 }
 
 export default UserNav;

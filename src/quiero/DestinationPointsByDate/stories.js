@@ -1,5 +1,5 @@
 import React from 'react';
-import UserNav from './';
+import DestinationPointsByDate from './';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -11,7 +11,7 @@ import theme from '../styled.theme';
 import readme from './README.md';
 
 const enhace = withState('counter','increment',0);
-const UserNavWithState =  enhace((props) => {
+const DestinationPointsByDateWithState =  enhace((props) => {
   const { counter, increment } = props;
 
   const clickHandler = () => {
@@ -20,30 +20,16 @@ const UserNavWithState =  enhace((props) => {
   }
 
   return (
-    <UserNav {...props} />
+    <DestinationPointsByDate {...props} text={counter} onClick={clickHandler} />
   )
 })
 
-const logoutCallback = (e) => {
-  e.preventDefault();
-  console.log(`Evento`,e);
-}
-
-const data = {
-  messageNumber : '10',
-  userName :      'Mario Monticello',
-  points :        '6200',
-  quoteId :       '9999999'
-}
-
-storiesOf('quiero/UserNav', module)
+storiesOf('quiero/DestinationPointsByDate', module)
   .addDecorator(generalDecorator({
     readme,
     theme
   }))
   .add('Default', () => (
-    <UserNav
-      qvUserData = { data }
-      onLogout = { logoutCallback }>
-    </UserNav>
+    <DestinationPointsByDateWithState></DestinationPointsByDateWithState>
   ))
+

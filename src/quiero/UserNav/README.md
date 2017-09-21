@@ -9,7 +9,7 @@ import UserNav from 'avantrip-react/quiero/UserNav';
 export default () => (
   <UserNav
     qvUserData = { object }
-    handleLogout = { func }
+    onLogout = { func }
   />
 )
 ```
@@ -19,5 +19,5 @@ export default () => (
 #### `qvUserData={<Object>}`
 Objecto que contiene los datos de QV
 
-#### `handleLogout={<Func>}`
+#### `onLogout={<Func>}`
 Manejador del evento click del link de logout
