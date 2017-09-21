@@ -1,0 +1,28 @@
+stages:
+  - build
+  - docker-push
+  - deploy
+
+before_script:
+  - TAG=$(git describe --always)
+
+build:
+  stage: build
+  only:
+    - master
+  script:
+    - docker build . -t 760982079832.dkr.ecr.us-east-1.amazonaws.com/avantrip-react:$TAG
+
+docker-push:
+  stage: docker-push
+  only:
+    - master
+  script:
+    - docker push 760982079832.dkr.ecr.us-east-1.amazonaws.com/avantrip-react:$TAG
+
+deploy_int:
+  stage: deploy
+  only:
+    - master
+  script:
+    - avtcli deploy --container-name=avantrip-react --service-name=avantrip-react --image avantrip-react:$TAG --cluster=integration
