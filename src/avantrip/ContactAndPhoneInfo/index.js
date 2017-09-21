@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { MainContainer, SecondaryContainer } from './styled';
 import Title from './title.styled'
 import Text from '../Text'
+import Link from '../Link'
 
 const ContactAndPhoneInfo = ({phoneText}) => (
 	<MainContainer>
@@ -14,11 +15,9 @@ const ContactAndPhoneInfo = ({phoneText}) => (
 				{phoneText}
 			</div>
 		</div>
-		<SecondaryContainer>
-			<a href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
-				(I)
-			</a>
-		</SecondaryContainer>
+		<Link href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
+			ícono de ayuda (link)
+		</Link>
 	</MainContainer>
 )
 
