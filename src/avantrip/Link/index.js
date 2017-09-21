@@ -11,14 +11,13 @@ const Link = ({href, icon, target, children}) => (
 )
 
 Link.propTypes = {
-  target: PropTypes.oneOf("_blank", "_self","_parent","_top", "framename"),
+  target: PropTypes.oneOf(["_blank", "_self","_parent","_top", "framename"]),
   href: PropTypes.string,
   icon: PropTypes.node
 }
 
 
 Link.defaultProps = {
-  href:'#',
   target: '_self'
 }
 

@@ -19,8 +19,8 @@ const getCurrentPage = (pathname) =>{
   return currentPage;
 }
 
-const Nav = ({locationPathname, children}) => {
-  let currentPage = getCurrentPage(locationPathname);
+const Nav = ({currentPathname, children}) => {
+  let currentPage = getCurrentPage(currentPathname);
   return (<ContainerNav>
     <Item>
       <LinkNav isActive={currentPage == 'vuelos'}>
@@ -75,7 +75,7 @@ const Nav = ({locationPathname, children}) => {
 }
 
 Nav.propTypes = {
-  locationPathname: PropTypes.string.isRequired
+  currentPathname: PropTypes.string.isRequired
 }
 
 export default Nav;

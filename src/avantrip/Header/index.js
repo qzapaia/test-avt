@@ -8,7 +8,7 @@ import Text from '../Text';
 import Nav from '../Nav';
 import Link from '../Link';
 
-const Header = ({locationPathname, phoneText}) => (
+const Header = ({currentLocation, phoneText}) => (
   <Container>
     <div>
       <Logo href="http://www.avantrip.com/"/>
@@ -21,7 +21,7 @@ const Header = ({locationPathname, phoneText}) => (
       </Text>
     </div>
     <ContactAndPhoneInfo phoneText={phoneText} />
-    <Nav locationPathname={locationPathname}/>
+    <Nav currentLocation={currentLocation}/>
   </Container>
 )
 

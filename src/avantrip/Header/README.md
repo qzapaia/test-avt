@@ -9,7 +9,7 @@ import Header from 'avantrip-react/avantrip/Header';
 
 export default () => (
   <Header
-    locationPathname="/vuelos/"
+    currentPathname="/vuelos/"
     phoneText="0810-222-2826"/>
 )
 ```
@@ -20,5 +20,5 @@ export default () => (
 Es el número de teléfono de compra.
 
 
-#### `locationPathname={<String>}`
+#### `currentPathname={<String>}`
 Pathname actual.

@@ -16,8 +16,8 @@ storiesOf('avantrip/styled@Nav', module)
     theme
   }))
   .add('Default', () => (
-    <Nav locationPathname="/vuelos/" />
+    <Nav currentPathname="/vuelos/" />
   ))
-  .add('Con locationPathname igual a /hoteles/', () => (
-    <Nav locationPathname="/hoteles/" />
+  .add('Con currentPathname igual a /hoteles/', () => (
+    <Nav currentPathname="/hoteles/" />
   ))

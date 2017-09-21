@@ -7,13 +7,13 @@ Barra de navegación de Avantrip.
 import Nav from 'avantrip-react/avantrip/Nav';
 
 export default () => (
-  <Nav locationPathname="/hoteles/" />
+  <Nav currentPathname="/hoteles/" />
 )
 ```
 
 
 ## Props
 
-#### `locationPathname={<String>}`
+#### `currentPathname={<String>}`
 Especifica el Pathname. Según este valor selecciona una de
 las opciones del menu de navegación.

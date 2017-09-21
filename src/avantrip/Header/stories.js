@@ -19,5 +19,5 @@ storiesOf('avantrip/Header', module)
   .add('Default', () => (
     <Header
       phoneText="0810-222-2826"
-      locationPathname="/vuelos/"/>
+      currentPathname="/vuelos/"/>
   ))
