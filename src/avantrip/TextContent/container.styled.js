@@ -6,6 +6,7 @@ export const Container = styled.article`
   h1{
     margin-top: 0;
     margin-bottom: 15px;
+    font-weight: light;
     color: ${props => props.theme.colors.darkergray}
   }
   p{
@@ -13,9 +14,10 @@ export const Container = styled.article`
     font-weight: 300;
     margin-top: 0;
     margin-bottom: 10px;
+    font-weight: light;
     color: ${props => props.theme.colors.darkergray};
     strong, b{
-      font-weight: bold;
+      font-weight: regular;
     }
   }
 `
