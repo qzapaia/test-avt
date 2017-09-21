@@ -11,20 +11,23 @@ const RadiosGroup = ({options, onChange, label, value}) => (
             key={ option.value }
             id={ option.value.toString() }
             type ="radio"
-            value ={ option.value.toString() }
             label ={ option.label }
-            checked ={ value == option.value }
-            onChange ={ e => onChange(option.value.toString()) }
+            checked ={ value == option.value.toString() }
+            onChange ={ e => onChange(option.value) }
           />
     ))}
   </span>
 )
 
 RadiosGroup.propTypes = {
-    options: PropTypes.array.isRequired,
+    options: PropTypes.array,
     onChange: PropTypes.func,
     label: PropTypes.node,
     value: PropTypes.string
+}
+
+RadiosGroup.defaultProps = {
+  options: []
 }
 
 export default RadiosGroup;

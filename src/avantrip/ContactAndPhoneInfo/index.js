@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Link from '../Link';
+import { MainContainer, SecondaryContainer } from './styled';
+import Title from './title.styled'
+import Text from '../Text'
+import Link from '../Link'
 
 const ContactAndPhoneInfo = ({phoneText}) => (
-	<div>
+	<MainContainer>
 		<div>
-			<div>Comprá también por teléfono</div>
-			<div><span>'''ícono tel @'''</span>{phoneText}</div>
+			<Title>Comprá también por teléfono</Title>
+			<div>
+				<Text type="l">'''ícono tel @'''</Text>
+				{phoneText}
+			</div>
 		</div>
 		<Link href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
 			ícono de ayuda (link)
 		</Link>
-	</div>
+	</MainContainer>
 )
 
 ContactAndPhoneInfo.propTypes = {

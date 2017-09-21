@@ -5,7 +5,7 @@ import { Provider as ApolloProvider } from './apollo-client'
 import { ThemeProvider } from 'styled-components'
 
 const createDecorator = config => (story,b,c,d) => {
-  
+
   const newStory = () => (
     <ApolloProvider>
       <ThemeProvider theme={config.theme}>
