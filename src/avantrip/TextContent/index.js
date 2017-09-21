@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Text from '../Text';
-console.log(Text);
+import {Container} from './container.styled';
+
+
 const TextContent = ({title, subtitle}) => (
-  <div>
+  <Container>
     <h1>
       <Text type="xxl">{title}</Text>
     </h1>
-    <Text type="m">
-    	{subtitle}
-    </Text>
-  </div>
+    <p>
+      <Text type="m">
+        {subtitle}
+      </Text>
+    </p>
+  </Container>
 )
 
 TextContent.propTypes = {
