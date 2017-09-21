@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import Autosuggest from 'react-autosuggest';
 
-const getSuggestionsFromChildren = children => (value='') => {
+const getSuggestionsFromChildren = (children=[]) => (value='') => {
   const options = children.map(c=>({
                     value:c.props.value,
                     label:c.props.children
