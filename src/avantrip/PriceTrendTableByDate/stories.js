@@ -30,7 +30,7 @@ const searchData = {
 }
 
 const getThreeDatesBeforeAndAfter = (date) => {
-  let dates = [];
+  const dates = [];
 
   dates.push(moment(date).subtract(3, 'days').format());
   dates.push(moment(date).subtract(2, 'days').format());
@@ -43,16 +43,16 @@ const getThreeDatesBeforeAndAfter = (date) => {
   return dates;
 }
 
-const genererateDepartureDate = (today) => today.add(Math.floor(Math.random() * 15) + 1, 'days').format();
+const genererateDepartureDate = (today) => today.add(_.random(1, 15), 'days').format();
 
-const genererateArrivalDate = (today) => today.add(Math.floor(Math.random() * 30) + 20, 'days').format();
+const genererateArrivalDate = (today) => today.add(_.random(20, 30), 'days').format();
 
 const generateRandomFlightDates = (departureDates, arrivalDates) => (
   departureDates.reduce( (acc, d) => (
     acc.concat(arrivalDates.map( r => ({
       'vuelta': r,
       'ida': d,
-      'price': Math.floor(Math.random() * 30000) + 11000
+      'price': _.random(11000, 30000)
     })))
   ), [])
 )

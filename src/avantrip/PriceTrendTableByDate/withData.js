@@ -3,25 +3,32 @@ import { gql, graphql } from 'react-apollo';
 import PriceTrendTableByDate from './'
 import _ from 'lodash';
 
-
-// GrahQL Query
-
 export const FlightQuery = gql`
-  query FlightQuery($origin: String!) {
+  query FlightQuery(
+                    $origin: String!,
+                    $destination: String!,
+                    $departureDate: String!,
+                    $returningDate: String!,
+                    $channel: String!,
+                    $portal: String!,
+                    $passengersAdults:Int!,
+                    $passengersChildren:Int!,
+                    $passengersInfants:Int!,
+                    $cabinClass:FligthCabinClassInput!) {
       flights{
         calendar{
           roundtrip(
             origin: $origin,
-            destination:"MIA",
-            departureDate:"2018-01-01",
-            returningDate:"2018-01-07",
-            channel:"Desktop",
-            portal:"avantrip",
-            cabinClass:Economy,
+            destination:$destination,
+            departureDate:$departureDate,
+            returningDate:$returningDate,
+            channel:$channel,
+            portal:$portal,
+            cabinClass:$cabinClass,
             passengers:{
-              adults:1,
-              children:0,
-              infants:0
+              adults:$passengersAdults,
+              children:$passengersChildren,
+              infants:$passengersInfants
             }
           ){
             products{
@@ -44,12 +51,6 @@ export const FlightQuery = gql`
   }`;
 
 const SelectorComponent = (props) => {
-  /*{
-    vuelta:<Date>
-    ida:<Date>
-    price:<Number>
-  }*/
-  console.log('data from graphql', props.data);
   const values = [];
   if(props.data.flights){
     _.forEach(props.data.flights.calendar.roundtrip.products[0].clusters,  cluster => {
@@ -62,7 +63,7 @@ const SelectorComponent = (props) => {
   }
   return <PriceTrendTableByDate {...props}
             flightDates={values}
-            //selectedArrivalDate={date}
+            selectedArrivalDate={props.value.returningDate}
             selectedDepartureDate={props.value.departureDate}/>;
 }
 
@@ -77,11 +78,9 @@ export default graphql(FlightQuery, {
       channel:"Desktop",
       portal:"avantrip",
       cabinClass:props.value.cabinClass,
-      passengers:{
-        adults:props.value.passengers.adults,
-        children:props.value.passengers.children,
-        infants:props.value.passengers.infants
-      }
+      passengersAdults:props.value.passengers.adults,
+      passengersChildren:props.value.passengers.children,
+      passengersInfants:props.value.passengers.infants
     },
   }),
 //  options: ({ value }) => ({ variables: { value } }),
