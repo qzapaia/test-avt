@@ -3,7 +3,7 @@ import PurchaseAccess from './'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { withState, withHandlers, mapProps ,compose } from 'recompose'
+import { withState, withHandlers ,compose } from 'recompose'
 
 import generalDecorator from '../../stories.decorator.js';
 
