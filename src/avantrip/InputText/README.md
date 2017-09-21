@@ -12,7 +12,7 @@ export default () => (
     value:{string},
     label:{string},
     requiresExistingValue:{boolean},
-
+    placeholder:{string},
     icon:{string},
   >
     <option value="a">Sugerencia de valor a</option>
@@ -32,6 +32,9 @@ Valor del input
 
 #### `label={<String>}`
 Label del input
+
+#### `placeholder={<String>}`
+Placeholder del input
 
 #### `requiresExistingValue={<Boolean>}`
 Condición que exige que el valor sea uno de la lista de options.
