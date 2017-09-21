@@ -13,6 +13,9 @@ Example: Load only **quiero** components.
 ## Generate or remove components
 `yarn run gen`
 
+## Preview de master en int
+http://avantrip-react.api.int.devtrip.com.ar/storybook
+
 ## Style Guide (JS & React)
 https://github.com/airbnb/javascript/tree/master/react
 
@@ -21,3 +24,9 @@ https://www.styled-components.com/
 
 ## Recompose
 https://github.com/acdlite/recompose
+
+
+## Uso de lodash básico
+```javascript
+import { get, map } from 'lodash';
+```

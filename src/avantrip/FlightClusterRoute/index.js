@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
+import Text from '../Text/index';
+import Icon from '../Icon/index';
+import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator} from './container.styled'
 
 // TODO: Resolver locales
 
-const FORMAT_DATE = 'ddd. DD MMM de YYYY'; 
+const FORMAT_DATE = 'ddd. DD MMM de YYYY';
 
 const parseDate = date => {
   return Moment(date).format(FORMAT_DATE);
@@ -13,25 +16,33 @@ const parseDate = date => {
 
 const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) => (
   <div>
-    <div>
-    	<div>
-    		{title}
-    	</div>
-    	<div>
-    		{parseDate(date)}
-    	</div>
-    </div>
-    <div>
-    	<div>
-    		{departureCity}
-    	</div>
-    	<div>
-    		-----------------------
-    	</div>
-    	<div>
-    		{arrivalCity}
-    	</div>
-    </div>
+    <Container>
+      <DateContainer>
+      	<DateTitle>
+          <Icon
+            id='Back'
+            height='16px'
+          />
+          <Text type='s'>
+            {title}
+          </Text>
+      	</DateTitle>
+      	<DateContent>
+          <Text type='s'>
+      		    {parseDate(date)}
+          </Text>
+      	</DateContent>
+      </DateContainer>
+      <CitiesContainer>
+      	<Text>
+      		{departureCity}
+      	</Text>
+      	<Separator />
+      	<Text>
+      		{arrivalCity}
+      	</Text>
+      </CitiesContainer>
+    </Container>
     {children}
   </div>
 )
