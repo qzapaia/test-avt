@@ -7,7 +7,6 @@ export const Container = styled.div`
   h2{
     flex-basis: 100%;
     margin: 0;
-    font-weight: lighter;
   }
 `
 
@@ -18,6 +17,7 @@ export const TelContent = styled.div`
   align-items: center;
   color: ${props => props.theme.colors.brand};
   span{
+    font-family: ${props => props.theme.fonts.book};
     font-weight: bold;
   }
   svg{

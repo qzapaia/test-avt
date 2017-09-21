@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'Stag-Sans-Black-Italic';
+  src: url("Stag-Sans-Black-Italic.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Black';
+  src: url("Stag-Sans-Black.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Bold-Italic';
+  src: url("Stag-Sans-Bold-Italic.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Bold';
+  src: url("Stag-Sans-Bold.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Book-Italic';
+  src: url("Stag-Sans-Book-Italic.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Book';
+  src: url("Stag-Sans-Book.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Light-Italic';
+  src: url("Stag-Sans-Light-Italic.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Light';
+  src: url("Stag-Sans-Light.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Medium-Italic';
+  src: url("Stag-Sans-Medium-Italic.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Medium';
+  src: url("Stag-Sans-Medium.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Semibold-Italic';
+  src: url("Stag-Sans-Semibold-Italic.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Semibold';
+  src: url("Stag-Sans-Semibold.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Thin-Italic';
+  src: url("Stag-Sans-Thin-Italic.otf");
+}
+
+@font-face {
+  font-family: 'Stag-Sans-Italic';
+  src: url("Stag-Sans-Italic.otf");
+}
+
+body{
+  font-family: 'Stag-Sans-Light';
+}

@@ -15,38 +15,31 @@ export default {
   texts:{
     hxxl:{
       size:'40px',
-      weight:'normal',
-      family:'Arial'
+      weight:'normal'
     },
     xxl:{
       size:'36px',
-      weight:'normal',
-      family:'Arial'
+      weight:'normal'
     },
     xl:{
       size:'28px',
-      weight:'normal',
-      family:'Arial'
+      weight:'normal'
     },
     l:{
       size:'22px',
-      weight:'normal',
-      family:'Arial'
+      weight:'normal'
     },
     m:{
       size:'16px',
-      weight:'normal',
-      family:'Arial'
+      weight:'normal'
     },
     s:{
       size:'14px',
-      weight:'normal',
-      family:'Arial'
+      weight:'normal'
     },
     xs:{
       size:'12px',
-      weight:'normal',
-      family:'Arial'
+      weight:'normal'
     },
   },
   buttons:{
@@ -78,5 +71,21 @@ export default {
         fontSize:'20px',
       }
     }
+  },
+  fonts:{
+    blackItalic: 'Stag-Sans-Black-Italic',
+    black: 'Stag-Sans-Black',
+    boldItalic: 'Stag-Sans-Bold-Italic',
+    bold: 'Stag-Sans-Bold',
+    bookItalic: 'Stag-Sans-Book-Italic',
+    book: 'Stag-Sans-Book',
+    lightItalic: 'Stag-Sans-Light-Italic',
+    light: 'Stag-Sans-Light',
+    mediumItalic: 'Stag-Sans-Medium-Italic',
+    medium: 'Stag-Sans-Medium',
+    semiboldItalic: 'Stag-Sans-Semibold-Italic',
+    semibold: 'Stag-Sans-Semibold',
+    thinItalic: 'Stag-Sans-Thin-Italic',
+    italic: 'Stag-Sans-Thin'
   }
 }

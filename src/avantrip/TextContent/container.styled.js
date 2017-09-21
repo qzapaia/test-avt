@@ -6,18 +6,19 @@ export const Container = styled.article`
   h1{
     margin-top: 0;
     margin-bottom: 15px;
-    font-weight: light;
-    color: ${props => props.theme.colors.darkergray}
+    font-family: ${props => props.theme.fonts.light};
+    color: ${props => props.theme.colors.darkergray};
   }
   p{
     line-height: 22px;
     font-weight: 300;
     margin-top: 0;
     margin-bottom: 10px;
-    font-weight: light;
+    font-family: ${props => props.theme.fonts.light};
     color: ${props => props.theme.colors.darkergray};
     strong, b{
-      font-weight: regular;
+      font-family: ${props => props.theme.fonts.book};
+      font-weight: normal;
     }
   }
 `
