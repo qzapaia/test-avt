@@ -14,6 +14,21 @@ import readme from './README.md';
 
 const enhace = withState('counter','increment',0);
 
+const searchData = {
+  origin:"BUE",
+  destination:"MIA",
+  departureDate:"2018-01-01",
+  returningDate: "2018-01-08",
+  channel:"Desktop",
+  portal:"avantrip",
+  cabinClass:'Economy',
+  passengers:{
+    adults:1,
+    children:0,
+    infants:0
+  }
+}
+
 const getThreeDatesBeforeAndAfter = (date) => {
   let dates = [];
 
@@ -35,7 +50,7 @@ const genererateArrivalDate = (today) => today.add(Math.floor(Math.random() * 30
 const generateRandomFlightDates = (departureDates, arrivalDates) => (
   departureDates.reduce( (acc, d) => (
     acc.concat(arrivalDates.map( r => ({
-      'vuelta': r, 
+      'vuelta': r,
       'ida': d,
       'price': Math.floor(Math.random() * 30000) + 11000
     })))
@@ -53,16 +68,16 @@ const PriceTrendTableByDateWithState =  enhace((props) => {
   const departureDate = genererateDepartureDate(today);
   const arrivalDate = genererateArrivalDate(today);
 
-  const randomFlightDates = 
+  const randomFlightDates =
     generateRandomFlightDates(
-      getThreeDatesBeforeAndAfter(departureDate), 
+      getThreeDatesBeforeAndAfter(departureDate),
       getThreeDatesBeforeAndAfter(arrivalDate)
     )
 
   return (
-    <PriceTrendTableByDate 
-      flightDates={randomFlightDates} 
-      selectedArrivalDate={arrivalDate} 
+    <PriceTrendTableByDate
+      flightDates={randomFlightDates}
+      selectedArrivalDate={arrivalDate}
       selectedDepartureDate={departureDate}
       onClick={clickHandler}
     />
@@ -80,5 +95,5 @@ storiesOf('avantrip/PriceTrendTableByDate', module)
   ))
 
   .add('With data', () => (
-    <PriceTrendTableByDateWithData>PriceTrendTableByDateWithData component</PriceTrendTableByDateWithData>
+    <PriceTrendTableByDateWithData value={searchData}/>
   ))
