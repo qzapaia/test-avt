@@ -6,10 +6,11 @@ import React from 'react'
 import FlightClusterRoute from './'
 
 import { withState, compose } from 'recompose';
+import generalDecorator from '../../stories.decorator.js';
 
-
-
+import theme from '../styled.theme';
 import readme from './README.md';
+
 
 const addReadme = comp => withReadme(readme, comp);
 
@@ -37,13 +38,14 @@ const FlightClusterRouteWithState =  enhace((props) => {
 })
 
 storiesOf('avantrip/FlightClusterRoute', module)
+  .addDecorator(generalDecorator({
+    readme,
+    theme
+  }))
   .add('Default', addReadme(() => (
-    <FlightClusterRouteWithState 
-      title="IDA"  
-      departureCity="Buenos Aires" 
+    <FlightClusterRouteWithState
+      title="IDA"
+      departureCity="Buenos Aires"
       arrivalCity="Nueva York">
     </FlightClusterRouteWithState>
   )))
-
-
-
