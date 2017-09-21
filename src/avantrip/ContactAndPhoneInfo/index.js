@@ -14,17 +14,14 @@ const ContactAndPhoneInfo = ({phoneText}) => (
 				</Text>
 			</h2>
 			<TelContent>
-				<Icon
-			    height='21px'
-			    id='Phone'
-			  />
+				<Icon height='21px' id='Phone'/>
 				<Text type="l">{phoneText}</Text>
 			</TelContent>
 		</TelContainer>
 		<HelpContainer>
-			<HelpContainer href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
-				(I)
-			</HelpContainer>
+			<HelpLink href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
+				<Icon	height='30px'	id='Help'/>
+			</HelpLink>
 		</HelpContainer>
 	</Container>
 )

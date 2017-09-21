@@ -25,10 +25,15 @@ export const TelContent = styled.div`
   }
 `
 export const HelpContainer = styled.div`
-  margin-left: 10px;
+  margin-left: 15px;
   padding-left: 10px;
+  display: flex;
+  align-items: center;
   border-left: 1px solid ${props => props.theme.colors.darkgray};
 `
 export const HelpLink = styled.a`
-
+  svg{
+    fill: ${props => props.theme.colors.primary} !important;
+    width: 25px;
+  }
 `
