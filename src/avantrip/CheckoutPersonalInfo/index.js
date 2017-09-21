@@ -5,15 +5,13 @@ import InputBirthday from '../InputBirthday';
 import InputNumber from '../InputNumber';
 import Select from '../Select';
 import CheckboxGroup from '../CheckboxGroup';
+import InputText from '../InputText';
 
 const customOnChange = (next, name) => value => {
   switch (name) {
     case 'gender':
       value = value.value;
       break;
-    case 'firstname':
-    case 'lastname':
-      value = value.target.value;
   }
   const p = {}
   p[name] = value
@@ -27,26 +25,16 @@ const CheckoutPersonalInfo = ({
                               maxBirthdate,
                              }) => (
   <div>
-    <label>
-      Nombre
-      <input
-        value={traveller.firstname}
-        type="text"
-        placeholder="Como figura en el documento de viaje"
-        onChange={customOnChange(onChange, 'firstname')}
-        required
-      />
-    </label>
-    <label>
-      Apellido
-      <input
-        value={traveller.lastname}
-        type="text"
-        placeholder="Como figura en el documento de viaje"
-        onChange={customOnChange(onChange, 'lastname')}
-        required
-      />
-    </label>
+    <InputText
+      label="Nombre"
+      value={traveller.firstname}
+      onChange={customOnChange(onChange, 'firstname')}
+    />
+    <InputText
+      label="Apellido"
+      value={traveller.lastname}
+      onChange={customOnChange(onChange, 'lastname')}
+    />
     <label>
       Tipo de Documento
       <Select
