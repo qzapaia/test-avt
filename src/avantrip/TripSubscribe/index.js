@@ -2,33 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Container from './container.styled';
 
+import InputText from '../InputText';
+
 const ERROR_STATE = 'error';
 const SUCCESS_STATE = 'success';
 
-const preventFormatAndContinueWith = next => e => {
+const preventFormatAndContinueWith = (next, value) => e => {
   e.preventDefault();
   next({
-    email:e.target.email.value,
-    city:e.target.city.value
+    email:value.email,
+    city:value.city
   })
 }
 
-const TripSubscribe = ({onSubscribe, state, city}) => (
+const TripSubscribe = ({title, onSubscribe, onChange, state, value}) => (
   <div>
     {!state &&
       <Container>
-        <h4>
-          <span>Icono Alerta</span>
-          {`Te avisamos cuando tengamos los precios
-            más bajos a ${city}.`}
-        </h4>
-        <form onSubmit={preventFormatAndContinueWith(onSubscribe)}>
-          <input type="HIDDEN" name="city" value={city}/>
-          <input
-            type="email"
-            name="email"
-            placeholder="Ingresá tu email"
-            required
+        {title}
+        <form onSubmit={preventFormatAndContinueWith(onSubscribe, value)}>
+          <input type="HIDDEN" name="city" value={value.city}/>
+          <InputText
+            label={"Email"}
+            value={value.email}
+            onChange={value => onChange({'email':value})}
           />
           <button type="submit">Crear Alerta</button>
         </form>
@@ -45,7 +42,7 @@ const TripSubscribe = ({onSubscribe, state, city}) => (
 
 TripSubscribe.propTypes = {
   onSubscribe:PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
+  value: PropTypes.object,
   state:PropTypes.oneOf(['', SUCCESS_STATE, ERROR_STATE])
 }
 

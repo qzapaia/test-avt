@@ -1,16 +1,43 @@
-import React from 'react'
-import TripSubscribe from './'
+import React from 'react';
+import TripSubscribe from './';
 
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { withState, compose } from 'recompose'
+import Text from '../Text';
+import Icon from '../Icon';
+
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { withState, compose } from 'recompose';
 
 import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
-import readme from './README.md'
+import readme from './README.md';
 
-const city = "Miami";
+const enhace = withState('value','changeValues',{
+  city: "Miami"
+});
+
+const TripSubscribeWithState =  enhace((props) => {
+  const { changeValues, value } = props;
+
+  const onChangeHandler = (changedValue) => {
+    changedValue = Object.assign(value, changedValue);
+    action('onChange')('Change Value: ' + JSON.stringify(changedValue));
+    changeValues(changedValue);
+  }
+
+  return (
+    <TripSubscribe
+      {...props}
+      onChange={onChangeHandler}
+      title={
+        <Text><Icon id="Notifications" size="l"></Icon>`Te avisamos cuando tengamos los precios
+        más bajos a ${value.city}.`</Text>
+      }
+      onSubscribe={action('subscribe sent')}
+      value={value} />
+  )
+})
 
 storiesOf('avantrip/TripSubscribe', module)
   .addDecorator(generalDecorator({
@@ -18,24 +45,16 @@ storiesOf('avantrip/TripSubscribe', module)
     theme
   }))
   .add('Default', () => (
-    <TripSubscribe
-      city={city}
-      onSubscribe={action('subscribe sent')}
+    <TripSubscribeWithState
     />
   ))
   .add('Successful subscription', () => (
-    <TripSubscribe
-      city={city}
-      title={`Te avisamos cuando tengamos los precios más bajos a ${city}.`}
+    <TripSubscribeWithState
       state="success"
-      onSubscribe={action('subscribe sent')}
     />
   ))
   .add('Failed subscription', () => (
-    <TripSubscribe
-      city={city}
-      title={`Te avisamos cuando tengamos los precios más bajos a ${city}.`}
+    <TripSubscribeWithState
       state="error"
-      onSubscribe={action('subscribe sent')}
     />
   ))

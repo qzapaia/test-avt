@@ -1,5 +1,5 @@
 ## Description
-Suscripcion a cosas generales del site.
+Suscripcion con un destino específico.
 
 ## Basic use
 
@@ -8,9 +8,11 @@ import TripSubscribe from 'avantrip-react/avantrip/TripSubscribe';
 
 export default () => (
   <TripSubscribe
+    onChange={function}
     onSubscribe={function}
     title={string}
     state={string}
+    value={object}
   />
 )
 ```
@@ -20,12 +22,21 @@ export default () => (
 #### `onSubscribe={<Function>}`
 Escucha el envío de la suscripcion. Recibe un objeto con los valores para ejecutar la suscripcion
 
+#### `onChange={<Function>}`
+Recibe el vamor en cada cambio en el inptu de email.
+
 #### `state={success|error}`
 Informa del estado de la transacción
 
-#### `city={<String>}`
-Ciudad de la que se quiere recibir alertas.
+#### `value={<String>}`
+Objecto que debe tener la forma:
 
+```
+{
+  email: {string},
+  city: {string},
+}
+```
 
 ## Redux
 
