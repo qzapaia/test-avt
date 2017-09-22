@@ -11,13 +11,34 @@ import CheckoutBillingInfoWithData from './withData';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('counter','increment',0);
+import { defaultsDeep } from 'lodash';
+
+const enhace = compose(
+  withState('formValue','updateFormValue', {
+    'name':'', 
+    'lastName':'',
+    'email':'',
+    'phoneType':'',
+    'phoneNumber':'',
+    'postalCode':''
+  })
+)
 
 const CheckoutBillingInfoWithState =  enhace((props) => {
-  const { counter, increment } = props;
+  const { errorMessage, formValue, updateFormValue} = props;
+
+  const onChange = (value) => {
+    defaultsDeep(value, formValue);
+    updateFormValue(value);
+    action('data')(formValue);
+  }
 
   return (
-    <CheckoutBillingInfo />
+    <CheckoutBillingInfo
+      value={formValue}
+      onChange={onChange}
+      errorMessage={errorMessage}
+    />
   )
 })
 
