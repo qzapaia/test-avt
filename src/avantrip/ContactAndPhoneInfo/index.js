@@ -1,16 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Container, TelContainer, TelContent, HelpContainer, HelpLink } from './container.styled';
+import Text from '../Text';
+import Icon from '../Icon/index';
+
 const ContactAndPhoneInfo = ({phoneText}) => (
-	<div>
-		<div>
-			<div>Comprá también por teléfono</div>
-			<div><span>'''ícono tel @'''</span>{phoneText}</div>
-		</div>
-		<a href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
-			ícono de ayuda (link)
-		</a>
-	</div>
+	<Container>
+		<TelContainer>
+			<h2>
+				<Text type='s'>
+					Comprá también por teléfono
+				</Text>
+			</h2>
+			<TelContent>
+				<Icon height='21px' id='Phone'/>
+				<Text type="l">{phoneText}</Text>
+			</TelContent>
+		</TelContainer>
+		<HelpContainer>
+			<HelpLink href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
+				<Icon	height='30px'	id='Help'/>
+			</HelpLink>
+		</HelpContainer>
+	</Container>
 )
 
 ContactAndPhoneInfo.propTypes = {
@@ -18,7 +31,7 @@ ContactAndPhoneInfo.propTypes = {
 }
 
 ContactAndPhoneInfo.defaultProps = {
-  
+
 }
 
 export default ContactAndPhoneInfo;

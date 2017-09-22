@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Text from '../Text';
+console.log(Text);
 const TextContent = ({title, subtitle}) => (
   <div>
     <h1>
-    	{title}
+      <Text type="xxl">{title}</Text>
     </h1>
-    <h2>
+    <Text type="m">
     	{subtitle}
-    </h2>
+    </Text>
   </div>
 )
 
