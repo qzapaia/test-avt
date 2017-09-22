@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RadiosGroup from '../RadiosGroup';
+import RadiosGroup from '../RadioGroup';
 import NumberGroup from '../NumberGroup';
 import InputText from '../InputText';
 import InputCheckbox from '../InputCheckbox';
