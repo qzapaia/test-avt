@@ -30,3 +30,8 @@ storiesOf('avantrip/styled@Text', module)
       <Text type="xs">xs - Lorem ipsum dolor sit amet</Text><br/>
     </DemoContainer>
   ))
+  .add('Different Tag (h1)', () => (
+    <DemoContainer>
+      <Text type="l" tag="h1">hxxl - Lorem ipsum dolor sit amet</Text><br/>
+    </DemoContainer>
+  ))
