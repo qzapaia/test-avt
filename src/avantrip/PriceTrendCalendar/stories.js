@@ -1,5 +1,8 @@
 import React from 'react';
+
 import PriceTrendCalendar from './';
+import PriceTrendCalendarWithData from './withData';
+
 import moment from 'moment';
 
 import withReadme from 'storybook-readme/with-readme';
@@ -8,10 +11,12 @@ import { action } from '@storybook/addon-actions';
 
 import { withState, compose } from 'recompose';
 
-import { ThemeProvider } from 'styled-components';
-
 import theme from '../styled.theme';
 import readme from './README.md';
+
+import reducer from './reducer';
+
+import generalDecorator from '../../stories.decorator.js';
 
 const addReadme = comp => withReadme(readme, comp);
 
@@ -45,8 +50,30 @@ const clickHandler = (value) => {
 }
 
 storiesOf('avantrip/PriceTrendCalendar', module)
+  .addDecorator(generalDecorator({
+    readme,
+    theme,
+    reducer: {
+      histogram: reducer
+    }
+  }))
   .add('Default', addReadme(() => (
-    <ThemeProvider theme={theme}>
-      <PriceTrendCalendarWithState data={data} onClick={clickHandler}/>
-    </ThemeProvider>
+    <PriceTrendCalendarWithState data={data} onClick={clickHandler}/>
+  )))
+  .add('WithData', addReadme(() => (
+    <PriceTrendCalendarWithData
+      origin="BUE"
+      destination="MIA"
+      dateTo="2018-04-06"
+      dateFrom="2018-03-08"
+      dataLayer="true"
+      adults="2"
+      children="0"
+      babies="0"
+      duration="30"
+      minDepartureMonthYear="2017-09"
+      maxDepartureMonthYear="2018-09"
+      minDepartureDate="2017-09-24"
+      maxDepartureDate="2018-09-22"
+      onClick={clickHandler}/>
   )))

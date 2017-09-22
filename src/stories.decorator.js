@@ -1,20 +1,33 @@
-import React from 'react'
-import addReadme from 'storybook-readme/with-readme'
+import React from "react";
+import addReadme from "storybook-readme/with-readme";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { Provider as ApolloProvider } from "./apollo-client";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
+import thunk from "redux-thunk";
 
-import { Provider as ApolloProvider } from './apollo-client'
-import { ThemeProvider } from 'styled-components'
+const devToolsExtension = window.top.__REDUX_DEVTOOLS_EXTENSION__
+const initialState = {}
 
-const createDecorator = config => (story,b,c,d) => {
+const createDecorator = config => (story, b, c, d) => {
+  const store = createStore(
+    combineReducers(config.reducer || {}),
+    initialState,
+    compose(
+      applyMiddleware(thunk),
+      devToolsExtension && devToolsExtension()
+    )
+  );
 
   const newStory = () => (
-    <ApolloProvider>
-      <ThemeProvider theme={config.theme}>
-        {story()}
-      </ThemeProvider>
-    </ApolloProvider>
-  )
+    <Provider store={store}>
+      <ApolloProvider>
+        <ThemeProvider theme={config.theme}>{story()}</ThemeProvider>
+      </ApolloProvider>
+    </Provider>
+  );
 
-  return addReadme(config.readme)(newStory,b,c,d);
-}
+  return addReadme(config.readme)(newStory, b, c, d);
+};
 
 export default createDecorator;
