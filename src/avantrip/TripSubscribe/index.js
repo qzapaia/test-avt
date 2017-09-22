@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Container from './container.styled';
 
 import InputText from '../InputText';
+import Button from '../Button';
 
 const ERROR_STATE = 'error';
 const SUCCESS_STATE = 'success';
@@ -27,7 +28,7 @@ const TripSubscribe = ({title, onSubscribe, onChange, state, value}) => (
             value={value.email}
             onChange={value => onChange({'email':value})}
           />
-          <button type="submit">Crear Alerta</button>
+          <Button type="scta">Crear Alerta</Button>
         </form>
       </Container>
     }
