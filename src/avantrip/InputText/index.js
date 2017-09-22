@@ -1,13 +1,18 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
+import {get} from 'lodash';
 import Autosuggest from 'react-autosuggest';
 
-const getSuggestionsFromChildren = (children=[]) => (value='') => {
-  const options = children.map(c=>({
-                    value:c.props.value,
-                    label:c.props.children
-                  }))
+const childrenToOpions = children => {
+  return children.map(c=>({
+    value:c.props.value,
+    label:c.props.children
+  }))
+}
+
+const getSuggestionsFromChildren = children => (value='') => {
+  const options = childrenToOpions(children)
 
   const inputValue = value.trim().toLowerCase();
 
@@ -60,7 +65,8 @@ class InputText extends Component {
   }
 
   onSuggestionSelected(event, { suggestionValue }){
-    this.props.onChange(suggestionValue)
+    this.props.onChange(suggestionValue);
+    this.onChangeInternal('')
   }
 
   render() {
@@ -75,15 +81,28 @@ class InputText extends Component {
       requiresExistingValue,
       icon,
       placeholder,
+      children
     } = this.props;
+
+    const options = childrenToOpions(children);
+    const valueExists = options.find(o=>o.value==value) || false;
+
+    const showValue = internalValue || (valueExists ? valueExists.label : value);
 
     const inputProps = {
       placeholder,
-      value: requiresExistingValue ? (internalValue || value) : value,
-      onChange:(event, { newValue }) =>  (requiresExistingValue ?
-                                          this.onChangeInternal :
-                                          onChange)(newValue),
-      onBlur: () => this.onChangeInternal('')
+      value: showValue,
+      onChange:(event, { newValue }) => this.onChangeInternal(newValue),
+      onBlur: () => {
+        const valueExists = options.find(o=>o.value==internalValue);
+        if(requiresExistingValue && valueExists){
+          onChange(internalValue)
+        }else if(requiresExistingValue && !valueExists){
+          this.onChangeInternal('');
+        }else if(internalValue){
+          onChange(internalValue);
+        }
+      }
     };
 
     return (
@@ -117,7 +136,8 @@ InputText.propTypes = {
 
 InputText.defaultProps = {
   value:'',
-  requiresExistingValue:false
+  requiresExistingValue:false,
+  children:[]
 }
 
 export default InputText;
