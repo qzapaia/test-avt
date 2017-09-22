@@ -12,13 +12,17 @@ import readme from './README.md';
 
 import { defaultsDeep } from 'lodash';
 
-const enhace = withState('values','changeValues',{leg:1,amountTraveller:{adults:1}});
+const enhace = withState('values','changeValues',{leg:'1',amountTraveller:{adults:'1'},class:'1'});
 const FlightSearchBoxWithState =  enhace((props) => {
-  const { changeValues, onSubmit, values } = props;
+  const { changeValues, values } = props;
+
+  const searchHandler = (values) => {
+    action('click')(values);
+  }
 
   const changeHandler = (newValues) => {
     defaultsDeep(newValues, values);
-    action('Change Value')(JSON.stringify(values));
+    action('Change Value')(JSON.stringify(newValues));
     changeValues(newValues);
   }
 
@@ -26,7 +30,7 @@ const FlightSearchBoxWithState =  enhace((props) => {
     <FlightSearchBox 
       title='busca tu vuelo'
       onChange={changeHandler}
-      onSubmit={onSubmit}
+      onClick={searchHandler}
       values={values}
     />
   )
