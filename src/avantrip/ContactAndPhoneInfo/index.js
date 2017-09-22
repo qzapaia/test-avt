@@ -8,7 +8,7 @@ import Icon from '../Icon/index';
 const ContactAndPhoneInfo = ({phoneText}) => (
 	<Container>
 		<TelContainer>
-			<Text tag='h2' type='s'>
+			<Text tag='h2' type='m'>
 				Comprá también por teléfono
 			</Text>
 			<TelContent>

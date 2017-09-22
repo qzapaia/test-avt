@@ -6,14 +6,10 @@ import {Container} from './container.styled';
 
 const TextContent = ({title, subtitle}) => (
   <Container>
-    <h1>
-      <Text type="xxl">{title}</Text>
-    </h1>
-    <p>
-      <Text type="m">
-        {subtitle}
-      </Text>
-    </p>
+    <Text tag='h1' color='darkergray' type="xxl">{title}</Text>
+    <Text tag='p' color='darkergray' type="m">
+      {subtitle}
+    </Text>
   </Container>
 )
 
