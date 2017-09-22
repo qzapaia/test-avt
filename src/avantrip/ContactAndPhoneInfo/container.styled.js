@@ -21,9 +21,7 @@ export const TelContent = styled.div`
     font-family: ${props => props.theme.fonts.book};
     font-weight: bold;
   }
-  svg{
-    fill: ${props => props.theme.colors.brand} !important
-  }
+
 `
 export const HelpContainer = styled.div`
   margin-left: 15px;
@@ -34,8 +32,5 @@ export const HelpContainer = styled.div`
 `
 export const HelpLink = styled.a`
   display: flex;
-  svg{
-    fill: ${props => props.theme.colors.primary} !important;
-    width: 25px;
-  }
+
 `

@@ -12,13 +12,13 @@ const ContactAndPhoneInfo = ({phoneText}) => (
 				Comprá también por teléfono
 			</Text>
 			<TelContent>
-				<Icon height='21px' id='Phone'/>
+				<Icon height='21px' id='Phone' color='brand'/>
 				<Text type="l">{phoneText}</Text>
 			</TelContent>
 		</TelContainer>
 		<HelpContainer>
 			<HelpLink href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
-				<Icon	height='30px'	id='Help'/>
+				<Icon	height='30px'	id='Help' color='primary'/>
 			</HelpLink>
 		</HelpContainer>
 	</Container>
