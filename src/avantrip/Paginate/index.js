@@ -1,78 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 
-const paginateStyle = {
-	display : 'flex',
-	justifyContent: 'space-between',
-	backgroundColor: 'white',
-	margin: '20px'
-}
-
-const pageStyle = {
-	display : 'flex',
-	justifyContent: 'space-between',
-	backgroundColor: 'grey',
-	padding: '10px'
-}
-
-const currentPageStyle = {
-	display : 'flex',
-	justifyContent: 'space-between',
-	backgroundColor: 'red',
-	padding: '10px'
-}
-
-const Paginate = ({pages, currentPage, onClick}) => {
-
-	if(pages.length > 0 ){
-		return(
-			<div style={paginateStyle}>
-
-				{currentPage.value != 1 && 
-					<div 
-				  	key={pages.length + 1000}
-				  	style={pageStyle} 
-				  	onClick={ e => onClick({
-	          		'value': currentPage.value - 1
-	          	})
-				  	}>
-				  	Anterior
-				  </div>
-				}
-
-				{_.map(pages, (p, index) =>
-				  <div 
-				  	key={p.value}
-				  	style={currentPage.value == p.value ? currentPageStyle : pageStyle} 
-				  	onClick={ e => onClick({
-	          		'value': p.value
-	          	})
-				  	}>
-				  	{p.value}
-				  </div>
-				)}
-
-				{currentPage.value != pages.length && 
-					<div 
-				  	key={pages.length + 1001}
-				  	style={pageStyle} 
-				  	onClick={ e => onClick({
-	          		'value': currentPage.value + 1
-	          	})
-				  	}>
-				  	Siguiente
-				  </div>
-				}
-				
-			</div>
-		)
-	}
+/*https://github.com/AdeleD/react-paginate*/
+const Paginate = ({pages, currentPage, onPageSelected}) => {
+  return(
+    <div>
+      {pages.length > 0 &&
+        <ReactPaginate 
+            previousLabel={"Anterior"}
+            nextLabel={"Siguiente"}
+            pageCount={pages.length}
+            marginPagesDisplayed={5}
+            pageRangeDisplayed={10}
+            onPageChange={onPageSelected}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+            forcePage={currentPage.value}
+        />
+      }
+    </div>
+  )
 }
 
 Paginate.propTypes = {
   pages:PropTypes.array.isRequired,
   currentPage:PropTypes.object.isRequired,
-  onClick:PropTypes.func.isRequired
+  onPageSelected:PropTypes.func.isRequired
 }
 
 Paginate.defaultProps = {

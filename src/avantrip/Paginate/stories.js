@@ -40,8 +40,9 @@ const PaginateWithState =  enhace((props) => {
   }
 
   return (
-    <Paginate pages={pages} currentPage={currentPage} onClick={pageHandler} />
+    <Paginate pages={pages} currentPage={currentPage} onPageSelected={pageHandler} />
   )
+
 })
 
 storiesOf('avantrip/Paginate', module)
