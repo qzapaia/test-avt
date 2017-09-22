@@ -7,6 +7,7 @@ const StyledText = styled.span`
   font-family: ${props=>props.theme.texts[props.type].family};
   color: ${props=>props.theme.colors[props.color] || 'inherit'};
 `
+
 StyledText.propTypes = {
   type:PropTypes.string,
   color:PropTypes.string
