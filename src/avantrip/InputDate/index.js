@@ -30,6 +30,8 @@ const DateRangePickerWithState =  enhace((props) => {
 
   const Com = range ? DateRangePicker : SingleDatePicker;
 
+  console.log(dates);
+
   return range ?
   <DateRangePicker
       {...props}
@@ -42,7 +44,7 @@ const DateRangePickerWithState =  enhace((props) => {
   /> :
   <SingleDatePicker
     {...props}
-    date={dates.startDate}
+    date={dates}
     onDateChange={onChange}
     isOutsideRange={isOutsideRange(props)}
     initialVisibleMonth={initialVisibleMonth(props)}

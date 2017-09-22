@@ -11,7 +11,7 @@ import theme from '../styled.theme';
 import readme from './README.md';
 
 const enhace = compose(
-  withState('dates','onChange',{}),
+  withState('dates','onChange',null),
 );
 
 const InputDateWithState =  enhace((props) => {
