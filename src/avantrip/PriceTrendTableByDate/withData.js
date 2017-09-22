@@ -63,24 +63,24 @@ const SelectorComponent = (props) => {
   }
   return <PriceTrendTableByDate {...props}
             flightDates={values}
-            selectedArrivalDate={props.value.returningDate}
-            selectedDepartureDate={props.value.departureDate}/>;
+            selectedArrivalDate={props.returningDate}
+            selectedDepartureDate={props.departureDate}/>;
 }
 
 // And our HOC could look like:
 export default graphql(FlightQuery, {
   options: (props) => ({
     variables: {
-      origin: props.value.origin,
-      destination:props.value.destination,
-      departureDate:props.value.departureDate,
-      returningDate:props.value.returningDate,
+      origin: props.origin,
+      destination:props.destination,
+      departureDate:props.departureDate,
+      returningDate:props.returningDate,
       channel:"Desktop",
       portal:"avantrip",
-      cabinClass:props.value.cabinClass,
-      passengersAdults:props.value.passengers.adults,
-      passengersChildren:props.value.passengers.children,
-      passengersInfants:props.value.passengers.infants
+      cabinClass:props.cabinClass,
+      passengersAdults:props.passengersAdults,
+      passengersChildren:props.passengersChildren,
+      passengersInfants:props.passengersInfants
     },
   }),
 //  options: ({ value }) => ({ variables: { value } }),

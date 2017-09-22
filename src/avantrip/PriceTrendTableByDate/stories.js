@@ -90,10 +90,18 @@ storiesOf('avantrip/PriceTrendTableByDate', module)
     theme
   }))
   .add('Default', () => (
-    <PriceTrendTableByDateWithState>
-    </PriceTrendTableByDateWithState>
+    <PriceTrendTableByDateWithState />
   ))
 
   .add('With data', () => (
-    <PriceTrendTableByDateWithData value={searchData}/>
+    <PriceTrendTableByDateWithData
+      origin={searchData.origin}
+      destination={searchData.destination}
+      departureDate={searchData.departureDate}
+      returningDate={searchData.returningDate}
+      cabinClass={searchData.cabinClass}
+      passengersAdults={searchData.passengers.adults}
+      passengersChildren={searchData.passengers.children}
+      passengersInfants={searchData.passengers.infants}
+    />
   ))
