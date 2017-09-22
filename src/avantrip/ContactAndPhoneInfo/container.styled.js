@@ -1,22 +1,23 @@
 // ejemplo de un archivo que exporta varios styled-component
 import styled from 'styled-components';
+import {Text} from '../Text/index';
 
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  h2{
-    flex-basis: 100%;
+`
+
+export const TelContainer = styled.article`
+   ${Text} * {
     margin: 0;
   }
 `
 
-export const TelContainer = styled.article`
-`
 export const TelContent = styled.div`
   display: flex;
   align-items: center;
   color: ${props => props.theme.colors.brand};
-  span{
+  ${Text}{
     font-family: ${props => props.theme.fonts.book};
     font-weight: bold;
   }
