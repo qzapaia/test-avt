@@ -7,7 +7,11 @@ Componente de textos.
 import Text from 'avantrip-react/avantrip/Text';
 
 export default () => (
-  <Text type={string} color={string} />
+  <Text
+    type={string}
+    color={string}
+    tag={string}
+  />
 )
 ```
 
@@ -18,3 +22,6 @@ Tipo de texto a utilizar. Los valores de cada tipo están establecidos
 
 #### `color={<String>}`
 Identificador de color. Ver styled@Colors para más info.
+
+#### `tag={<String>}`
+Tag a utilizar para crear el Text. Por defecto es `span`
