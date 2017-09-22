@@ -27,11 +27,7 @@ InputNumber.propTypes = {
   step: PropTypes.string,
   min: PropTypes.string,
   max: PropTypes.string,
-  onChange: PropTypes.func,
-}
-
-InputNumber.defaultProps = {
-
+  onChange: PropTypes.func
 }
 
 export default InputNumber;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import InputCheckbox from '../InputCheckbox';
 
-const RadiosGroup = ({options, onChange, label, value}) => (
+const RadioGroup = ({options, onChange, label, value}) => (
   <span>
     {label}
     {options.map(option => (
@@ -19,15 +19,15 @@ const RadiosGroup = ({options, onChange, label, value}) => (
   </span>
 )
 
-RadiosGroup.propTypes = {
+RadioGroup.propTypes = {
     options: PropTypes.array,
     onChange: PropTypes.func,
     label: PropTypes.node,
     value: PropTypes.string
 }
 
-RadiosGroup.defaultProps = {
+RadioGroup.defaultProps = {
   options: []
 }
 
-export default RadiosGroup;
+export default RadioGroup;
