@@ -42,7 +42,7 @@ const NumberGroupWithState =  enhace((props) => {
       {...props}
       options={options}
       onChange={clickHandler}
-      onChangeKeyvalue={logKeyValue}
+      onChangeKeyValue={logKeyValue}
       label="Numeritos"
     />
   )

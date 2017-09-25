@@ -42,7 +42,7 @@ Recibe la opción que cambió con el nuevo valor
 }
 ```
 
-#### `onChangeKeyvalue={<Function>}`
+#### `onChangeKeyValue={<Function>}`
 Recibe la opción que cambió con el nuevo valor. El formato es {key:value}
 ```javascript
 {
