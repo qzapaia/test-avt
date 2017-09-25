@@ -5,13 +5,9 @@ import datePickerCSS from 'react-dates/lib/css/_datepicker.css';
 import { injectGlobal } from 'styled-components';
 import { withState, compose } from 'recompose';
 import moment from 'moment';
+import { get } from 'lodash';
 
 injectGlobal`${datePickerCSS}`
-
-const enhace = compose(
-  withState('focused','onFocusChange',false),
-);
-
 
 const InputDate = (props) => (
   <div>
@@ -20,34 +16,40 @@ const InputDate = (props) => (
   </div>
 )
 
+const enhace = compose(
+  withState('focused','onFocusChange',false),
+);
+
 const DateRangePickerWithState =  enhace((props) => {
 
-  const { dates,
-          onChange,
-          min,
-          max,
-          range } = props;
-
-  const Com = range ? DateRangePicker : SingleDatePicker;
-
-  console.log(dates);
+  const {
+    dates,
+    onChange,
+    range,
+    onFocusChange,
+    focused,
+    numberOfMonths
+  } = props;
 
   return range ?
   <DateRangePicker
       {...props}
-      startDate={dates.startDate} // momentPropTypes.momentObj or null,
-      endDate={dates.endDate}
+      startDate={get(dates,'startDate')} // momentPropTypes.momentObj or null,
+      endDate={get(dates,'endDate')}
+      numberOfMonths={numberOfMonths || 3}
       isOutsideRange={isOutsideRange(props)}
       initialVisibleMonth={initialVisibleMonth(props)}
       onDatesChange={onChange} // momentPropTypes.momentObj or null,
-      focusedInput={props.focused}
+      focusedInput={focused}
   /> :
   <SingleDatePicker
     {...props}
     date={dates}
     onDateChange={onChange}
+    numberOfMonths={numberOfMonths || 1}
     isOutsideRange={isOutsideRange(props)}
     initialVisibleMonth={initialVisibleMonth(props)}
+    onFocusChange={({ focused })=>onFocusChange(focused)}
   />
 })
 
@@ -90,7 +92,6 @@ InputDate.propTypes = {
 InputDate.defaultProps = {
   startDatePlaceholderText:'IDA',
   endDatePlaceholderText:'VUELTA',
-  numberOfMonths:3
 }
 
 export default InputDate;
