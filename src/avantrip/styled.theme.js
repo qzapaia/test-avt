@@ -23,11 +23,11 @@ export default {
     },
     xl:{
       size:'28px',
-      weight:'900'
+      weight:'600'
     },
     l:{
       size:'22px',
-      weight:'500'
+      weight:'300'
     },
     m:{
       size:'16px',

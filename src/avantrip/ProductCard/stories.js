@@ -33,10 +33,11 @@ storiesOf('avantrip/ProductCard', module)
     <ProductCard
       href="http://www.google.com"
       media="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
-      price="150"
-      supportingInfo="Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
-      subtitle="Que tal?"
-      title="Hola"
+      //coinType ???
+      price="15.250"
+      supportingInfo="Precio desde"
+      subtitle="Ida y vuelta"
+      title="Miameee"
     ></ProductCard>
   ))
   .add('List Mode true', () => (

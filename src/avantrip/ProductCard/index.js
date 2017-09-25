@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Container, MainPictureContainer} from './container.styled';
+import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer} from './container.styled';
 import Text from '../Text/index';
+import Icon from '../Icon/index';
 
 const ProductCard = ({
                       href,
@@ -14,17 +15,37 @@ const ProductCard = ({
                       title,
                     }) => (
   <Container href={href} target={target} listMode={listMode}>
+
     <MainPictureContainer>
       <img src={media} alt=""/>
     </MainPictureContainer>
-    <div>
-      <Text color='brand' tag='h1' type='l'>
-        {title}
-      </Text>
-      <h2>{subtitle}</h2>
-      <p>{supportingInfo}</p>
-      <p>${price}</p>
-    </div>
+    <MainInfoContainer>
+
+      <LeftContainer>
+        <Text color='brand' tag='h1' type='l'>
+          {title}
+        </Text>
+        <SubtitleContainer>
+          <Text color='darkergray' tag='p' type='xs'>
+            {subtitle}
+          </Text>
+        </SubtitleContainer>
+      </LeftContainer>
+      <RightContainer>
+        <PriceContainer>
+          <Text color='brand' tag='p' type='xs'>
+            {supportingInfo}
+          </Text>
+          <Text color='brand' tag='p' type='xl'>
+            ${price}
+          </Text>
+        </PriceContainer>
+        <Icon id='Back' height='32px' />
+      </RightContainer>
+
+    </MainInfoContainer>
+
+
   </Container>
 )
 /*
