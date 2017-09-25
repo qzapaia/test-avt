@@ -6,8 +6,6 @@ import InputText from '../InputText';
 import InputCheckbox from '../InputCheckbox';
 
 const onSearchCustom = (next, values) => {
-  console.log(values)
-  console.log(next)
   next(values)
 }
 
@@ -30,7 +28,7 @@ const customOnChange = (next, name) => value => {
   next(p)
 }
 
-const FlightSearchBox = ({title, onChange, onClick, values}) => (
+const FlightSearchBox = ({title, onChange, onSearch, values}) => (
   <div>
     {title}
     <div>
@@ -152,7 +150,7 @@ const FlightSearchBox = ({title, onChange, onClick, values}) => (
         type="button"
         //onClick={e => onClickHandler(e, onClick)}
         //onChange={customOnChange(onChange, "class")}
-        onClick={() => onSearchCustom(onClick, values)} 
+        onClick={() => onCustomClick(onSearch, values)} 
       />
     </div>
   </div>

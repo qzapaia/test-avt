@@ -8,9 +8,10 @@ import FlightSearchBox from 'avantrip-react/avantrip/FlightSearchBox';
 
 export default () => (
   <FlightSearchBox
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    title={String}
+    onChange={Function}
+    onClick={Function}
+    values={Collection}
   />
 )
 ```
@@ -18,7 +19,13 @@ export default () => (
 
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
+#### `title={String}`
+title of the Component
+
+#### `onChange={<Function>}`
+Event handler that receive as a parameter the key to the selected key.
+
+#### `onClick={<Function>}`
 Event handler
 
 #### `isActive={<Boolean>}`
