@@ -11,7 +11,7 @@ const PriceTrendCalendar = ({data, disclaimer, onClick}) => {
         value="price"
         label="name"
         onClick={onClick}
-        onBar={args=>{
+        renderBar={args=>{
           if(args.index == 26){
             args.fill = '#f00';
           }

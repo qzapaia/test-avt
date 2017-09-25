@@ -11,7 +11,7 @@ const onClickHandler = (e, onClick) => {
   });
 }
 
-const Chart = ({data, value, label, onClick, setting, onBar }) => {
+const Chart = ({data, value, label, onClick, setting, renderBar }) => {
   setting = _.pick(setting, ['width', 'height', 'barColor']);
 
   let max = Math.max.apply(Math,data.map(o => o[label]));
@@ -32,7 +32,7 @@ const Chart = ({data, value, label, onClick, setting, onBar }) => {
           maxBarSizeNumber={3}
           barSize={34}
           dataKey={ value }
-          shape={args=><Rectangle {...onBar(args)}/>}
+          shape={args=><Rectangle {...renderBar(args)}/>}
           fill={ setting.barColor }
           onClick={e => onClickHandler(e, onClick)} />
         <ReferenceLine y={max} label={max} stroke="red" />
@@ -48,7 +48,7 @@ Chart.propTypes = {
   label: PropTypes.string.isRequired,
   setting: PropTypes.object,
   onClick: PropTypes.func,
-  onBar: PropTypes.func,
+  renderBar: PropTypes.func,
 }
 
 Chart.defaultProps = {
@@ -57,7 +57,7 @@ Chart.defaultProps = {
     height: 150,
     barColor: '#8884d8'
   },
-  onBar:args=>args
+  renderBar:args=>args
 }
 
 export default Chart;

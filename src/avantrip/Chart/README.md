@@ -12,7 +12,7 @@ export default () => (
     value={string}
     key={string}
     setting={object}
-    onBar={Function}
+    renderBar={Function}
   />
 )
 ```
@@ -23,7 +23,7 @@ export default () => (
 #### `data={<Collection>}`
 Información que se mostrará en el chart.
 
-#### `onBar={<Function>}`
+#### `renderBar={<Function>}`
 Recibe las propiedades de cada barra y permite alterarlas.
 
 #### `Value={<String>}`
