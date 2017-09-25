@@ -5,13 +5,14 @@ import { once } from "lodash";
 import { map } from "lodash";
 import moment from "moment";
 
-import { getData, setSelectedMonth } from "./actions";
+import { getData, setSelectedMonth, setSelectedDay } from "./actions";
 
 const mapStateToProps = state => ({
   data: map(state.histogram.payload, value => ({
     price: value.total_amount_and_fee,
     date: value.departure_date
-  }))
+  })),
+  selectedMonth: state.histogram.selectedMonth
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -33,13 +34,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     })
   );
 
-console.log("ownProps", ownProps);
-
   return {
-    onChange: selectedMonth => {
+    onMonthSelected: selectedMonth => {
       dispatch(setSelectedMonth(selectedMonth));
-    }
-  }
+    },
+    onDaySelected: selectedDay => {
+      dispatch(setSelectedDay(selectedDay));
+    },
+    departureDate: ownProps.dateFrom,
+    returnDate: ownProps.dateTo
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PriceTrendCalendar);

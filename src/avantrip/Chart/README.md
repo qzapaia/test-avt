@@ -11,7 +11,7 @@ export default () => (
     data={collection}
     value={string}
     key={string}
-    setting={object}
+    settings={object}
   />
 )
 ```
@@ -29,7 +29,7 @@ Nombre de la key en donde se encuentra el valor a graficar.
 Nombre de la key en donde se encuentra el label para cada
 valor.
 
-#### `setting={<Object>}`
+#### `settings={<Object>}`
 Configuración que se pasará para cada componente del Chart.
 Los valores posibles de configuración son:
 ```javascript
