@@ -45,6 +45,7 @@ storiesOf('avantrip/InputDate', module)
   ))
   .add('SingleDate entre el 1 de enero y el 28 de enero del 2018', () => (
     <InputDateWithState
+      placeholder="Fecha"
       min="2018-01-01"
       max="2018-01-28"
     />

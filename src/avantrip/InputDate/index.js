@@ -86,12 +86,16 @@ InputDate.propTypes = {
 
   numberOfMonths:PropTypes.number,
 
-  initialVisibleMonth:PropTypes.number
+  initialVisibleMonth:PropTypes.number,
+  range:PropTypes.bool,
+  placeholder:PropTypes.string,
 }
 
 InputDate.defaultProps = {
   startDatePlaceholderText:'IDA',
   endDatePlaceholderText:'VUELTA',
+  range:false,
+  placeholder:'',
 }
 
 export default InputDate;
