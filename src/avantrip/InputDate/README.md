@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Input de fechas. Fecha única o rango de fechas.
 
 ## Basic use
 

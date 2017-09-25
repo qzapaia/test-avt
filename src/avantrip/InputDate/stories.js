@@ -37,17 +37,29 @@ storiesOf('avantrip/InputDate', module)
       placeholder="Fecha"
     />
   ))
-  .add('SingleDate con tres mes', () => (
-    <InputDateWithState
-      placeholder="Fecha"
-      numberOfMonths={3}
-    />
-  ))
   .add('SingleDate entre el 1 de enero y el 28 de enero del 2018', () => (
     <InputDateWithState
       placeholder="Fecha"
       min="2018-01-01"
       max="2018-01-28"
+    />
+  ))
+  .add('SingleDate después del 1 de enero del 2018', () => (
+    <InputDateWithState
+      placeholder="Fecha"
+      min="2018-01-01"
+    />
+  ))
+  .add('SingleDate antes del 31 de diciembre del 2017', () => (
+    <InputDateWithState
+      placeholder="Fecha"
+      max="2017-12-31"
+    />
+  ))
+  .add('SingleDate con tres meses', () => (
+    <InputDateWithState
+      placeholder="Fecha"
+      numberOfMonths={3}
     />
   ))
   .add('Rango de fechas', () => (
