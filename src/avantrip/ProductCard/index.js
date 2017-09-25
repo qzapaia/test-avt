@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Container from './container.styled';
+import {Container, MainPictureContainer} from './container.styled';
+import Text from '../Text/index';
 
 const ProductCard = ({
                       href,
@@ -13,11 +14,13 @@ const ProductCard = ({
                       title,
                     }) => (
   <Container href={href} target={target} listMode={listMode}>
-    <div>
+    <MainPictureContainer>
       <img src={media} alt=""/>
-    </div>
+    </MainPictureContainer>
     <div>
-      <h1>{title}</h1>
+      <Text color='brand' tag='h1' type='l'>
+        {title}
+      </Text>
       <h2>{subtitle}</h2>
       <p>{supportingInfo}</p>
       <p>${price}</p>
