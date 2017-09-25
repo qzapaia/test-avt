@@ -33,12 +33,16 @@ const NumberGroupWithState =  enhace((props) => {
     find(options,{ id:option.id }).value = option.value;
     change(options)
   }
+  const logKeyValue = option => {
+    action('key value listener')(option);
+  }
 
   return (
     <NumberGroup
       {...props}
       options={options}
       onChange={clickHandler}
+      onChangeKeyvalue={logKeyValue}
       label="Numeritos"
     />
   )
