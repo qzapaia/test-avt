@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Icon from '../Icon/index';
 
 export const Container = styled.a`
   display: ${props=>props.listMode?'flex':'inline-block'};
@@ -15,10 +14,20 @@ export const MainPictureContainer = styled.figure`
   overflow: hidden;
   max-height: 267px;
   background-color: ${props => props.theme.colors.gray};
+  img{
+    max-width: 450px;
+  }
 `
 export const LeftContainer = styled.article`
   display: block;
   flex: 1;
+`
+export const RightContainer = styled.article`
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
 `
 export const MainInfoContainer = styled.div`
   display: flex;
@@ -32,15 +41,8 @@ export const SubtitleContainer = styled.div`
 `
 export const PriceContainer = styled.article`
   display: block;
+  text-align: right;
 `
-export const RightContainer = styled.article`
-display: flex;
-flex: 1;
-justify-content: flex-end;
-align-items: center;
-flex-wrap: wrap;
-${Icon}{
-  width: 32px;
+export const IconContainer = styled.div`
   transform: rotate(-180deg);
-}
 `

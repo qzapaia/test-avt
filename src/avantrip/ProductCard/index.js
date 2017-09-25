@@ -1,6 +1,6 @@
 import React from 'react';
+import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer, IconContainer} from './container.styled';
 import PropTypes from 'prop-types';
-import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer} from './container.styled';
 import Text from '../Text/index';
 import Icon from '../Icon/index';
 
@@ -40,7 +40,9 @@ const ProductCard = ({
             ${price}
           </Text>
         </PriceContainer>
-        <Icon id='Back' height='32px' />
+        <IconContainer>
+          <Icon height='40px' id='Back' color='brand' />
+        </IconContainer>
       </RightContainer>
 
     </MainInfoContainer>
