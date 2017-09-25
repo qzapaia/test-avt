@@ -30,24 +30,37 @@ let date = moment();
 for (var i = 0; i < 31; i++) {
   date = date.add(1, 'days');
   data.push({
-    name: date.format("DD MMM"),
+    label: date.format("DD MMM"),
     price: Math.random() * (20000 - 1000) + 1000
   });
 }
 
-const enhace = withState('counter','increment',data);
-const PriceTrendCalendarWithState =  enhace((props) => {
-  // enchufar tu component con el estado simulado
-  const { counter, increment } = props;
+const enhace = compose(
+  withState('counter','increment',data),
+  withState('selectedMonth','onChangeMonth',data)
+);
 
-  return (
-    <PriceTrendCalendar {...props} />
-  )
-})
-
-const clickHandler = (value) => {
+const clickHandler = value => {
   action('click')(value);
 }
+
+const changeHandler = value => {
+  action('change')(value);
+  onChangeMonth(value);
+}
+
+const PriceTrendCalendarWithState =  enhace((props) => {
+  // enchufar tu component con el estado simulado
+  const { counter, increment, selectedMonth, onChangeMonth } = props;
+
+  return (
+    <PriceTrendCalendar
+      {...props}
+      selectedMonth={selectedMonth}
+      onClick={clickHandler}
+      onChange={changeHandler} />
+  )
+})
 
 storiesOf('avantrip/PriceTrendCalendar', module)
   .addDecorator(generalDecorator({
@@ -64,14 +77,13 @@ storiesOf('avantrip/PriceTrendCalendar', module)
     <PriceTrendCalendarWithData
       origin="BUE"
       destination="MIA"
-      dateTo="2018-04-06"
-      dateFrom="2018-03-08"
+      dateTo="2017-10-08"
+      dateFrom="2017-10-01"
       adults="2"
       children="0"
       babies="0"
       minDepartureMonthYear="2017-09"
       maxDepartureMonthYear="2018-09"
       minDepartureDate="2017-09-24"
-      maxDepartureDate="2018-09-22"
-      onClick={clickHandler}/>
+      maxDepartureDate="2018-09-22" />
   )))

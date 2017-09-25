@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { assign } from 'lodash';
+
 import SliderCarousel from 'react-slick';
 
 const SampleArrow = (props) => {
@@ -15,7 +17,7 @@ const SampleArrow = (props) => {
 }
 
 const settings = {
-  'autoplay': true,
+  'autoplay': false,
   'dots': true,
   'infinite': true,
   'slidesToShow': 1,
@@ -27,10 +29,18 @@ const settings = {
   'className': 'className'
 };
 
-const Slider = ({children}) => (
-  <SliderCarousel {...settings}>
+const Slider = ({
+  initialSlide,
+  dots,
+  slidesToShow,
+  children
+}) => {
+  settings['initialSlide'] = initialSlide;
+  settings['dots'] = dots;
+  settings['slidesToShow'] = slidesToShow;
+  return <SliderCarousel {...settings}>
     {children}
   </SliderCarousel>
-)
+}
 
 export default Slider;

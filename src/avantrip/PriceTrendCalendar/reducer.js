@@ -1,4 +1,7 @@
-import { SET_HISTOGRAM_DATA } from './actions';
+import {
+  SET_HISTOGRAM_DATA,
+  SET_SELECTED_MONTH
+} from './actions';
 
 const initialState = {};
 
@@ -7,6 +10,7 @@ export default (state = initialState, action) => {
 
   switch(type){
     case SET_HISTOGRAM_DATA:
+    case SET_SELECTED_MONTH:
       return {
         ...state,
         payload

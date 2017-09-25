@@ -23,7 +23,7 @@ Debe tener los siguientes atributos:
 ```javascript
   {
     price: 14520,
-    name: "Ju 3"
+    date: "Ju 3"
   }
 ```
 
