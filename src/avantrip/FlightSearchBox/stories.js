@@ -30,7 +30,7 @@ const FlightSearchBoxWithState =  enhace((props) => {
     <FlightSearchBox 
       title='busca tu vuelo'
       onChange={changeHandler}
-      onClick={searchHandler}
+      onSearch={searchHandler}
       values={values}
     />
   )

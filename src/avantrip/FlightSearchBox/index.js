@@ -4,8 +4,9 @@ import RadiosGroup from '../RadioGroup';
 import NumberGroup from '../NumberGroup';
 import InputText from '../InputText';
 import InputCheckbox from '../InputCheckbox';
+import Button from '../Button';
 
-const onSearchCustom = (next, values) => {
+const onCustomClick = (next, values) => {
   next(values)
 }
 
@@ -145,13 +146,8 @@ const FlightSearchBox = ({title, onChange, onSearch, values}) => (
       />
     </div>
     <div>
-      <input 
-        value="Buscar" 
-        type="button"
-        //onClick={e => onClickHandler(e, onClick)}
-        //onChange={customOnChange(onChange, "class")}
-        onClick={() => onCustomClick(onSearch, values)} 
-      />
+      <Button onClick={() => onCustomClick(onSearch, values)}>Buscar</Button>
+    
     </div>
   </div>
 )

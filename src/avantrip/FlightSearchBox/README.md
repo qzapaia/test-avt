@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Component of the flight search box
 
 ## Basic use
 
@@ -23,11 +23,20 @@ export default () => (
 title of the Component
 
 #### `onChange={<Function>}`
-Event handler that receive as a parameter the key to the selected key.
+Event handler that receive as a parameter the key and value from the selected item.
 
 #### `onClick={<Function>}`
-Event handler
+Event trigger when the button is clicked and send the values of the search
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
-
+#### `values={<Collection>}`
+Values selected. They must respect the format: 
+```javascript
+  [{
+    leg:'1',
+    amountTraveller:{adults:'1', babies: '1', children: '1'},
+    class:'1',
+    flexibleDate: true, 
+    originCity: "bue", 
+    destinationCity: "mia"
+  }]
+```
