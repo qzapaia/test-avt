@@ -3,8 +3,10 @@ import styled from 'styled-components'
 export const Container = styled.a`
   display: ${props=>props.listMode?'flex':'inline-block'};
   background-color: white;
-  border-radius: 5px;
+  border-radius: ${props=>props.listMode?'':'5px'};
   overflow: hidden;
+  width: 100%;
+  max-width: ${props=>props.listMode?'':'450px'};
 `
 export const MainPictureContainer = styled.figure`
   display: flex;
@@ -12,10 +14,13 @@ export const MainPictureContainer = styled.figure`
   justify-content: center;
   width: 100%;
   overflow: hidden;
-  max-height: 267px;
+  max-height: ${props=>props.listMode?'':'267px'};
+  max-width: ${props=>props.listMode?'65px':''};
+  margin: ${props=>props.listMode?'5px':''};
   background-color: ${props => props.theme.colors.gray};
   img{
-    max-width: 450px;
+    max-width: 100%;
+    min-height: ${props=>props.listMode?'100%':''};
   }
 `
 export const LeftContainer = styled.article`
@@ -34,7 +39,7 @@ export const MainInfoContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
-  padding: 10px 25px;
+  padding: ${props=>props.listMode?'10px':'10px 25px'};
 `
 export const SubtitleContainer = styled.div`
   margin-top: 5px;

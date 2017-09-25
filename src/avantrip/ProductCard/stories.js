@@ -45,9 +45,9 @@ storiesOf('avantrip/ProductCard', module)
       href="http://www.google.com"
       media="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
       price="150"
-      supportingInfo="Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
-      subtitle="Que tal?"
-      title="Hola"
+      supportingInfo="Precio desde"
+      subtitle="Ida y vuelta"
+      title="Miameeeee"
       href="http://www.google.com"
       listMode={true}
     ></ProductCard>

@@ -16,10 +16,10 @@ const ProductCard = ({
                     }) => (
   <Container href={href} target={target} listMode={listMode}>
 
-    <MainPictureContainer>
-      <img src={media} alt=""/>
+    <MainPictureContainer listMode={listMode}>
+      <img listMode={listMode} src={media} alt=""/>
     </MainPictureContainer>
-    <MainInfoContainer>
+    <MainInfoContainer listMode={listMode}>
 
       <LeftContainer>
         <Text color='brand' tag='h1' type='l'>
@@ -37,6 +37,7 @@ const ProductCard = ({
             {supportingInfo}
           </Text>
           <Text color='brand' tag='p' type='xl'>
+            {/* ESTO TIENE QUE CAMBIAR POR EL COMPONENT PRICE (coming soon) */}
             ${price}
           </Text>
         </PriceContainer>
