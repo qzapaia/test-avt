@@ -1,6 +1,7 @@
 {
   "presets": ["react", "stage-0", "env"],
   "plugins": [
+    ["transform-regenerator"],
     ["inline-react-svg"],
     ["inline-import", {
       "extensions": [
