@@ -30,8 +30,8 @@ Valor del componente tiene la forma de:
   name: String,
   email: String,
   lastName: String,
-  phoneType: 'String',
-  phoneNumber: 'String',
-  postalCode: 'String'
+  phoneType: String,
+  phoneNumber: String,
+  postalCode: String
 }
 ```
