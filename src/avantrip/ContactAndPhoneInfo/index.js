@@ -8,19 +8,17 @@ import Icon from '../Icon/index';
 const ContactAndPhoneInfo = ({phoneText}) => (
 	<Container>
 		<TelContainer>
-			<h2>
-				<Text type='s'>
-					Comprá también por teléfono
-				</Text>
-			</h2>
+			<Text tag='h2' type='m'>
+				Comprá también por teléfono
+			</Text>
 			<TelContent>
-				<Icon height='21px' id='Phone'/>
+				<Icon height='21px' id='Phone' color='brand'/>
 				<Text type="l">{phoneText}</Text>
 			</TelContent>
 		</TelContainer>
 		<HelpContainer>
 			<HelpLink href="http://www.avantrip.com/centro-de-ayuda" target="_blank">
-				<Icon	height='30px'	id='Help'/>
+				<Icon	height='30px'	id='Help' color='primary'/>
 			</HelpLink>
 		</HelpContainer>
 	</Container>

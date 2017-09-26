@@ -24,7 +24,7 @@ export const DateTitle = styled.h4`
   ${Text}{
     font-weight: bold;
   }
-  svg{
+  ${Icon}{
     width: 14px;
     transform: rotate(-180deg);
   }
