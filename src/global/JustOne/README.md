@@ -27,13 +27,22 @@ export default () => (
 ```
 
 
-## Props
+## Props inyectadas por HOC
 
 #### `isSelected={<Function>}`
 Check if value is selected
 
-#### `change={<Function>}`
+#### `select={<Function>}`
 Change selected value
+
+#### `selected={<Number> || <String>}`
+Valor elegido
+
+
+## Props que recibe el componente generado
 
 #### `onChange={<Function>}`
 Value change listener
+
+#### `defaultValue={<Number> || <String>}`
+Valor por defecto si no hay nada elegido
