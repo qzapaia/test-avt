@@ -9,8 +9,8 @@ import PriceTrendTableByDate from 'avantrip-react/avantrip/PriceTrendTableByDate
 export default () => (
   <PriceTrendTableByDate
     flightDates={collection}
-    selectedArrivalDate={date}
-    selectedDepartureDate={date}
+    selectedArrivalDate={date(formato permitido por moment)}
+    selectedDepartureDate={date(formato permitido por moment)}
     onClick={function}
   />
 )
@@ -31,10 +31,12 @@ Collection que debe respetar:
 ```
 
 #### `selectedArrivalDate={<Date>}`
-Date para indicar la fecha de regreso de vuelo
+Date para indicar la fecha de regreso de vuelo.
+Debe respetar algún formato permitido por moment.
 
 #### `selectedDepartureDate={<Date>}`
 Date para indicar la fecha de partida de vuelo
+Debe respetar algún formato permitido por moment.
 
 #### `onClick={<Function>}`
 Devuelve el vuelo seleccionado
