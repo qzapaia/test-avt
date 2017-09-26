@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+HOC para generar componentes con selección exlusiva. (RadioGroup, Select, ...)
 
 ## Basic use
 
