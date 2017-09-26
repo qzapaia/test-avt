@@ -40,7 +40,7 @@ storiesOf("avantrip/PriceTrendCalendar", module)
     addReadme(() => (
       <PriceTrendCalendarWithData
         origin="BUE"
-        destination="NYC"
+        destination="MIA"
         dateTo={mockData.dateTo}
         dateFrom={mockData.dateFrom}
         adults="1"

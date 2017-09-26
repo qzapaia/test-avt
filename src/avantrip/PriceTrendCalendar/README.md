@@ -36,7 +36,16 @@ Mensaje informativo para el gráfico.
 
 #### `onDaySelected={<Function>}`
 Evento que se ejecuta al hacer click sobre alguna barra del
-gráfico.
+gráfico. Devuelve un objeto con la forma:
+```javascript
+  {
+    date:"2017-09-29",
+    label:"29 Fr",
+    month:8,
+    price:21830.5,
+    travelDays:8
+  }
+```
 
 #### `onMonthSelected={<Function>}`
 Evento que se ejecuta al hacer click uno de los elementos

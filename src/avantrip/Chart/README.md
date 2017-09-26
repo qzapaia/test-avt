@@ -46,3 +46,7 @@ Los valores posibles de configuración son:
   barColor: '#8884d8'
 }
 ```
+
+#### `onClick={<function>}`
+Se ejecuta cada vez que se hace click sobre una barra, enviando
+un objeto con la información de cada vuelo.

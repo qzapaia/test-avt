@@ -5,10 +5,7 @@ import { pick } from 'lodash';
 import {BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, Rectangle} from 'recharts';
 
 const onClickHandler = (e, onClick) => {
-  onClick({
-    value: e.value,
-    label: e.name
-  });
+  onClick(e.payload);
 }
 
 const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar }) => {
