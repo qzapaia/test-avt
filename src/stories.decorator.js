@@ -5,17 +5,19 @@ import { Provider as ApolloProvider } from "./apollo-client";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import thunk from "redux-thunk";
+import { get } from 'lodash';
 
-const devToolsExtension = window.top.__REDUX_DEVTOOLS_EXTENSION__
+const composeEnhancers = window.top.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {}
 
 const createDecorator = config => (story, b, c, d) => {
+  const { reducer } = config;
+
   const store = createStore(
-    combineReducers(config.reducer || {}),
+    reducer ? combineReducers(reducer) : state=>state,
     initialState,
-    compose(
-      applyMiddleware(thunk),
-      devToolsExtension && devToolsExtension()
+    composeEnhancers(
+      applyMiddleware(thunk)
     )
   );
 

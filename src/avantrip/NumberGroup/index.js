@@ -2,36 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputNumber from '../InputNumber';
 
-const handleChange = onChange => option => value => {
+const handleChange = (onChange, onChangeKeyValue) => option => value => {
   onChange({
     id:option.id,
     value:value
   });
-}
+
+  onChangeKeyValue({ [option.id]:value });
+};
 
 const NumberGroup = ({
-                      options,
-                      onChange,
-                      label,
-                    }) => (
+  options,
+  onChange,
+  onChangeKeyValue,
+  label,
+}) => (
+
   <span>
     {label && <h4>{label}</h4>}
     {options.map(option => (
       <InputNumber
         {...option}
-        onChange ={handleChange(onChange)(option)}
+        onChange ={handleChange(onChange,onChangeKeyValue)(option)}
       />
     ))}
   </span>
+
 )
 
 NumberGroup.propTypes = {
   options: PropTypes.array.isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
+  onChange: PropTypes.func,
+  onChangeKeyValue: PropTypes.func,
 }
 
 NumberGroup.defaultProps = {
-  options:[]
+  options:[],
+  onChange: ()=>{},
+  onChangeKeyValue: ()=>{},
 }
 
 export default NumberGroup;

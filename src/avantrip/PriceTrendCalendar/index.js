@@ -88,6 +88,7 @@ const PriceTrendCalendar = ({
 
   selectedMonth = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
   const flightBySelectedMonth = data[selectedMonth];
+  console.log("selectedMonth", isUndefined(selectedMonth));
   return (
     <Container>
       <div>

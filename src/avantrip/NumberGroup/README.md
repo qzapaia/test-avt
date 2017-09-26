@@ -42,5 +42,13 @@ Recibe la opción que cambió con el nuevo valor
 }
 ```
 
+#### `onChangeKeyValue={<Function>}`
+Recibe la opción que cambió con el nuevo valor. El formato es {key:value}
+```javascript
+{
+  a:1
+}
+```
+
 #### `label={<String>}`
 Label del grupo.

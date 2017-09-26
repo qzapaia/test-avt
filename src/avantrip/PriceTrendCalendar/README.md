@@ -23,7 +23,7 @@ Debe tener los siguientes atributos:
 ```javascript
   {
     price: 14520,
-    date: "Ju 3"
+    date: "2017-10-06"
   }
 ```
 
@@ -43,7 +43,7 @@ import { sendData } from 'avantrip-react/avantrip/PriceTrendCalendar/actions';
 store.dispatch(getData({
   origin: {string},
   destination: {string},
-  dateTo: {date[YY-MM-DD]},
+  dateTo: {date[YYYY-MM-DD]},
   dateFrom: {date[YY-MM-DD]},
   dataLayer: true,
   adults: {number},
@@ -60,13 +60,39 @@ store.dispatch(getData({
 
 #### Reducer
 ```javascript
-import priceTrendTableByDateReducer from 'avantrip-react/avantrip/PriceTrendCalendar/reducer';
-import { createStore, combineReducers } from 'redux';
+import {
+  SET_HISTOGRAM_DATA,
+  SET_SELECTED_MONTH,
+  SET_SELECTED_DAY
+} from "./actions";
 
-const reducer = combineReducers({
-  priceTrendTableByDate:PriceTrendCalendarReducer
-})
+const initialState = {};
 
-const store = createStore(reducer);
+export default (state = initialState, action) => {
+  const { type, payload, selectedMonth, selectedDay } = action;
+
+  switch (type) {
+    case SET_HISTOGRAM_DATA:
+      return {
+        ...state,
+        payload
+      };
+      break;
+    case SET_SELECTED_MONTH:
+      return {
+        ...state,
+        selectedMonth
+      };
+      break;
+    case SET_SELECTED_DAY:
+      return {
+        ...state,
+        selectedDay
+      };
+      break;
+    default:
+      return state;
+  }
+}
 // ...
 ```

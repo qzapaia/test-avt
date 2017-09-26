@@ -21,7 +21,6 @@ TextWrapper.propTypes = {
 
 TextWrapper.defaultProps = {
   type:'s',
-  weight:'normal',
   tag:'span'
 }
 
