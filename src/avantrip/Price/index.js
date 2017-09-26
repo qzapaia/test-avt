@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Text from '../Text';
-import {PriceContainer, CurrencyContainer} from './container.styled';
+import Text from '../Text/index';
+import {PriceContainer, Currency} from './container.styled';
 import {getSymbolFromCurrency} from 'currency-map-symbol';
 
 const Price = (props) => {
@@ -15,9 +15,7 @@ const Price = (props) => {
 
   return (
     <PriceContainer>
-      <CurrencyContainer>
-        <Text type={type}>{currencySymbol?getSymbolFromCurrency(currency): currency}</Text>
-      </CurrencyContainer>
+      <Currency type={type}>{currencySymbol?getSymbolFromCurrency(currency): currency}</Currency>
       <Text {...props} type={type} color="brand">{price.toLocaleString(locateStringFormat)}</Text>
     </PriceContainer>
   )
