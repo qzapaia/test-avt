@@ -42,7 +42,8 @@ CheckboxGroup.propTypes = {
 }
 
 CheckboxGroup.defaultProps = {
-  options: []
+  options: [],
+  values: []
 }
 
 export default CheckboxGroup;

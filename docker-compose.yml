@@ -1,11 +1,21 @@
 version: "3"
 
 services:
-  avantrip-react:
-    build: .
+  nginx-proxy:
+    image: jwilder/nginx-proxy
     ports:
-      - 3899:3899
-      - 9001:9001
+      - "80:80"
     volumes:
-      - ./server.js:/app/server.js
-      - ./src/:/app/src
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  avantrip-react:
+    image: node:6
+    ports:
+      - 3899
+    working_dir: /app
+    volumes:
+      - ./:/app/
+    environment:
+      - VIRTUAL_HOST=avantrip-react.localhost.dev
+    command: sh -c "npm i && npm run build-storybook && npm run start"
+    

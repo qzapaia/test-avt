@@ -8,43 +8,47 @@ export default {
     warning:'#F90',
     danger:'#F90',
     white:'#FFF',
+    gray:'#efefef',
+    darkgray:'#ccc',
+    darkergray:'#666'
   },
   texts:{
     hxxl:{
       size:'40px',
-      weight:'normal',
-      family:'Arial'
+      weight:'300'
     },
     xxl:{
       size:'36px',
-      weight:'normal',
-      family:'Arial'
+      weight:'300'
     },
     xl:{
       size:'28px',
-      weight:'normal',
-      family:'Arial'
+      weight:'900'
     },
     l:{
       size:'22px',
-      weight:'normal',
-      family:'Arial'
+      weight:'500'
     },
     m:{
       size:'16px',
-      weight:'normal',
-      family:'Arial'
+      weight:'300'
     },
     s:{
       size:'14px',
-      weight:'normal',
-      family:'Arial'
+      weight:'300'
     },
     xs:{
       size:'12px',
-      weight:'normal',
-      family:'Arial'
+      weight:'300'
     },
+    // weight:{
+    //   thin:'200',
+    //   light:'300',
+    //   book:'normal',
+    //   semibold:'500',
+    //   bold:'600',
+    //   black:'900'
+    // }
   },
   buttons:{
     cta:{
@@ -75,5 +79,8 @@ export default {
         fontSize:'20px',
       }
     }
+  },
+  fonts:{
+    main: 'Stag-Sans'
   }
 }

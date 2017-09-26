@@ -1,5 +1,7 @@
 import React from 'react';
 import ExpansionPanel from './';
+import {ExpandButton, ExtendedInformation} from './container.styled'
+import Text from '../Text/index'
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -33,13 +35,22 @@ storiesOf('avantrip/ExpansionPanel', module)
   }))
   .add('Con los dos nodos completos', () => (
     <ExpansionPanelWithState
-      SummaryInformation={({onChange}) =>
-        <div>SummaryInformation
-          <button onClick={onChange}> v </button>
-        </div>
+      SummaryInformation={({onChange, isExpanded}) =>
+        <ExpandButton onClick={onChange}>
+          {
+            isExpanded ?
+             <Text type='s'>
+               Mostrar menos
+             </Text>
+             :
+             <Text type='s'>
+               Mostrar mas
+             </Text>
+           }
+        </ExpandButton>
       }
       ExtendedInformation={({onChange}) =>
-        <div>ExtendedInformation
-          <button onClick={onChange}> Ver menos </button>
-        </div>} />
+        <ExtendedInformation>
+          ExtendedInformation
+        </ExtendedInformation>} />
   ))
