@@ -12,6 +12,7 @@ export default () => (
     value={string}
     key={string}
     setting={object}
+    renderBar={Function}
   />
 )
 ```
@@ -21,6 +22,9 @@ export default () => (
 
 #### `data={<Collection>}`
 Información que se mostrará en el chart.
+
+#### `renderBar={<Function>}`
+Recibe las propiedades de cada barra y permite alterarlas.
 
 #### `Value={<String>}`
 Nombre de la key en donde se encuentra el valor a graficar.
