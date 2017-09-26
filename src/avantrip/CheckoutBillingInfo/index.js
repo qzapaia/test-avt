@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import InputText from '../InputText';
 import Select from '../Select';
 
-const preventFormatAndContinueWith = next => e => {
-  e.preventDefault();
-  next()
-}
-
 const CheckoutBillingInfo = ({errorMessage, value, onChange}) => (
   <div>
     <h2>
