@@ -10,4 +10,5 @@ export default styled.div`
   .selectedMonth {
     background-color: lightblue !important;
   }
+  overflow: hidden;
 `

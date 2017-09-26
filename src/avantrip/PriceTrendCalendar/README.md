@@ -10,7 +10,11 @@ export default () => (
   <PriceTrendCalendar
   data={collection}
   disclaimer={string}
-  onClick={function}
+  selectedMonth={number},
+  onDaySelected={function},
+  onMonthSelected={function},
+  departureDate={date(Only formats allowed per moment) }
+  returnDate={date(Only formats allowed per moment)}
   />
 )
 ```
@@ -30,9 +34,24 @@ Debe tener los siguientes atributos:
 #### `disclaimer={<String>}`
 Mensaje informativo para el gráfico.
 
-#### `onClick={<Function>}`
+#### `onDaySelected={<Function>}`
 Evento que se ejecuta al hacer click sobre alguna barra del
 gráfico.
+
+#### `onMonthSelected={<Function>}`
+Evento que se ejecuta al hacer click uno de los elementos
+que forman el slider de meses. Devuelve el valor numérico del
+mes seleccionado: Ej: Enero = 0, Febrero = 1
+
+#### `departureDate={<date>}`
+Fecha de partida.
+
+#### `returnDate={<date>}`
+Fecha de retorno.
+
+#### `selectedMonth={<date>}`
+Valor númerico del mes que se desea previsualizar. En caso de
+no especificarse, se usará el mes actual.
 
 ## Redux
 

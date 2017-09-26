@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Chart from "../Chart";
-import Slider from "../Slider";
-
-import moment from "moment";
-import { map, groupBy, minBy, filter, isUndefined } from "lodash";
 
 import Container from "./container.styled";
 import HistogramMonth from "./HistogramMonth";
+import CustomTooltip from "./CustomTooltip";
+
+import moment from "moment";
+import { map, groupBy, minBy, filter, isUndefined } from "lodash";
 
 const groupByMonth = flights => groupBy(flights, "month");
 
@@ -24,16 +24,16 @@ const calculateBestPriceInOneYear = flights => {
   return flights;
 };
 
-const calculateBestPriceByMoths = flights =>
-  map(flights, flightsByMonth => ({
-    flights: flightsByMonth,
-    month: moment(flightsByMonth[0].date).month(),
-    year: moment(flightsByMonth[0].date).year(),
-    bestPrice: addMinPriceFlag(flightsByMonth),
+const formatMonthlyFlights = monthlyFlights =>
+  map(monthlyFlights, dataByMonth => ({
+    flights: dataByMonth,
+    month: moment(dataByMonth[0].date).month(),
+    year: moment(dataByMonth[0].date).year(),
+    bestPrice: addMinPriceFlag(dataByMonth),
     isBestPriceOfYear: false
   }));
 
-const prepateData = (flights, departureDate, returnDate) =>
+const formatFlightData = (flights, departureDate, returnDate) =>
   map(flights, flight => {
     flight["month"] = moment(flight.date).month();
     flight["label"] = moment(flight.date).format("DD dd");
@@ -44,32 +44,10 @@ const prepateData = (flights, departureDate, returnDate) =>
     return flight;
   });
 
-const CustomTooltip = React.createClass({
-  propTypes: {
-    type: PropTypes.string,
-    payload: PropTypes.array
-  },
-  render() {
-    const { active } = this.props;
-
-    if (active) {
-      const { payload, label } = this.props;
-      return (
-        <div className="custom-tooltip">
-          <p className="departureDate">{`Ida: ${moment(
-            payload[0].payload.date
-          ).format("dddd DD [de] MMMM")}`}</p>
-          <p className="returnDate">{`Vuelta: ${moment(payload[0].payload.date)
-            .add(payload[0].payload.travelDays, "days")
-            .format("dddd DD [de] MMMM")}`}</p>
-          <p className="desc">{payload[0].payload.price}</p>
-        </div>
-      );
-    }
-
-    return null;
-  }
-});
+const getBestPriceBy = dataByMonth =>
+  dataByMonth &&
+  dataByMonth.isBestPriceOfYear &&
+  dataByMonth.bestPrice;
 
 const PriceTrendCalendar = ({
   data,
@@ -81,31 +59,31 @@ const PriceTrendCalendar = ({
   returnDate
 }) => {
   data = calculateBestPriceInOneYear(
-    calculateBestPriceByMoths(
-      groupByMonth(prepateData(data, departureDate, returnDate))
+    formatMonthlyFlights(
+      groupByMonth(formatFlightData(data, departureDate, returnDate))
     )
   );
 
   selectedMonth = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
-  const flightBySelectedMonth = data[selectedMonth];
-  console.log("selectedMonth", isUndefined(selectedMonth));
+  const dataByMonth = data[selectedMonth];
+  const bestPrice = getBestPriceBy(dataByMonth);
+
   return (
     <Container>
       <div>
-        {flightBySelectedMonth &&
-        flightBySelectedMonth.flights.length && (
+        {dataByMonth && (
           <Chart
-            data={flightBySelectedMonth.flights}
+            data={dataByMonth.flights}
             value="price"
             label="label"
             onClick={onDaySelected}
             CustomTooltip={CustomTooltip}
-	    renderBar={args=>{
-	      if(args.index == 26){
-		args.fill = '#f00';
-	      }
-	      return args;
-	    }}
+            renderBar={args => {
+              if (args.price == bestPrice) {
+                args.fill = "green";
+              }
+              return args;
+            }}
           />
         )}
       </div>

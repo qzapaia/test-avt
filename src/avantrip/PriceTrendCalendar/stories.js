@@ -1,6 +1,5 @@
 import React from "react";
 
-import PriceTrendCalendar from "./";
 import PriceTrendCalendarWithData from "./withData";
 
 import withReadme from "storybook-readme/with-readme";
@@ -13,13 +12,18 @@ import reducer from "./reducer";
 
 import generalDecorator from "../../stories.decorator.js";
 
+import moment from "moment";
+
 const addReadme = comp => withReadme(readme, comp);
 
-// el enhace concatena hocs de recompose,
-// en este caso le inyecta un estado falso
-// ver más en https://github.com/acdlite/recompose
-
-
+const mockData = {
+  dateTo: moment().add(7, "day").add(1, "month").format("YYYY-MM-DD"),
+  dateFrom: moment().add(1, "month").format("YYYY-MM-DD"),
+  minDepartureMonthYear: moment().format("YYYY-MM"),
+  maxDepartureMonthYear: moment().add(1, "year").format("YYYY-MM"),
+  minDepartureDate: moment().add(2, "day").format("YYYY-MM-DD"),
+  maxDepartureDate: moment().add(1, "year").format("YYYY-MM-DD")
+}
 
 storiesOf("avantrip/PriceTrendCalendar", module)
   .addDecorator(
@@ -37,15 +41,15 @@ storiesOf("avantrip/PriceTrendCalendar", module)
       <PriceTrendCalendarWithData
         origin="BUE"
         destination="NYC"
-        dateTo="2017-10-08"
-        dateFrom="2017-10-01"
+        dateTo={mockData.dateTo}
+        dateFrom={mockData.dateFrom}
         adults="1"
         children="0"
         babies="0"
-        minDepartureMonthYear="2017-09"
-        maxDepartureMonthYear="2018-09"
-        minDepartureDate="2017-09-24"
-        maxDepartureDate="2018-09-22"
+        minDepartureMonthYear={mockData.minDepartureMonthYear}
+        maxDepartureMonthYear={mockData.maxDepartureMonthYear}
+        minDepartureDate={mockData.minDepartureDate}
+        maxDepartureDate={mockData.maxDepartureDate}
       />
     ))
   );

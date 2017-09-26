@@ -26,6 +26,9 @@ Información que se mostrará en el chart.
 #### `renderBar={<Function>}`
 Recibe las propiedades de cada barra y permite alterarlas.
 
+#### `CustomTooltip={<Component>}`
+Componente que se usará como tooltip de cada barra.
+
 #### `Value={<String>}`
 Nombre de la key en donde se encuentra el valor a graficar.
 
