@@ -5,6 +5,7 @@ Componente para el precio, se puede transformar el currency por el simbolo corre
 
 ```javascript
 import Price from 'avantrip-react/avantrip/Price';
+import {getSymbolFromCurrency} from 'currency-map-symbol';
 
 export default () => (
   <Price
