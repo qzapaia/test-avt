@@ -4,7 +4,7 @@ export const SET_SELECTED_MONTH = 'SET_SELECTED_MONTH';
 export const SET_SELECTED_DAY = 'SET_SELECTED_DAY';
 
 export const getData = id => dispatch => (
-  fetch(`https://api.avantrip.com/deals/histogram?urlPrefix=http%3A%2F%2Fvuelos.apps.stage.devtrip.com.ar%2Fvuelos%2F&origin=BUE&destination=NYC&dateTo=2017-10-08&dateFrom=2017-10-01&dataLayer=true&adults=1&children=0&babies=0&duration=8&minDepartureMonthYear=2017-09&maxDepartureMonthYear=2018-09&minDepartureDate=2017-09-24&maxDepartureDate=2018-09-22`)
+  fetch(`https://api.avantrip.com/deals/histogram?urlPrefix=http%3A%2F%2Fvuelos.apps.stage.devtrip.com.ar%2Fvuelos%2F&origin=${id.origin}&destination=${id.destination}&dateTo=${id.dateTo}&dateFrom=${id.dateFrom}&dataLayer=${id.dataLayer}&adults=${id.adults}&children=${id.children}&babies=${id.babies}&duration=${id.duration}&minDepartureMonthYear=${id.minDepartureMonthYear}&maxDepartureMonthYear=${id.maxDepartureMonthYear}&minDepartureDate=${id.minDepartureDate}&maxDepartureDate=${id.maxDepartureDate}`)
   .then(res=>res.json())
   .then(data=>dispatch(setData(data)))
 )

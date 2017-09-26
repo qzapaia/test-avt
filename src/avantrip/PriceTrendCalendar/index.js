@@ -5,11 +5,12 @@ import Chart from "../Chart";
 import Slider from "../Slider";
 
 import moment from "moment";
-import { map, groupBy, minBy, filter } from "lodash";
+import { map, groupBy, minBy, filter, isUndefined } from "lodash";
 
-import ContainerMonth from "./containerMonthHistogram.styled";
+import Container from "./container.styled";
+import HistogramMonth from "./HistogramMonth";
 
-const groupByArrivalDate = flights => groupBy(flights, "month");
+const groupByMonth = flights => groupBy(flights, "month");
 
 const addMinPriceFlag = flights => minBy(flights, "price").price;
 
@@ -24,9 +25,10 @@ const calculateBestPriceInOneYear = flights => {
 };
 
 const calculateBestPriceByMoths = flights =>
-  map(flights, (flightsByMonth, index) => ({
+  map(flights, flightsByMonth => ({
     flights: flightsByMonth,
-    month: index,
+    month: moment(flightsByMonth[0].date).month(),
+    year: moment(flightsByMonth[0].date).year(),
     bestPrice: addMinPriceFlag(flightsByMonth),
     isBestPriceOfYear: false
   }));
@@ -69,27 +71,6 @@ const CustomTooltip = React.createClass({
   }
 });
 
-const sliderSettings = {
-  dots: false,
-  slidesToShow: 5,
-  infinite: false
-};
-
-const getClassNameForMonthSlider = (
-  isBestPriceOfYear,
-  currentMonth,
-  selectedMonth
-) => {
-  let className = "";
-  if (isBestPriceOfYear) {
-    className = "bestPrice";
-  }
-  if (currentMonth == selectedMonth) {
-    className += " selectedMonth";
-  }
-  return className;
-};
-
 const PriceTrendCalendar = ({
   data,
   selectedMonth,
@@ -101,17 +82,14 @@ const PriceTrendCalendar = ({
 }) => {
   data = calculateBestPriceInOneYear(
     calculateBestPriceByMoths(
-      groupByArrivalDate(prepateData(data, departureDate, returnDate))
+      groupByMonth(prepateData(data, departureDate, returnDate))
     )
   );
 
-  selectedMonth = selectedMonth || moment().month();
+  selectedMonth = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
   const flightBySelectedMonth = data[selectedMonth];
-
-  sliderSettings["initialSlide"] = selectedMonth;
-
   return (
-    <ContainerMonth>
+    <Container>
       <div>
         {flightBySelectedMonth &&
         flightBySelectedMonth.flights.length && (
@@ -125,31 +103,14 @@ const PriceTrendCalendar = ({
         )}
       </div>
       <div>
-        <Slider settings={sliderSettings}>
-          {map(data, dataByMonth => (
-            <div
-              className={getClassNameForMonthSlider(
-                dataByMonth.isBestPriceOfYear,
-                dataByMonth.month,
-                selectedMonth
-              )}
-            >
-              <div
-                key={"month" + dataByMonth.month}
-                onClick={e => onMonthSelected(dataByMonth.month)}
-              >
-                <div>{moment.months(Number(dataByMonth.month))}</div>
-                <div>
-                  {dataByMonth.isBestPriceOfYear ? "¡MEJOR PRECIO!" : "Desde"}
-                </div>
-                <div>{dataByMonth.bestPrice}</div>
-              </div>
-            </div>
-          ))}
-        </Slider>
+        <HistogramMonth
+          data={data}
+          selectedMonth={selectedMonth}
+          onMonthSelected={onMonthSelected}
+        />
       </div>
       <div>{disclaimer && <div>{disclaimer}</div>}</div>
-    </ContainerMonth>
+    </Container>
   );
 };
 

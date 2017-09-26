@@ -82,10 +82,10 @@ storiesOf("avantrip/PriceTrendCalendar", module)
     addReadme(() => (
       <PriceTrendCalendarWithData
         origin="BUE"
-        destination="MIA"
+        destination="NYC"
         dateTo="2017-10-08"
         dateFrom="2017-10-01"
-        adults="2"
+        adults="1"
         children="0"
         babies="0"
         minDepartureMonthYear="2017-09"
