@@ -100,6 +100,12 @@ const PriceTrendCalendar = ({
             label="label"
             onClick={onDaySelected}
             CustomTooltip={CustomTooltip}
+	    renderBar={args=>{
+	      if(args.index == 26){
+		args.fill = '#f00';
+	      }
+	      return args;
+	    }}
           />
         )}
       </div>
