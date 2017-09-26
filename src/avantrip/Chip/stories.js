@@ -6,32 +6,30 @@ import { action } from '@storybook/addon-actions';
 import { withState, compose } from 'recompose';
 
 import generalDecorator from '../../stories.decorator.js';
-import ChipWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
 
 const enhace = compose(
-  withState('label','changeLabel', 'Label del chip'),
-  withState('isDeletable','changeIsDeletable', true)
+  withState('label','changeLabel', 'Label del chip')
 )
 
-
 const ChipWithState =  enhace((props) => {
-  const { 
-    label, 
-    changeLabel,
-    isDeletable,
-    changeIsDeleteable
-  } = props;
+  const { label, changeLabel, withClose } = props;
 
   const closeHandler = () => {
     action('click')('close');
   }
 
-  return (
-    <Chip label={label} onClose={closeHandler} isDeletable={isDeletable} />
-  )
+  if(withClose){
+    return (
+      <Chip label={label} onClose={closeHandler} />
+    )
+  } else {
+    return (
+      <Chip label={label} />
+    )
+  }
 })
 
 storiesOf('avantrip/Chip', module)
@@ -40,9 +38,8 @@ storiesOf('avantrip/Chip', module)
     theme
   }))
   .add('Default', () => (
-    <ChipWithState></ChipWithState>
+    <ChipWithState withClose={true}></ChipWithState>
   ))
-
-  .add('With data', () => (
-    <ChipWithData>ChipWithData component</ChipWithData>
+  .add('WithoutClose', () => (
+    <ChipWithState></ChipWithState>
   ))
