@@ -1,6 +1,8 @@
 import React from 'react';
 import PriceTrendTableByDate from './';
+
 import moment from 'moment';
+import { random } from 'lodash';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -43,22 +45,22 @@ const getThreeDatesBeforeAndAfter = (date) => {
   return dates;
 }
 
-const genererateDepartureDate = (today) => today.add(_.random(1, 15), 'days').format();
+const genererateDepartureDate = (today) => today.add(random(1, 15), 'days').format();
 
-const genererateArrivalDate = (today) => today.add(_.random(20, 30), 'days').format();
+const genererateArrivalDate = (today) => today.add(random(20, 30), 'days').format();
 
 const generateRandomFlightDates = (departureDates, arrivalDates) => (
   departureDates.reduce( (acc, d) => (
     acc.concat(arrivalDates.map( r => ({
-      'vuelta': r,
-      'ida': d,
-      'price': _.random(11000, 30000)
+      'returningDate': r,
+      'departureDate': d,
+      'price': random(11000, 30000)
     })))
   ), [])
 )
 
 const PriceTrendTableByDateWithState =  enhace((props) => {
-  const { flightDates, selectedArrivalDate, selectedDepartureDate} = props;
+  const { flightDates, selectedReturningDate, selectedDepartureDate} = props;
 
   const clickHandler = (selectedFlight) => {
     action('click')(selectedFlight);
@@ -76,8 +78,9 @@ const PriceTrendTableByDateWithState =  enhace((props) => {
 
   return (
     <PriceTrendTableByDate
+      {...props}
       flightDates={randomFlightDates}
-      selectedArrivalDate={arrivalDate}
+      selectedReturningDate={arrivalDate}
       selectedDepartureDate={departureDate}
       onClick={clickHandler}
     />
@@ -104,4 +107,10 @@ storiesOf('avantrip/PriceTrendTableByDate', module)
       passengersChildren={searchData.passengers.children}
       passengersInfants={searchData.passengers.infants}
     />
+  ))
+
+  .add('With Custom Title', () => (
+    <PriceTrendTableByDateWithState
+      departureDateTitle={<span>Partida</span>}
+      returnDateTitle={<span>Llegada</span>} />
   ))

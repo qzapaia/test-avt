@@ -61,8 +61,8 @@ const SelectorComponent = props => {
       props.data.flights.calendar.roundtrip.products[0].clusters,
       cluster => {
         values.push({
-          vuelta: cluster.returningDate,
-          ida: cluster.departureDate,
+          returningDate: cluster.returningDate,
+          departureDate: cluster.departureDate,
           price: cluster.prices.passengerPrice[0].net
         });
       }
@@ -72,7 +72,7 @@ const SelectorComponent = props => {
     <PriceTrendTableByDate
       {...props}
       flightDates={values}
-      selectedArrivalDate={props.returningDate}
+      selectedReturningDate={props.returningDate}
       selectedDepartureDate={props.departureDate}
     />
   );

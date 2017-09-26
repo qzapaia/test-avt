@@ -9,9 +9,11 @@ import PriceTrendTableByDate from 'avantrip-react/avantrip/PriceTrendTableByDate
 export default () => (
   <PriceTrendTableByDate
     flightDates={collection}
-    selectedArrivalDate={date(formato permitido por moment)}
+    selectedReturningDate={date(formato permitido por moment)}
     selectedDepartureDate={date(formato permitido por moment)}
     onClick={function}
+    departureDateTitle={node}
+    returnDateTitle={node}
   />
 )
 ```
@@ -23,14 +25,14 @@ Collection que debe respetar:
 ```javascript
 	[
 		{
-			vuelta:<Date>
-			ida:<Date>
+			returningDate:<Date>
+			departureDate:<Date>
 			price:<Number>
 		}
 	]
 ```
 
-#### `selectedArrivalDate={<Date>}`
+#### `selectedReturningDate={<Date>}`
 Date para indicar la fecha de regreso de vuelo.
 Debe respetar algún formato permitido por moment.
 
@@ -41,27 +43,8 @@ Debe respetar algún formato permitido por moment.
 #### `onClick={<Function>}`
 Devuelve el vuelo seleccionado
 
-## Redux
+#### `departureDateTitle={<node>}`
+Título de cada fila
 
-#### Actions
-```javascript
-import { sendData } from 'avantrip-react/avantrip/PriceTrendTableByDate/actions';
-import store from 'somewhere';
-
-store.dispatch(sendData({ email:"email@email.com" });
-// ...
-```
-
-#### Reducer
-```javascript
-import priceTrendTableByDateReducer from 'avantrip-react/avantrip/PriceTrendTableByDate/reducer';
-import { createStore, combineReducers } from 'redux';
-
-const reducer = combineReducers({
-  priceTrendTableByDate:priceTrendTableByDateReducer,
-  todos
-})
-
-const store = createStore(reducer);
-// ...
-```
+#### `returnDateTitle={<node>}`
+Título de cada columna
