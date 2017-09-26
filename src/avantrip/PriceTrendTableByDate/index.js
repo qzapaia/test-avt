@@ -135,7 +135,7 @@ const PriceTrendTableByDate = ({
         map(flightDatesMatrix, fRow => (
           <div style={{display:'flex'}}>
             {
-              fRow.map( fColumn => (
+              map(fRow, fColumn => (
                   <div>
                     { fColumn.title &&
                       <div style={getItemStyleBy(
