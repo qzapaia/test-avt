@@ -71,7 +71,7 @@ const SelectorComponent = props => {
   return (
     <PriceTrendTableByDate
       {...props}
-      flightDates={values}
+      pricesByDates={values}
       selectedReturningDate={props.returningDate}
       selectedDepartureDate={props.departureDate}
     />

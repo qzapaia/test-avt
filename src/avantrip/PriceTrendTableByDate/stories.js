@@ -60,7 +60,7 @@ const generateRandomFlightDates = (departureDates, arrivalDates) => (
 )
 
 const PriceTrendTableByDateWithState =  enhace((props) => {
-  const { flightDates, selectedReturningDate, selectedDepartureDate} = props;
+  const { pricesByDates, selectedReturningDate, selectedDepartureDate} = props;
 
   const clickHandler = (selectedFlight) => {
     action('click')(selectedFlight);
@@ -79,7 +79,7 @@ const PriceTrendTableByDateWithState =  enhace((props) => {
   return (
     <PriceTrendTableByDate
       {...props}
-      flightDates={randomFlightDates}
+      pricesByDates={randomFlightDates}
       selectedReturningDate={arrivalDate}
       selectedDepartureDate={departureDate}
       onClick={clickHandler}

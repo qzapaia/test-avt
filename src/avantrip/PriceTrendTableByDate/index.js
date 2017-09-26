@@ -111,21 +111,21 @@ const getItemStyleBy = (ReturningDate, departureDate, bestFlights, currentFlight
 }
 
 const PriceTrendTableByDate = ({
-  flightDates,
+  pricesByDates,
   selectedReturningDate,
   selectedDepartureDate,
   onClick,
   departureDateTitle,
   returnDateTitle
 }) => {
-  const flightDatesWithMinPrices = addMinPriceFlag(flightDates);
+  const flightDatesWithMinPrices = addMinPriceFlag(pricesByDates);
 
   const flightDatesMatrix =
     addFirstRowHeader(departureDateTitle,
-      groupByDepartureDate(flightDates),
+      groupByDepartureDate(pricesByDates),
 
       addFirstColumnHeader(returnDateTitle,
-        groupByReturningDate(flightDates)
+        groupByReturningDate(pricesByDates)
       )
     )
 
@@ -191,7 +191,7 @@ const PriceTrendTableByDate = ({
 
 
 PriceTrendTableByDate.propTypes = {
-  flightDates: PropTypes.array,
+  pricesByDates: PropTypes.array,
   selectedReturningDate: PropTypes.string,
   selectedDepartureDate: PropTypes.string,
   onClick: PropTypes.func,

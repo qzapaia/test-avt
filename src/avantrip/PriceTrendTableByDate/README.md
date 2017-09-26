@@ -8,7 +8,7 @@ import PriceTrendTableByDate from 'avantrip-react/avantrip/PriceTrendTableByDate
 
 export default () => (
   <PriceTrendTableByDate
-    flightDates={collection}
+    pricesByDates={collection}
     selectedReturningDate={date(formato permitido por moment)}
     selectedDepartureDate={date(formato permitido por moment)}
     onClick={function}
@@ -20,7 +20,7 @@ export default () => (
 
 ## Props
 
-#### `flightDates={<Collection>>}`
+#### `pricesByDates={<Collection>>}`
 Collection que debe respetar:
 ```javascript
 	[
