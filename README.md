@@ -43,4 +43,4 @@ http://product.api.stage.devtrip.com.ar/graphiql
 ## Schema
 Nombres para usar en props, collections, variables, etc ...
 
-[Schema](SCHEMA.md)
+[Ver](/SCHEMA.md)
