@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import thunk from "redux-thunk";
 import { get } from 'lodash';
-
+import 'babel-polyfill';
 const composeEnhancers = window.top.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {}
 

@@ -1,18 +1,14 @@
-import React from 'react';
+import React, {createElement} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const StyledText = styled.span`
+const TextWrapper = styled(({tag, children, ...props}) => createElement(tag, props, children))`
   font-size: ${props=>props.theme.texts[props.type].size};
   font-weight: ${props=>props.theme.texts[props.type].weight};
   font-family: ${props=>props.theme.texts[props.type].family};
   color: ${props=>props.theme.colors[props.color] || 'inherit'};
 `
 
-const TextWrapper = (props) => {
-  const Com = StyledText.withComponent(props.tag);
-  return <Com {...props}></Com>
-}
 
 TextWrapper.propTypes = {
   type:PropTypes.string,
