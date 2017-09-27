@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RadiosGroup from '../RadioGroup';
 import NumberGroup from '../NumberGroup';
 import InputText from '../InputText';
+import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
 
@@ -77,6 +78,13 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
       </InputText>
     </div>
 
+    <div>
+      <InputDate
+        range={true}
+        onChange={customOnChange(onChange, 'dates')}
+        dates={values.dates}
+      />
+    </div>
 
     <div>
       <InputCheckbox
@@ -134,7 +142,7 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
       />
     </div>
     <div>
-      <Button onClick={() => onCustomClick(onSearch, values)}>Buscar</Button>
+      <Button onSearch={() => onCustomClick(onSearch, values)}>Buscar</Button>
     
     </div>
   </div>
