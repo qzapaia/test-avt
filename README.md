@@ -33,16 +33,14 @@ import { get, map } from 'lodash';
 
 ## Datos útiles
 
-### GraphQL URLs
-
-#### Integración
+#### GraphQL integración
 http://product.api.int.devtrip.com.ar/graphiql
 
-#### Stage
+#### GraphQL stage
 http://product.api.stage.devtrip.com.ar/graphiql
 
 
 ## Schema
 Nombres para usar en props, collections, variables, etc ...
 
-[Schema](./SCHEMA.md)
+[Schema](SCHEMA.md)
