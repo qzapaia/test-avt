@@ -30,3 +30,13 @@ https://github.com/acdlite/recompose
 ```javascript
 import { get, map } from 'lodash';
 ```
+
+## Datos útiles
+
+### GraphQL URLs
+
+#### Integración
+http://product.api.int.devtrip.com.ar/graphiql
+
+#### Stage
+http://product.api.stage.devtrip.com.ar/graphiql
