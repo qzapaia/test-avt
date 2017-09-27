@@ -12,6 +12,7 @@ export default () => (
     onChange={Function}
     options={Collection}
     value={string}
+    direction={string}
   />
 )
 ```
@@ -37,3 +38,6 @@ Collection to related options. They must respect the format:
 
 #### `value={<String>}`
 Valor seleccionado.
+
+#### `direction={<String>}`
+Direccion flexbox del contenedor, como row o column. Por default 'row'.
