@@ -16,7 +16,7 @@ const Price = (props) => {
   return (
     <PriceContainer>
       <Currency type={type}>{currencySymbol?getSymbolFromCurrency(currency): currency}</Currency>
-      <Text {...props} type={type} color="brand">{price.toLocaleString(locateStringFormat)}</Text>
+      <Text type={type} color="brand">{price.toLocaleString(locateStringFormat)}</Text>
     </PriceContainer>
   )
 }
@@ -25,7 +25,7 @@ const Price = (props) => {
 Price.propTypes = {
   ...Text.propTypes,
   currency: PropTypes.oneOf(['ARS']),
-  currencySymbol: PropTypes.boolean,
+  currencySymbol: PropTypes.bool,
   price:PropTypes.number.isRequired,
   locateStringFormat:PropTypes.string.isRequired,
 }
