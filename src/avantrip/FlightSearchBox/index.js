@@ -11,25 +11,13 @@ const onCustomClick = (next, values) => {
 }
 
 const customOnChange = (next, name) => value => {
-  switch (name) {
-    case 'amountTraveller':
-      const newValue = {}
-      newValue[value.id] = value.value
-      value = {}
-      value = newValue;
-      break
-    case 'originCity':
-    case 'destinationCity':
-    case 'leg':
-    case 'class':
-    case 'flexibleDate':
-  }
-  const p = {}
-  p[name] = value
-  next(p)
+  console.log(value);
+  next({
+    [name]:value
+  })
 }
 
-const FlightSearchBox = ({title, onChange, onSearch, values}) => (
+const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) => (
   <div>
     {title}
     <div>
@@ -117,14 +105,14 @@ const FlightSearchBox = ({title, onChange, onSearch, values}) => (
             max: '9'
           },
           {
-            label:'Bebes',
+            label:'Bebés',
             id:'babies',
             value: (values.amountTraveller.babies)? values.amountTraveller.babies : 0,
             min: '0',
             max: '9'
           }
         ]}
-        onChange={customOnChange(onChange, 'amountTraveller')}
+        onChangeKeyValue={customOnChange(onChange, 'amountTraveller')}
         label=''
       />
     </div>

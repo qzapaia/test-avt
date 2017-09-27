@@ -26,11 +26,16 @@ const FlightSearchBoxWithState =  enhace((props) => {
     changeValues(newValues);
   }
 
+  const logKeyValue = option => {
+    action('key value listener')(option);
+  }
+
   return (
     <FlightSearchBox 
       title='busca tu vuelo'
       onChange={changeHandler}
       onSearch={searchHandler}
+      onChangeKeyValue={changeHandler}
       values={values}
     />
   )
