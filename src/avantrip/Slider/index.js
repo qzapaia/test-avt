@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/index';
+import Icon from '../Icon';
 import {SliderButton, IconContainer, SliderContainer} from './container.styled';
 
 import SliderCarousel from 'react-slick';
@@ -22,11 +22,12 @@ const settings = {
   'infinite': true,
   'slidesToShow': 1,
   'slidesToScroll': 1,
-  'speed': 100,
+  'speed': 500,
   'dotsClass': 'sliderDots',
   'nextArrow': <SampleArrow> next </SampleArrow>,
   'prevArrow': <SampleArrow> prev </SampleArrow>,
-  'className': 'className'
+  'className': 'className',
+  'autoplaySpeed': 6000
 };
 
 const Slider = ({children}) => (
