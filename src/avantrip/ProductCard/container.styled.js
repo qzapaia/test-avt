@@ -50,4 +50,8 @@ export const PriceContainer = styled.article`
 `
 export const IconContainer = styled.div`
   transform: rotate(-180deg);
+  transition: 0.3s ease;
+  ${Container}:hover &{
+    transform: rotate(-180deg) translateX(-5px);
+  }
 `

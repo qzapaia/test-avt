@@ -9,8 +9,12 @@ import {getSymbolFromCurrency} from 'currency-map-symbol';
 
 export default () => (
   <Price
-    currency: 'USD',
+    currency: 'ARS',
+    currencySymbol:'false';
     price:{10000},
+    locateStringFormat:'es-AR',
+    type:'s',
+    color:'brand'
   />
 )
 ```
@@ -29,6 +33,14 @@ Monto
 
 #### `locateStringFormat={<Number>}`
 Formato de precio. Default: "es-AR"
+
+#### `type={<String>}`
+El tipo de texts a utilizar importado de styled.theme. Por default 's'
+
+#### `color={<String>}`
+El color a utilizar en el precio (numero) importado de styled.theme. Por default 'brand'
+
+
 
 
 

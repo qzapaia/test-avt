@@ -1,8 +1,9 @@
 import React from 'react';
 import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer, IconContainer} from './container.styled';
 import PropTypes from 'prop-types';
-import Text from '../Text/index';
-import Icon from '../Icon/index';
+import Text from '../Text';
+import Icon from '../Icon';
+import Price from '../Price';
 
 const ProductCard = ({
                       href,
@@ -36,10 +37,7 @@ const ProductCard = ({
           <Text color='brand' tag='p' type='xs'>
             {supportingInfo}
           </Text>
-          <Text color='brand' tag='p' type='xl'>
-            {/* ESTO TIENE QUE CAMBIAR POR EL COMPONENT PRICE (coming soon) */}
-            ${price}
-          </Text>
+          <Price color='brand' tag='p' type='xl' price={price} />
         </PriceContainer>
         <IconContainer>
           <Icon height='40px' id='Back' color='brand' />
