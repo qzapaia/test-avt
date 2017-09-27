@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
+import moment from 'moment';
+import { map, groupBy, minBy, reduce } from 'lodash';
 
 const itemStyle = {
   width: '90px',
@@ -39,25 +40,29 @@ const bestDateItemStyle = {
   flexDirection: 'column'
 }
 
-const addFirstColumnHeader = flights => (
-  _.map(flights, ( fRow, key ) => {
+const addFirstColumnHeader = (returnDateTitle, flights) => (
+  map(flights, ( fRow, key ) => {
     //Unshift no devuelve el mismo array
     fRow.unshift({
-      'rowTitle': 'VUELTA',
+      'title': returnDateTitle,
       'day': moment(key).format('dddd'),
       'date': moment(key).format('DD/MM/YYYY'),
       'rawDate': key
     });
-    return fRow; 
+    return fRow;
   })
-) 
+)
 
-const addFirstRowHeader = ( flightGroupedByDepartureDate , flightsWithColumnHeader )  => {
+const addFirstRowHeader = (
+  departureDateTitle,
+  flightGroupedByDepartureDate ,
+  flightsWithColumnHeader
+)  => {
 
-  const firstColumnFlightMatrix = 
-    _.map(flightGroupedByDepartureDate, ( fCol, key ) => (
+  const firstColumnFlightMatrix =
+    map(flightGroupedByDepartureDate, ( fCol, key ) => (
       {
-        'rowTitle': 'IDA',
+        'title': departureDateTitle,
         'day': moment(key).format('dddd'),
         'date': moment(key).format('DD/MM/YYYY'),
         'rawDate': key
@@ -71,17 +76,17 @@ const addFirstRowHeader = ( flightGroupedByDepartureDate , flightsWithColumnHead
   return flightsWithColumnHeader;
 }
 
-const groupByDepartureDate = flights => {
-  return _.groupBy(flights, 'ida');
-} 
+const groupByReturningDate = flights => {
+  return groupBy(flights, 'returningDate');
+}
 
-const groupByArrivalDate = flights => {
-  return _.groupBy(flights, 'vuelta');
-} 
+const groupByDepartureDate = flights => {
+  return groupBy(flights, 'departureDate');
+}
 
 const addMinPriceFlag = flights => {
-  const flightWithMinPrice = _.minBy(flights, 'price');
-  return _.reduce(flights, ( acc, f ) => {
+  const flightWithMinPrice = minBy(flights, 'price');
+  return reduce(flights, ( acc, f ) => {
     if(!acc){acc=[]};
     //Pregunto de nuevo si hay algún otro vuelo con el precio mínimo
     if(f.price == flightWithMinPrice.price){
@@ -91,50 +96,56 @@ const addMinPriceFlag = flights => {
   }, [])
 }
 
-const getItemStyleBy = (arrivalDate, departureDate, bestFlights, currentFlight) => {
+const getItemStyleBy = (ReturningDate, departureDate, bestFlights, currentFlight) => {
   if(bestFlights.length > 0 && bestFlights[0].price == currentFlight.price){
     return bestDateItemStyle;
-  } else if(arrivalDate == currentFlight.vuelta && departureDate == currentFlight.ida){
-    return selectedDateItemStyle; 
-  } else if(arrivalDate == currentFlight.rawDate){
-    return selectedDateItemStyle; 
+  } else if(ReturningDate == currentFlight.returningDate && departureDate == currentFlight.departureDate){
+    return selectedDateItemStyle;
+  } else if(ReturningDate == currentFlight.rawDate){
+    return selectedDateItemStyle;
 } else if(departureDate == currentFlight.rawDate){
-    return selectedDateItemStyle; 
+    return selectedDateItemStyle;
   } else {
     return itemStyle;
   }
 }
 
-const PriceTrendTableByDate = ({flightDates, selectedArrivalDate, selectedDepartureDate, onClick}) => {
+const PriceTrendTableByDate = ({
+  pricesByDates,
+  selectedReturningDate,
+  selectedDepartureDate,
+  onClick,
+  departureDateTitle,
+  returnDateTitle
+}) => {
+  const flightDatesWithMinPrices = addMinPriceFlag(pricesByDates);
 
-  const flightDatesWithMinPrices = addMinPriceFlag(flightDates);
+  const flightDatesMatrix =
+    addFirstRowHeader(departureDateTitle,
+      groupByDepartureDate(pricesByDates),
 
-  const flightDatesMatrix = 
-    addFirstRowHeader(
-      groupByArrivalDate(flightDates),
-
-      addFirstColumnHeader(
-        groupByDepartureDate(flightDates)
+      addFirstColumnHeader(returnDateTitle,
+        groupByReturningDate(pricesByDates)
       )
     )
 
   return (
     <div>
       {
-        _.map(flightDatesMatrix, fRow => (
+        map(flightDatesMatrix, fRow => (
           <div style={{display:'flex'}}>
             {
-              fRow.map( fColumn => (
+              map(fRow, fColumn => (
                   <div>
-                    { fColumn.rowTitle && 
+                    { fColumn.title &&
                       <div style={getItemStyleBy(
-                          selectedArrivalDate,
+                          selectedReturningDate,
                           selectedDepartureDate,
                           {},
                           fColumn
                         )}>
                         <div>
-                          {fColumn.rowTitle}
+                          {fColumn.title}
                         </div>
                         <div>
                           {fColumn.day}
@@ -145,16 +156,16 @@ const PriceTrendTableByDate = ({flightDates, selectedArrivalDate, selectedDepart
                       </div>
                     }
 
-                    { !fColumn.rowTitle &&  
+                    { !fColumn.title &&
                       <div onClick={ e => onClick(fColumn)} style={getItemStyleBy(
-                          selectedArrivalDate, 
+                          selectedReturningDate,
                           selectedDepartureDate,
                           flightDatesWithMinPrices,
                           fColumn
                         )}>
 
-                        
-                        { (fColumn.rowTitle || fColumn.price) &&
+
+                        { (fColumn.title || fColumn.price) &&
                           <div>
                             <div>Desde</div>
                             <div>
@@ -169,20 +180,28 @@ const PriceTrendTableByDate = ({flightDates, selectedArrivalDate, selectedDepart
                 )
               )
             }
-          </div>  
+          </div>
         ))
       }
     </div>
-    
+
   )
 }
 
+
+
 PriceTrendTableByDate.propTypes = {
-  //text: PropTypes.node.isRequired
+  pricesByDates: PropTypes.array,
+  selectedReturningDate: PropTypes.string,
+  selectedDepartureDate: PropTypes.string,
+  onClick: PropTypes.func,
+  departureDateTitle: PropTypes.node,
+  returnDateTitle: PropTypes.node
 }
 
 PriceTrendTableByDate.defaultProps = {
-  //text:'no value yet :('
+  departureDateTitle: "IDA",
+  returnDateTitle: "VUELTA"
 }
 
 export default PriceTrendTableByDate;

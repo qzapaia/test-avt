@@ -14,6 +14,9 @@ import {{componentName}}WithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
+{{#redux}}
+import reducer from "./reducer";
+{{/redux}}
 
 {{^styledComponent}}
 const enhace = withState('counter','increment',0);
@@ -34,12 +37,18 @@ const {{componentName}}WithState =  enhace((props) => {
 storiesOf('{{storyPath}}{{componentName}}', module)
   .addDecorator(generalDecorator({
     readme,
-    theme
+    theme,
+    {{#redux}}
+    reducer:{
+      {{componentName}}: reducer,
+    },
+    {{/redux}}
   }))
   .add('Default', () => (
     {{^styledComponent}}
     <{{componentName}}WithState></{{componentName}}WithState>
     {{/styledComponent}}
+    
     {{#styledComponent}}
     <{{componentName}}>{{componentName}} component</{{componentName}}>
     {{/styledComponent}}
@@ -47,6 +56,6 @@ storiesOf('{{storyPath}}{{componentName}}', module)
 
   {{#withDataComponent}}
   .add('With data', () => (
-    <{{componentName}}WithData>{{componentName}}WithData component</{{componentName}}WithData>
+    <{{componentName}}WithData></{{componentName}}WithData>
   ))
   {{/withDataComponent}}

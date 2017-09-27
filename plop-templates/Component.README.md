@@ -44,7 +44,6 @@ import { createStore, combineReducers } from 'redux';
 
 const reducer = combineReducers({
   {{camelCase name}}:{{camelCase name}}Reducer,
-  todos
 })
 
 const store = createStore(reducer);
