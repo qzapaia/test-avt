@@ -1,10 +1,11 @@
 ## Description
-Componente para usos sarlanga.
+Componente para el precio, se puede transformar el currency por el simbolo correspondiente con **getSymbolFromCurrency**
 
 ## Basic use
 
 ```javascript
 import Price from 'avantrip-react/avantrip/Price';
+import {getSymbolFromCurrency} from 'currency-map-symbol';
 
 export default () => (
   <Price
@@ -20,11 +21,16 @@ export default () => (
 #### `currency={<Enum>}`
 Tipo de moneda. Default: "ARS"
 
+#### `currencySymbol={<Boolean>}`
+Transforma el formato de precio al simbolo correspondiente. Default: False.
+
 #### `price={<Number>}`
 Monto
 
 #### `locateStringFormat={<Number>}`
 Formato de precio. Default: "es-AR"
+
+
 
 Ver: [toLocaleString](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Number/toLocaleString)
 
