@@ -1,33 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {RadioGroupContainer} from './container.styled';
 
 import InputCheckbox from '../InputCheckbox';
 
-const RadioGroup = ({options, onChange, label, value}) => (
-  <span>
+const RadioGroup = ({options, onChange, label, value, direction}) => (
+  <div>
     {label}
-    {options.map(option => (
-          <InputCheckbox
-            key={ option.value }
-            id={ option.value.toString() }
-            type ="radio"
-            label ={ option.label }
-            checked ={ value == option.value.toString() }
-            onChange ={ e => onChange(option.value) }
-          />
-    ))}
-  </span>
+    <RadioGroupContainer direction={direction}>
+      {options.map(option => (
+            <InputCheckbox
+              key={ option.value }
+              id={ option.value.toString() }
+              type ="radio"
+              label ={ option.label }
+              checked ={ value == option.value.toString() }
+              onChange ={ e => onChange(option.value) }
+            />
+      ))}
+    </RadioGroupContainer>
+  </div>
 )
 
 RadioGroup.propTypes = {
     options: PropTypes.array,
     onChange: PropTypes.func,
     label: PropTypes.node,
-    value: PropTypes.string
+    value: PropTypes.string,
+    direction: PropTypes.string
 }
 
 RadioGroup.defaultProps = {
-  options: []
+  options: [],
+  direction: 'row'
 }
 
 export default RadioGroup;
