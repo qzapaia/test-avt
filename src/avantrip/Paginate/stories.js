@@ -6,41 +6,24 @@ import { action } from '@storybook/addon-actions';
 import { withState, compose } from 'recompose';
 
 import generalDecorator from '../../stories.decorator.js';
-import PaginateWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const enhace = withState('currentPage','selectPage', {'value': 0});
+import { random } from 'lodash';
 
-const getRandomPagesQty = () => Math.floor(Math.random() * 20);
-
-const generateRandomPages = () => {
-  const pq = getRandomPagesQty();
-
-  let pages = [];
-  for(var i=1; i<=pq; i++){
-    pages.push({
-      'value':i
-    });
-  }
-  return pages;
-}
+const enhace = withState('currentPage','selectPage', 5);
 
 const PaginateWithState =  enhace((props) => {
-  const { pages, currentPage, selectPage } = props;
+  const { pagesQty, currentPage, selectPage } = props;
 
   const pageHandler = (currentPage) => {
     action('selectPage')(currentPage);
     selectPage(currentPage);
   }
 
-  if(!currentPage){
-    selectPage(pages[0]);
-  }
-
   return (
-    <Paginate pages={pages} currentPage={currentPage} onPageSelected={pageHandler} />
+    <Paginate pagesQty={pagesQty} currentPage={currentPage} onPageSelected={pageHandler} />
   )
 
 })
@@ -51,9 +34,6 @@ storiesOf('avantrip/Paginate', module)
     theme
   }))
   .add('Default', () => (
-    <PaginateWithState pages={generateRandomPages()}></PaginateWithState>
+    <PaginateWithState pagesQty={random(20)}></PaginateWithState>
   ))
 
-  .add('With data', () => (
-    <PaginateWithData>PaginateWithData component</PaginateWithData>
-  ))

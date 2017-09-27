@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 
 /*https://github.com/AdeleD/react-paginate*/
-const Paginate = ({pages, currentPage, onPageSelected}) => {
+const Paginate = ({pagesQty, currentPage, onPageSelected}) => {
   return(
     <div>
-      {pages.length > 0 &&
+      {pagesQty > 0 &&
         <ReactPaginate 
-            previousLabel={"Anterior"}
-            nextLabel={"Siguiente"}
-            pageCount={pages.length}
-            marginPagesDisplayed={5}
-            pageRangeDisplayed={10}
-            onPageChange={onPageSelected}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"}
-            forcePage={currentPage.value}
+          previousLabel={"Anterior"}
+          nextLabel={"Siguiente"}
+          pageCount={pagesQty}
+          marginPagesDisplayed={5}
+          pageRangeDisplayed={10}
+          onPageChange={ value => onPageSelected(value.selected)}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+          forcePage={currentPage}
         />
       }
     </div>
@@ -25,13 +25,9 @@ const Paginate = ({pages, currentPage, onPageSelected}) => {
 }
 
 Paginate.propTypes = {
-  pages:PropTypes.array.isRequired,
-  currentPage:PropTypes.object.isRequired,
+  pages:PropTypes.number,
+  currentPage:PropTypes.number,
   onPageSelected:PropTypes.func.isRequired
-}
-
-Paginate.defaultProps = {
-
 }
 
 export default Paginate;

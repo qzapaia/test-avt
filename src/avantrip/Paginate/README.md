@@ -8,46 +8,20 @@ import Paginate from 'avantrip-react/avantrip/Paginate';
 
 export default () => (
   <Paginate
-    pages={collection}
-    currentPage={object}
-    onClick={function}
+    pagesQty={number}
+    currentPage={number}
+    onPageSelected={function}
   />
 )
 ```
 
-
 ## Props
 
-#### `pages={<Collection>}`
-Recibe una collection de objetos. Cada objeto debe poseer una propiedad integer "value"
+#### `pagesQty={<Number>}`
+Cantidad de páginas
 
-#### `currentPage={<Object>}`
-Objeto con una propiedad integer llamada "value". 
+#### `currentPage={<Number>}`
+Página seleccionada
 
-#### `onClick={<Function>}`
-Handler de la acción de cambio de ṕágina
-
-## Redux
-
-#### Actions
-```javascript
-import { sendData } from 'avantrip-react/avantrip/Paginate/actions';
-import store from 'somewhere';
-
-store.dispatch(sendData({ email:"email@email.com" });
-// ...
-```
-
-#### Reducer
-```javascript
-import paginateReducer from 'avantrip-react/avantrip/Paginate/reducer';
-import { createStore, combineReducers } from 'redux';
-
-const reducer = combineReducers({
-  paginate:paginateReducer,
-  todos
-})
-
-const store = createStore(reducer);
-// ...
-```
+#### `onPageSelected={<Function>}`
+Handler de la acción de selección de página
