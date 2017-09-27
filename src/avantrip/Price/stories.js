@@ -32,6 +32,6 @@ storiesOf('avantrip/Price', module)
   .add('Default', () => (
     <PriceWithState price={10000}></PriceWithState>
   ))
-  .add('Precio con tipo', () => (
-    <PriceWithState price={10000} type="l"></PriceWithState>
+  .add('Precio con tipo y simbolo', () => (
+    <PriceWithState currencySymbol={true} price={10000} type="l"></PriceWithState>
   ))
