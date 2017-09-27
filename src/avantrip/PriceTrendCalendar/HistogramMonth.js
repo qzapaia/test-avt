@@ -6,6 +6,7 @@ import moment from "moment";
 
 import Slider from "../Slider";
 import ContainerMonth from "./containerMonthHistogram.styled";
+import Price from "../Price";
 
 const getClassNameForMonthSlider = (
   isBestPriceOfYear,
@@ -49,7 +50,11 @@ const HistogramMonth = ({ data, selectedMonth, onMonthSelected }) => {
               <div>
                 {dataByMonth.isBestPriceOfYear ? "¡MEJOR PRECIO!" : "Desde"}
               </div>
-              <div>{dataByMonth.bestPrice}</div>
+              <div>
+                <Price
+                  currency= 'ARS'
+                  price={dataByMonth.bestPrice}/>
+              </div>
             </div>
           </div>
         ))}

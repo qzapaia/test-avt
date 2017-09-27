@@ -8,13 +8,13 @@ import PriceTrendCalendar from 'avantrip-react/avantrip/PriceTrendCalendar';
 
 export default () => (
   <PriceTrendCalendar
-  data={collection}
-  disclaimer={string}
-  selectedMonth={number},
-  onDaySelected={function},
-  onMonthSelected={function},
-  departureDate={date(Only formats allowed per moment) }
-  returnDate={date(Only formats allowed per moment)}
+    data={collection}
+    disclaimer={string}
+    selectedMonth={number},
+    onDaySelected={function},
+    onMonthSelected={function},
+    departureDate={date(Only formats allowed per moment) }
+    returnDate={date(Only formats allowed per moment)}
   />
 )
 ```
@@ -30,6 +30,7 @@ Debe tener los siguientes atributos:
     date: "2017-10-06"
   }
 ```
+Nota: date debe ser de formato DATE compatible con momentJS.
 
 #### `disclaimer={<String>}`
 Mensaje informativo para el gráfico.
@@ -72,16 +73,16 @@ store.dispatch(getData({
   origin: {string},
   destination: {string},
   dateTo: {date[YYYY-MM-DD]},
-  dateFrom: {date[YY-MM-DD]},
+  dateFrom: {date[YYYY-MM-DD]},
   dataLayer: true,
   adults: {number},
   children: {number},
   babies: {number},
   duration: "30",
-  minDepartureMonthYear: {date[YY-MM]},
-  maxDepartureMonthYear: {date[YY-MM]},
-  minDepartureDate: {date[YY-MM-DD]},
-  maxDepartureDate: {date[YY-MM-DD]}
+  minDepartureMonthYear: {date[YYYY-MM]},
+  maxDepartureMonthYear: {date[YYYY-MM]},
+  minDepartureDate: {date[YYYY-MM-DD]},
+  maxDepartureDate: {date[YYYY-MM-DD]}
 }));
 // ...
 ```

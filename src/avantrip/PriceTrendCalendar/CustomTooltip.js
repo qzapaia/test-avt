@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import moment from "moment";
 
+import Price from "../Price";
+
 const CustomTooltip = React.createClass({
   propTypes: {
     type: PropTypes.string,
@@ -21,7 +23,12 @@ const CustomTooltip = React.createClass({
           <p className="returnDate">{`Vuelta: ${moment(payload[0].payload.date)
             .add(payload[0].payload.travelDays, "days")
             .format("dddd DD [de] MMMM")}`}</p>
-          <p className="desc">{payload[0].payload.price}</p>
+          <p className="desc">
+            <Price
+              currency= 'ARS'
+              price={payload[0].payload.price}
+            />
+          </p>
         </div>
       );
     }
