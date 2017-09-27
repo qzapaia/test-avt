@@ -44,7 +44,7 @@ module.exports = function (plop) {
       {
           type: 'confirm',
           name: 'withData',
-          message: 'Include Apollo "withData" component?',
+          message: 'Include Apollo/Redux "withData" component?',
           when: res=>res.type != STYLED_COMPONENT_TYPE
       },
       {
