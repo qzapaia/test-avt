@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '../Icon';
+import {SliderButton, IconContainer, SliderContainer} from './container.styled';
 
 import SliderCarousel from 'react-slick';
 
 const SampleArrow = (props) => {
   const {className, style, onClick} = props
   return (
-    <button
+    <SliderButton
       className={className}
-      style={{...style, background: 'green'}}
       onClick={onClick}
-    >{props.children}</button>
+    >{props.children}
+    </SliderButton>
   );
 }
 
@@ -20,17 +22,20 @@ const settings = {
   'infinite': true,
   'slidesToShow': 1,
   'slidesToScroll': 1,
-  'speed': 100,
-  'dotsClass': 'dotsClass',
+  'speed': 500,
+  'dotsClass': 'sliderDots',
   'nextArrow': <SampleArrow> next </SampleArrow>,
-  'prevArrow': <SampleArrow > prev </SampleArrow>,
-  'className': 'className'
+  'prevArrow': <SampleArrow> prev </SampleArrow>,
+  'className': 'className',
+  'autoplaySpeed': 6000
 };
 
 const Slider = ({children}) => (
-  <SliderCarousel {...settings}>
-    {children}
-  </SliderCarousel>
+  <SliderContainer>
+    <SliderCarousel {...settings}>
+      {children}
+    </SliderCarousel>
+  </SliderContainer>
 )
 
 export default Slider;
