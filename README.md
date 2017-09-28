@@ -22,6 +22,9 @@ export default () => (
 ```
 
 # Dev Setup
+Fork and clone `https://repo.avantrip.com/cross/avantrip-react`
+
+## Install dependencies
 `yarn`
 
 ## Run
