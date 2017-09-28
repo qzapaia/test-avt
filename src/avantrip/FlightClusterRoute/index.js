@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Moment from 'moment';
 import Text from '../Text/index';
 import Icon from '../Icon/index';
-import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator} from './container.styled'
+import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator} from './styled'
 
 // TODO: Resolver locales
 

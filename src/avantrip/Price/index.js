@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Text from '../Text/index';
-import {PriceContainer, Currency} from './container.styled';
+import {PriceContainer, Currency} from './styled';
 import {getSymbolFromCurrency} from 'currency-map-symbol';
 
 const Price = (props) => {

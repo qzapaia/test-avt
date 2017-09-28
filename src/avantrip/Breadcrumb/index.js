@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ContainerBreadcrumb from './container.styled';
+import ContainerBreadcrumb from './styled';
 
 const Breadcrumb = ({children}) => {
   const numberOfChildren = children.length-1;
