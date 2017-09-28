@@ -8,6 +8,9 @@ const getBackgroundColor = flag => {
     case "currentPrice":
       return "lightblue";
       break;
+    case "title":
+      return "lightgrey";
+      break;
     default:
       return "white";
   }
@@ -22,5 +25,5 @@ export default styled.div`
   justify-content: center;
   border: 1px solid grey;
   flex-direction: column;
-  background-color: ${props => getBackgroundColor(props.backgroundColor)};
+  background-color: ${props => getBackgroundColor(props.type)};
 `;

@@ -59,6 +59,44 @@ const generateRandomFlightDates = (departureDates, arrivalDates) => (
   ), [])
 )
 
+
+const generateRandomFlightDatesSoloIda = (departureDates, arrivalDates) => (
+  departureDates.reduce( (acc, d) => (
+    acc.concat(arrivalDates.map( r => ({
+      'departureDate': d,
+      'price': random(11000, 30000)
+    })))
+  ), [])
+)
+
+const PriceTrendTableByDateWithStateSoloIda =  enhace((props) => {
+  const { pricesByDates, selectedReturningDate, selectedDepartureDate} = props;
+
+  const clickHandler = (selectedFlight) => {
+    action('click')(selectedFlight);
+  }
+
+  const today = moment();
+  const departureDate = genererateDepartureDate(today);
+  const arrivalDate = genererateArrivalDate(today);
+
+  const randomFlightDates =
+    generateRandomFlightDates(
+      getThreeDatesBeforeAndAfter(departureDate),
+      getThreeDatesBeforeAndAfter(arrivalDate)
+    )
+
+  return (
+    <PriceTrendTableByDate
+      {...props}
+      pricesByDates={randomFlightDates}
+      selectedReturningDate={arrivalDate}
+      selectedDepartureDate={departureDate}
+      onClick={clickHandler}
+    />
+  )
+})
+
 const PriceTrendTableByDateWithState =  enhace((props) => {
   const { pricesByDates, selectedReturningDate, selectedDepartureDate} = props;
 
@@ -96,7 +134,7 @@ storiesOf('avantrip/PriceTrendTableByDate', module)
     <PriceTrendTableByDateWithState />
   ))
 
-  .add('With data', () => (
+  .add('Con datos de la API', () => (
     <PriceTrendTableByDateWithData
       origin={searchData.origin}
       destination={searchData.destination}
@@ -109,7 +147,7 @@ storiesOf('avantrip/PriceTrendTableByDate', module)
     />
   ))
 
-  .add('With Custom Title', () => (
+  .add('Con un título personalizado', () => (
     <PriceTrendTableByDateWithState
       departureDateTitle={<span>Partida</span>}
       returnDateTitle={<span>Llegada</span>} />

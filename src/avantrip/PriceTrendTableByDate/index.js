@@ -1,48 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import moment from "moment";
-import { map, groupBy, minBy, reduce } from "lodash";
+import { map, minBy, reduce } from "lodash";
 
-import PriceData from "./PriceData";
+import matrixGenerator from "./selector";
 
-const addFirstColumnHeader = (returnDateTitle, flights) =>
-  map(flights, (fRow, key) => {
-    //Unshift no devuelve el mismo array
-    fRow.unshift({
-      title: returnDateTitle,
-      day: moment(key).format("dddd"),
-      date: moment(key).format("DD/MM/YYYY"),
-      rawDate: key
-    });
-    return fRow;
-  });
-
-const addFirstRowHeader = (
-  departureDateTitle,
-  flightGroupedByDepartureDate,
-  flightsWithColumnHeader
-) => {
-  const firstColumnFlightMatrix = map(
-    flightGroupedByDepartureDate,
-    (fCol, key) => ({
-      title: departureDateTitle,
-      day: moment(key).format("dddd"),
-      date: moment(key).format("DD/MM/YYYY"),
-      rawDate: key
-    })
-  );
-
-  firstColumnFlightMatrix.unshift({}); //Primer item de la matriz vacío
-
-  flightsWithColumnHeader.unshift(firstColumnFlightMatrix);
-
-  return flightsWithColumnHeader;
-};
-
-const groupFlightsByField = (flights, fieldName) => {
-  return groupBy(flights, fieldName);
-};
+import RowContainer from "./RowContainer.styled";
+import PriceDataContainer from "./PriceDataContainer.styled";
+import Price from "../Price";
+import Text from "../Text";
 
 const addMinPriceFlag = flights => {
   const flightWithMinPrice = minBy(flights, "price");
@@ -62,6 +28,24 @@ const addMinPriceFlag = flights => {
   );
 };
 
+const getTypeField = (
+  returningDate,
+  departureDate,
+  bestFlights,
+  currentFlight
+) => {
+  if (bestFlights.length > 0 && bestFlights[0].price == currentFlight.price) {
+    return "bestPrice";
+  } else if (
+    (returningDate == currentFlight.returningDate &&
+      departureDate == currentFlight.departureDate) ||
+    returningDate == currentFlight.rawDate ||
+    departureDate == currentFlight.rawDate
+  ) {
+    return "currentPrice";
+  }
+};
+
 const PriceTrendTableByDate = ({
   pricesByDates,
   selectedReturningDate,
@@ -72,25 +56,73 @@ const PriceTrendTableByDate = ({
 }) => {
   const flightDatesWithMinPrices = addMinPriceFlag(pricesByDates);
 
-  const flightDatesMatrix = addFirstRowHeader(
+  const flightDatesMatrix = matrixGenerator(
+    pricesByDates,
     departureDateTitle,
-    groupFlightsByField(pricesByDates, "departureDate"),
-    addFirstColumnHeader(
-      returnDateTitle,
-      groupFlightsByField(pricesByDates, "returningDate")
-    )
+    returnDateTitle
   );
 
   return (
     <div>
       {map(flightDatesMatrix, fRow => (
-        <PriceData
-          fRow={fRow}
-          selectedReturningDate={selectedReturningDate}
-          selectedDepartureDate={selectedDepartureDate}
-          flightDatesWithMinPrices={flightDatesWithMinPrices}
-          onClick={onClick}
-        />
+        <RowContainer>
+          {map(fRow, fColumn => (
+            <div>
+              {fColumn.title && (
+                <PriceDataContainer
+                  type={
+                    getTypeField(
+                      selectedReturningDate,
+                      selectedDepartureDate,
+                      {},
+                      fColumn
+                    ) || "title"
+                  }
+                >
+                  <div>{fColumn.title}</div>
+                  <div>{fColumn.day}</div>
+                  <div>{fColumn.date}</div>
+                </PriceDataContainer>
+              )}
+
+              {!fColumn.title && (
+                <PriceDataContainer
+                  onClick={e => onClick(fColumn)}
+                  type={getTypeField(
+                    selectedReturningDate,
+                    selectedDepartureDate,
+                    flightDatesWithMinPrices,
+                    fColumn
+                  )}
+                >
+                  {(fColumn.title || fColumn.price) && (
+                    <div>
+                      <div>
+                        {getTypeField(
+                          selectedReturningDate,
+                          selectedDepartureDate,
+                          flightDatesWithMinPrices,
+                          fColumn
+                        ) == "bestPrice" ? (
+                          <Text type="xs" color="warning">
+                            El precio más bajo
+                          </Text>
+                        ) : (
+                          <Text type="xs" color="primary">
+                            Desde
+                          </Text>
+                        )}
+                      </div>
+                      <div>
+                        <Price price={fColumn.price} />
+                      </div>
+                    </div>
+                  )}
+                </PriceDataContainer>
+              )}
+            </div>
+          ))}
+        </RowContainer>
       ))}
     </div>
   );
