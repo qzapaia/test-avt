@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Text from '../Text';
+import Link from '../Link';
 
 
 export const NavList = styled.ul`
@@ -19,16 +20,23 @@ export const Item = styled.li`
   flex: 1;
   max-width: 100px;
   z-index: 100;
-  a{
-    flex: 1 1 100%;
-  }
 `
+export const LinkContainer = Link.extend`
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const LinkNav = styled.div`
   &:hover {
     color: black;
     &::before{
       flex-basis: 100%;
       background: ${props=> props.theme.colors.darkergray}
+    }
+    svg{
+      fill: black !important;
     }
   }
   color: ${props=>props.isActive ? 'black' : props.theme.colors.primary};
@@ -45,6 +53,9 @@ export const LinkNav = styled.div`
     transition: all .2s ease-in-out 0s;
     background: ${props=>props.isActive ? props.theme.colors.darkergray : 'transparent'};
   }
+  svg{
+    fill: ${props=>props.isActive ? 'black' : props.theme.colors.primary} !important;
+  }
 `
 
 LinkNav.propTypes = {
@@ -57,4 +68,5 @@ LinkNav.defaultProps = {
 
 export const LinkText = Text.extend`
   color: currentColor;
+  margin-left: 5px;
 `

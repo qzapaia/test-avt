@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {NavList, Item, LinkNav, LinkText} from './container.styled';
+import {NavList, Item, LinkNav, LinkText, LinkContainer} from './container.styled';
 import Link from '../Link';
 import Text from '../Text';
-// import Item from './Item.styled';
-// import LinkNav from './LinkNav.styled';
+import Icon from '../Icon';
 
 const getCurrentPage = (pathname) =>{
   let currentPage;
@@ -26,65 +25,72 @@ const Nav = ({currentPathname, children}) => {
     <NavList>
       <Item>
         <LinkNav isActive={currentPage == 'vuelos'}>
-          <Link href="http://www.avantrip.com/vuelos/">
+          <LinkContainer href="http://www.avantrip.com/vuelos/">
+            <Icon id='Vuelos' height='18px' />
             <LinkText color='primary' type='s'>
               Vuelos
             </LinkText>
-          </Link>
+          </LinkContainer>
         </LinkNav>
       </Item>
       <Item>
         <LinkNav isActive={currentPage == 'hoteles'}>
-          <Link href="http://www.avantrip.com/hoteles/">
+          <LinkContainer href="http://www.avantrip.com/hoteles/">
+            {/* <Icon id='Hoteles' height='18px' /> */}
             <LinkText color='primary' type='s'>
               Hoteles
             </LinkText>
-          </Link>
+          </LinkContainer>
         </LinkNav>
       </Item>
       <Item>
         <LinkNav isActive={currentPage == 'paquetes'}>
-          <Link href="http://www.avantrip.com/paquetes/">
+          <LinkContainer href="http://www.avantrip.com/paquetes/">
+            <Icon id='Paquetes' height='14px' />
             <LinkText color='primary' type='s'>
               Paquetes
             </LinkText>
-          </Link>
+          </LinkContainer>
         </LinkNav>
       </Item>
       <Item>
         <LinkNav isActive={currentPage == 'autos'}>
-          <Link href="http://www.avantrip.com/autos/">
+          <LinkContainer href="http://www.avantrip.com/autos/">
+          <Icon id='Autos' height='18px' />
             <LinkText color='primary' type='s'>
               Autos
             </LinkText>
-          </Link>
+          </LinkContainer>
         </LinkNav>
       </Item>
       <Item>
         <LinkNav isActive={currentPage == 'pases'}>
-          <Link href="http://pasesdisney.avantrip.com/">
+          <LinkContainer href="http://pasesdisney.avantrip.com/">
+            <Icon id='PasesDisney' height='15px' />
             <LinkText color='primary' type='s'>
               Pases Disney
             </LinkText>
-          </Link>
+          </LinkContainer>
         </LinkNav>
       </Item>
       <Item>
         <LinkNav isActive={currentPage == 'cruceros'}>
-          <Link href="http://www.avantrip.com/cruceros/">
+          <LinkContainer href="http://www.avantrip.com/cruceros/">
+            <Icon id='Cruceros' height='18px' />
             <LinkText color='primary' type='s'>
               Cruceros
             </LinkText>
-          </Link>
+          </LinkContainer>
         </LinkNav>
       </Item>
       <Item>
         <LinkNav isActive={currentPage == 'seguros'}>
-          <Link href="http://www.avantrip.com/asistencia-al-viajero/">
+          <LinkContainer href="http://www.avantrip.com/asistencia-al-viajero/">
+            {/* <Icon id='Seguros' height='18px' /> */}
             <LinkText color='primary' type='s'>
               Seguros
             </LinkText>
-          </Link>
+          </LinkContainer>
         </LinkNav>
       </Item>
     </NavList>
