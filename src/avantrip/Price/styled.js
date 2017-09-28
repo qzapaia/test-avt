@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Text from '../Text';
 
-export const PriceContainer = styled.p`
+export const PriceContainer = styled.span`
 `
 
 export const Currency = Text.extend`

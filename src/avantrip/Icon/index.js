@@ -14,14 +14,15 @@ const Icon = ({
   const SVGComp = SVGS[id];
   return id ? <SVGComp
            height={get(theme,['sizes',height], height)}
+           width={get(theme,['sizes',height], height)}
            style={{fill: get(theme,['colors',color], color)}}
          />:
          <span />
 }
 
 Icon.propTypes = {
-  size:PropTypes.oneOf(['m']),
-  color:PropTypes.oneOf(['black']),
+  size:PropTypes.string,
+  color:PropTypes.string,
   id:PropTypes.oneOf(Object.keys(SVGS)).isRequired,
 }
 
