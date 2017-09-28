@@ -6,7 +6,7 @@ import { random } from "lodash";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withState, compose } from "recompose";
+import { withState } from "recompose";
 
 import generalDecorator from "../../stories.decorator.js";
 import PriceTrendTableByDateWithData from "./withData";
@@ -95,21 +95,13 @@ const randomFlightDates = generateRandomFlightDates(
   getThreeDatesBeforeAndAfter(arrivalDate)
 );
 
-const enhace = compose(
-  withState("selectedFlight", "onClickDate", {}),
-  withState("selectedDate", "onBlurDate", {})
-);
+const enhace = withState("selectedFlight", "onClickDate", {});
 
 const PriceTrendTableByDateWithState = enhace(props => {
-  const { selectedDate, onBlurDate } = props;
+  const { selectedDate } = props;
 
   const clickHandler = selectedFlight => {
     action("click")(selectedFlight);
-  };
-
-  const mouseOverHandler = selectedFlight => {
-    action("over")(selectedFlight);
-    onBlurDate(selectedFlight);
   };
 
   return (
@@ -120,7 +112,6 @@ const PriceTrendTableByDateWithState = enhace(props => {
       selectedDepartureDate={departureDate}
       selectedDate={selectedDate}
       onClick={clickHandler}
-      onMouseOver={mouseOverHandler}
     />
   );
 });

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { withState } from "recompose";
+
 import moment from "moment";
 import { map } from "lodash";
 
@@ -17,7 +19,7 @@ const getTypeField = (
   departureDate,
   currentFlight
 ) => {
-  if (currentFlight.isSelectedRange) {
+  if (currentFlight.isSelectedFlight) {
     if (currentFlight.isBestPrice) {
       return "bestPriceSelectedDate";
     } else {
@@ -143,4 +145,18 @@ PriceTrendTableByDate.defaultProps = {
   returnDateTitle: "VUELTA"
 };
 
-export default PriceTrendTableByDate;
+const enhace = withState("selectedDate", "onMouseOver", {})
+
+const PriceTrendTableByDateWithState =  enhace((props) => {
+  const { selectedDate, onMouseOver } = props;
+
+  const mouseOverHandler = selectedDate => {
+    onMouseOver(selectedDate);
+  };
+
+  return (
+    <PriceTrendTableByDate {...props}
+      onMouseOver={mouseOverHandler} />
+  )
+});
+export default PriceTrendTableByDateWithState;
