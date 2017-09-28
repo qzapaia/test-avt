@@ -13,6 +13,26 @@ Example: Load only **quiero** components.
 ## Generate or remove components
 `yarn run gen`
 
+## Setup básico
+
+```javascript
+import { ThemeProvider } from 'styled-components';
+import Text from 'avantrip-react/avantrip/Text';
+import Icon from 'avantrip-react/avantrip/Icon';
+import Colors from 'avantrip-react/avantrip/Colors';
+import theme from 'avantrip-react/avantrip/styled.theme';
+
+export default () => (
+  <ThemeProvider theme={theme}>
+    <div>
+      <Colors color="brand"></Colors>
+      <Text type="xl">Hola</Text>
+      <Icon id="Add"></Icon>
+    </div>
+  </ThemeProvider>
+)
+```
+
 ## Preview de master en int
 http://avantrip-react.api.int.devtrip.com.ar/storybook
 
