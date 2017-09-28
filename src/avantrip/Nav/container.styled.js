@@ -20,21 +20,31 @@ export const Item = styled.li`
   max-width: 100px;
   z-index: 100;
   a{
-    flex: 1;
+    flex: 1 1 100%;
   }
 `
 export const LinkNav = styled.div`
-  :hover {
-    border-top: 3px solid #666;
+  &:hover {
     color: black;
+    &::before{
+      flex-basis: 100%;
+      background: ${props=> props.theme.colors.darkergray}
+    }
   }
   color: ${props=>props.isActive ? 'black' : props.theme.colors.primary};
-  border-top: ${props=>props.isActive ? '3px solid #666' : '3px solid transparent'};
   text-decoration: none;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   line-height: 36px;
-  transition: all .2s ease-in-out 0s;
+  &::before{
+    content: "";
+    display: flex;
+    flex-basis: ${props=>props.isActive ? '100%' : '15px'};
+    height: 3px;
+    transition: all .2s ease-in-out 0s;
+    background: ${props=>props.isActive ? props.theme.colors.darkergray : 'transparent'};
+  }
 `
 
 LinkNav.propTypes = {
