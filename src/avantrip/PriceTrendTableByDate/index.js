@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { map, minBy, reduce } from "lodash";
+import moment from "moment";
+import { map } from "lodash";
 
 import matrixGenerator from "./selector";
 
@@ -10,31 +11,19 @@ import PriceDataContainer from "./PriceDataContainer.styled";
 import Price from "../Price";
 import Text from "../Text";
 
-const addMinPriceFlag = flights => {
-  const flightWithMinPrice = minBy(flights, "price");
-  return reduce(
-    flights,
-    (acc, f) => {
-      if (!acc) {
-        acc = [];
-      }
-      //Pregunto de nuevo si hay algún otro vuelo con el precio mínimo
-      if (f.price == flightWithMinPrice.price) {
-        acc.push(f);
-      }
-      return acc;
-    },
-    []
-  );
-};
-
 const getTypeField = (
+  selectedDate,
   returningDate,
   departureDate,
-  bestFlights,
   currentFlight
 ) => {
-  if (bestFlights.length > 0 && bestFlights[0].price == currentFlight.price) {
+  if (currentFlight.isSelectedRange) {
+    if (currentFlight.isBestPrice) {
+      return "bestPriceSelectedDate";
+    } else {
+      return "selectedDate";
+    }
+  } else if (currentFlight.isBestPrice) {
     return "bestPrice";
   } else if (
     (returningDate == currentFlight.returningDate &&
@@ -50,48 +39,53 @@ const PriceTrendTableByDate = ({
   pricesByDates,
   selectedReturningDate,
   selectedDepartureDate,
+  selectedDate,
   onClick,
+  onMouseOver,
   departureDateTitle,
   returnDateTitle
 }) => {
-  const flightDatesWithMinPrices = addMinPriceFlag(pricesByDates);
-
   const flightDatesMatrix = matrixGenerator(
     pricesByDates,
     departureDateTitle,
-    returnDateTitle
+    returnDateTitle,
+    selectedDate
   );
 
   return (
     <div>
-      {map(flightDatesMatrix, fRow => (
-        <RowContainer>
-          {map(fRow, fColumn => (
-            <div>
-              {fColumn.title && (
+      {map(flightDatesMatrix, (fRow, rowIndex) => (
+        <RowContainer key={"row" + rowIndex}>
+          {map(
+            fRow,
+            (fColumn, columnIndex) =>
+              (fColumn.title && (
                 <PriceDataContainer
+                  key={"title" + columnIndex + fColumn.rawDate}
                   type={
                     getTypeField(
+                      selectedDate,
                       selectedReturningDate,
                       selectedDepartureDate,
-                      {},
                       fColumn
                     ) || "title"
                   }
+                  onMouseOver={e => onMouseOver({})}
                 >
                   <div>{fColumn.title}</div>
                   <div>{fColumn.day}</div>
                   <div>{fColumn.date}</div>
                 </PriceDataContainer>
-              )}
-
-              {!fColumn.title && (
+              )) ||
+              (!fColumn.title && (
                 <PriceDataContainer
+                  key={"field" + columnIndex + fColumn.rawDate}
                   onClick={e => onClick(fColumn)}
+                  onMouseOver={e => onMouseOver(fColumn)}
                   type={getTypeField(
+                    selectedDate,
                     selectedReturningDate,
                     selectedDepartureDate,
-                    flightDatesWithMinPrices,
                     fColumn
                   )}
                 >
@@ -99,11 +93,17 @@ const PriceTrendTableByDate = ({
                     <div>
                       <div>
                         {getTypeField(
+                          selectedDate,
                           selectedReturningDate,
                           selectedDepartureDate,
-                          flightDatesWithMinPrices,
                           fColumn
-                        ) == "bestPrice" ? (
+                        ) == "bestPrice" ||
+                        getTypeField(
+                          selectedDate,
+                          selectedReturningDate,
+                          selectedDepartureDate,
+                          fColumn
+                        ) == "bestPriceSelectedDate" ? (
                           <Text type="xs" color="warning">
                             El precio más bajo
                           </Text>
@@ -119,9 +119,8 @@ const PriceTrendTableByDate = ({
                     </div>
                   )}
                 </PriceDataContainer>
-              )}
-            </div>
-          ))}
+              ))
+          )}
         </RowContainer>
       ))}
     </div>
@@ -132,7 +131,9 @@ PriceTrendTableByDate.propTypes = {
   pricesByDates: PropTypes.array,
   selectedReturningDate: PropTypes.string,
   selectedDepartureDate: PropTypes.string,
+  selectedDate: PropTypes.object,
   onClick: PropTypes.func,
+  onMouseOver: PropTypes.func,
   departureDateTitle: PropTypes.node,
   returnDateTitle: PropTypes.node
 };

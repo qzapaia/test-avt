@@ -1,4 +1,4 @@
-import { map, groupBy } from "lodash";
+import { map, groupBy, forEach, minBy } from "lodash";
 import moment from "moment";
 
 const addFirstColumnHeader = (returnDateTitle, flights) =>
@@ -8,10 +8,28 @@ const addFirstColumnHeader = (returnDateTitle, flights) =>
       title: returnDateTitle,
       day: moment(key).format("dddd"),
       date: moment(key).format("DD/MM/YYYY"),
-      rawDate: key
+      rawDate: key,
+      isTitle: true
     });
     return fRow;
   });
+
+
+  const isSelectedRange = (currentFlight, selectedDate) =>{
+    if(!selectedDate.returningDate){
+      return false;
+    }
+
+    if(currentFlight.isTitle){
+      const currentFlightDate = moment(currentFlight.rawDate).format("YYYY/MM/DD");
+      return currentFlightDate == moment(selectedDate.returningDate).format("YYYY/MM/DD") ||
+       currentFlightDate == moment(selectedDate.departureDate).format("YYYY/MM/DD");
+    }else{
+      return (currentFlight.returningDate  == selectedDate.returningDate ||
+       currentFlight.departureDate  == selectedDate.departureDate) &&
+       currentFlight.price == selectedDate.price;
+    }
+  }
 
 const addFirstRowHeader = (
   departureDateTitle,
@@ -24,7 +42,8 @@ const addFirstRowHeader = (
       title: departureDateTitle,
       day: moment(key).format("dddd"),
       date: moment(key).format("DD/MM/YYYY"),
-      rawDate: key
+      rawDate: key,
+      isTitle: true
     })
   );
 
@@ -39,17 +58,35 @@ const groupFlightsByField = (flights, fieldName) => {
   return groupBy(flights, fieldName);
 };
 
+const addSelectedDate = (columns, selectedDate, minPrice) => (
+  map (columns, column => {
+    forEach (column, flight => {
+      flight['isSelectedRange'] = isSelectedRange(flight,selectedDate);
+      flight['isBestPrice'] = flight.price == minPrice.price;
+      return flight;
+    })
+    return column;
+  })
+)
+
 export default (
   pricesByDates,
   departureDateTitle,
-  returnDateTitle
+  returnDateTitle,
+  selectedDate
 ) => {
-  return addFirstRowHeader(
-    departureDateTitle,
-    groupFlightsByField(pricesByDates, "departureDate"),
-    addFirstColumnHeader(
-      returnDateTitle,
-      groupFlightsByField(pricesByDates, "returningDate")
-    )
-  );
+  const flightWithMinPrice = minBy(pricesByDates, "price");
+
+  return addSelectedDate(
+    addFirstRowHeader(
+      departureDateTitle,
+      groupFlightsByField(pricesByDates, "departureDate"),
+      addFirstColumnHeader(
+        returnDateTitle,
+        groupFlightsByField(pricesByDates, "returningDate")
+      )
+    ),
+    selectedDate,
+    flightWithMinPrice
+  )
 }

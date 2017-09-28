@@ -1,118 +1,116 @@
-import React from 'react';
-import PriceTrendTableByDate from './';
+import React from "react";
+import PriceTrendTableByDate from "./";
 
-import moment from 'moment';
-import { random } from 'lodash';
+import moment from "moment";
+import { random } from "lodash";
 
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withState, compose } from 'recompose';
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { withState, compose } from "recompose";
 
-import generalDecorator from '../../stories.decorator.js';
-import PriceTrendTableByDateWithData from './withData';
+import generalDecorator from "../../stories.decorator.js";
+import PriceTrendTableByDateWithData from "./withData";
 
-import theme from '../styled.theme';
-import readme from './README.md';
-
-const enhace = withState('counter','increment',0);
+import theme from "../styled.theme";
+import readme from "./README.md";
 
 const searchData = {
-  origin:"BUE",
-  destination:"MIA",
-  departureDate:"2018-01-01",
+  origin: "BUE",
+  destination: "MIA",
+  departureDate: "2018-01-01",
   returningDate: "2018-01-08",
-  channel:"Desktop",
-  portal:"avantrip",
-  cabinClass:'Economy',
-  passengers:{
-    adults:1,
-    children:0,
-    infants:0
+  channel: "Desktop",
+  portal: "avantrip",
+  cabinClass: "Economy",
+  passengers: {
+    adults: 1,
+    children: 0,
+    infants: 0
   }
-}
+};
 
-const getThreeDatesBeforeAndAfter = (date) => {
+const getThreeDatesBeforeAndAfter = date => {
   const dates = [];
 
-  dates.push(moment(date).subtract(3, 'days').format());
-  dates.push(moment(date).subtract(2, 'days').format());
-  dates.push(moment(date).subtract(1, 'days').format());
+  dates.push(
+    moment(date)
+      .subtract(3, "days")
+      .format()
+  );
+  dates.push(
+    moment(date)
+      .subtract(2, "days")
+      .format()
+  );
+  dates.push(
+    moment(date)
+      .subtract(1, "days")
+      .format()
+  );
   dates.push(moment(date).format());
-  dates.push(moment(date).add(1, 'days').format());
-  dates.push(moment(date).add(2, 'days').format());
-  dates.push(moment(date).add(3, 'days').format());
+  dates.push(
+    moment(date)
+      .add(1, "days")
+      .format()
+  );
+  dates.push(
+    moment(date)
+      .add(2, "days")
+      .format()
+  );
+  dates.push(
+    moment(date)
+      .add(3, "days")
+      .format()
+  );
 
   return dates;
-}
+};
 
-const genererateDepartureDate = (today) => today.add(random(1, 15), 'days').format();
+const genererateDepartureDate = today =>
+  today.add(random(1, 15), "days").format();
 
-const genererateArrivalDate = (today) => today.add(random(20, 30), 'days').format();
+const genererateArrivalDate = today =>
+  today.add(random(20, 30), "days").format();
 
-const generateRandomFlightDates = (departureDates, arrivalDates) => (
-  departureDates.reduce( (acc, d) => (
-    acc.concat(arrivalDates.map( r => ({
-      'returningDate': r,
-      'departureDate': d,
-      'price': random(11000, 30000)
-    })))
-  ), [])
-)
+const generateRandomFlightDates = (departureDates, arrivalDates) =>
+  departureDates.reduce(
+    (acc, d) =>
+      acc.concat(
+        arrivalDates.map(r => ({
+          returningDate: r,
+          departureDate: d,
+          price: random(11000, 30000)
+        }))
+      ),
+    []
+  );
 
+const today = moment();
+const departureDate = genererateDepartureDate(today);
+const arrivalDate = genererateArrivalDate(today);
 
-const generateRandomFlightDatesSoloIda = (departureDates, arrivalDates) => (
-  departureDates.reduce( (acc, d) => (
-    acc.concat(arrivalDates.map( r => ({
-      'departureDate': d,
-      'price': random(11000, 30000)
-    })))
-  ), [])
-)
+const randomFlightDates = generateRandomFlightDates(
+  getThreeDatesBeforeAndAfter(departureDate),
+  getThreeDatesBeforeAndAfter(arrivalDate)
+);
 
-const PriceTrendTableByDateWithStateSoloIda =  enhace((props) => {
-  const { pricesByDates, selectedReturningDate, selectedDepartureDate} = props;
+const enhace = compose(
+  withState("selectedFlight", "onClickDate", {}),
+  withState("selectedDate", "onBlurDate", {})
+);
 
-  const clickHandler = (selectedFlight) => {
-    action('click')(selectedFlight);
-  }
+const PriceTrendTableByDateWithState = enhace(props => {
+  const { selectedDate, onBlurDate } = props;
 
-  const today = moment();
-  const departureDate = genererateDepartureDate(today);
-  const arrivalDate = genererateArrivalDate(today);
+  const clickHandler = selectedFlight => {
+    action("click")(selectedFlight);
+  };
 
-  const randomFlightDates =
-    generateRandomFlightDates(
-      getThreeDatesBeforeAndAfter(departureDate),
-      getThreeDatesBeforeAndAfter(arrivalDate)
-    )
-
-  return (
-    <PriceTrendTableByDate
-      {...props}
-      pricesByDates={randomFlightDates}
-      selectedReturningDate={arrivalDate}
-      selectedDepartureDate={departureDate}
-      onClick={clickHandler}
-    />
-  )
-})
-
-const PriceTrendTableByDateWithState =  enhace((props) => {
-  const { pricesByDates, selectedReturningDate, selectedDepartureDate} = props;
-
-  const clickHandler = (selectedFlight) => {
-    action('click')(selectedFlight);
-  }
-
-  const today = moment();
-  const departureDate = genererateDepartureDate(today);
-  const arrivalDate = genererateArrivalDate(today);
-
-  const randomFlightDates =
-    generateRandomFlightDates(
-      getThreeDatesBeforeAndAfter(departureDate),
-      getThreeDatesBeforeAndAfter(arrivalDate)
-    )
+  const mouseOverHandler = selectedFlight => {
+    action("over")(selectedFlight);
+    onBlurDate(selectedFlight);
+  };
 
   return (
     <PriceTrendTableByDate
@@ -120,21 +118,22 @@ const PriceTrendTableByDateWithState =  enhace((props) => {
       pricesByDates={randomFlightDates}
       selectedReturningDate={arrivalDate}
       selectedDepartureDate={departureDate}
+      selectedDate={selectedDate}
       onClick={clickHandler}
+      onMouseOver={mouseOverHandler}
     />
+  );
+});
+
+storiesOf("avantrip/PriceTrendTableByDate", module)
+  .addDecorator(
+    generalDecorator({
+      readme,
+      theme
+    })
   )
-})
-
-storiesOf('avantrip/PriceTrendTableByDate', module)
-  .addDecorator(generalDecorator({
-    readme,
-    theme
-  }))
-  .add('Default', () => (
-    <PriceTrendTableByDateWithState />
-  ))
-
-  .add('Con datos de la API', () => (
+  .add("Default", () => <PriceTrendTableByDateWithState />)
+  .add("Con datos de la API", () => (
     <PriceTrendTableByDateWithData
       origin={searchData.origin}
       destination={searchData.destination}
@@ -146,9 +145,9 @@ storiesOf('avantrip/PriceTrendTableByDate', module)
       passengersInfants={searchData.passengers.infants}
     />
   ))
-
-  .add('Con un título personalizado', () => (
+  .add("Con un título personalizado", () => (
     <PriceTrendTableByDateWithState
       departureDateTitle={<span>Partida</span>}
-      returnDateTitle={<span>Llegada</span>} />
-  ))
+      returnDateTitle={<span>Llegada</span>}
+    />
+  ));
