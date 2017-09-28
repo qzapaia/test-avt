@@ -1,7 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from './container.styled';
+import Link from './styled';
 
 const LinkContainer = ({href, icon, target, children}) => (
   <Link href={href} target={target}>

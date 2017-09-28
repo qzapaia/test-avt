@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
-import {SliderButton, IconContainer, SliderContainer} from './container.styled';
+import {SliderButton, IconContainer, SliderContainer} from './styled';
 
 import SliderCarousel from 'react-slick';
 

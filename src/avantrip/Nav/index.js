@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {NavList, Item, LinkNav, LinkText, LinkContainer} from './container.styled';
+import {NavList, Item, LinkNav, LinkText, LinkContainer} from './styled';
 import Link from '../Link';
 import Text from '../Text';
 import Icon from '../Icon';
