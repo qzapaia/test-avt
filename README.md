@@ -1,26 +1,14 @@
-## Setup
-`yarn`
+# Setup
+`yarn add avantrip-react`
 
-## Dev
-`yarn run dev [ui]`
-
-Optional parameter **ui** set the group of ui components to load.
-
-Example: Load only **quiero** components.
-
-`yarn run dev quiero`
-
-## Generate or remove components
-`yarn run gen`
-
-## Setup básico
+## Example (Next.js)
 
 ```javascript
 import { ThemeProvider } from 'styled-components';
+import theme from 'avantrip-react/avantrip/styled.theme';
 import Text from 'avantrip-react/avantrip/Text';
 import Icon from 'avantrip-react/avantrip/Icon';
 import Colors from 'avantrip-react/avantrip/Colors';
-import theme from 'avantrip-react/avantrip/styled.theme';
 
 export default () => (
   <ThemeProvider theme={theme}>
@@ -32,6 +20,21 @@ export default () => (
   </ThemeProvider>
 )
 ```
+
+# Dev Setup
+`yarn`
+
+## Run
+`yarn run dev [ui]`
+
+Optional parameter **ui** set the group of ui components to load.
+
+Example: Load only **quiero** components.
+
+`yarn run dev quiero`
+
+## Generate or remove components
+`yarn run gen`
 
 ## Preview de master en int
 http://avantrip-react.api.int.devtrip.com.ar/storybook
