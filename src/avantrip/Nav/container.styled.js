@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Text from '../Text'
+import Text from '../Text';
+
 
 export const NavList = styled.ul`
-  ${'' /* font-size: 14px; */}
   overflow: hidden;
   text-align: left;
   padding: 0;
-  ${'' /* font-family: stag_sanslight,Arial,Helvetica,sans-serif; */}
   display: flex;
-  ${'' /* margin-top: -1px; */}
   width: 100%;
   justify-content: space-between;
 `
