@@ -1,6 +1,6 @@
 {
   "name": "avantrip-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Avantrip React Components",
   "main": "/dist/index.js",
   "scripts": {
@@ -41,8 +41,7 @@
     "recompose": "^0.25.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.2",
-    "moment": "^2.18.1"
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
