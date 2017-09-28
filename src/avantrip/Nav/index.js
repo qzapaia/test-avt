@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ContainerNav from './container.styled';
+import {NavList, Item, LinkNav, LinkText} from './container.styled';
 import Link from '../Link';
-import Item from './Item.styled';
-import LinkNav from './LinkNav.styled';
+import Text from '../Text';
+// import Item from './Item.styled';
+// import LinkNav from './LinkNav.styled';
 
 const getCurrentPage = (pathname) =>{
   let currentPage;
@@ -21,57 +22,73 @@ const getCurrentPage = (pathname) =>{
 
 const Nav = ({currentPathname, children}) => {
   let currentPage = getCurrentPage(currentPathname);
-  return (<ContainerNav>
-    <Item>
-      <LinkNav isActive={currentPage == 'vuelos'}>
-        <Link href="http://www.avantrip.com/vuelos/">
-          Vuelos
-        </Link>
-      </LinkNav>
-    </Item>
-    <Item>
-      <LinkNav isActive={currentPage == 'hoteles'}>
-        <Link href="http://www.avantrip.com/hoteles/">
-          Hoteles
-        </Link>
-      </LinkNav>
-    </Item>
-    <Item>
-      <LinkNav isActive={currentPage == 'paquetes'}>
-        <Link href="http://www.avantrip.com/paquetes/">
-          Paquetes
-        </Link>
-      </LinkNav>
-    </Item>
-    <Item>
-      <LinkNav isActive={currentPage == 'autos'}>
-        <Link href="http://www.avantrip.com/autos/">
-          Autos
-        </Link>
-      </LinkNav>
-    </Item>
-    <Item>
-      <LinkNav isActive={currentPage == 'pases'}>
-        <Link href="http://pasesdisney.avantrip.com/">
-          Pases Disney
-        </Link>
-      </LinkNav>
-    </Item>
-    <Item>
-      <LinkNav isActive={currentPage == 'cruceros'}>
-        <Link href="http://www.avantrip.com/cruceros/">
-          Cruceros
-        </Link>
-      </LinkNav>
-    </Item>
-    <Item>
-      <LinkNav isActive={currentPage == 'seguros'}>
-        <Link href="http://www.avantrip.com/asistencia-al-viajero/">
-          Seguros
-        </Link>
-      </LinkNav>
-    </Item>
-  </ContainerNav>);
+  return (
+    <NavList>
+      <Item>
+        <LinkNav isActive={currentPage == 'vuelos'}>
+          <Link href="http://www.avantrip.com/vuelos/">
+            <LinkText color='primary' type='s'>
+              Vuelos
+            </LinkText>
+          </Link>
+        </LinkNav>
+      </Item>
+      <Item>
+        <LinkNav isActive={currentPage == 'hoteles'}>
+          <Link href="http://www.avantrip.com/hoteles/">
+            <LinkText color='primary' type='s'>
+              Hoteles
+            </LinkText>
+          </Link>
+        </LinkNav>
+      </Item>
+      <Item>
+        <LinkNav isActive={currentPage == 'paquetes'}>
+          <Link href="http://www.avantrip.com/paquetes/">
+            <LinkText color='primary' type='s'>
+              Paquetes
+            </LinkText>
+          </Link>
+        </LinkNav>
+      </Item>
+      <Item>
+        <LinkNav isActive={currentPage == 'autos'}>
+          <Link href="http://www.avantrip.com/autos/">
+            <LinkText color='primary' type='s'>
+              Autos
+            </LinkText>
+          </Link>
+        </LinkNav>
+      </Item>
+      <Item>
+        <LinkNav isActive={currentPage == 'pases'}>
+          <Link href="http://pasesdisney.avantrip.com/">
+            <LinkText color='primary' type='s'>
+              Pases Disney
+            </LinkText>
+          </Link>
+        </LinkNav>
+      </Item>
+      <Item>
+        <LinkNav isActive={currentPage == 'cruceros'}>
+          <Link href="http://www.avantrip.com/cruceros/">
+            <LinkText color='primary' type='s'>
+              Cruceros
+            </LinkText>
+          </Link>
+        </LinkNav>
+      </Item>
+      <Item>
+        <LinkNav isActive={currentPage == 'seguros'}>
+          <Link href="http://www.avantrip.com/asistencia-al-viajero/">
+            <LinkText color='primary' type='s'>
+              Seguros
+            </LinkText>
+          </Link>
+        </LinkNav>
+      </Item>
+    </NavList>
+  );
 }
 
 Nav.propTypes = {
