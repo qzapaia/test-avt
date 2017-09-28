@@ -8,7 +8,7 @@ import Paginate from 'avantrip-react/avantrip/Paginate';
 
 export default () => (
   <Paginate
-    pagesQty={number}
+    pageCount={number}
     currentPage={number}
     onPageSelected={function}
   />
@@ -17,7 +17,7 @@ export default () => (
 
 ## Props
 
-#### `pagesQty={<Number>}`
+#### `pageCount={<Number>}`
 Cantidad de páginas
 
 #### `currentPage={<Number>}`

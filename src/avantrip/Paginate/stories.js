@@ -3,37 +3,30 @@ import Paginate from './';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withState, compose } from 'recompose';
+import PaginateWithData from "./withData";
 
 import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
 import readme from './README.md';
 
+import reducer from "./reducer";
+
 import { random } from 'lodash';
 
-const enhace = withState('currentPage','selectPage', 5);
-
-const PaginateWithState =  enhace((props) => {
-  const { pagesQty, currentPage, selectPage } = props;
-
-  const pageHandler = (currentPage) => {
-    action('selectPage')(currentPage);
-    selectPage(currentPage);
-  }
-
-  return (
-    <Paginate pagesQty={pagesQty} currentPage={currentPage} onPageSelected={pageHandler} />
-  )
-
-})
+const randomPagesCount = random(20);
 
 storiesOf('avantrip/Paginate', module)
-  .addDecorator(generalDecorator({
-    readme,
-    theme
-  }))
+  .addDecorator(
+    generalDecorator({
+      readme,
+      theme,
+      reducer: {
+        paginate: reducer
+      }
+    })
+  )
   .add('Default', () => (
-    <PaginateWithState pagesQty={random(20)}></PaginateWithState>
+    <PaginateWithData pagesCount={randomPagesCount} ></PaginateWithData>
   ))
 
