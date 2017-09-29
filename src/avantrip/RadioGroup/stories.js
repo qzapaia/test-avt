@@ -37,10 +37,12 @@ const RadioGroupWithState =  enhace((props) => {
 
   return (
     <RadioGroup
+      {...props}
       options={initialOptions}
       onChange={onChangeHandler}
       label={props.children}
-      value={value} />
+      value={value}
+    />
   )
 })
 
@@ -53,6 +55,14 @@ storiesOf('avantrip/RadioGroup', module)
   .add('With a Label', addReadme(() => (
     <ThemeProvider theme={theme}>
       <RadioGroupWithState>
+        <label>Horarios</label>
+      </RadioGroupWithState>
+    </ThemeProvider>
+  )))
+
+  .add('With a Label and Column direction', addReadme(() => (
+    <ThemeProvider theme={theme}>
+      <RadioGroupWithState direction='column'>
         <label>Horarios</label>
       </RadioGroupWithState>
     </ThemeProvider>

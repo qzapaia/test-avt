@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ContainerList from './container.styled';
+import ContainerList from './styled';
 
 const List = ({type, children}) => (
   <ContainerList type={type}>

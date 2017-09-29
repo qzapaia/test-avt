@@ -4,7 +4,7 @@ import {{componentName}} from './'
 import { get } from 'lodash';
 {{#redux}}
 import { connect } from "react-redux";
-import { getData, setData } from './actions';
+import { getData } from './actions';
 {{/redux}}
 
 {{#redux}}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, TelContainer, TelContent, HelpContainer, HelpLink } from './container.styled';
+import { Container, TelContainer, TelContent, HelpContainer, HelpLink } from './styled';
 import Text from '../Text';
 import Icon from '../Icon/index';
 
