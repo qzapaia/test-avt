@@ -1,26 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputText from '../InputText';
 
 const preventFormatAndContinueWith = next => e => {
   e.preventDefault();
-  next({
-    purchaseId:e.target.purchaseId.value,
-    purchaseEmail:e.target.purchaseEmail.value
-  })
+  next()
 }
 
-const PurchaseAccess = ({errorMessage, onSubmit}) => (
+const PurchaseAccess = ({errorMessage, value, onSubmit, onChange}) => (
   <div>
+
     <form onSubmit={preventFormatAndContinueWith(onSubmit)}>
     	<div>¿Compraste un vuelo?</div>
 
-    	<input type="text"
-    		name="purchaseId"
-    		placeholder="Número de solicitud de compra" />
+      <InputText
+        onChange={(value) => onChange({ purchaseId:value })}
+        value={value.purchaseId}
+        placeholder="Número de solicitud de compra"
+        requiresExistingValue={false}
+      >
+      </InputText>
 
-    	<input type="email"
-    		name="purchaseEmail"
-    		placeholder="Ingresá el email de compra" />
+      <InputText
+        onChange={(value) => onChange({ purchaseEmail:value })}
+        value={value.purchaseEmail}
+        placeholder="Ingresá el email de compra"
+        requiresExistingValue={false}
+      >
+      </InputText>
+
 
     	<button>Ingresar</button>
       {errorMessage !== '' &&

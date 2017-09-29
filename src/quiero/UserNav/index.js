@@ -1,30 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {StyledUserNav, StyledPipe, StyledLinkUserNav} from './styled';
+import Text from '../Text';
+import Link from '../Link';
+
 const UserNav = ({ qvUserData, onLogout }) => (
   <div>
-      <div>{ qvUserData.userName }</div>
-        <div>
-            <a href={ `/mis-cotizaciones/${qvUserData.quoteId}` }>
-                <div>
-                    <div>{ qvUserData.messageNumber }</div>
-                </div>
-            </a>
-        </div>
+    <StyledUserNav>
+      <StyledLinkUserNav icon={<span>Icon</span>} href={ `/mis-cotizaciones/${qvUserData.quoteId}` }>
+        <Text type="s">
+        { qvUserData.messageNumber }
+        </Text>
+      </StyledLinkUserNav>
+      <Text type="m" color="primary"><strong>{ qvUserData.userName }</strong></Text>
       <div>
-          Mis puntos: <strong>{ qvUserData.points }!</strong>
-      </div>
-
-      <div>
-          <span>{ qvUserData.points }</span>
+          <Text type="s">Mis puntos:</Text>
+          <Text type="s" color="secondary"><strong>{ qvUserData.points }!</strong></Text>
       </div>
       <div>
-          <p>
-            <a href="/mis-canjes" title="Mis Canjes en Viajes y Turismo">Mis Canjes en Viajes y Turismo</a>
-            |
-            <a href="" title="Cerrar sesión" onClick={ onLogout }>Cerrar sesión</a>
-          </p>
+          <Link href="#"><Text type="s" color="brand">Mis Canjes en Viajes y Turismo</Text></Link>
+          <StyledPipe>|</StyledPipe>
+          <Link href="#"><Text type="s" color="brand">Cerrar sesión</Text></Link>
       </div>
+    </StyledUserNav>
   </div>
 )
 

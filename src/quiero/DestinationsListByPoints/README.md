@@ -4,10 +4,10 @@ Componente para usos sarlanga.
 ## Basic use
 
 ```javascript
-import DestinationPointsByDate from 'avantrip-react/quiero/DestinationPointsByDate';
+import DestinationsListByPoints from 'avantrip-react/quiero/DestinationsListByPoints';
 
 export default () => (
-  <DestinationPointsByDate
+  <DestinationsListByPoints
     onEvent={function}
     message={string}
     isActive={boolean}
