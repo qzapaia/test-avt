@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer, IconContainer} from './container.styled';
+import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer, IconContainer} from './styled';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Icon from '../Icon';
