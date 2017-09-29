@@ -7,19 +7,18 @@ import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
 
-const onCustomClick = (next, values) => {
-  next(values)
+const onCustomSearch = (next, value) => {
+  next(value)
 }
 
 const customOnChange = (next, name) => value => {
-  console.log(value);
   next({
     [name]:value
   })
 }
 
-const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) => (
-  <div>
+const FlightSearchBox = ({title, onChange, onSearch, value}) => {
+  return (<div>
     {title}
     <div>
       <RadiosGroup
@@ -39,7 +38,7 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
             label: 'varios Destinos'
           }
         ]}
-        value= {values.leg}
+        value= {value.leg}
       />
     </div>
     <div>
@@ -47,7 +46,7 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
         onChange={customOnChange(onChange, 'originCity')}
         placeholder= 'Ingresá el nombre de la ciudad de origen' 
         label='Desde'
-        value={values.originCity}
+        value={value.originCity}
         requiresExistingValue='true'
       >
         <option value="bue">Buenos Aires - Argentina</option>
@@ -64,7 +63,7 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
         onChange={customOnChange(onChange, 'destinationCity')}
         placeholder= 'Ingresá el nombre de la ciudad de destino' 
         label='Hacia'
-        value={values.destinationCity}
+        value={value.destinationCity}
         requiresExistingValue='true'
       >
         <option value="bue">Buenos Aires - Argentina</option>
@@ -82,7 +81,7 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
       <InputDate
         range={true}
         onChange={customOnChange(onChange, 'dates')}
-        dates={values.dates}
+        dates={value.dates}
       />
     </div>
 
@@ -92,7 +91,7 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
         onChange={customOnChange(onChange, "flexibleDate")}
         type='checkbox'
         label='Mis fechas son flexibles'
-        checked={(values.flexibleDate)? true: false}
+        checked={value.flexibleDate? true: false}
       />
     </div>
     <div>
@@ -101,21 +100,21 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
           {
             label:'Adultos',
             id:'adults',
-            value: values.amountTraveller.adults,
+            value: value.amountTraveller.adults,
             min: '1',
             max: '9'
           },
           {
             label:'Niños',
             id:'children',
-            value: (values.amountTraveller.children)? values.amountTraveller.children : 0,
+            value: value.amountTraveller.children || 0,
             min: '0',
             max: '9'
           },
           {
             label:'Bebés',
-            id:'babies',
-            value: (values.amountTraveller.babies)? values.amountTraveller.babies : 0,
+            id:'infant',
+            value: value.amountTraveller.infant || 0,
             min: '0',
             max: '9'
           }
@@ -138,22 +137,28 @@ const FlightSearchBox = ({title, onChange, onChangeKeyValue,onSearch, values}) =
             label: 'Business'
           }
         ]}
-        value= {values.class}
+        value= {value.class}
       />
     </div>
     <div>
-      <Button onSearch={() => onCustomClick(onSearch, values)}>Buscar</Button>
+      <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
     
     </div>
-  </div>
-)
+  </div>)
+}
 
 FlightSearchBox.propTypes = {
   text: PropTypes.node.isRequired
 }
 
 FlightSearchBox.defaultProps = {
-  text:'no value yet :('
+  value:{
+    leg: 1,
+    amountTraveller:{
+      adults: 1
+    },
+    class: 1
+  }
 }
 
 export default FlightSearchBox;

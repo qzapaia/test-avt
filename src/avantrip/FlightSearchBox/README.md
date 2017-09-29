@@ -28,7 +28,7 @@ Event handler that receive as a parameter the key and value from the selected it
 #### `onClick={<Function>}`
 Event trigger when the button is clicked and send the values of the search
 
-#### `values={<Collection>}`
+#### `value={<Collection>}`
 Values selected. They must respect the format: 
 ```javascript
   [{
