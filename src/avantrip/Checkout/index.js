@@ -1,26 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
+import GlobalCheckout from '../../global/Checkout';
+import { ThemeProvider } from 'styled-components';
 
-const Checkout = ({values}) => {
-  if(values.flights){
-    return (
-      <div>
-          <div>Llego el respuesta del validate..!!!</div>
-      </div> 
-    )
-  }
+const componentTheme = {}
 
-  if(!values.flights){
-    return (
-      <div>
-           loading...<br/>
-            .,__,.........,__,.....╭¬¬¬¬¬━━╮<br/>
-            '•.,¸,.•*¯'•.,¸,.•*|:¬¬¬¬¬¬¬¬::::|:^----------^<br/>
-            '•.,¸,.•*¯'•.,¸,.•*|:¬¬¬¬¬¬¬¬::::||｡◕‿‿◕｡|<br/>
-            -........--""-.......--"╰O━━━━O╯╰----O-O---╯
-      </div> 
-    )
-  }
-}
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalCheckout {...props} />
+  </ThemeProvider>
+)
 
-export default Checkout;
+  

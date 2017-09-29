@@ -1,10 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
-import InputCheckbox from '../InputCheckbox';
+import GlobalInputRadio from '../../global/InputRadio';
+import { ThemeProvider } from 'styled-components';
 
-const InputRadio = (props) => <InputCheckbox {...props} type="radio" />
+const componentTheme = {}
 
-InputRadio.propTypes = InputCheckbox.propTypes;
-InputRadio.defaultProps = InputCheckbox.defaultProps;
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalInputRadio {...props} />
+  </ThemeProvider>
+)
 
-export default InputRadio;
+  

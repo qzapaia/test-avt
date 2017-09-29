@@ -1,46 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
-import InputNumber from '../InputNumber';
+import GlobalNumberGroup from '../../global/NumberGroup';
+import { ThemeProvider } from 'styled-components';
 
-const handleChange = (onChange, onChangeKeyValue) => option => value => {
-  onChange({
-    id:option.id,
-    value:value
-  });
+const componentTheme = {}
 
-  onChangeKeyValue({ [option.id]:value });
-};
-
-const NumberGroup = ({
-  options,
-  onChange,
-  onChangeKeyValue,
-  label,
-}) => (
-
-  <span>
-    {label && <h4>{label}</h4>}
-    {options.map(option => (
-      <InputNumber
-        {...option}
-        onChange ={handleChange(onChange,onChangeKeyValue)(option)}
-      />
-    ))}
-  </span>
-
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalNumberGroup {...props} />
+  </ThemeProvider>
 )
 
-NumberGroup.propTypes = {
-  options: PropTypes.array.isRequired,
-  label: PropTypes.string,
-  onChange: PropTypes.func,
-  onChangeKeyValue: PropTypes.func,
-}
-
-NumberGroup.defaultProps = {
-  options:[],
-  onChange: ()=>{},
-  onChangeKeyValue: ()=>{},
-}
-
-export default NumberGroup;
+  

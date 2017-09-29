@@ -1,20 +1,14 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
-const StyledLogo = styled.a`
-  background: url(https://cdn.avantrip.com/static/images/logo.png) center no-repeat;
-  background-size: cover;
-  display: inline-block;
-  width: 66px;
-  height: 66px;
-`
+import React from 'react';
+import GlobalLogo from '../../global/Logo';
+import { ThemeProvider } from 'styled-components';
 
-StyledLogo.propTypes = {
-  size: PropTypes.oneOf(['s'])
-}
+const componentTheme = {}
 
-StyledLogo.defaultProps = {
-  size:'s'
-}
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalLogo {...props} />
+  </ThemeProvider>
+)
 
-export default StyledLogo;
+  

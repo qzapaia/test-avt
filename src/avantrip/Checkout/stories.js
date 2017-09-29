@@ -10,7 +10,7 @@ import CheckoutWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
-import reducer from "./reducer";
+import reducer from "../../global/Checkout/reducer";
 
 const response = {
   flights:[
@@ -33,9 +33,9 @@ storiesOf('avantrip/Checkout', module)
     },
   }))
   .add('Default', () => (
-    
+
     <Checkout values={response}/>
-    
+
   ))
   .add('With data', () => (
     <CheckoutWithData params={json}></CheckoutWithData>

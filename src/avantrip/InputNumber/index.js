@@ -1,33 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 
-const InputNumber = ({
-											value,
-											label,
-											step,
-											min,
-											max,
-											onChange}) => (
-	<label>
-		<span>{label}</span>
-		<input
-			type="number"
-			min={min}
-			max={max}
-			step={step}
-			value={value}
-			onChange={e => onChange(parseFloat(e.target.value))}
-		/>
-	</label>
+import React from 'react';
+import GlobalInputNumber from '../../global/InputNumber';
+import { ThemeProvider } from 'styled-components';
+
+const componentTheme = {}
+
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalInputNumber {...props} />
+  </ThemeProvider>
 )
 
-InputNumber.propTypes = {
-  value: PropTypes.string,
-  label: PropTypes.string,
-  step: PropTypes.string,
-  min: PropTypes.string,
-  max: PropTypes.string,
-  onChange: PropTypes.func
-}
-
-export default InputNumber;
+  

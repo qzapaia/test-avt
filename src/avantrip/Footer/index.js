@@ -1,9 +1,14 @@
-import React from 'react';
 
-const Footer = () => (
- <footer>
-   <h1>Esto es un pie(por favor insertar zapatilla)</h1>
-</footer>
+import React from 'react';
+import GlobalFooter from '../../global/Footer';
+import { ThemeProvider } from 'styled-components';
+
+const componentTheme = {}
+
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalFooter {...props} />
+  </ThemeProvider>
 )
 
-export default Footer;
+  

@@ -1,49 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
+import GlobalCheckboxGroup from '../../global/CheckboxGroup';
+import { ThemeProvider } from 'styled-components';
 
-import InputCheckbox from '../InputCheckbox';
+const componentTheme = {}
 
-const CheckboxGroup = ({allOptions, options, onChange, onClear, label, values}) => {
-  return <span>
-    {label}
-    {allOptions &&
-      <InputCheckbox
-        key="allOption"
-        id="all"
-        type ="checkbox"
-        label ={ allOptions.label }
-        checked ={ values.length == 0 }
-        onChange ={ onClear }
-      />
-    }
-    {options.map(option => (
-      <InputCheckbox
-        key={ option.value }
-        id={ option.value.toString() }
-        type ="checkbox"
-        label ={ option.label }
-        checked ={ values.includes(option.value) }
-        onChange ={ checked => onChange({
-            'value': option.value,
-            'checked': checked
-          })}
-      />
-    ))}
-  </span>
-}
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalCheckboxGroup {...props} />
+  </ThemeProvider>
+)
 
-CheckboxGroup.propTypes = {
-    allOptions: PropTypes.object,
-    options: PropTypes.array.isRequired,
-    onChange: PropTypes.func,
-    onChangeAllOptions: PropTypes.func,
-    label: PropTypes.node,
-    values: PropTypes.array
-}
-
-CheckboxGroup.defaultProps = {
-  options: [],
-  values: []
-}
-
-export default CheckboxGroup;
+  

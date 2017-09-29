@@ -8,7 +8,7 @@ import { storiesOf } from "@storybook/react";
 import theme from "../styled.theme";
 import readme from "./README.md";
 
-import reducer from "./reducer";
+import reducer from "../../global/PriceTrendCalendar/reducer";
 
 import generalDecorator from "../../stories.decorator.js";
 

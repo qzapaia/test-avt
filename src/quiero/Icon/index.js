@@ -1,1 +1,1 @@
-export default from '../../avantrip/Icon'
+export default from '../../global/Icon'

@@ -1,6 +1,6 @@
 import React from 'react';
 import ExpansionPanel from './';
-import {ExpandButton, ExtendedInformation} from './styled'
+import {ExpandButton, ExtendedInformation} from '../../global/ExpansionPanel/styled'
 import Text from '../Text/index'
 
 import { storiesOf } from '@storybook/react';
