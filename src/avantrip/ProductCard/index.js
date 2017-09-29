@@ -1,6 +1,9 @@
 import React from 'react';
+import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer, IconContainer} from './container.styled';
 import PropTypes from 'prop-types';
-import Container from './styled';
+import Text from '../Text';
+import Icon from '../Icon';
+import Price from '../Price';
 
 const ProductCard = ({
                       href,
@@ -13,15 +16,37 @@ const ProductCard = ({
                       title,
                     }) => (
   <Container href={href} target={target} listMode={listMode}>
-    <div>
-      <img src={media} alt=""/>
-    </div>
-    <div>
-      <h1>{title}</h1>
-      <h2>{subtitle}</h2>
-      <p>{supportingInfo}</p>
-      <p>${price}</p>
-    </div>
+
+    <MainPictureContainer listMode={listMode}>
+      <img listMode={listMode} src={media} alt=""/>
+    </MainPictureContainer>
+    <MainInfoContainer listMode={listMode}>
+
+      <LeftContainer>
+        <Text color='brand' tag='h1' type='l'>
+          {title}
+        </Text>
+        <SubtitleContainer>
+          <Text color='darkergray' tag='p' type='xs'>
+            {subtitle}
+          </Text>
+        </SubtitleContainer>
+      </LeftContainer>
+      <RightContainer>
+        <PriceContainer>
+          <Text color='brand' tag='p' type='xs'>
+            {supportingInfo}
+          </Text>
+          <Price color='brand' tag='p' type='xl' price={price} />
+        </PriceContainer>
+        <IconContainer>
+          <Icon height='40px' id='Back' color='brand' />
+        </IconContainer>
+      </RightContainer>
+
+    </MainInfoContainer>
+
+
   </Container>
 )
 /*
