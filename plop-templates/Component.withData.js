@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
 import {{componentName}} from './'
-import _ from 'lodash';
+import { get } from 'lodash';
+{{#redux}}
+import { connect } from "react-redux";
+import { getData } from './actions';
+{{/redux}}
 
+{{#redux}}
+const mapStateToProps = state => ({
+  repos: state.Redux.repos
+});
+
+const mapDispatchToProps = {
+  getRepos:getData
+};
+{{/redux}}
 
 // GrahQL Query
 export const query = gql`{
@@ -29,9 +42,15 @@ export const query = gql`{
   }
 }`
 
-const SelectorComponent = (props) => {
-  console.log('data from graphql', props.data);
-  return <{{componentName}} {...props} />;
-}
 
-export default graphql(query)(SelectorComponent);
+const WithApolloComponent = graphql(query,{
+  props: ({ ownProps, data: { hoteles } }) => ({
+    hoteles: get(hoteles,'search.hoteles',[]).slice(0,10),
+  }),
+})({{componentName}});
+
+{{#redux}}
+const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponent);
+{{/redux}}
+
+export default {{#redux}}WithDataComponent{{/redux}}{{^redux}}WithApolloComponent{{/redux}};

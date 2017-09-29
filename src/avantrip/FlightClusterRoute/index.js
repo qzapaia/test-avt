@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Moment from 'moment';
 import Text from '../Text/index';
 import Icon from '../Icon/index';
-import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator} from './container.styled'
+import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator, IconContainer} from './styled'
 
 // TODO: Resolver locales
 
@@ -19,10 +19,12 @@ const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) =>
     <Container>
       <DateContainer>
       	<DateTitle>
-          <Icon
-            id='Back'
-            height='16px'
-          />
+          <IconContainer>
+            <Icon
+              id='Back'
+              height='16px'
+            />
+          </IconContainer>
           <Text type='s'>
             {title}
           </Text>

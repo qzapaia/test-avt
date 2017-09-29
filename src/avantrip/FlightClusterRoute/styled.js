@@ -21,14 +21,13 @@ export const DateTitle = styled.h4`
   display: flex;
   align-items: center;
   line-height: 18px;
-  ${Text}{
-    font-weight: bold;
-  }
-  ${Icon}{
-    width: 14px;
-    transform: rotate(-180deg);
-  }
 `
+export const IconContainer = styled.div`
+  transform: rotate(-180deg);
+  height: 14px;
+`
+
+
 export const DateContent = styled.span`
   display: inline-block;
   margin-bottom: 4px;

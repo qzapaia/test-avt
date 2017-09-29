@@ -1,36 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '../Icon';
+import {SliderButton, IconContainer, SliderContainer} from './styled';
+
+import { assign, pick } from "lodash";
 
 import SliderCarousel from 'react-slick';
 
-const SampleArrow = (props) => {
+const SampleArrow = props => {
   const {className, style, onClick} = props
   return (
-    <button
+    <SliderButton
       className={className}
-      style={{...style, background: 'green'}}
-      onClick={onClick}
-    >{props.children}</button>
+      onClick={onClick}>
+      {props.children}
+    </SliderButton>
   );
 }
 
-const settings = {
+const initialSettings = {
   'autoplay': true,
   'dots': true,
   'infinite': true,
   'slidesToShow': 1,
   'slidesToScroll': 1,
-  'speed': 100,
-  'dotsClass': 'dotsClass',
+  'speed': 500,
+  'dotsClass': 'sliderDots',
   'nextArrow': <SampleArrow> next </SampleArrow>,
-  'prevArrow': <SampleArrow > prev </SampleArrow>,
-  'className': 'className'
+  'prevArrow': <SampleArrow> prev </SampleArrow>,
+  'className': 'className',
+  'autoplaySpeed': 6000
 };
 
-const Slider = ({children}) => (
-  <SliderCarousel {...settings}>
-    {children}
-  </SliderCarousel>
-)
+const Slider = ({ settings, children }) => {
+  settings = pick(settings, [
+    "autoplay",
+    "dots",
+    "infinite",
+    "slidesToShow",
+    "slidesToScroll",
+    "speed",
+    "dotsClass",
+    "nextArrow",
+    "prevArrow",
+    "className"
+  ]);
+
+  return (
+    <SliderContainer>
+      <SliderCarousel {...assign(initialSettings, settings)}>
+        {children}
+      </SliderCarousel>
+    </SliderContainer>
+  );
+}
 
 export default Slider;

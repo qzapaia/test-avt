@@ -1,7 +1,33 @@
-## Setup
+# Setup
+`yarn add avantrip-react`
+
+## Example (Next.js)
+
+```javascript
+import { ThemeProvider } from 'styled-components';
+import theme from 'avantrip-react/avantrip/styled.theme';
+import Text from 'avantrip-react/avantrip/Text';
+import Icon from 'avantrip-react/avantrip/Icon';
+import Colors from 'avantrip-react/avantrip/Colors';
+
+export default () => (
+  <ThemeProvider theme={theme}>
+    <div>
+      <Colors color="brand"></Colors>
+      <Text type="xl">Hola</Text>
+      <Icon id="Add"></Icon>
+    </div>
+  </ThemeProvider>
+)
+```
+
+# Dev Setup
+Fork and clone `https://repo.avantrip.com/cross/avantrip-react`
+
+## Install dependencies
 `yarn`
 
-## Dev
+## Run
 `yarn run dev [ui]`
 
 Optional parameter **ui** set the group of ui components to load.
@@ -30,3 +56,17 @@ https://github.com/acdlite/recompose
 ```javascript
 import { get, map } from 'lodash';
 ```
+
+## Datos útiles
+
+#### GraphQL integración
+http://product.api.int.devtrip.com.ar/graphiql
+
+#### GraphQL stage
+http://product.api.stage.devtrip.com.ar/graphiql
+
+
+## Schema
+Nombres para usar en props, collections, variables, etc ...
+
+[Ver](/SCHEMA.md)

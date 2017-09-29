@@ -19,7 +19,7 @@ export default () => (
 ## Props
 
 #### `height={<String>}`
-Alto del ícono. Puede recibir uno de los tamaños establecido en  [Text](/?selectedKind=avantrip%2Fstyled%40Text). (ej: **xl**)
+Alto y Ancho del ícono. Puede recibir uno de los tamaños establecido en  [Text](/?selectedKind=avantrip%2Fstyled%40Text). (ej: **xl**)
 O una medida absoluta (ej: **26px**).
 
 #### `color={<String>}`

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
-import Container from './container.styled';
+import Container from './styled';
 import Logo from '../Logo';
 import Text from '../Text';
 import Nav from '../Nav';

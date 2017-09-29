@@ -1,52 +1,74 @@
-import React from 'react';
-import PriceTrendCalendar from './';
-import moment from 'moment';
+import React from "react";
 
-import withReadme from 'storybook-readme/with-readme';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import PriceTrendCalendarWithData from "./withData";
 
-import { withState, compose } from 'recompose';
+import withReadme from "storybook-readme/with-readme";
+import { storiesOf } from "@storybook/react";
 
-import { ThemeProvider } from 'styled-components';
+import theme from "../styled.theme";
+import readme from "./README.md";
 
-import theme from '../styled.theme';
-import readme from './README.md';
+import reducer from "./reducer";
+
+import generalDecorator from "../../stories.decorator.js";
+
+import moment from "moment";
 
 const addReadme = comp => withReadme(readme, comp);
 
-// el enhace concatena hocs de recompose,
-// en este caso le inyecta un estado falso
-// ver más en https://github.com/acdlite/recompose
-
-const data = [];
-
-let date = moment();
-for (var i = 0; i < 31; i++) {
-  date = date.add(1, 'days');
-  data.push({
-    name: date.format("DD MMM"),
-    price: Math.random() * (20000 - 1000) + 1000
-  });
+const mockData = {
+  dateTo: moment().add(7, "day").add(1, "month").format("YYYY-MM-DD"),
+  dateFrom: moment().add(1, "month").format("YYYY-MM-DD"),
+  minDepartureMonthYear: moment().format("YYYY-MM"),
+  maxDepartureMonthYear: moment().add(1, "year").format("YYYY-MM"),
+  minDepartureDate: moment().add(2, "day").format("YYYY-MM-DD"),
+  maxDepartureDate: moment().add(1, "year").format("YYYY-MM-DD")
 }
 
-const enhace = withState('counter','increment',data);
-const PriceTrendCalendarWithState =  enhace((props) => {
-  // enchufar tu component con el estado simulado
-  const { counter, increment } = props;
-
-  return (
-    <PriceTrendCalendar {...props} />
+storiesOf("avantrip/PriceTrendCalendar", module)
+  .addDecorator(
+    generalDecorator({
+      readme,
+      theme,
+      reducer: {
+        histogram: reducer
+      }
+    })
   )
-})
-
-const clickHandler = (value) => {
-  action('click')(value);
-}
-
-storiesOf('avantrip/PriceTrendCalendar', module)
-  .add('Default', addReadme(() => (
-    <ThemeProvider theme={theme}>
-      <PriceTrendCalendarWithState data={data} onClick={clickHandler}/>
-    </ThemeProvider>
-  )))
+  .add(
+    "Default",
+    addReadme(() => (
+      <PriceTrendCalendarWithData
+        origin="BUE"
+        destination="MIA"
+        dateTo={mockData.dateTo}
+        dateFrom={mockData.dateFrom}
+        adults="1"
+        children="0"
+        babies="0"
+        minDepartureMonthYear={mockData.minDepartureMonthYear}
+        maxDepartureMonthYear={mockData.maxDepartureMonthYear}
+        minDepartureDate={mockData.minDepartureDate}
+        maxDepartureDate={mockData.maxDepartureDate}
+      />
+    ))
+  )
+  .add(
+    "Con un mensaje de renuncia.",
+    addReadme(() => (
+      <PriceTrendCalendarWithData
+        origin="BUE"
+        destination="MIA"
+        dateTo={mockData.dateTo}
+        dateFrom={mockData.dateFrom}
+        adults="1"
+        children="0"
+        babies="0"
+        minDepartureMonthYear={mockData.minDepartureMonthYear}
+        maxDepartureMonthYear={mockData.maxDepartureMonthYear}
+        minDepartureDate={mockData.minDepartureDate}
+        maxDepartureDate={mockData.maxDepartureDate}
+        disclaimer={`Tarifa por adulto para una estadía de 8 días. Los precios visualizados son los mejores encontrados por los usuarios en los últimos días y podrían no estar actualizados`}
+      />
+    ))
+  )
