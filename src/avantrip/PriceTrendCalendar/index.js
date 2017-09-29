@@ -70,30 +70,26 @@ const PriceTrendCalendar = ({
 
   return (
     <Container>
-      <div>
-        {dataByMonth && (
-          <Chart
-            data={dataByMonth.flights}
-            value="price"
-            label="label"
-            onClick={onDaySelected}
-            CustomTooltip={CustomTooltip}
-            renderBar={args => {
-              if (args.price == bestPrice) {
-                args.fill = "green";
-              }
-              return args;
-            }}
-          />
-        )}
-      </div>
-      <div>
-        <HistogramMonth
-          data={data}
-          selectedMonth={selectedMonth}
-          onMonthSelected={onMonthSelected}
+      {dataByMonth && (
+        <Chart
+          data={dataByMonth.flights}
+          value="price"
+          label="label"
+          onClick={onDaySelected}
+          CustomTooltip={CustomTooltip}
+          renderBar={args => {
+            if (args.price == bestPrice) {
+              args.fill = "green";
+            }
+            return args;
+          }}
         />
-      </div>
+      )}
+      <HistogramMonth
+        data={data}
+        selectedMonth={selectedMonth}
+        onMonthSelected={onMonthSelected}
+      />
       <div>{disclaimer && <div>{disclaimer}</div>}</div>
     </Container>
   );

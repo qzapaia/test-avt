@@ -36,6 +36,7 @@ const HistogramMonth = ({ data, selectedMonth, onMonthSelected }) => {
       <Slider settings={sliderSettings}>
         {map(sortBy(data, ["year", "month"]), dataByMonth => (
           <div
+            key={"month" + dataByMonth.month + dataByMonth.bestPrice}
             className={getClassNameForMonthSlider(
               dataByMonth.isBestPriceOfYear,
               dataByMonth.month,
@@ -43,7 +44,6 @@ const HistogramMonth = ({ data, selectedMonth, onMonthSelected }) => {
             )}
           >
             <div
-              key={"month" + dataByMonth.month}
               onClick={e => onMonthSelected(dataByMonth.month)}
             >
               <div>{moment.months(Number(dataByMonth.month))}</div>

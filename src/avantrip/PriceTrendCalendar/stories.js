@@ -52,4 +52,23 @@ storiesOf("avantrip/PriceTrendCalendar", module)
         maxDepartureDate={mockData.maxDepartureDate}
       />
     ))
-  );
+  )
+  .add(
+    "Con un mensaje de renuncia.",
+    addReadme(() => (
+      <PriceTrendCalendarWithData
+        origin="BUE"
+        destination="MIA"
+        dateTo={mockData.dateTo}
+        dateFrom={mockData.dateFrom}
+        adults="1"
+        children="0"
+        babies="0"
+        minDepartureMonthYear={mockData.minDepartureMonthYear}
+        maxDepartureMonthYear={mockData.maxDepartureMonthYear}
+        minDepartureDate={mockData.minDepartureDate}
+        maxDepartureDate={mockData.maxDepartureDate}
+        disclaimer={`Tarifa por adulto para una estadía de 8 días. Los precios visualizados son los mejores encontrados por los usuarios en los últimos días y podrían no estar actualizados`}
+      />
+    ))
+  )

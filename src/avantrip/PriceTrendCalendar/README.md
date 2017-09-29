@@ -63,6 +63,28 @@ Fecha de retorno.
 Valor númerico del mes que se desea previsualizar. En caso de
 no especificarse, se usará el mes actual.
 
+### Basic use with data
+
+```javascript
+import PriceTrendCalendarWithData from 'avantrip-react/avantrip/PriceTrendCalendarWithData';
+
+export default () => (
+  <PriceTrendCalendarWithData
+    origin="BUE"
+    destination="MIA"
+    dateFrom=2017-09-01
+    adults="1"
+    children="0"
+    babies="0"
+    minDepartureMonthYear="2017-09"
+    maxDepartureMonthYear="2018-09"
+    minDepartureDate="2017-09-17"
+    maxDepartureDate="2018-09-17"
+    disclaimer={`Tarifa por adulto para una estadía de 8 días. Los precios visualizados son los mejores encontrados por los usuarios en los últimos días y podrían no estar actualizados`}
+  />
+)
+```
+
 ## Redux
 
 #### Actions

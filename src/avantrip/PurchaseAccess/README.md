@@ -8,8 +8,10 @@ import PurchaseAccess from 'avantrip-react/avantrip/PurchaseAccess';
 
 export default () => (
   <PurchaseAccess
-  	errorMessage={string}
-  	onSubmit={function}
+    errorMessage={string}
+    onSubmit={function}
+    onChange={function}
+    value={object}
   />
 )
 ```
@@ -19,5 +21,18 @@ export default () => (
 #### `onSubmit={<Function>}`
 Envío del form
 
+#### `onChange={<Function>}`
+Guarda los cambios del form
+
 #### `errorMessage={<String>}`
 Mensaje de error génerico para un submit fallido
+
+#### `value={<Object>}`
+Valor del componente tiene la forma de:
+```javascript
+{
+  purchaseId: String,
+  purchaseEmail: String
+}
+```
+

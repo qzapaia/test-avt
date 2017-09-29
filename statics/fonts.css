@@ -93,3 +93,8 @@ body{
   font-family: 'Stag-Sans';
   font-weight: 300;
 }
+
+a{
+  color: currentColor;
+  font-weight: inherit;
+}

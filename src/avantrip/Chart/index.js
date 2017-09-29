@@ -27,7 +27,7 @@ const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar 
         { CustomTooltip &&
           <Tooltip content={ <CustomTooltip /> } />
         }
-        { CustomTooltip ||
+        { !CustomTooltip &&
           <Tooltip />
         }
         <Bar

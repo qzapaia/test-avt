@@ -48,3 +48,26 @@ Título de cada fila
 
 #### `returnDateTitle={<node>}`
 Título de cada columna
+
+## Basic use with data
+
+```javascript
+import PriceTrendTableByDateWithData from 'avantrip-react/avantrip/PriceTrendTableByDateWithData';
+
+export default () => (
+  <PriceTrendTableByDateWithData
+    origin="BUE"
+    destination="MIA"
+    departureDate="2018-01-01"
+    returningDate="2018-01-08"
+    channel: "Desktop",
+    portal: "avantrip",
+    cabinClass="Economy"
+    passengersAdults=1
+    passengersChildren=0
+    passengersInfants=0
+  />
+)
+```
+Los valores por defecto de `channel` y `portal` son 
+`Desktop` y `portal` respectivamente.
