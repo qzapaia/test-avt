@@ -1,11 +1,41 @@
 export default {
   colors:{
-    brand:'#FF6600',
-    primary:'#0192d5',
-    secondary:'#0192d5',
+    brand:'#ff6600',
+    primary:'#333',
+    secondary:'#c11127',
     alert:'#F90',
     success:'#3f9f10',
     warning:'#F90',
     danger:'#F90',
+  },
+  texts:{
+    hxxl:{
+      size:'40px',
+      weight:'300'
+    },
+    xxl:{
+      size:'36px',
+      weight:'300'
+    },
+    xl:{
+      size:'28px',
+      weight:'900'
+    },
+    l:{
+      size:'22px',
+      weight:'500'
+    },
+    m:{
+      size:'18px',
+      weight:'300'
+    },
+    s:{
+      size:'13px',
+      weight:'300'
+    },
+    xs:{
+      size:'12px',
+      weight:'300'
+    }
   }
 }
