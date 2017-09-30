@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import * as SVGS from './imports.js';
 import {withTheme} from 'styled-components'
 import {get} from 'lodash';
-
+console.log(SVGS);
 const Icon = ({
   size,
   height,
+  width,
   color,
   id,
   theme
 }) => {
   const SVGComp = SVGS[id];
   return id ? <SVGComp
-           height={get(theme,['sizes',height], height)}
-           width={get(theme,['sizes',height], height)}
+           height={height || get(theme,['texts',size,'size'])}
+           width={width || get(theme,['texts',size,'size'])}
            style={{fill: get(theme,['colors',color], color)}}
          />:
          <span />
@@ -28,7 +29,7 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   size:'m',
-  color:'black',
+  color:'black'
 }
 
 export default withTheme(Icon);
