@@ -11,7 +11,6 @@ import HomeWithData from './withData';
 import theme from '../styled.theme';
 import readme from './README.md';
 import reducer from './reducer';
-import FlightSearchBoxWithReducer from "../FlightSearchBox/reducer";
 
 const enhace = withState('counter','increment',0);
 const HomeWithState =  enhace((props) => {
@@ -31,10 +30,7 @@ storiesOf('avantrip/Home', module)
   .addDecorator(generalDecorator({
     readme,
     theme,
-    reducer:{
-      Home: reducer,
-      search:FlightSearchBoxWithReducer
-    },
+    reducer
   }))
   .add('Default', () => (
     <HomeWithState></HomeWithState>

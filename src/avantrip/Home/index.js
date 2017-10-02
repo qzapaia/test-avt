@@ -12,37 +12,14 @@ const Home = ({
   hoteles,
 }) => (
   <div onClick={onClick}>
-    La Home
-    {/* <Container>
-      <Slider Home />
-      <FlightSearchBox
-        title='busca tu vuelo'
-      />
-    </Container>
-    <ParteCentral>
-      <ProductCardList  />
-      <ProductCardList  />
-    </ParteCentral>
-    <Subcribe></Subcribe>
-
-    <Disclaimer></Disclaimer>
-    <Offers></Offers> */}
-
+    <FlightSearchBox
+      title='busca tu vuelo'
+    />
   </div>
 )
 
-Home.propTypes = {
-  text: PropTypes.node.isRequired,
-  hoteles: PropTypes.arr,
-  getRepos: PropTypes.func,
-  repos: PropTypes.arr,
-}
+Home.propTypes = {}
 
-Home.defaultProps = {
-  text:'no value yet :(',
-  hoteles:[],
-  getRepos(){},
-  repos:[],
-}
+Home.defaultProps = {}
 
 export default Home;
