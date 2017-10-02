@@ -26,7 +26,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'vuelos'}>
           <LinkContainer href="http://www.avantrip.com/vuelos/">
-            <Icon id='Vuelos' height='18px' />
+            <Icon id='Vuelos' width='18px' height='18px' />
             <LinkText color='primary' type='s'>
               Vuelos
             </LinkText>
@@ -36,7 +36,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'hoteles'}>
           <LinkContainer href="http://www.avantrip.com/hoteles/">
-            {/* <Icon id='Hoteles' height='18px' /> */}
+            {/* <Icon id='Hoteles' width='18px' height='18px' /> */}
             <LinkText color='primary' type='s'>
               Hoteles
             </LinkText>
@@ -46,7 +46,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'paquetes'}>
           <LinkContainer href="http://www.avantrip.com/paquetes/">
-            <Icon id='Paquetes' height='14px' />
+            <Icon id='Paquetes' width='14px' height='14px' />
             <LinkText color='primary' type='s'>
               Paquetes
             </LinkText>
@@ -56,7 +56,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'autos'}>
           <LinkContainer href="http://www.avantrip.com/autos/">
-          <Icon id='Autos' height='18px' />
+          <Icon id='Autos' width='19px' height='19px' />
             <LinkText color='primary' type='s'>
               Autos
             </LinkText>
@@ -66,7 +66,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'pases'}>
           <LinkContainer href="http://pasesdisney.avantrip.com/">
-            <Icon id='PasesDisney' height='15px' />
+            <Icon id='PasesDisney' width='15px' height='15px' />
             <LinkText color='primary' type='s'>
               Pases Disney
             </LinkText>
@@ -76,7 +76,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'cruceros'}>
           <LinkContainer href="http://www.avantrip.com/cruceros/">
-            <Icon id='Cruceros' height='18px' />
+            <Icon id='Cruceros' width='18px' height='18px' />
             <LinkText color='primary' type='s'>
               Cruceros
             </LinkText>
@@ -86,7 +86,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'seguros'}>
           <LinkContainer href="http://www.avantrip.com/asistencia-al-viajero/">
-            {/* <Icon id='Seguros' height='18px' /> */}
+            {/* <Icon id='Seguros' width='18px' height='18px' /> */}
             <LinkText color='primary' type='s'>
               Seguros
             </LinkText>
