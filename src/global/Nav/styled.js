@@ -11,6 +11,7 @@ export const NavList = styled.ul`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-top: 15px;
 `
 export const Item = styled.li`
   box-sizing: border-box;

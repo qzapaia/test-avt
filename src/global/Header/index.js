@@ -2,24 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
-import Container from './styled';
 import Logo from '../Logo';
 import Text from '../Text';
 import Nav from '../Nav';
 import Link from '../Link';
+import {Container, LogoContainer, Slogan} from './styled';
 
 const Header = ({currentLocation, phoneText}) => (
   <Container>
-    <div>
+    <LogoContainer>
       <Logo href="http://www.avantrip.com/"/>
-      <Text
-        size="16px"
-        color="brand"
-        weight="600"
-        family="Stag Sans Web">
+      <Slogan
+        type="m"
+        tag='h1'
+        color="brand">
           Viajar es la guita mejor invertida
-      </Text>
-    </div>
+      </Slogan>
+    </LogoContainer>
     <ContactAndPhoneInfo phoneText={phoneText} />
     <Nav currentLocation={currentLocation}/>
   </Container>
