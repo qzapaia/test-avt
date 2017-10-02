@@ -1,26 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
-import Text from '../Text';
-import {Container} from './styled';
+import GlobalTextContent from '../../global/TextContent';
+import { ThemeProvider } from 'styled-components';
 
+const componentTheme = {}
 
-const TextContent = ({title, subtitle}) => (
-  <Container>
-    <Text tag='h1' color='darkergray' type="xxl">{title}</Text>
-    <Text tag='p' color='darkergray' type="m">
-      {subtitle}
-    </Text>
-  </Container>
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalTextContent {...props} />
+  </ThemeProvider>
 )
 
-TextContent.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired
-}
-
-TextContent.defaultProps = {
-  title: '',
-  subtitle: ''
-}
-
-export default TextContent;
+  

@@ -1,46 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
+import GlobalTabs from '../../global/Tabs';
+import { ThemeProvider } from 'styled-components';
 
-const Tab = ({id, title, children}) => (
-  <div>
-    {children}
-  </div>
+const componentTheme = {}
+
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalTabs {...props} />
+  </ThemeProvider>
 )
 
-Tab.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
-}
-
-const Tabs = ({selectedTab, onChange, children}) => (
-  <div>
-    <nav>
-        {children.map(c =>(
-            <button key={c.props.id} onClick={e=>onChange(c.props.id)}>
-                {c.props.title}
-            </button>
-        ))}
-    </nav>
-    <div>
-        {children.find(c =>(selectedTab==c.props.id))}
-    </div>
-  </div>
-)
-
-Tabs.propTypes = {
-  selectedTab: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-  children: (props, propName, componentName) => {
-    let isInvalid = props[propName].some(child => {
-      return !/Tab/.test(child.type.name);
-    })
-    if (isInvalid) {
-      return new Error(
-        'Invalid children. Only accept `Tab` children for ' +
-        ' `' + componentName + '`.'
-      );
-    }
-  }
-}
-
-export { Tabs as default, Tab};
+  

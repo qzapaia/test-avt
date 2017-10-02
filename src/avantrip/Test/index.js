@@ -1,31 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
+import GlobalTest from '../../global/Test';
+import { ThemeProvider } from 'styled-components';
 
-import styled from 'styled-components';
+const componentTheme = {
+  color:'blue'
+}
 
-const Cont = styled.div`
-  background-color: blue;
-  width: 200px;
-  height: 200px;
-`
-
-const Test = ({text, onClick}) => (
-  <div onClick={onClick}>
-    <Cont></Cont>
-    Test component
-    <br/>
-    Counter {text}
-    <br/>
-    <strong>Click to increment</strong>
-  </div>
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalTest {...props} />
+  </ThemeProvider>
 )
-
-Test.propTypes = {
-  text: PropTypes.node.isRequired
-}
-
-Test.defaultProps = {
-  text:'no value yet :('
-}
-
-export default Test;

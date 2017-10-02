@@ -1,14 +1,15 @@
-import React from 'react';
-import Test from './';
+import React from 'react'
+import Test from './'
 
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withState, compose } from 'recompose';
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+import { withState, compose } from 'recompose'
 
 import generalDecorator from '../../stories.decorator.js';
+import TestWithData from './withData'
 
 import theme from '../styled.theme';
-import readme from './README.md';
+import readme from './README.md'
 
 const enhace = withState('counter','increment',0);
 const TestWithState =  enhace((props) => {
@@ -33,3 +34,6 @@ storiesOf('avantrip/Test', module)
     <TestWithState></TestWithState>
   ))
 
+  .add('With data', () => (
+    <TestWithData>TestWithData component</TestWithData>
+  ))

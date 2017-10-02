@@ -10,7 +10,7 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-import reducer from "./reducer";
+import reducer from "../../global/Paginate/reducer";
 
 import { random } from 'lodash';
 
@@ -29,4 +29,3 @@ storiesOf('avantrip/Paginate', module)
   .add('Default', () => (
     <PaginateWithData pagesCount={randomPagesCount} ></PaginateWithData>
   ))
-

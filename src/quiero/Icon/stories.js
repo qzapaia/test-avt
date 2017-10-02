@@ -7,9 +7,9 @@ import styled from 'styled-components';
 import generalDecorator from '../../stories.decorator.js';
 import { map } from 'lodash';
 
-import theme from '../../avantrip/styled.theme';
-import readme from '../../avantrip/Icon/README.md';
-import * as SVGS from '../../avantrip/Icon/imports.js';
+import theme from '../../global/styled.theme';
+import readme from '../../global/Icon/README.md';
+import * as SVGS from '../../global/Icon/imports.js';
 
 const PlaceholderItem = styled.div`
   display: flex;

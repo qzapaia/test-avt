@@ -1,38 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
-import {RadioGroupContainer} from './styled';
+import GlobalRadioGroup from '../../global/RadioGroup';
+import { ThemeProvider } from 'styled-components';
 
-import InputCheckbox from '../InputCheckbox';
+const componentTheme = {}
 
-const RadioGroup = ({options, onChange, label, value, direction}) => (
-  <div>
-    {label}
-    <RadioGroupContainer direction={direction}>
-      {options.map(option => (
-            <InputCheckbox
-              key={ option.value }
-              id={ option.value.toString() }
-              type ="radio"
-              label ={ option.label }
-              checked ={ value == option.value.toString() }
-              onChange ={ e => onChange(option.value) }
-            />
-      ))}
-    </RadioGroupContainer>
-  </div>
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalRadioGroup {...props} />
+  </ThemeProvider>
 )
 
-RadioGroup.propTypes = {
-    options: PropTypes.array,
-    onChange: PropTypes.func,
-    label: PropTypes.node,
-    value: PropTypes.string,
-    direction: PropTypes.string
-}
-
-RadioGroup.defaultProps = {
-  options: [],
-  direction: 'row'
-}
-
-export default RadioGroup;
+  

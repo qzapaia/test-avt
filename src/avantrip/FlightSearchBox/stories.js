@@ -5,7 +5,7 @@ import FlightSearchBoxWithState from "./withData";
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withState, compose } from 'recompose';
-import reducer from "./reducer";
+import reducer from "../../global/FlightSearchBox/reducer";
 
 import generalDecorator from '../../stories.decorator.js';
 
@@ -27,4 +27,3 @@ storiesOf('avantrip/FlightSearchBox', module)
       title='busca tu vuelo'
     />
   ))
-

@@ -1,22 +1,11 @@
 import React from 'react';
+import GlobalBreadcrum from '../../global/Breadcrumb';
+import { ThemeProvider } from 'styled-components';
 
-import ContainerBreadcrumb from './styled';
+const componentTheme = {}
 
-const Breadcrumb = ({children}) => {
-  const numberOfChildren = children.length-1;
-
-  return (<ContainerBreadcrumb>
-    {
-      children.map((child, index) =>{
-        return (
-          <div key={index}>
-            {child}
-            { index != numberOfChildren && ">" }
-          </div>
-        )
-      })
-    }
-  </ContainerBreadcrumb>
-)}
-
-export default Breadcrumb;
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalBreadcrum {...props} />
+  </ThemeProvider>
+)

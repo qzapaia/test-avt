@@ -11,7 +11,7 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-import * as SVGS from './imports.js';
+import * as SVGS from '../../global/Icon/imports.js';
 
 import {map} from 'lodash';
 
@@ -30,7 +30,7 @@ storiesOf('avantrip/Icon', module)
     <div>
       {map(SVGS,(s,k)=>(
         <PlaceholderItem>
-          <Icon id={k} size="l"></Icon> {k} 
+          <Icon id={k} size="l"></Icon> {k}
         </PlaceholderItem>
       ))}
     </div>

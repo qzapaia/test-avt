@@ -1,18 +1,14 @@
+
 import React from 'react';
-import PropTypes from 'prop-types';
+import GlobalList from '../../global/List';
+import { ThemeProvider } from 'styled-components';
 
-import ContainerList from './styled';
+const componentTheme = {}
 
-const List = ({type, children}) => (
-  <ContainerList type={type}>
-    {children.map(child => (
-      <li key={child.props.id}>{child}</li>
-    ))}
-  </ContainerList>
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalList {...props} />
+  </ThemeProvider>
 )
 
-List.propTypes = {
-  type: PropTypes.oneOf(['list', 'grid'])
-}
-
-export default List;
+  

@@ -1,18 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 
-const Chip = ({label, onClose}) => (
-  <div style={{display:'flex', backgroundColor:'lightgrey'}}>
-    <div style={{margin:'16px'}} >{label}</div>
-    { onClose && 
-      <div onClick={e => onClose()} style={{margin:'16px', backgroundColor:'grey'}}>X</div>
-    }
-  </div>
+import React from 'react';
+import GlobalChip from '../../global/Chip';
+import { ThemeProvider } from 'styled-components';
+
+const componentTheme = {}
+
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalChip {...props} />
+  </ThemeProvider>
 )
 
-Chip.propTypes = {
-  label: PropTypes.string,
-  onClose: PropTypes.func
-}
-
-export default Chip;
+  

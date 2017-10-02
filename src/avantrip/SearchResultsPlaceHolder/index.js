@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 
-const SearchResultsPlaceHolder = ({}) => (
-  <div>
-    loading...<br/>
-    .,__,.........,__,.....╭¬¬¬¬¬━━╮<br/>
-    '•.,¸,.•*¯'•.,¸,.•*|:¬¬¬¬¬¬¬¬::::|:^----------^<br/>
-    '•.,¸,.•*¯'•.,¸,.•*|:¬¬¬¬¬¬¬¬::::||｡◕‿‿◕｡|<br/>
-    -........--""-.......--"╰O━━━━O╯╰----O-O---╯
-  </div>
+import React from 'react';
+import GlobalSearchResultsPlaceHolder from '../../global/SearchResultsPlaceHolder';
+import { ThemeProvider } from 'styled-components';
+
+const componentTheme = {}
+
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalSearchResultsPlaceHolder {...props} />
+  </ThemeProvider>
 )
 
-export default SearchResultsPlaceHolder;
+  

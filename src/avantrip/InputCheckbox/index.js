@@ -1,34 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {InputContainer, InputStyle, Input, LabelContainer} from './styled';
 
-const InputCheckbox = ({onChange, id, label, checked, disabled, type}) => (
-  <InputContainer>
-    <LabelContainer key ={ id }>
-      <Input
-        type = { type }
-        checked ={ checked }
-        onChange ={ e => onChange(e.target.checked) }
-        disabled={disabled} />
-      {label}
-      <InputStyle />
-    </LabelContainer>
-  </InputContainer>
+import React from 'react';
+import GlobalInputCheckbox from '../../global/InputCheckbox';
+import { ThemeProvider } from 'styled-components';
+
+const componentTheme = {}
+
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalInputCheckbox {...props} />
+  </ThemeProvider>
 )
 
-InputCheckbox.propTypes = {
-  id: PropTypes.string,
-  checked: PropTypes.bool,
-  label: PropTypes.node,
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool,
-  type: PropTypes.oneOf(["checkbox", "radio"])
-}
-
-InputCheckbox.defaultProps = {
-  checked: false,
-  disabled: false,
-  type: "checkbox"
-}
-
-export default InputCheckbox;
+  

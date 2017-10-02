@@ -1,30 +1,14 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
-const colorByButton = (state, attrName) => props => {
-  const { theme, type } = props;
-  const attrValue = get(theme.buttons,[type,state,attrName]);
+import React from 'react';
+import GlobalButton from '../../global/Button';
+import { ThemeProvider } from 'styled-components';
 
-  return theme.colors[attrValue];
-}
+const componentTheme = {}
 
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalButton {...props} />
+  </ThemeProvider>
+)
 
-const StyledButton = styled.button`
-  background-color: ${colorByButton('normal','bgc')};
-  color: ${colorByButton('normal','color')};
-  font-size: ${props=>props.theme.buttons[props.type].normal.fontSize};
-  border: none;
-  padding: 10px;
-`
-
-StyledButton.propTypes = {
-  onClick: PropTypes.func,
-  type: PropTypes.string
-}
-
-StyledButton.defaultProps = {
-  type:'cta'
-}
-
-export default StyledButton;
+  

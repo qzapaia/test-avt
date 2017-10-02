@@ -26,6 +26,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cp": "^0.2.0",
     "currency-map-symbol": "^3.1.6",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
