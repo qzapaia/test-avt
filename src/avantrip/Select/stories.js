@@ -37,3 +37,14 @@ storiesOf('avantrip/Select', module)
       options={[{value: 'one', label: 'Uno'}, {value: 'two', label: 'Dos'}]}
     />
   ))
+
+  .add('With search and reset', () => (
+    <SelectWithState
+      name='hola'
+      value='sdsdfsdf'
+      placeholder='Hola soy un select con search y clearable'
+      searchable={true}
+      clearable={true}
+      options={[{value: 'one', label: 'Uno'}, {value: 'two', label: 'Dos'}]}
+    />
+  ))

@@ -8,30 +8,45 @@ injectGlobal`${selectCSS}`;
 
 const Select = (props) => {
   const {
-    placeholder,
     name,
+    placeholder,
     options,
     onChange,
-    value
+    value,
+    searchable,
+    clearable
   } = props;
 
   return (
-    <ReactSelect
-      {...props}
-      name={name}
-      placeholder={placeholder}
-      onChange={onChange}
-      value={value}
-      options={options}
-    />
+    <SelectContainer>
+      <ReactSelect
+        {...props}
+        name={name}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+        options={options}
+        searchable={searchable}
+        clearable={clearable}
+      />
+    </SelectContainer>
   )
 }
 Select.propTypes = {
-  onChange: PropTypes.func
+  name: PropTypes.string,
+  placeholder: PropTypes.string,
+  options: PropTypes.array,
+  onChange: PropTypes.func,
+  value: PropTypes.object,
+  searchable: PropTypes.bool,
+  clearable: PropTypes.bool,
+
 }
 
 Select.defaultProps = {
-  searchable:false
+  searchable:false,
+  clearable:false,
+  noResultsText:'No se encontraron resultados'
 }
 
 
