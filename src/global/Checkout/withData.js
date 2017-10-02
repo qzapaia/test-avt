@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { gql, graphql } from 'react-apollo';
+import { gql, graphql , compose } from 'react-apollo';
 import Checkout from './'
 import { get } from 'lodash';
 import { connect } from "react-redux";
@@ -14,10 +14,9 @@ const mapDispatchToProps = {
 };
 
 // GrahQL Query
-export const ValidateQuery = gql`
-  query ValidateQuery(
-    $params: String!
-  ) {
+export const CheckoutQuery = {
+  validate:  gql`
+  query ValidateQuery($params: String!) {
     flights{
       validate(params : $params){
         paymentMethods{
@@ -73,8 +72,30 @@ export const ValidateQuery = gql`
         }
       }
     }
-  }
-`
+  } `,
+  booking : gql`
+  query BookQuery($params: String!){
+    flights{
+      book(params : $params){
+        products{
+          bookingCode,
+          pnr,
+          externalSearchId,
+        },
+        notification{
+          notificationId,
+          notificationMessage
+        },
+        validationMessages{
+          message,
+          messageType
+        },
+        channel    
+      }
+    }
+  }          
+  `
+}
 const CheckoutComponent = props => {
   return (
     <Checkout
@@ -84,13 +105,23 @@ const CheckoutComponent = props => {
   );
 };
 
-const WithValidateComponentApollo = graphql(ValidateQuery,{
-  options: props => ({
-    variables : {
-      params : props.params
-    }
+const WithValidateComponentApollo = compose(
+  graphql(CheckoutQuery.validate,{
+    options: props => ({
+      variables : {
+        params : props.params
+      }
+    })
+  }),
+  graphql(CheckoutQuery.booking,{
+    options: props => ({
+      skip: !localStorage.getItem('auth'),
+      variables : {
+        params : props.params
+      }
+    })
   })
-})(CheckoutComponent);
+) (CheckoutComponent);
 
 //const WithDataComponentValidate = connect(mapStateToProps, mapDispatchToProps)(WithValidateComponentApollo);
 
