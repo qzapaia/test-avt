@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Container de contenidos de la Home.
 
 ## Basic use
 
@@ -7,15 +7,11 @@ Componente para usos sarlanga.
 import Home from 'avantrip-react/avantrip/Home';
 
 export default () => (
-  <Home
-    onEvent={function}
-    message={string}
-    isActive={boolean}
-  />
+  <Home />
 )
 ```
 
-
+<!--  
 ## Props
 
 #### `onEvent={<Boolean> || <Function>}`
@@ -48,3 +44,4 @@ const reducer = combineReducers({
 const store = createStore(reducer);
 // ...
 ```
+-->

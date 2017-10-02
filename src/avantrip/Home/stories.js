@@ -36,7 +36,6 @@ storiesOf('avantrip/Home', module)
     <HomeWithState></HomeWithState>
 
   ))
-
-  .add('With data', () => (
-    <HomeWithData></HomeWithData>
-  ))
+  // .add('With data', () => (
+  //   <HomeWithData></HomeWithData>
+  // ))

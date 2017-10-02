@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+HomePage de avantrip.
 
 ## Basic use
 
@@ -7,14 +7,11 @@ Componente para usos sarlanga.
 import HomePage from 'avantrip-react/avantrip/HomePage';
 
 export default () => (
-  <HomePage
-    onEvent={function}
-    message={string}
-    isActive={boolean}
-  />
+  <HomePage />
 )
 ```
 
+<!--
 
 ## Props
 
@@ -48,3 +45,4 @@ const reducer = combineReducers({
 const store = createStore(reducer);
 // ...
 ```
+-->

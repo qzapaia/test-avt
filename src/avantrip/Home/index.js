@@ -15,6 +15,7 @@ const Home = ({
     <FlightSearchBox
       title='busca tu vuelo'
     />
+    <div>Resto del contenido</div>
   </div>
 )
 

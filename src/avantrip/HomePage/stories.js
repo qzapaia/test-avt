@@ -23,3 +23,6 @@ storiesOf('avantrip/HomePage', module)
   .add('Default', () => (
     <HomePage></HomePage>
   ))
+  // .add('With data', () => (
+  //   <HomePageWithData></HomePageWithData>
+  // ))
