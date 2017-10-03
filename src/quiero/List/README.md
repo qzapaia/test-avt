@@ -1,6 +1,5 @@
 ### Description
-Enlista los children de la forma especificada en la prop type.
-Cada child DEBE tener las props key e id definidas.
+Wrapper del List de Global
 
 ### Basic use
 
