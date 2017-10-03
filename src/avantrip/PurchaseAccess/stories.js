@@ -36,7 +36,7 @@ const PurchaseAccessWithState =  enhace((props) => {
   )
 })
 
-storiesOf('avantrip/PurchaseAccess', module)
+storiesOf('global/PurchaseAccess', module)
   .addDecorator(generalDecorator({
     readme,
     theme
