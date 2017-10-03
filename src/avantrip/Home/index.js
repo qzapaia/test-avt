@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import ProductCard from '../ProductCard';
 import FlightSearchBox from '../FlightSearchBox/withData';
 // import Slider from '../FlightSearchBox/withData';
-import Slider from '../Slider';
+// import Slider from '../Slider';
 import Text from '../Text';
 import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
