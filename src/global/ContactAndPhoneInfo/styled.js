@@ -1,6 +1,6 @@
 // ejemplo de un archivo que exporta varios styled-component
 import styled from 'styled-components';
-import {Text} from '../Text/index';
+import Text from '../Text';
 
 export const Container = styled.div`
   display: flex;
@@ -8,21 +8,22 @@ export const Container = styled.div`
 `
 
 export const TelContainer = styled.article`
-   ${Text} * {
-    margin: 0;
-  }
+
 `
 
 export const TelContent = styled.div`
   display: flex;
   align-items: center;
   color: ${props => props.theme.colors.brand};
-  ${Text}{
-    font-family: ${props => props.theme.fonts.book};
-    font-weight: bold;
-  }
-
 `
+export const TelNumber = Text.extend`
+  font-weight: 500;
+`
+export const TelTitle = Text.extend`
+  margin-bottom: 2.5px;
+`
+
+
 export const HelpContainer = styled.div`
   margin-left: 15px;
   padding-left: 10px;

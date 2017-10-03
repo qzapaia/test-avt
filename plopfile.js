@@ -1,6 +1,8 @@
 const { lstatSync, readdirSync, unlinkSync } = require('fs')
 const { join, sep, resolve } = require('path')
 const rimraf = require('rimraf');
+const cp = require('cp');
+const path = require('path');
 
 const GLOBAL_UI = 'global';
 const AVANTRIP_UI = 'avantrip';
@@ -12,12 +14,23 @@ const NO = 'No';
 const STYLED_COMPONENT_TYPE = 'Styled Component';
 const COMPONENT_TYPE = 'Stateless Component';
 
-const ui_options = [GLOBAL_UI,AVANTRIP_UI,QUIERO_UI];
+const ui_options = [AVANTRIP_UI,QUIERO_UI];
+const all_ui_options = [GLOBAL_UI].concat(ui_options);
 const component_types = [COMPONENT_TYPE, STYLED_COMPONENT_TYPE];
 
 const toPascalCase = require('to-pascal-case');
 
 module.exports = function (plop) {
+
+  plop.setActionType('copy', function (answers, config, plop) {
+    const from = plop.renderString(path.join(__dirname,config.from), answers);
+    const to = plop.renderString(path.join(__dirname,config.to), answers);
+
+		cp.sync(from, to);
+
+    return 'OK';
+	});
+
   plop.setGenerator('Create', {
       description: 'Create a Component',
       prompts: [{
@@ -51,7 +64,7 @@ module.exports = function (plop) {
           type: 'list',
           name: 'ui',
           message: 'UI?',
-          choices: ui_options
+          choices: all_ui_options
       }],
       actions: function(data){
         const dirName = 'src/'+data.ui;
@@ -110,6 +123,74 @@ module.exports = function (plop) {
       }
   });
 
+  plop.setGenerator('Create Extension', {
+      description: 'Create a Global Component Sub Component',
+      prompts: [{
+          type: 'input',
+          name: 'name',
+          message: 'name of the global component (it will be pascalized)',
+          validate: function (value) {
+              if ((/.+/).test(value)) { return true; }
+              return 'name is required';
+          }
+      },
+      {
+          type: 'list',
+          name: 'ui',
+          message: 'UI?',
+          choices: ui_options
+      }],
+      actions: function(data){
+        const dirName = 'src/'+data.ui;
+        const actions = [];
+        const isStyled = data.type == STYLED_COMPONENT_TYPE;
+        data.storyPath = data.ui + '/';
+
+        data.componentName = toPascalCase(data.name);
+
+
+        actions.push({
+          type: 'add',
+          path: dirName + '/{{componentName}}/index.js',
+          templateFile: 'plop-templates/Component.extension.js'
+        });
+
+        actions.push({
+          type: 'add',
+          path: dirName + '/{{componentName}}/withData.js',
+          templateFile: 'plop-templates/Component.withData.extension.js'
+        });
+
+        actions.push({
+          type: 'add',
+          path: dirName + '/{{componentName}}/reducer.js',
+          templateFile: 'plop-templates/Component.reducer.extension.js'
+        });
+
+        actions.push({
+          type: 'add',
+          path: dirName + '/{{componentName}}/theme.js',
+          templateFile: 'plop-templates/Component.theme.js'
+        });
+
+
+
+        actions.push({
+            type: 'copy',
+            from: 'src/global/{{componentName}}/stories.js',
+            to: dirName + '/{{componentName}}/stories.js',
+        });
+
+        actions.push({
+            type: 'copy',
+            from: 'src/global/{{componentName}}/README.md',
+            to: dirName + '/{{componentName}}/README.md',
+        });
+
+        return actions;
+      }
+  });
+
   plop.setGenerator('Remove', {
       description: 'Remove a Component',
       prompts: [{
@@ -125,7 +206,7 @@ module.exports = function (plop) {
           type: 'list',
           name: 'ui',
           message: 'UI?',
-          choices: ui_options
+          choices: all_ui_options
       }],
       actions: function(data){
         const actions = [];

@@ -55,7 +55,7 @@ const ProductCard = ({
           <Price color='brand' tag='p' type='xl' price={price} />
         </PriceContainer>
         <IconContainer>
-          <Icon height='40px' id='Back' color='brand' />
+          <Icon width='40px' height='40px' id='Back' color='brand' />
         </IconContainer>
       </RightContainer>
 
