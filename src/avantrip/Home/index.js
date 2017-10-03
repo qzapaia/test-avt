@@ -8,6 +8,8 @@ import Text from '../Text';
 import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
 import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
+import Slider from '../FlightSearchBox/withData';
+import FeaturedProducts from '../FeaturedProducts/withData';
 
 const Home = ({
   text,
@@ -38,6 +40,19 @@ const Home = ({
     <FeaturedSection>
       featured section here
     </FeaturedSection>
+    {/* <FeaturedProducts
+      type="promotionalFlights" />
+
+    <FeaturedProducts
+      type="bestSellers"
+      listMode={true} /> */}
+
+    <FeaturedProducts
+      type="promotionalFlights" />
+
+    <FeaturedProducts
+      type="bestSellers"
+      listMode={true} />
 
 
     <SubscribeSection>

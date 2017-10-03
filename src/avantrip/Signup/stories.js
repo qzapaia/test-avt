@@ -31,4 +31,3 @@ storiesOf('avantrip/Signup', module)
   .add('Default', () => (
     <SignupWithState></SignupWithState>
   ))
-

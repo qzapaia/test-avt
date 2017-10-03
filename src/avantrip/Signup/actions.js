@@ -1,4 +1,3 @@
-
 export const FACEBOOK_SIGNUP_COMPLETE = 'FACEBOOK_SIGNUP_COMPLETE';
 
 export const facebookSignup = async data => {
