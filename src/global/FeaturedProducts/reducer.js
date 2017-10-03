@@ -1,11 +1,9 @@
 import {
-  FEATURED_PRODUCTS_SET_BESTSELLERS,
-  FEATURED_PRODUCTS_SET_PROMOTIONALFLIGHTS
+  FEATURED_PRODUCTS_SET_PRODUCTS
 } from './actions';
 
 const initialState = {
-  bestsellers:[],
-  promotionalFlights: []
+  products:[]
 };
 
 export default (state = initialState, action) => {
@@ -15,16 +13,10 @@ export default (state = initialState, action) => {
   } = action;
 
   switch(type){
-    case FEATURED_PRODUCTS_SET_BESTSELLERS:
+    case FEATURED_PRODUCTS_SET_PRODUCTS:
       return {
         ...state,
-        bestsellers:payload
-      }
-      break;
-    case FEATURED_PRODUCTS_SET_PROMOTIONALFLIGHTS:
-      return {
-        ...state,
-        promotionalFlights:payload
+        products:payload
       }
       break;
     default:

@@ -1,5 +1,6 @@
 ## Description
-Componente para usos sarlanga.
+Componente que lista productos como ProductCards.
+Se puede setear el modo lista o grilla.
 
 ## Basic use
 
@@ -8,43 +9,63 @@ import FeaturedProducts from 'avantrip-react/global/FeaturedProducts';
 
 export default () => (
   <FeaturedProducts
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    products={collection}
+    listMode={boolean}
   />
 )
 ```
 
-
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `products={<Collection>}`
+Colleccion de productos a mostrar. Debe tener la forma:
+``` javascript
+{
+  "media": "https://static.avantrip.com/fkt-flight/images/img-cluster-miami.jpg",
+  "imageTitle": "Volando con American Airlines",
+  "title": "Miami",
+  "subtitle": "Ida y vuelta",
+  "supportingInfo": "Precio desde",
+  "price": "14755",
+  "href": "https://www.avantrip.com/oportunidades/vuelos-miami"
+}
+```
+#### `listMode={<Boolean>}`
+Setea modo lista. Por defecto es falso.
 
 
 ## Redux
 
 #### Actions
 ```javascript
-import { sendData } from 'avantrip-react/global/FeaturedProducts/actions';
-import store from 'somewhere';
+export const FEATURED_PRODUCTS_SET_PRODUCTS = "FEATURED_PRODUCTS_SET_PRODUCTS";
 
-store.dispatch(sendData({ email:"email@email.com" });
+export const getProducts = type => async dispatch => {
+
+export const setProducts = (data, type) => {
 // ...
 ```
 
 #### Reducer
 ```javascript
-import featuredProductsReducer from 'avantrip-react/global/FeaturedProducts/reducer';
-import { createStore, combineReducers } from 'redux';
+import {
+  FEATURED_PRODUCTS_SET_PRODUCTS
+} from './actions';
 
-const reducer = combineReducers({
-  featuredProducts:featuredProductsReducer,
-})
+const initialState = {
+  products:[]
+};
 
-const store = createStore(reducer);
+export default (state = initialState, action) => {
+
+  switch(type){
+    case FEATURED_PRODUCTS_SET_PRODUCTS:
+      return {
+        ...state,
+        products:payload
+      }
+  }
+}
+
 // ...
 ```

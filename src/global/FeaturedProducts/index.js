@@ -8,27 +8,26 @@ import ProductCard from "../ProductCard";
 import Text from "../Text";
 
 const FeaturedProducts = ({
-  promotionalFlights,
-  bestsellers,
+  products,
   listMode
 }) => (
   <div>
-    {map(promotionalFlights ||  bestsellers , feature => (
+    {map(products , product => (
       <ProductCard
-        key={"productCard" + feature.title + feature.price}
-        href={feature.href}
-        media={feature.media}
-        price={Number(feature.price)}
-        supportingInfo={feature.supportingInfo}
-        subtitle={feature.subtitle}
-        title={feature.title}
+        key={"productCard" + product.title + product.price}
+        href={product.href}
+        media={product.media}
+        price={Number(product.price)}
+        supportingInfo={product.supportingInfo}
+        subtitle={product.subtitle}
+        title={product.title}
         listMode={listMode}
-        imageTitle={<div>
+        imageTitle={product.imageTitle && <div>
           <Icon
             height="m"
             id="Vuelos"/>
           <Text type="m">
-            {feature.imageTitle}
+            {product.imageTitle}
           </Text>
         </div>
         }
@@ -38,12 +37,12 @@ const FeaturedProducts = ({
 );
 
 FeaturedProducts.propTypes = {
-  features: PropTypes.array,
+  products: PropTypes.array,
   listMode: PropTypes.bool
 };
 
 FeaturedProducts.defaultProps = {
-  features: [],
+  products: [],
   listMode: false
 };
 

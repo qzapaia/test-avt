@@ -57,13 +57,20 @@ storiesOf('global/FeaturedProducts', module)
     },
   }))
   .add('Default', () => (
-    <FeaturedProducts
-      promotionalFlights={mockPromotionalFlights}
+    <FeaturedProducts {...props}
+      products={mockPromotionalFlights}
       />
   ))
 
-  .add('With data', () => (
+  .add('Promoción de viajes desde API', () => (
     <FeaturedProductsWithData
       type="promotionalFlights"
+    />
+  ))
+
+  .add('Más vendidos desde API', () => (
+    <FeaturedProductsWithData
+      type="bestSellers"
+      listMode={true}
     />
   ))
