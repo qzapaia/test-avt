@@ -6,20 +6,22 @@ import Logo from '../Logo';
 import Text from '../Text';
 import Nav from '../Nav';
 import Link from '../Link';
-import {Container, LogoContainer, Slogan} from './styled';
+import {Container, LogoContainer, Slogan, MaxWidth} from './styled';
 
 const Header = ({currentLocation, phoneText}) => (
   <Container>
-    <LogoContainer>
-      <Logo href="http://www.avantrip.com/"/>
-      <Slogan
-        type="m"
-        tag='h1'
-        color="brand">
+    <MaxWidth>
+      <LogoContainer>
+        <Logo href="http://www.avantrip.com/"/>
+        <Slogan
+          type="m"
+          tag='h1'
+          color="brand">
           Viajar es la guita mejor invertida
-      </Slogan>
-    </LogoContainer>
-    <ContactAndPhoneInfo phoneText={phoneText} />
+        </Slogan>
+      </LogoContainer>
+      <ContactAndPhoneInfo phoneText={phoneText} />
+    </MaxWidth>
     <Nav currentLocation={currentLocation}/>
   </Container>
 )

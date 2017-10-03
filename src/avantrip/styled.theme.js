@@ -50,6 +50,9 @@ export default {
     //   black:'900'
     // }
   },
+  viewport:{
+    desktop: '1280px'
+  },
   buttons:{
     cta:{
       normal:{
