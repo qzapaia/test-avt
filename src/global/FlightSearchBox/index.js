@@ -6,8 +6,13 @@ import InputText from '../InputText';
 import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
+import { map } from "lodash";
 
 const onCustomSearch = (next, value) => {
+  next(value)
+}
+
+const customOnSet = (next, value) => e => {
   next(value)
 }
 
@@ -17,7 +22,7 @@ const customOnChange = (next, name) => value => {
   })
 }
 
-const FlightSearchBox = ({title, onChange, onSearch, value}) => {
+const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => {
   return (<div>
     {title}
     <div>
@@ -41,50 +46,59 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
         value= {value.leg}
       />
     </div>
-    <div>
-      <InputText
-        onChange={customOnChange(onChange, 'originCity')}
-        placeholder= 'Ingresá el nombre de la ciudad de origen' 
-        label='Desde'
-        value={value.originCity}
-        requiresExistingValue='true'
-      >
-        <option value="bue">Buenos Aires - Argentina</option>
-        <option value="mia">Miami - Estados Unidos</option>
-        <option value="new">New York - Estados Unidos</option>
-        <option value="syd">Sydney (New South Wales) - Australia</option>
-        <option value="rio">Río de Janeiro - Brasil</option>
-        <option value="flo">Florianópolis - Brasil</option>
-        <option value="mad">Madrid - España</option>
-        <option value="par">París - Francia</option>
-        
-      </InputText>
-      <InputText
-        onChange={customOnChange(onChange, 'destinationCity')}
-        placeholder= 'Ingresá el nombre de la ciudad de destino' 
-        label='Hacia'
-        value={value.destinationCity}
-        requiresExistingValue='true'
-      >
-        <option value="bue">Buenos Aires - Argentina</option>
-        <option value="mia">Miami - Estados Unidos</option>
-        <option value="new">New York - Estados Unidos</option>
-        <option value="syd">Sydney (New South Wales) - Australia</option>
-        <option value="rio">Río de Janeiro - Brasil</option>
-        <option value="flo">Florianópolis - Brasil</option>
-        <option value="mad">Madrid - España</option>
-        <option value="par">París - Francia</option>
-      </InputText>
-    </div>
-
-    <div>
-      <InputDate
-        range={true}
-        onChange={customOnChange(onChange, 'dates')}
-        dates={value.dates}
-      />
-    </div>
-
+    {
+      map(value.flights, (flight, idx) => (
+        <div>
+          <div>
+            <InputText
+              onChange={customOnChange(onChange, `flights[${idx}].originCity` )}
+              placeholder= 'Ingresá el nombre de la ciudad de origen' 
+              label='Desde'
+              value={flight.originCity}
+              requiresExistingValue='true'
+            >
+            {
+              map(value.destinations, destination => (
+                <option 
+                  city={destination.city} 
+                  value={destination.iata_code}
+                >{destination.description}</option>
+              ))
+            }
+            </InputText>
+            <InputText
+              onChange={customOnChange(onChange, `flights[${idx}].destinationCity`)}
+              placeholder= 'Ingresá el nombre de la ciudad de destino' 
+              label='Hacia'
+              option={flight}
+              value={flight.destinationCity}
+              requiresExistingValue='true'
+            >
+              {
+              map(value.destinations, destination => (
+                <option 
+                  city={destination.city} 
+                  value={destination.iata_code}
+                >{destination.description}</option>
+              ))
+            }
+            </InputText>
+          </div>
+          <div>
+            <InputDate
+              range={value.leg == 1 ? true : false}
+              onChange={customOnChange(onChange, `flights[${idx}].dates`)}
+              dates={flight.dates}
+            />
+          </div>
+        </div>
+      ))}
+      {value.leg == 3 &&<div>
+        <p><a onClick={customOnSet(onSetSearchBoxFlight, 'remove')}>Quitar -</a></p>
+        {value.flights.length < 3 && 
+          <p><span onClick={customOnSet(onSetSearchBoxFlight, 'add')}>Agregar +</span></p>
+        }
+      </div>}
     <div>
       <InputCheckbox
         value='flexibleDate'
@@ -119,7 +133,7 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
             max: '9'
           }
         ]}
-        onChangeKeyValue={customOnChange(onChange, 'amountTraveller')}
+        onChangeKeyValue={customOnChange(onChange, `amountTraveller`)}
         label=''
       />
     </div>
@@ -142,7 +156,6 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
     </div>
     <div>
       <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
-    
     </div>
   </div>)
 }
