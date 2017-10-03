@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
-import Container from './styled';
+import {Container, LogoContainer, Slogan, MaxWidth} from './styled';
 import Logo from '../Logo';
 import Text from '../Text';
 import Nav from '../Nav';
@@ -12,20 +12,25 @@ import PurchaseAccess from '../PurchaseAccess/withData';
 
 const Header = ({currentLocation, phoneText}) => (
   <Container>
-    <div>
-      <Logo href="http://www.avantrip.com/"/>
-      <Text
-        size="16px"
-        color="brand"
-        weight="600"
-        family="Stag Sans Web">
-          Viajar es la guita mejor invertida
-      </Text>
-    </div>
-    <Signup></Signup>
-    <PurchaseAccess></PurchaseAccess>
-    <ContactAndPhoneInfo phoneText={phoneText} />
+    <MaxWidth>
+
+      <LogoContainer>
+        <Logo href="http://www.avantrip.com/"/>
+        <Slogan
+          size="16px"
+          color="brand"
+          weight="600"
+          family="Stag Sans Web">
+            Viajar es la guita mejor invertida
+        </Slogan>
+      </LogoContainer>
+      {/* WATCH HERE */}
+      {/* <Signup />
+      <PurchaseAccess /> */}
+      <ContactAndPhoneInfo phoneText={phoneText} />
+    </MaxWidth>
     <Nav currentLocation={currentLocation}/>
+
   </Container>
 )
 

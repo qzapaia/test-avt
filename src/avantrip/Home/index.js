@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import FlightSearchBox from '../FlightSearchBox/withData';
 // import Slider from '../FlightSearchBox/withData';
 // import Slider from '../Slider';
+import FeaturedDeals from '../FeaturedDeals/withData';
 import Text from '../Text';
 import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
 import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
-import Slider from '../FlightSearchBox/withData';
 import FeaturedProducts from '../FeaturedProducts/withData';
 
 const Home = ({
@@ -28,31 +28,26 @@ const Home = ({
         </FlightSearchBoxAbsolute>
 
       </MaxWidth>
-      <Slider>
+      {/* <Slider>
         <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide" />
         <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide2" />
         <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide3" />
         <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide4" />
         <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide5" />
-      </Slider>
+      </Slider> */}
+      {/* Slider Home: */}
+      <FeaturedDeals />
     </MainSection>
 
     <FeaturedSection>
-      featured section here
+      <FeaturedProducts
+        type="promotionalFlights" />
+
+        <FeaturedProducts
+          type="bestSellers"
+          listMode={true} />
     </FeaturedSection>
-    {/* <FeaturedProducts
-      type="promotionalFlights" />
 
-    <FeaturedProducts
-      type="bestSellers"
-      listMode={true} /> */}
-
-    <FeaturedProducts
-      type="promotionalFlights" />
-
-    <FeaturedProducts
-      type="bestSellers"
-      listMode={true} />
 
 
     <SubscribeSection>

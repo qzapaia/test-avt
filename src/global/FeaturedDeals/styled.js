@@ -1,4 +1,7 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export default styled.div`
+
+export const Container = styled.div`
+  min-width: 0;
+  min-height: 0;
 `
