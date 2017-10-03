@@ -6,6 +6,7 @@ import Link from '../Link';
 
 export const NavList = styled.ul`
   margin-top: 15px;
+  border-top: 1px dotted ${props=> props.theme.colors.gray};
 `
 export const MaxWidth = styled.div`
   overflow: hidden;
