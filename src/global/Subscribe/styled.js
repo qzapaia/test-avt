@@ -6,14 +6,19 @@ export const Container = styled.div`
   background-color: white;
   width: 100%;
   padding: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 export const TextContainer = styled.div`
   margin:10px;
-  width: 100%;
+  margin-right: 35px;
+
 `
 export const InputContainer = styled.div`
   display: flex;
-  width: 100%;
+  flex: 1;
+  min-width: 400px;
+  max-width: 550px;
   input{
     font-size: 16px;
   }
