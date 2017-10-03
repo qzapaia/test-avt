@@ -29,15 +29,34 @@ export const FeaturedSection = styled.div`
   margin: 15px auto;
   max-width: ${props=> props.theme.viewport.desktop};
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
 `
+export const CardsContainer = styled.article`
+  flex: 1 1 66%;
+  margin-right: 4%;
+  > div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`
+export const ListContainer = styled.article`
+  flex: 1 1 30%;
+`
+
+
+
+
+
+
+
 export const SubscribeSection = styled.div`
   margin: 15px auto;
   button{
     margin-left: -5px;
   }
 `
-
-
 export const AgencyInfo = styled.article`
   margin: 15px auto;
   max-width: ${props=> props.theme.viewport.desktop};

@@ -6,9 +6,10 @@ import { map } from "lodash";
 import Icon from "../Icon";
 import ProductCard from "../ProductCard";
 import Text from "../Text";
+import {Container} from "./styled";
 
 const FeaturedProducts = ({ products, listMode }) => (
-  <div>
+  <Container>
     {map(products, product => (
       <ProductCard
         key={"productCard" + product.title + product.price}
@@ -29,7 +30,7 @@ const FeaturedProducts = ({ products, listMode }) => (
         }
       />
     ))}
-  </div>
+  </Container>
 );
 
 FeaturedProducts.propTypes = {

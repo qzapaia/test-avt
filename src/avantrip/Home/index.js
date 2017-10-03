@@ -8,7 +8,7 @@ import FeaturedDeals from '../FeaturedDeals/withData';
 import Text from '../Text';
 import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
-import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
+import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, ListContainer, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 import FeaturedProducts from '../FeaturedProducts/withData';
 
 const Home = ({
@@ -28,24 +28,21 @@ const Home = ({
         </FlightSearchBoxAbsolute>
 
       </MaxWidth>
-      {/* <Slider>
-        <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide" />
-        <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide2" />
-        <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide3" />
-        <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide4" />
-        <img src="https://placeholdit.co//i/1440x465?&bg=e2432d&fc=fffff&text=Slide5" />
-      </Slider> */}
       {/* Slider Home: */}
       <FeaturedDeals />
     </MainSection>
 
     <FeaturedSection>
-      <FeaturedProducts
-        type="promotionalFlights" />
 
+      <CardsContainer>
+        <FeaturedProducts type="promotionalFlights" />
+      </CardsContainer>
+      <ListContainer>
         <FeaturedProducts
           type="bestSellers"
           listMode={true} />
+      </ListContainer>
+
     </FeaturedSection>
 
 

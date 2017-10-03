@@ -2,11 +2,10 @@ import styled from 'styled-components'
 
 export const Container = styled.a`
   display: ${props=>props.listMode?'flex':'inline-block'};
-  background-color: white;
-  border-radius: ${props=>props.listMode?'':'5px'};
   overflow: hidden;
-  width: 100%;
-  max-width: ${props=>props.listMode?'':'450px'};
+  width: ${props=>props.listMode?'100%':''};
+  margin: 0 10px;
+  margin-bottom: 20px;
 `
 export const MainPictureContainer = styled.figure`
   position: relative;
@@ -15,6 +14,7 @@ export const MainPictureContainer = styled.figure`
   justify-content: center;
   width: 100%;
   overflow: hidden;
+  border-radius: ${props=>props.listMode?'':'5px 5px 0 0'};
   max-height: ${props=>props.listMode?'':'267px'};
   max-width: ${props=>props.listMode?'65px':''};
   margin: ${props=>props.listMode?'5px':''};
@@ -30,7 +30,7 @@ export const LeftContainer = styled.article`
 `
 export const RightContainer = styled.article`
   display: flex;
-  flex: 1;
+  flex: 2;
   justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
@@ -40,7 +40,10 @@ export const MainInfoContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
-  padding: ${props=>props.listMode?'10px':'10px 25px'};
+  background: white;
+  border-radius: ${props=>props.listMode?'':'0px 0px 5px 5px'};
+  padding: ${props=>props.listMode?'10px':'10px 15px'};
+  padding-right: ${props=>props.listMode?'10px':'0'};
 `
 export const SubtitleContainer = styled.div`
   margin-top: 5px;
