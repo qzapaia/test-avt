@@ -8,6 +8,7 @@ export default {
     warning:'#F90',
     danger:'#F90',
     white:'#FFF',
+    lightgray:'#eee',
     gray:'#efefef',
     darkgray:'#ccc',
     darkergray:'#666'

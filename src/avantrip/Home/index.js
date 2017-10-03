@@ -5,7 +5,8 @@ import FlightSearchBox from '../FlightSearchBox/withData';
 // import Slider from '../FlightSearchBox/withData';
 import Slider from '../Slider';
 import Text from '../Text';
-import {MainSection, MaxWidth, FlightSearchBoxAbsolute, AgencyInfo, AgencyTitle, AgencyText} from './styled';
+import BestDeals from './BestDeals';
+import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 
 const Home = ({
   text,
@@ -14,7 +15,7 @@ const Home = ({
   getRepos,
   hoteles,
 }) => (
-  <div onClick={onClick}>
+  <HomeContainer onClick={onClick}>
     <MainSection>
       <MaxWidth>
         <FlightSearchBoxAbsolute>
@@ -43,8 +44,17 @@ const Home = ({
       </AgencyText>
     </AgencyInfo>
 
+    <ChooseBestDeals>
+      <MaxWidth>
+        <Text tag='h2' type='m'>
+          Elegí las mejores ofertas...
+        </Text>
+        <BestDeals />
+      </MaxWidth>
+    </ChooseBestDeals>
+
     <div>Resto del contenido</div>
-  </div>
+  </HomeContainer>
 )
 
 Home.propTypes = {}
