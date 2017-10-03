@@ -119,6 +119,12 @@ module.exports = function (plop) {
             templateFile: 'plop-templates/Component.README.md'
         });
 
+        actions.push({
+            type: 'add',
+            path: dirName + '/{{componentName}}/styled.js',
+            templateFile: 'plop-templates/styled.js'
+        });
+
         return actions;
       }
   });
