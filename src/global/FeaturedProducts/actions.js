@@ -1,6 +1,6 @@
 export const FEATURED_PRODUCTS_SET_PRODUCTS = "FEATURED_PRODUCTS_SET_PRODUCTS";
 
-import { json as fetchJSONOnce } from "../../utils/fetch-once";
+import { json as fetchJSONOnce } from 'fetch-once-q';
 import { map } from "lodash";
 
 export const getProducts = type => async dispatch => {
