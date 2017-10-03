@@ -7,12 +7,9 @@ import Icon from "../Icon";
 import ProductCard from "../ProductCard";
 import Text from "../Text";
 
-const FeaturedProducts = ({
-  products,
-  listMode
-}) => (
+const FeaturedProducts = ({ products, listMode }) => (
   <div>
-    {map(products , product => (
+    {map(products, product => (
       <ProductCard
         key={"productCard" + product.title + product.price}
         href={product.href}
@@ -22,16 +19,15 @@ const FeaturedProducts = ({
         subtitle={product.subtitle}
         title={product.title}
         listMode={listMode}
-        imageTitle={product.imageTitle && <div>
-          <Icon
-            height="m"
-            id="Vuelos"/>
-          <Text type="m">
-            {product.imageTitle}
-          </Text>
-        </div>
+        imageTitle={
+          product.imageTitle && (
+            <div>
+              <Icon height="m" id="Vuelos" />
+              <Text type="m">{product.imageTitle}</Text>
+            </div>
+          )
         }
-      ></ProductCard>
+      />
     ))}
   </div>
 );

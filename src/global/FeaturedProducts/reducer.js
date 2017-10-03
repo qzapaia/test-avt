@@ -1,25 +1,20 @@
-import {
-  FEATURED_PRODUCTS_SET_PRODUCTS
-} from './actions';
+import { FEATURED_PRODUCTS_SET_PRODUCTS } from "./actions";
 
 const initialState = {
-  products:[]
+  products: []
 };
 
 export default (state = initialState, action) => {
-  const {
-    type,
-    payload
-  } = action;
+  const { type, payload } = action;
 
-  switch(type){
+  switch (type) {
     case FEATURED_PRODUCTS_SET_PRODUCTS:
       return {
         ...state,
-        products:payload
-      }
+        products: payload
+      };
       break;
     default:
       return state;
   }
-}
+};
