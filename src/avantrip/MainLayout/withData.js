@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
-import HomePage from './'
+import MainLayout from './'
 import { get } from 'lodash';
 import { connect } from "react-redux";
 import { getData } from './actions';
@@ -43,7 +43,7 @@ const WithApolloComponent = graphql(query,{
   props: ({ ownProps, data: { hoteles } }) => ({
     hoteles: get(hoteles,'search.hoteles',[]).slice(0,10),
   }),
-})(HomePage);
+})(MainLayout);
 
 const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponent);
 

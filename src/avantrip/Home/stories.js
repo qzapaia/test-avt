@@ -11,6 +11,7 @@ import HomeWithData from './withData';
 import theme from '../styled.theme';
 import readme from './README.md';
 import reducer from './reducer';
+import MainLayout from '../MainLayout';
 
 const enhace = withState('counter','increment',0);
 const HomeWithState =  enhace((props) => {
@@ -33,8 +34,9 @@ storiesOf('avantrip/Home', module)
     reducer
   }))
   .add('Default', () => (
-    <HomeWithState></HomeWithState>
-
+    <MainLayout>
+      <Home></Home>
+    </MainLayout>
   ))
   // .add('With data', () => (
   //   <HomeWithData></HomeWithData>

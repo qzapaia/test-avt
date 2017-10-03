@@ -1,13 +1,13 @@
 ## Description
-HomePage de avantrip.
+MainLayout de avantrip.
 
 ## Basic use
 
 ```javascript
-import HomePage from 'avantrip-react/avantrip/HomePage';
+import MainLayout from 'avantrip-react/avantrip/MainLayout';
 
 export default () => (
-  <HomePage />
+  <MainLayout />
 )
 ```
 
@@ -26,7 +26,7 @@ Enable an action within the component
 
 #### Actions
 ```javascript
-import { sendData } from 'avantrip-react/avantrip/HomePage/actions';
+import { sendData } from 'avantrip-react/avantrip/MainLayout/actions';
 import store from 'somewhere';
 
 store.dispatch(sendData({ email:"email@email.com" });
@@ -35,11 +35,11 @@ store.dispatch(sendData({ email:"email@email.com" });
 
 #### Reducer
 ```javascript
-import homePageReducer from 'avantrip-react/avantrip/HomePage/reducer';
+import MainLayoutReducer from 'avantrip-react/avantrip/MainLayout/reducer';
 import { createStore, combineReducers } from 'redux';
 
 const reducer = combineReducers({
-  homePage:homePageReducer,
+  MainLayout:MainLayoutReducer,
 })
 
 const store = createStore(reducer);
