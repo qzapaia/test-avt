@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Text from '../Text';
+import Button from '../Button';
 
 export const HomeContainer = styled.section`
   background: ${props=> props.theme.colors.lightgray}
@@ -23,6 +24,19 @@ export const MaxWidth = styled.div`
   max-width: ${props=> props.theme.viewport.desktop};
   position: relative;
 `
+export const FeaturedSection = styled.div`
+  margin: 15px auto;
+  max-width: ${props=> props.theme.viewport.desktop};
+  position: relative;
+`
+export const SubscribeSection = styled.div`
+  margin: 15px auto;
+  button{
+    margin-left: -5px;
+  }
+`
+
+
 export const AgencyInfo = styled.article`
   margin: 15px auto;
   max-width: ${props=> props.theme.viewport.desktop};

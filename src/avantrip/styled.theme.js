@@ -59,28 +59,28 @@ export default {
       normal:{
         bgc:'brand',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     },
     scta:{
       normal:{
         bgc:'primary',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     },
     ghst:{
       normal:{
         bgc:'secondary',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     },
     link:{
       normal:{
         bgc:'alert',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     }
   },

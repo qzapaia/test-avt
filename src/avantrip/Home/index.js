@@ -5,8 +5,9 @@ import FlightSearchBox from '../FlightSearchBox/withData';
 // import Slider from '../FlightSearchBox/withData';
 import Slider from '../Slider';
 import Text from '../Text';
+import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
-import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
+import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 
 const Home = ({
   text,
@@ -34,6 +35,16 @@ const Home = ({
       </Slider>
     </MainSection>
 
+    <FeaturedSection>
+      featured section here
+    </FeaturedSection>
+
+
+    <SubscribeSection>
+      <MaxWidth>
+        <Subscribe buttonText='Suscribirme' title="Recibí nuestras últimas ofertas" />
+      </MaxWidth>
+    </SubscribeSection>
 
     <AgencyInfo>
       <AgencyTitle tag='h1' type='xxl'>
