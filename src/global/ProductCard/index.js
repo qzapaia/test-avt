@@ -1,5 +1,15 @@
 import React from 'react';
-import {Container, MainPictureContainer, MainInfoContainer, LeftContainer, RightContainer, SubtitleContainer, PriceContainer, IconContainer} from './styled';
+import {
+  Container,
+  MainPictureContainer,
+  MainInfoContainer,
+  LeftContainer,
+  RightContainer,
+  SubtitleContainer,
+  PriceContainer,
+  IconContainer,
+  ImageTitleContainer
+} from './styled';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Icon from '../Icon';
@@ -14,11 +24,16 @@ const ProductCard = ({
                       supportingInfo,
                       subtitle,
                       title,
-                    }) => (
-  <Container href={href} target={target} listMode={listMode}>
+                      imageTitle
+                    }) => {
+  console.log("href", href);
+  return <Container href={href} target={target} listMode={listMode}>
 
     <MainPictureContainer listMode={listMode}>
-      <img listMode={listMode} src={media} alt=""/>
+      <img src={media} alt=""/>
+      <ImageTitleContainer>
+        {imageTitle}
+      </ImageTitleContainer>
     </MainPictureContainer>
     <MainInfoContainer listMode={listMode}>
 
@@ -40,7 +55,7 @@ const ProductCard = ({
           <Price color='brand' tag='p' type='xl' price={price} />
         </PriceContainer>
         <IconContainer>
-          <Icon height='40px' id='Back' color='brand' />
+          <Icon width='40px' height='40px' id='Back' color='brand' />
         </IconContainer>
       </RightContainer>
 
@@ -48,7 +63,7 @@ const ProductCard = ({
 
 
   </Container>
-)
+}
 /*
 Este comp a diferencia del global establece muchas de sus props
 como strings y no como nodo ya que en este nivel está mucho más establecido
@@ -59,11 +74,12 @@ ProductCard.propTypes = {
   href:PropTypes.string,
   listMode:PropTypes.bool.isRequired,
   media:PropTypes.node,
-  price:PropTypes.string,
+  price:PropTypes.number,
   supportingInfo:PropTypes.string,
   subtitle:PropTypes.string,
   title:PropTypes.string,
   target:PropTypes.string,
+  imageTitle: PropTypes.node
 }
 
 ProductCard.defaultProps = {

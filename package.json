@@ -28,6 +28,7 @@
   "dependencies": {
     "cp": "^0.2.0",
     "currency-map-symbol": "^3.1.6",
+    "fetch-once-q": "^1.0.3",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "react": "^15.6.1",
@@ -39,6 +40,7 @@
     "react-i18n-q": "^1.0.5",
     "react-paginate": "^4.4.4",
     "react-redux": "^5.0.6",
+    "react-select": "^1.0.0-rc.10",
     "react-slick": "^0.15.4",
     "recharts": "^1.0.0-alpha.4",
     "recompose": "^0.25.0",
