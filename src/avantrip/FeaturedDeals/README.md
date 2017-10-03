@@ -4,7 +4,7 @@ Permite visualizar ofertas destacadas utilizando un slider.
 ## Basic use
 
 ```javascript
-import FeaturedDeals from 'avantrip-react/global/FeaturedDeals';
+import FeaturedDeals from 'avantrip-react/avantrip/FeaturedDeals';
 
 export default () => (
   <FeaturedDeals

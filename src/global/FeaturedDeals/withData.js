@@ -21,7 +21,7 @@ export const query = gql`{
 
 
 const WithApolloComponent = graphql(query,{
-  props: ({ ownProps, data: { home } }) => {
+  props: ({ data: { home } }) => {
     return {
       deals: get(home,'content.home_slider',[]),
     }

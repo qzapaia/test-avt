@@ -38,7 +38,7 @@ const deals = [
 ];
 
 
-storiesOf('global/FeaturedDeals', module)
+storiesOf('avantrip/FeaturedDeals', module)
   .addDecorator(generalDecorator({
     readme,
     theme
