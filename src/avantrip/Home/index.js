@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import ProductCard from '../ProductCard';
 import FlightSearchBox from '../FlightSearchBox/withData';
 import Slider from '../FlightSearchBox/withData';
+import FeaturedProducts from '../FeaturedProducts/withData';
 
 const Home = ({
   text,
@@ -15,6 +16,14 @@ const Home = ({
     <FlightSearchBox
       title='busca tu vuelo'
     />
+
+    <FeaturedProducts
+      type="promotionalFlights" />
+
+    <FeaturedProducts
+      type="bestSellers"
+      listMode={true} />
+
     <div>Resto del contenido</div>
   </div>
 )
