@@ -17,10 +17,8 @@ const Header = ({currentLocation, phoneText}) => (
       <LogoContainer>
         <Logo href="http://www.avantrip.com/"/>
         <Slogan
-          size="16px"
           color="brand"
-          weight="600"
-          family="Stag Sans Web">
+          >
             Viajar es la guita mejor invertida
         </Slogan>
       </LogoContainer>
