@@ -18,8 +18,7 @@ const DestinationsListByPoints = ({ region, destinations }) => {
   }
 
   //Si destinations contiene datos de business muestro una columna mas
-  const BusinessHeader = destinations.some(
-    (data)=>(!isNaN(data.rangoBusiness))) ? <span>Business</span> : undefined;
+  const BusinessHeader = destinations.some((data) => (!isNaN(data.rangoBusiness))) && <span>Business</span>;
 
   return(
     <div>
@@ -42,7 +41,7 @@ DestinationsListByPoints.propTypes = {
 
 DestinationsListByPoints.defaultProps = {
   region:'',
-  destinations: undefined
+  destinations: []
 }
 
 export default DestinationsListByPoints;
