@@ -13,7 +13,7 @@ const FeaturedDeals = ({
   <Container>
     <Slider settings={{autoplay: false}}>
       {map(deals, deal => (
-        <a href="{deal.url}">
+        <a href={deal.url}>
           <Slide image={deal.image} />
         </a>
       ))}
