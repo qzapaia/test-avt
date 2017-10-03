@@ -9,8 +9,10 @@ import Subscribe from 'avantrip-react/avantrip/Subscribe';
 export default () => (
   <Subscribe
     onSubscribe={function}
+    onChange={function}
     title={string}
     state={string}
+    email={string}
   />
 )
 ```
@@ -18,40 +20,77 @@ export default () => (
 ## Props
 
 #### `onSubscribe={<Function>}`
-Escucha el envío de la suscripcion. Recibe un objeto con los valores para ejecutar la suscripcion
+Subscribe
+
+#### `onChange={<Function>}`
+Handler de cambios en el input email
 
 #### `title={<String>}`
-Titulo de la caja
+Título de la caja
 
 #### `state={success|error}`
 Informa del estado de la transacción
 
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
-
+#### `email={<String>}`
+Valor del input email
 
 ## Redux
 
 #### Actions
 ```javascript
-import { subscribe } from 'avantrip-react/avantrip/Subscribe/actions';
-import store from 'somewhere';
+export const SUBSCRIPTION_INIT = 'SUBSCRIPTION_INIT';
+export const SUBSCRIPTION_COMPLETE = 'SUBSCRIPTION_COMPLETE';
+export const SET_EMAIL = 'SET_EMAIL';
 
-store.dispatch(subscribe({ email:"email@email.com" });
-// ...
+// Alto Hardcoding Papas
+export const subscribe = data => {
+  return subscriptionResult({state: true});
+}
+
+export const subscriptionResult = state => ({
+  type:SUBSCRIPTION_COMPLETE,
+  payload:state
+})
+
+export const setEmail = email => ({
+  type:SET_EMAIL,
+  email
+})
+
 ```
 
 #### Reducer
 ```javascript
-import subscribeReducer from 'avantrip-react/avantrip/Subscribe/reducer';
-import { createStore, combineReducers } from 'redux';
+import { SUBSCRIPTION_COMPLETE, SET_EMAIL } from './actions';
 
-const reducer = combineReducers({
-  subscribe:suscribeReducer,
-  todos
-})
+const initialState = {};
 
-const store = createStore(reducer);
-// ...
+export default (state = initialState, action) => {
+  const {type, payload, email} = action;
+
+  switch(type){
+    case SUBSCRIPTION_COMPLETE:
+      if(payload.state){
+        return {
+          ...state,
+          subscriptionStatus: 'success'
+        }
+      } else {
+        return {
+          ...state,
+          subscriptionStatus: 'error'
+        }
+      }
+      break;
+    case SET_EMAIL:
+      return {
+        ...state,
+        email
+      };
+      break;
+    default:
+      return state;
+  }
+}
+
 ```
