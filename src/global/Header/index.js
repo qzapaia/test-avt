@@ -20,6 +20,14 @@ const Header = ({currentLocation, phoneText}) => (
           Viajar es la guita mejor invertida
         </Slogan>
       </LogoContainer>
+      {/* <LinksContainer>
+        <HeaderLink href="">
+          Registrate
+        </HeaderLink>
+        <HeaderLink href="">
+          Mi Compra
+        </HeaderLink>
+      </LinksContainer> */}
       <ContactAndPhoneInfo phoneText={phoneText} />
     </MaxWidth>
     <Nav currentLocation={currentLocation}/>

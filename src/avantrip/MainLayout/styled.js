@@ -7,5 +7,5 @@ export const MainContainer = styled.div`
 
 export const Content = styled.div`
   background-color: white;
-  padding: 50px;
+  ${'' /* padding: 50px; */}
 `

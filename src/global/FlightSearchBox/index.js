@@ -6,6 +6,7 @@ import InputText from '../InputText';
 import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
+import {Container} from './styled';
 
 const onCustomSearch = (next, value) => {
   next(value)
@@ -18,7 +19,7 @@ const customOnChange = (next, name) => value => {
 }
 
 const FlightSearchBox = ({title, onChange, onSearch, value}) => {
-  return (<div>
+  return (<Container>
     {title}
     <div>
       <RadiosGroup
@@ -44,7 +45,7 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
     <div>
       <InputText
         onChange={customOnChange(onChange, 'originCity')}
-        placeholder= 'Ingresá el nombre de la ciudad de origen' 
+        placeholder= 'Ingresá el nombre de la ciudad de origen'
         label='Desde'
         value={value.originCity}
         requiresExistingValue='true'
@@ -57,11 +58,11 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
         <option value="flo">Florianópolis - Brasil</option>
         <option value="mad">Madrid - España</option>
         <option value="par">París - Francia</option>
-        
+
       </InputText>
       <InputText
         onChange={customOnChange(onChange, 'destinationCity')}
-        placeholder= 'Ingresá el nombre de la ciudad de destino' 
+        placeholder= 'Ingresá el nombre de la ciudad de destino'
         label='Hacia'
         value={value.destinationCity}
         requiresExistingValue='true'
@@ -142,9 +143,9 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
     </div>
     <div>
       <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
-    
+
     </div>
-  </div>)
+  </Container>)
 }
 
 FlightSearchBox.propTypes = {
