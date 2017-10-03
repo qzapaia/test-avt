@@ -5,6 +5,7 @@ export const Container = styled.div`
   align-items:center;
   background-color: white;
   width: 100%;
+  padding: 10px;
 `
 export const TextContainer = styled.div`
   margin:10px;
@@ -13,6 +14,9 @@ export const TextContainer = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   width: 100%;
+  input{
+    font-size: 16px;
+  }
 `
 
 export const FormChildsContainer = styled.div`
