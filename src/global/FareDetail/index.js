@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import styled from 'styled-components';
 import Text from '../Text';
 
+const Title = styled.h1`
+  color:${props=>props.theme.color};
+`
 const FareDetail = ({
                       title,
                       currency,
@@ -14,7 +17,9 @@ const FareDetail = ({
     </div>
     <div>
         <div>
-          <Text>Tarifa por adulto</Text>
+          <Title>
+            <Text>Tarifa por adulto</Text>
+          </Title>
         </div>
         <div>
           {currency} {detailInfo.referencePrice}
@@ -66,7 +71,11 @@ const FareDetail = ({
 FareDetail.propTypes = {
   lastPlaces: PropTypes.string,
   currency: PropTypes.string.isRequired,
-  detailInfo: PropTypes.object.isRequired
+  detailInfo: PropTypes.object.isRequired,
+}
+
+FareDetail.defaultProps = {
+  theme:{}
 }
 
 export default FareDetail;
