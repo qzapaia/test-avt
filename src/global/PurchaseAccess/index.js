@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputText from '../InputText';
 
-const preventFormatAndContinueWith = next => e => {
+const preventFormatAndContinueWith = (next,value) => e => {
   e.preventDefault();
-  next()
+  next(value)
 }
 
-const PurchaseAccess = ({errorMessage, value, onSubmit, onChange}) => (
-  <div>
+const PurchaseAccess = ({errorMessage, value, onSubmit, onChange}) => {
+  console.log("errorMessage", errorMessage);
+  return <div>
 
-    <form onSubmit={preventFormatAndContinueWith(onSubmit)}>
+    <form onSubmit={preventFormatAndContinueWith(onSubmit, value)}>
     	<div>¿Compraste un vuelo?</div>
 
       <InputText
@@ -45,10 +46,10 @@ const PurchaseAccess = ({errorMessage, value, onSubmit, onChange}) => (
   		</ul>
   	</div>
   </div>
-)
+}
 
 PurchaseAccess.defaultProps = {
-
+  value: {}
 }
 
 export default PurchaseAccess;

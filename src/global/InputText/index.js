@@ -92,7 +92,12 @@ class InputText extends Component {
     const inputProps = {
       placeholder,
       value: showValue,
-      onChange:(event, { newValue }) => this.onChangeInternal(newValue),
+      onChange:(event, { newValue }) => {
+        this.onChangeInternal(newValue);
+        if(!requiresExistingValue){
+          onChange(newValue);
+        }
+      },
       onBlur: () => {
         const valueExists = options.find(o=>o.value==internalValue);
         if(requiresExistingValue && valueExists){

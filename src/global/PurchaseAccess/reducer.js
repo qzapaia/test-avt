@@ -1,20 +1,27 @@
-import { SET_DATA } from './actions';
+import {
+  SET_PURCHASE,
+  SET_ERROR_MESSAGE
+} from "./actions";
 
 const initialState = {};
 
 export default (state = initialState, action) => {
-  const {type,payload} = action;
+  const { type, payload, errorMessage } = action;
 
-  console.log(action);
-
-  switch(type){
-    case SET_DATA:
+  switch (type) {
+    case SET_PURCHASE:
       return {
         ...state,
-        payload
-      }
+        ...payload
+      };
+      break;
+    case SET_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage
+      };
       break;
     default:
       return state;
   }
-}
+};
