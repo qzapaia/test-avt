@@ -5,13 +5,14 @@ import Container from './container.styled';
 
 const FinancingPromotion = ({
   data
-}) => (
-  <Container>
+}) => {
+  console.log("data", data);
+  return <Container>
     <a href="http://www.avantrip.com/oportunidades/financiacion-avantrip" target="_blank">
-      <img src={data.image} />
-    </a>
+    <img src={data.image} />
+  </a>
   </Container>
-)
+}
 
 FinancingPromotion.propTypes = {
   data: PropTypes.object,
