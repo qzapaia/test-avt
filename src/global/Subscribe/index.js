@@ -1,36 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Container from './styled';
+import { Container, TextContainer, InputContainer, FormChildsContainer }  from './styled';
+import InputText from '../InputText';
+import Text from '../Text';
+import Button from '../Button';
 
 const ERROR_STATE = 'error';
 const SUCCESS_STATE = 'success';
 
-const preventFormatAndContinueWith = next => e => {
-  e.preventDefault();
-  next({
-    email:e.target.email.value
-  })
-}
-
-const Subscribe = ({onSubscribe, title, state}) => (
+const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email}) => (
   <div>
-    {!state &&
+    {!subscriptionStatus &&
       <Container>
-        <h4>{title}</h4>
-        <form onSubmit={preventFormatAndContinueWith(onSubscribe)}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Ingresá tu dirección de email"
-          />
-          <button>Enviar</button>
-        </form>
+
+        <TextContainer>
+          <Text color='brand' tag='h4' type='l'>
+            {title}
+          </Text>
+        </TextContainer>
+
+        <InputContainer>
+
+          <form onSubmit={ (e) => {
+            e.preventDefault()
+            onSubscribe(email)
+          }} >
+
+            <FormChildsContainer>
+              <InputText
+                onChange = {
+                  (value) => onChange({ email:value })
+                }
+                value={email}
+                requiresExistingValue={false}
+                placeholder="Ingresá tu dirección de email"
+              />
+              <Button>Enviar</Button>
+            </FormChildsContainer>
+          </form>
+        </InputContainer>
       </Container>
     }
-    {state == SUCCESS_STATE &&
+    {subscriptionStatus == SUCCESS_STATE &&
       <div>Todo joya</div>
     }
-    {state == ERROR_STATE &&
+    {subscriptionStatus == ERROR_STATE &&
       <div>Todo mal</div>
     }
   </div>
@@ -38,13 +52,9 @@ const Subscribe = ({onSubscribe, title, state}) => (
 
 Subscribe.propTypes = {
   onSubscribe:PropTypes.func.isRequired,
+  email:PropTypes.string,
   title:PropTypes.string.isRequired,
-  state:PropTypes.oneOf([SUCCESS_STATE, ERROR_STATE])
-}
-
-Subscribe.defaultProps = {
-  title:'',
-  state:''
+  subscriptionStatus:PropTypes.oneOf([SUCCESS_STATE, ERROR_STATE])
 }
 
 export default Subscribe;

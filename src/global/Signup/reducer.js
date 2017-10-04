@@ -1,17 +1,15 @@
-import { FACEBOOK_SIGNUP_COMPLETE } from './actions';
+import { FACEBOOK_SIGNUP_SET_USER } from './actions';
 
 const initialState = {};
 
 export default (state = initialState, action) => {
   const {type,payload} = action;
 
-  console.log(action);
-
   switch(type){
-    case FACEBOOK_SIGNUP_COMPLETE:
+    case FACEBOOK_SIGNUP_SET_USER:
       return {
         ...state,
-        payload
+        ...payload
       }
       break;
     default:
