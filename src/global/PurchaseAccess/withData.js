@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
     purchaseId: state.purchaseAccess.purchaseId,
     purchaseEmail: state.purchaseAccess.purchaseEmail
   },
-  errorMessage: state.purchaseAccess.errorMessage
+  errorMessage: state.purchaseAccess.errorMessage,
+  state: state.purchaseAccess.status
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

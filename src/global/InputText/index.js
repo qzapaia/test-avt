@@ -81,7 +81,8 @@ class InputText extends Component {
       requiresExistingValue,
       icon,
       placeholder,
-      children
+      children,
+      disabled
     } = this.props;
 
     const options = childrenToOpions(children);
@@ -90,6 +91,7 @@ class InputText extends Component {
     const showValue = internalValue || (valueExists ? valueExists.label : value);
 
     const inputProps = {
+      disabled,
       placeholder,
       value: showValue,
       onChange:(event, { newValue }) => {

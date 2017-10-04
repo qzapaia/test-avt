@@ -32,6 +32,7 @@ const PurchaseAccessWithState = enhace(props => {
 
   return (
     <PurchaseAccess
+      {...props}
       value={formValue}
       onSubmit={onSubmit}
       onChange={onChange}
@@ -54,6 +55,7 @@ storiesOf("global/PurchaseAccess", module)
   .add("Fail", () => (
     <PurchaseAccessWithState errorMessage="No se ha encontrado una compra asociada. Por favor ingresá tus datos de nuevo." />
   ))
-  .add("With Data", () => (
-    <PurchaseAccessWithData />
-  ));
+  .add("Con estado 'cargando'", () => (
+    <PurchaseAccessWithState state="loading" />
+  ))
+  .add("With Data", () => <PurchaseAccessWithData />);

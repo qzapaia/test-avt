@@ -29,6 +29,7 @@
     "cp": "^0.2.0",
     "currency-map-symbol": "^3.1.6",
     "fetch-once-q": "^1.0.3",
+    "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "react": "^15.6.1",
