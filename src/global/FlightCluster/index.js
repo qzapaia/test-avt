@@ -28,27 +28,36 @@ const FlightCluster = ({
 }) => {
   return (
     <div style={containerStyle}>
-     
       <div style={routeContainer}>
-
+        <div style={{'padding':'10px','color':'green'}}>
+          {data.additionalInfo}
+        </div>
         {
           map(data.routes, r => (
+            <div>
+              <FlightClusterRoute
+                title={r.header.title} 
+                date={r.header.date} 
+                departureCity={r.header.departureCity} 
+                arrivalCity={r.header.arrivalCity}
+              >
 
-            <FlightClusterRoute
-              title={r.header.title} 
-              date={r.header.date} 
-              departureCity={r.header.departureCity} 
-              arrivalCity={r.header.arrivalCity}
-            >
+                {
+                  map(r.options, o => (
+                    <FlightClusterRouteOption data={o} onClick={()=>{}} />
+                  ))
+                }
+              </FlightClusterRoute>
+            
 
-            {
-              map(r.options, o => (
-                <FlightClusterRouteOption data={o} onClick={()=>{}} />
-              ))
-            }
-            </FlightClusterRoute>
+
+            </div>
           ))
+          
         }
+        <div style={{'padding':'10px','color':'blue'}}>
+          {data.disclaimerText}
+        </div>
       </div>
 
 

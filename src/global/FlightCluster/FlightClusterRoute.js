@@ -7,7 +7,7 @@ import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separ
 
 // TODO: Resolver locales
 
-const FORMAT_DATE = 'ddd. DD MMM de YYYY';
+const FORMAT_DATE = 'ddd. DD MMM [de] YYYY';
 
 const parseDate = date => {
   return Moment(date).format(FORMAT_DATE);
