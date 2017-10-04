@@ -5,7 +5,11 @@ export const Container = styled.a`
   overflow: hidden;
   width: ${props=>props.listMode?'100%':''};
   margin: ${props=>props.listMode?'0':'0 10px'};
-  margin-bottom: 20px;
+  margin-bottom: ${props=>props.listMode?'':'20px'};
+
+  border-top: ${props=>props.listMode?'1px solid '+props.theme.colors.gray :''};
+  padding: ${props=>props.listMode?'10px 5px':''};
+  background: ${props=>props.listMode?'white':''};
 `
 export const MainPictureContainer = styled.figure`
   position: relative;

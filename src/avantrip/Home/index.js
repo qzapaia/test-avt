@@ -8,7 +8,7 @@ import FeaturedDeals from '../FeaturedDeals/withData';
 import Text from '../Text';
 import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
-import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, ListContainer, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
+import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, FlightsBestSellers, ListContainer, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 import FeaturedProducts from '../FeaturedProducts/withData';
 
 const Home = ({
@@ -38,6 +38,9 @@ const Home = ({
         <FeaturedProducts type="promotionalFlights" />
       </CardsContainer>
       <ListContainer>
+        <FlightsBestSellers tag='h2' type='l' color='brand'>
+          Vuelos más vendidos de la semana
+        </FlightsBestSellers>
         <FeaturedProducts
           type="bestSellers"
           listMode={true} />

@@ -23,7 +23,7 @@ const FeaturedProducts = ({ products, listMode }) => (
         imageTitle={
           product.imageTitle && (
             <ImageTitleContainer>
-              <Icon height="m" id="Vuelos" color='white' />
+              <Icon id="Vuelos" color='white' />
               <Text type="s">{product.imageTitle}</Text>
             </ImageTitleContainer>
           )

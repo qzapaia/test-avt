@@ -40,6 +40,13 @@ export const CardsContainer = styled.article`
     justify-content: center;
   }
 `
+export const FlightsBestSellers = Text.extend`
+  background: white;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+`
+
+
 export const ListContainer = styled.article`
   flex: 1 1 30%;
 `
