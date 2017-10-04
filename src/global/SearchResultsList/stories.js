@@ -13,16 +13,17 @@ import readme from './README.md';
 import reducer from "./reducer";
 
 const enhace = withState('counter','increment',0);
+
 const SearchResultsListWithState =  enhace((props) => {
   const { counter, increment } = props;
-
+  const clusters = [];
   const clickHandler = () => {
     action('click')(counter+1);
     increment(counter+1);
   }
 
   return (
-    <SearchResultsList {...props} text={counter} onClick={clickHandler} />
+    <SearchResultsList {...props} clusters={clusters} onClick={clickHandler} />
   )
 })
 let search = {
