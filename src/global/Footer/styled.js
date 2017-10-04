@@ -158,16 +158,6 @@ export const ContactContainer = styled.article`
     display: inline-block;
     margin-bottom: 5px;
   }
-  a{
-    display: block;
-    margin-bottom: 2.5px;
-    &:first-of-type{
-      margin-top: 10px;
-    }
-    p{
-      color: ${props=>props.theme.colors.primary}
-    }
-  }
   h3{
     margin-bottom: 5px;
     &:not(:first-of-type){
@@ -180,4 +170,45 @@ export const ContactContainer = styled.article`
 export const WeekDays = Text.extend`
   font-weight: 400;
   font-size: 10px;
+`
+
+export const FooterLink = Link.extend`
+  display: block;
+  margin-bottom: 5px;
+  &:first-of-type{
+    margin-top: 10px;
+  }
+  p{
+    color: ${props=>props.theme.colors.primary}
+  }
+`
+
+export const RockBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 30px;
+`
+export const Copyright = styled.article`
+  display: block;
+  p{
+    margin-top: 5px;
+  }
+`
+export const SocialLinks = styled.div`
+  display: block;
+`
+
+
+export const Facebook = FooterImage.extend`
+  background-position: 2px -109px;
+  height: 35px;
+  width: 35px;
+  margin-right: 5px;
+`
+export const Twitter = FooterImage.extend`
+  background-position: 0px -149px;
+  height: 35px;
+  width: 35px;
+  margin-left: 5px;
 `

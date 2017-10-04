@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import Text from '../Text';
 import Link from '../Link';
-import {FooterContainer, MaxWidth, FooterItem, FooterTitle, FooterList, FooterImage, ImageContainer, Faevyt, Aviabue, TripAdvisor, Visa, Mastercard, American, Cabal, Diners, Todopago, CardsContainer, ViewMore, Geotrust, Fiscal, AvantripPymes, ContactContainer, WeekDays} from './styled'
+import {FooterContainer, MaxWidth, FooterItem, FooterTitle, FooterList, FooterImage, ImageContainer, Faevyt, Aviabue, TripAdvisor, Visa, Mastercard, American, Cabal, Diners, Todopago, CardsContainer, ViewMore, Geotrust, Fiscal, AvantripPymes, ContactContainer, WeekDays, FooterLink, RockBottom, Copyright, SocialLinks, Facebook, Twitter} from './styled'
 
 const Footer = () => (
  <FooterContainer>
@@ -67,7 +67,25 @@ const Footer = () => (
            <Fiscal href="https://servicios1.afip.gov.ar/clavefiscal/qr/mobilePublicInfo.aspx?req=e1ttZXRob2Q9Z2V0UHVibGljSW5mb11bcGVyc29uYT0zMzcxMDc0NTE1OV1bdGlwb2RvbWljaWxpbz0wXVtzZWN1ZW5jaWE9MF1bdXJsPWh0dHA6Ly93d3cuYXZhbnRyaXAuY29tXX0=" target="_blank">
              Data fiscal
            </Fiscal>
+
          </CardsContainer>
+           <FooterLink href="https://www.avantrip.com/politica-de-privacidad">
+             <Text tag='p' type='s'>
+               Política de privacidad
+             </Text>
+           </FooterLink>
+
+         <FooterLink href="https://www.avantrip.com/seguridad">
+           <Text tag='p' type='s'>
+             Seguridad
+           </Text>
+         </FooterLink>
+
+         <FooterLink href="https://www.avantrip.com/terminos-y-condiciones">
+           <Text tag='p' type='s'>
+             Términos y condiciones
+           </Text>
+         </FooterLink>
        </FooterItem>
 
 
@@ -116,25 +134,23 @@ const Footer = () => (
              Sáb y Dom de 9 a 15hs.
            </WeekDays>
 
-           <Link href="http://www.avantrip.com/centro-de-ayuda">
+           <FooterLink href="http://www.avantrip.com/centro-de-ayuda">
             <Text tag='p' type='s'>
               Centro de Ayuda
             </Text>
-           </Link>
+          </FooterLink>
 
-           <Link href="https://www.avantrip.com/quienes-somos">
+           <FooterLink href="https://www.avantrip.com/quienes-somos">
             <Text tag='p' type='s'>
               Acerca de Avantrip
             </Text>
-           </Link>
+          </FooterLink>
 
-           <Link href="https://www.avantrip.com/oportunidades/programa-de-afiliados">
+           <FooterLink href="https://www.avantrip.com/oportunidades/programa-de-afiliados">
             <Text tag='p' type='s'>
               Programa de afiliados
             </Text>
-           </Link>
-
-
+          </FooterLink>
 
 
          </ContactContainer>
@@ -142,6 +158,29 @@ const Footer = () => (
        </FooterItem>
 
      </FooterList>
+
+     <RockBottom>
+       <Copyright>
+         <Text tag='p'>
+           2008 - 2017 Avantrip.com - Todos los derechos reservados
+         </Text>
+         <Text tag='p'>
+           Avantrip.com SRL Legajo Nro. 13969 - Disp. 299
+         </Text>
+       </Copyright>
+
+       <SocialLinks>
+         <Facebook href='http://www.facebook.com/avantrip' target='_blank' title='Seguinos en Facebook' >
+           Facebook
+         </Facebook>
+
+         <Twitter href='http://twitter.com/avantrip' target='_blank' title='Seguinos en Twitter' >
+           Twitter
+         </Twitter>
+
+       </SocialLinks>
+
+     </RockBottom>
    </MaxWidth>
  </FooterContainer>
 )
