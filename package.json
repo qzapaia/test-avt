@@ -28,6 +28,7 @@
   "dependencies": {
     "cp": "^0.2.0",
     "currency-map-symbol": "^3.1.6",
+    "fetch-once-q": "^1.0.3",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "react": "^15.6.1",
@@ -36,6 +37,7 @@
     "react-autosuggest": "^9.3.2",
     "react-dates": "^12.6.0",
     "react-dom": "^15.6.1",
+    "react-facebook-login-component": "^0.9.0",
     "react-i18n-q": "^1.0.5",
     "react-paginate": "^4.4.4",
     "react-redux": "^5.0.6",

@@ -1,11 +1,10 @@
 import React from 'react';
-import GlobalSignup from '../../global/Signup';
+import GlobalFeaturedDealsWithData from '../../global/FeaturedDeals/withData';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 
-
 export default (props) => (
   <ThemeProvider theme={theme}>
-    <GlobalSignup {...props} />
+    <GlobalFeaturedDealsWithData {...props} />
   </ThemeProvider>
 )

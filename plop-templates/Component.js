@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container } from './styled';
 
 const {{componentName}} = ({
   text,
@@ -12,7 +13,7 @@ const {{componentName}} = ({
   hoteles,
   {{/withDataComponent}}
 }) => (
-  <div onClick={onClick}>
+  <Container onClick={onClick}>
     {{componentName}} component
     <br/>
     Counter {text}
@@ -35,7 +36,7 @@ const {{componentName}} = ({
       ))}
     </div>
     {{/redux}}
-  </div>
+  </Container>
 )
 
 {{componentName}}.propTypes = {
