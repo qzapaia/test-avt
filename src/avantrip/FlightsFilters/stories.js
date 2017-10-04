@@ -28,6 +28,36 @@ const options = {
       value:'2',
       label: "dos escala"
     }
+  ],
+  vuelta:[
+    {
+      value:'1',
+      label: "una escala"
+    },
+    {
+      value:'2',
+      label: "dos escala"
+    }
+  ],
+  airlines:[
+    {
+      value:'1',
+      label: "una escala"
+    },
+    {
+      value:'2',
+      label: "dos escala"
+    }
+  ],
+  salida:[
+    {
+      value:'1',
+      label: "una escala"
+    },
+    {
+      value:'2',
+      label: "dos escala"
+    }
   ]
 }
 const FlightsFiltersWithState =  enhace((props) => {
