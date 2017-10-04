@@ -33,8 +33,7 @@ export const FeaturedSection = styled.div`
   flex-wrap: wrap;
 `
 export const CardsContainer = styled.article`
-  flex: 1 1 66%;
-  margin-right: 4%;
+  flex: 1 1 60%;
   > div{
     display: flex;
     flex-wrap: wrap;

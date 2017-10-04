@@ -31,9 +31,12 @@ const ProductCard = ({
 
     <MainPictureContainer listMode={listMode}>
       <img src={media} alt=""/>
-      <ImageTitleContainer>
-        {imageTitle}
-      </ImageTitleContainer>
+      {listMode ?
+        null :
+        <ImageTitleContainer>
+          {imageTitle}
+        </ImageTitleContainer>
+      }
     </MainPictureContainer>
     <MainInfoContainer listMode={listMode}>
 
@@ -47,17 +50,21 @@ const ProductCard = ({
           </Text>
         </SubtitleContainer>
       </LeftContainer>
-      <RightContainer>
-        <PriceContainer>
-          <Text color='brand' tag='p' type='xs'>
-            {supportingInfo}
-          </Text>
-          <Price color='brand' tag='p' type='xl' price={price} />
-        </PriceContainer>
-        <IconContainer>
-          <Icon width='40px' height='40px' id='Back' color='brand' />
-        </IconContainer>
-      </RightContainer>
+
+      {price ?
+        <RightContainer listMode={listMode}>
+          <PriceContainer>
+            <Text color='brand' tag='p' type='xs'>
+              {supportingInfo}
+            </Text>
+            <Price color='brand' tag='p' type='xl' price={price} />
+          </PriceContainer>
+          <IconContainer listMode={listMode}>
+            <Icon width='40px' height='40px' id='Back' color='brand' />
+          </IconContainer>
+        </RightContainer>
+
+        :null}
 
     </MainInfoContainer>
 
