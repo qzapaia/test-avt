@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Container } from './styled';
 import ExpansionPanel from '../ExpansionPanel';
 import CheckboxGroup from '../CheckboxGroup';
+import { map, get } from 'lodash';
 
 const FlightsFilters = ({
   options,
@@ -12,28 +13,20 @@ const FlightsFilters = ({
 }) => (
   <Container>
     <h2>Filtros de Búsqueda</h2>
-    <h3>Escalas</h3>
+    <h3>Escalas Tramos</h3>
     <div>
-      <CheckboxGroup
-        label={'ida'}
-        onChange={onChangeHandler('ida')(onChange)}
-        options={options.ida}
-        values={values.ida}
-        onClear={()=>onClear('ida')}
-        allOptions={{
-          label:<span>Todas las escalas</span>,
-          checked:false}}
-      />
-      <CheckboxGroup
-        label={'vuelta'}
-        onChange={onChangeHandler('vuelta')(onChange)}
-        options={options.vuelta}
-        values={values.vuelta}
-        onClear={()=>onClear('vuelta')}
-        allOptions={{
-          label:<span>Todas las escalas</span>,
-          checked:false}}
-      />
+      {map(options.stages, (stageOptions, k) => (
+        <CheckboxGroup
+          label={'tramo' + k}
+          onChange={onChangeHandler(`stages.${k}`)(onChange)}
+          options={stageOptions.options}
+          values={get(values,['stages', k])}
+          onClear={()=>onClear(`stages.${k}`)}
+          allOptions={{
+            label:<span>Todas las escalas</span>,
+            checked:false}}
+          />
+      ))}
 
       <CheckboxGroup
         label={'airlines'}

@@ -12,33 +12,39 @@ import theme from '../styled.theme';
 import readme from './README.md';
 import reducer from "./reducer";
 
-import { remove, clone } from 'lodash';
+import { remove, clone, set, get } from 'lodash';
 
 const enhace = compose(
   withState('expanded','onExpand',{}),
   withState('values','onChange',{}),
 )
 const options = {
-  ida:[
-    {
-      value:'1',
-      label: "una escala"
+  stages:{
+    0: {
+      options:[
+        {
+          value:'1',
+          label: "una escala"
+        },
+        {
+          value:'2',
+          label: "dos escala"
+        }
+      ]
     },
-    {
-      value:'2',
-      label: "dos escala"
+    1: {
+      options:[
+        {
+          value:'1',
+          label: "una escala"
+        },
+        {
+          value:'2',
+          label: "dos escala"
+        }
+      ]
     }
-  ],
-  vuelta:[
-    {
-      value:'1',
-      label: "una escala"
-    },
-    {
-      value:'2',
-      label: "dos escala"
-    }
-  ],
+  },
   airlines:[
     {
       value:'1',
@@ -76,13 +82,16 @@ const FlightsFiltersWithState =  enhace((props) => {
     action('expanded')(expanded);
   }
 
-  const onChangeHandler = (id, {checked, value}) => {
+  const onChangeHandler = (path, {checked, value}) => {
     const newValues = clone(values);
+    const values = get(newValues,path,[]);
+
     if(checked){
-      newValues[id] = newValues[id] ? newValues[id].concat(value) : [value];
+      values.push(value)
     }else{
-      remove(newValues[id],v=>v==value)
+      remove(values, v=>v==value)
     }
+
     action('onChange')(newValues);
     onChange(newValues)
   }
