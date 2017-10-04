@@ -3,6 +3,8 @@ const { join, sep, resolve } = require('path')
 const rimraf = require('rimraf');
 const cp = require('cp');
 const path = require('path');
+const dl = require('directory-list');
+const replace = require('replace-in-file');
 
 const GLOBAL_UI = 'global';
 const AVANTRIP_UI = 'avantrip';
@@ -20,13 +22,27 @@ const component_types = [COMPONENT_TYPE, STYLED_COMPONENT_TYPE];
 
 const toPascalCase = require('to-pascal-case');
 
+let globalComponents;
+
+dl.list(__dirname+'/src/global/', true, function(files) {
+  globalComponents = files;
+});
+
 module.exports = function (plop) {
 
   plop.setActionType('copy', function (answers, config, plop) {
-    const from = plop.renderString(path.join(__dirname,config.from), answers);
-    const to = plop.renderString(path.join(__dirname,config.to), answers);
 
-		cp.sync(from, to);
+    const { from,  to, replaceFrom, replaceTo } = config
+    const fromPath = plop.renderString(path.join(__dirname, from), answers);
+    const toPath = plop.renderString(path.join(__dirname, to), answers);
+
+		cp.sync(fromPath, toPath);
+
+    replace.sync({
+      files: toPath,
+      from: replaceFrom || '',
+      to: replaceTo || '',
+    });
 
     return 'OK';
 	});
@@ -132,9 +148,10 @@ module.exports = function (plop) {
   plop.setGenerator('Create Extension', {
       description: 'Create a Global Component Sub Component',
       prompts: [{
-          type: 'input',
+          type: 'list',
           name: 'name',
-          message: 'name of the global component (it will be pascalized)',
+          message: 'Global component to extend',
+          choices: globalComponents,
           validate: function (value) {
               if ((/.+/).test(value)) { return true; }
               return 'name is required';
@@ -185,6 +202,8 @@ module.exports = function (plop) {
             type: 'copy',
             from: 'src/global/{{componentName}}/stories.js',
             to: dirName + '/{{componentName}}/stories.js',
+            replaceFrom:'global',
+            replaceTo:data.ui,
         });
 
         actions.push({

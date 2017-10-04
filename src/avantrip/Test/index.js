@@ -1,14 +1,48 @@
-
 import React from 'react';
-import GlobalTest from '../../global/Test';
-import { ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
+import { Container } from './styled';
 
-const componentTheme = {
-  color:'blue'
+const Test = ({
+  text,
+  onClick,
+  repos,
+  getRepos,
+  flights,
+}) => (
+  <Container onClick={onClick}>
+    Test component
+    <br/>
+    Counter {text}
+    <br/>
+    <strong>Click to increment</strong>
+
+    <h3>Vuelos</h3>
+    {flights.map(r=>(
+      <div key={r.url}> {r.destination_name} </div>
+    ))}
+
+    <div>
+      <h3>Repos</h3>
+      <button onClick={getRepos}>Get Repos</button>
+      {repos.map(r=>(
+        <div key={r.name}> {r.name} </div>
+      ))}
+    </div>
+  </Container>
+)
+
+Test.propTypes = {
+  text: PropTypes.node.isRequired,
+  flights: PropTypes.array,
+  getRepos: PropTypes.func,
+  repos: PropTypes.array,
 }
 
-export default (props) => (
-  <ThemeProvider theme={componentTheme}>
-    <GlobalTest {...props} />
-  </ThemeProvider>
-)
+Test.defaultProps = {
+  text:'no value yet :(',
+  flights:[],
+  getRepos(){},
+  repos:[],
+}
+
+export default Test;
