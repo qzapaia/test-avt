@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RadiosGroup from '../RadioGroup';
 import NumberGroup from '../NumberGroup';
+import Select from '../Select';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
 import { map } from "lodash";
+import moment from "moment";
 
 const onCustomSearch = (next, value) => {
   next(value)
@@ -17,9 +19,16 @@ const customOnSet = (next, value) => e => {
 }
 
 const customOnChange = (next, name) => value => {
-  next({
-    [name]:value
-  })
+
+  if(name == 'adults' || name == 'children' || name == 'infant') {
+    next({
+      [name]:value.value
+    })
+  } else {
+    next({
+      [name]:value
+    })
+  }
 }
 
 const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => {
@@ -88,7 +97,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             <InputDate
               range={value.leg == 1 ? true : false}
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
-              dates={flight.dates}
+              date={flight.dates}
             />
           </div>
         </div>
@@ -101,41 +110,65 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
       </div>}
     <div>
       <InputCheckbox
-        value='flexibleDate'
-        onChange={customOnChange(onChange, "flexibleDate")}
+        value='flexibleDates'
+        onChange={customOnChange(onChange, "flexibleDates")}
         type='checkbox'
         label='Mis fechas son flexibles'
-        checked={value.flexibleDate? true: false}
+        checked={value.flexibleDates? true: false}
       />
     </div>
     <div>
-      <NumberGroup
-        options={[
-          {
-            label:'Adultos',
-            id:'adults',
-            value: value.amountTraveller.adults,
-            min: '1',
-            max: '9'
-          },
-          {
-            label:'Niños',
-            id:'children',
-            value: value.amountTraveller.children || 0,
-            min: '0',
-            max: '9'
-          },
-          {
-            label:'Bebés',
-            id:'infant',
-            value: value.amountTraveller.infant || 0,
-            min: '0',
-            max: '9'
-          }
-        ]}
-        onChangeKeyValue={customOnChange(onChange, `amountTraveller`)}
-        label=''
-      />
+          <Select
+            name='adults'
+            placeholder='Adultos'
+            onChange={customOnChange(onChange, 'adults')}
+            value={value.adults}
+            options={[
+              {value: '1', label: '1'},
+              {value: '2', label: '2'},
+              {value: '3', label: '3'},
+              {value: '4', label: '4'},
+              {value: '5', label: '5'},
+              {value: '6', label: '6'},
+              {value: '7', label: '7'},
+              {value: '8', label: '8'},
+              {value: '9', label: '9'}
+            ]}
+            />
+            <Select
+            name='children'
+            placeholder='Niños'
+            onChange={customOnChange(onChange, 'children')}
+            value={value.children}
+            options={[
+              {value: '1', label: '1'},
+              {value: '2', label: '2'},
+              {value: '3', label: '3'},
+              {value: '4', label: '4'},
+              {value: '5', label: '5'},
+              {value: '6', label: '6'},
+              {value: '7', label: '7'},
+              {value: '8', label: '8'},
+              {value: '9', label: '9'}
+            ]}
+            />
+            <Select
+            name='infant'
+            placeholder='Bebés'
+            onChange={customOnChange(onChange, 'infant')}
+            value={value.infant}
+            options={[
+              {value: '1', label: '1'},
+              {value: '2', label: '2'},
+              {value: '3', label: '3'},
+              {value: '4', label: '4'},
+              {value: '5', label: '5'},
+              {value: '6', label: '6'},
+              {value: '7', label: '7'},
+              {value: '8', label: '8'},
+              {value: '9', label: '9'}
+            ]}
+            />
     </div>
     <div>
       <RadiosGroup
