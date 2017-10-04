@@ -12,11 +12,11 @@ import {
 
 const MainLayout = ({children}) => (
   <MainContainer>
-    <Header phoneText="0810-222-2826"></Header>
+    <Header phoneText="0810-222-2826" />
     <Content>
       {children}
     </Content>
-    <Footer></Footer>
+    <Footer />
   </MainContainer>
 )
 

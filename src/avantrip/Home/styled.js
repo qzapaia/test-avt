@@ -3,7 +3,8 @@ import Text from '../Text';
 import Button from '../Button';
 
 export const HomeContainer = styled.section`
-  background: ${props=> props.theme.colors.lightgray}
+  background: ${props=> props.theme.colors.lightgray};
+  padding-bottom: 70px;
 `
 export const MainSection = styled.section`
   display: block;

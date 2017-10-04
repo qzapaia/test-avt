@@ -74,7 +74,6 @@ const Home = ({
       </MaxWidth>
     </ChooseBestDeals>
 
-    <div>Resto del contenido</div>
   </HomeContainer>
 )
 

@@ -11,7 +11,8 @@ export default {
     lightgray:'#eee',
     gray:'#efefef',
     darkgray:'#ccc',
-    darkergray:'#666'
+    darkergray:'#666',
+    footer:'#f8f8fa'
   },
   texts:{
     hxxl:{
