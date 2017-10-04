@@ -26,6 +26,7 @@ const FlightCluster = ({
   onClick,
   data
 }) => {
+
   return (
     <div style={containerStyle}>
       <div style={routeContainer}>

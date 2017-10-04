@@ -117,7 +117,7 @@ const FlightClusterWithState =  enhace((props) => {
       arrivalCity: 'Nueva York',
       date:new Date()
     },
-    'options':[sampleRouteOption1]
+    'options':[sampleRouteOption1,sampleRouteOption1]
   }
 
   const sampleRoute2 = {
