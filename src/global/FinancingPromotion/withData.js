@@ -9,7 +9,9 @@ import { get } from "lodash";
 export const query = gql`{
   home {
     content {
-      installments_without_interest
+      installments_without_interest {
+        image
+      }
     }
   }
 }`;
