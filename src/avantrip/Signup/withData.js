@@ -3,15 +3,14 @@ import { connect } from "react-redux";
 
 import FacebookLogin from "./";
 
-
-import { setUser } from "./actions";
+import { setFacebookUser } from '../../global/User/actions';
 
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onFacebookSignup: userData => {
-      dispatch(setUser(userData));
+      dispatch(setFacebookUser(userData));
     }
   };
 };

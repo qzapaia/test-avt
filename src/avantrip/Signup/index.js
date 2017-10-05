@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import FacebookLogin from './FacebookLogin';
 
 const facebookHandler = next => data => {
-  console.log("signup", data);
   next({
     facebook: data
   })
