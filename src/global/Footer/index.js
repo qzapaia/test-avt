@@ -32,6 +32,14 @@ const Footer = () => (
 
          </ImageContainer>
 
+         <FooterTitle>
+           <Icon id='Paquetes' width='14px' height='14px' color='darkgray'/>
+           <Text>
+             Viajes corporativos
+           </Text>
+         </FooterTitle>
+         <AvantripPymes title="Avantrip Pymes" href="https://www.avantrip.com/pymes/" />
+
        </FooterItem>
        <FooterItem>
          <FooterTitle>
@@ -88,17 +96,6 @@ const Footer = () => (
          </FooterLink>
        </FooterItem>
 
-
-       <FooterItem>
-         <FooterTitle>
-           <Icon id='Paquetes' width='14px' height='14px' color='darkgray'/>
-           <Text>
-             Viajes corporativos
-           </Text>
-         </FooterTitle>
-         <AvantripPymes title="Avantrip Pymes" href="https://www.avantrip.com/pymes/" />
-
-       </FooterItem>
 
        <FooterItem>
          <FooterTitle>
