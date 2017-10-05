@@ -12,7 +12,7 @@ const onSignupHandler = next => data => {
     email: data.email,
     id: data.id,
     name: data.name,
-    image: get(data, "picture.data.url"),
+    urlImage: get(data, "picture.data.url"),
     accessToken: data.accessToken
   });
 }

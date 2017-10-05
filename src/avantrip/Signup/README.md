@@ -23,7 +23,8 @@ Handler para el botón de login con Facebook. Devuelve un objeto con la forma:
     email: {string},
     id: {string},
     name: {string},
-    accessToken: {string}
+    accessToken: {string},
+    urlImage:{string}
   }
 }
 ```

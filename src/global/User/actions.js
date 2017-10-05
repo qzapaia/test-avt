@@ -8,9 +8,7 @@ export const setFacebookUser = state => ({
 })
 
 
-export const logout = () => {
-  console.log("logout");
-  return {
+export const logout = () => ({
   type:USER_LOG_OUT,
   payload:{}
-}}
+})

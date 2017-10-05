@@ -12,7 +12,7 @@ const UserNav = ({ data, onClick, logout, showMenu }) => (
   <Container>
     <UserData onClick={e => onClick(!showMenu)}>
       <UserLogo>
-        <img src={data.image} />
+        <img src={data.urlImage} />
       </UserLogo>
       <Text type="s">{data.name || data.email}</Text>
     </UserData>

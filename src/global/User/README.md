@@ -1,50 +1,46 @@
 ## Description
-Componente para usos sarlanga.
-
-## Basic use
-
-```javascript
-import User from 'avantrip-react/global/User';
-
-export default () => (
-  <User
-    onEvent={function}
-    message={string}
-    isActive={boolean}
-  />
-)
-```
-
-
-## Props
-
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
-
-#### `isActive={<Boolean>}`
-Enable an action within the component
-
+Componente que se utiliza para setear en el estado los datos del usuario y para desloguearlo.
 
 ## Redux
 
 #### Actions
 ```javascript
-import { sendData } from 'avantrip-react/global/User/actions';
-import store from 'somewhere';
 
-store.dispatch(sendData({ email:"email@email.com" });
+export const FACEBOOK_SIGNUP_SET_USER = 'FACEBOOK_SIGNUP_SET_USER';
+export const USER_LOG_OUT = 'USER_LOG_OUT';
+
+export const setFacebookUser = state => ({
+  type:FACEBOOK_SIGNUP_SET_USER,
+  payload:state
+})
+
+
+export const logout = () => ({
+  type:USER_LOG_OUT,
+  payload:{}
+})
 // ...
 ```
 
 #### Reducer
 ```javascript
-import userReducer from 'avantrip-react/global/User/reducer';
-import { createStore, combineReducers } from 'redux';
+import { FACEBOOK_SIGNUP_SET_USER, USER_LOG_OUT } from './actions';
 
-const reducer = combineReducers({
-  user:userReducer,
-})
+const initialState = {};
 
-const store = createStore(reducer);
-// ...
+export default (state = initialState, action) => {
+  const {type,payload} = action;
+
+  switch(type){
+    case FACEBOOK_SIGNUP_SET_USER:
+    case USER_LOG_OUT:
+      return {
+        ...state,
+        ...payload
+      }
+      break;
+    default:
+      return state;
+  }
+}
 ```

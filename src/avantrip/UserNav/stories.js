@@ -15,7 +15,7 @@ import reducer from "../../global/User/reducer";
 const mockUserData = {
   email: "test@test.com",
   name: "Probando nombre largo",
-  image: "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/14448937_1288198261204638_226642860352339525_n.jpg?oh=1ae6547af59ae0a0de67ab4dcb1b231b&oe=5A7C7B04"
+  urlImage: "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/14448937_1288198261204638_226642860352339525_n.jpg?oh=1ae6547af59ae0a0de67ab4dcb1b231b&oe=5A7C7B04"
 };
 
 const enhace = withState("userData", "logout", mockUserData);

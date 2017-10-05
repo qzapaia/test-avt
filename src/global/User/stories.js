@@ -13,7 +13,7 @@ storiesOf('global/User', module)
     readme,
     theme,
     reducer:{
-      User: reducer,
+      user: reducer,
     },
   }))
   .add('Default', () => (

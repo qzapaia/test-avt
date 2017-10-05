@@ -10,7 +10,7 @@ const mapStateToProps = state => {
   return {
     data: {
       name: get(state, "user.facebook.name", ""),
-      image: get(state, "user.facebook.image", "")
+      urlImage: get(state, "user.facebook.image", "")
     }
 }};
 

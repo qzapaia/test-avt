@@ -21,13 +21,13 @@ export default () => (
 Event handler
 
 #### `data={<Object>}`
-Información del usuario. deve tener la forma:
+Información del usuario. Debe tener la forma:
 
 ```javascript
 {
   email: [string],
   name: [string],
-  image:[string]
+  urlImage:[string]
 }
 ```
 
