@@ -1,39 +1,18 @@
 import React from "react";
+import { gql, graphql } from "react-apollo";
 import { connect } from "react-redux";
-import PriceTrendCalendar from "./";
-import { once } from "lodash";
-import { map } from "lodash";
-import moment from "moment";
 
-import { getData, setSelectedMonth, setSelectedDay } from "./actions";
+import PriceTrendCalendar from "./";
+
+import { map } from "lodash";
+
+import { setSelectedMonth, setSelectedDay } from "./actions";
 
 const mapStateToProps = state => ({
-  data: map(state.histogram.payload, value => ({
-    price: value.total_amount_and_fee,
-    date: value.departure_date
-  })),
   selectedMonth: state.histogram.selectedMonth
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  dispatch(
-    getData({
-      origin: ownProps.origin,
-      destination: ownProps.destination,
-      dateTo: ownProps.dateTo,
-      dateFrom: ownProps.dateFrom,
-      dataLayer: true,
-      adults: ownProps.adults,
-      children: ownProps.children,
-      babies: ownProps.babies,
-      duration: "30",
-      minDepartureMonthYear: ownProps.minDepartureMonthYear,
-      maxDepartureMonthYear: ownProps.maxDepartureMonthYear,
-      minDepartureDate: ownProps.minDepartureDate,
-      maxDepartureDate: ownProps.maxDepartureDate
-    })
-  );
-
   return {
     onMonthSelected: selectedMonth => {
       dispatch(setSelectedMonth(selectedMonth));
@@ -46,4 +25,76 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PriceTrendCalendar);
+export const HistogramQuery = gql`
+  query HistogramQuery(
+    $origin: String!
+    $destination: String!
+    $dateTo: String!
+    $dateFrom: String!
+    $minDepartureMonthYear: String!
+    $maxDepartureMonthYear: String!
+    $minDepartureDate: String!
+    $maxDepartureDate: String!
+    $channel: String!
+    $portal: String!
+    $adults: Int!
+    $children: Int!
+    $babies: Int!
+  ) {
+    histogram(
+      channel: $channel
+      portal: $portal
+      origin: $origin
+      destination: $destination
+      dateTo: $dateTo
+      dateFrom: $dateFrom
+      dateLayer: true
+      adults: $adults
+      children: $children
+      babies: $babies
+      duration: 30
+      minDepartureMonthYear: $minDepartureMonthYear
+      maxDepartureMonthYear: $maxDepartureMonthYear
+      minDepartureDate: $minDepartureDate
+      maxDepartureDate: $maxDepartureDate
+    ) {
+      total_amount_and_fee
+      departure_date
+    }
+  }`;
+
+const SelectorComponent = props => (
+    <PriceTrendCalendar
+      {...props}
+      data={map(props.data.histogram, value => ({
+        price: value.total_amount_and_fee,
+        date: value.departure_date
+      }))}
+      returnDate={props.returningDate}
+      departureDate={props.departureDate}
+    />
+  );
+
+  // And our HOC could look like:
+  const graphqlComponent =  graphql(HistogramQuery, {
+    options: props => ({
+      variables: {
+        origin: props.origin,
+        destination: props.destination,
+        dateTo: props.dateTo,
+        dateFrom: props.dateFrom,
+        channel: props.channel || "Desktop",
+        portal: props.portal || "avantrip",
+        adults: props.adults,
+        children: props.children,
+        babies: props.babies,
+        minDepartureMonthYear: props.minDepartureMonthYear,
+        maxDepartureMonthYear: props.maxDepartureMonthYear,
+        minDepartureDate: props.minDepartureDate,
+        maxDepartureDate: props.maxDepartureDate,
+      }
+    })
+    //  options: ({ value }) => ({ variables: { value } }),
+  })(SelectorComponent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(graphqlComponent);
