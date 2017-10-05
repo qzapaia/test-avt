@@ -1,5 +1,6 @@
 import React from "react";
 import UserNav from "./";
+import UserNavWithData from "./withData";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -9,6 +10,7 @@ import generalDecorator from "../../stories.decorator.js";
 
 import theme from "../styled.theme";
 import readme from "./README.md";
+import reducer from "../../global/User/reducer";
 
 const mockUserData = {
   email: "test@test.com",
@@ -32,7 +34,11 @@ storiesOf("avantrip/UserNav", module)
   .addDecorator(
     generalDecorator({
       readme,
-      theme
+      theme,
+      reducer: {
+        user: reducer
+      }
     })
   )
-  .add("Default", () => <UserNavWithState />);
+  .add("Default", () => <UserNavWithState />)
+  .add("WithData", () => <UserNavWithData />);

@@ -45,6 +45,8 @@ UserNavWithState.propTypes = {
   logout: PropTypes.func
 };
 
-UserNavWithState.defaultProps = {};
+UserNavWithState.defaultProps = {
+  data:{}
+};
 
 export default UserNavWithState;

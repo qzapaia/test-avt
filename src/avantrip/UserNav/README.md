@@ -30,3 +30,6 @@ Información del usuario. deve tener la forma:
   image:[string]
 }
 ```
+
+## Redux
+Utiliza el reducer y action del componente global/User.
