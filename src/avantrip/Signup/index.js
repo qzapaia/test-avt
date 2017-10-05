@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Container, SignUpContainer, ExclusiveOffers, Disclaimer} from './styled';
 
 import FacebookLogin from './FacebookLogin';
 
@@ -11,16 +12,18 @@ const facebookHandler = next => data => {
 }
 
 const Signup = ({onFacebookSignup}) => (
-	<div>
-		<div>
-			¡Accedé y recibí ofertas exclusivas!
-		</div>
-    <FacebookLogin
-      onSignup={facebookHandler(onFacebookSignup)} />
-		<div>
-			No publicaremos nada en Facebook sin tu permiso.
-		</div>
-	</div>
+	<Container id='signup'>
+    <SignUpContainer>
+      <ExclusiveOffers>
+        ¡Accedé y recibí ofertas exclusivas!
+      </ExclusiveOffers>
+      <FacebookLogin
+        onSignup={facebookHandler(onFacebookSignup)} />
+        <Disclaimer type='xs' color='darkergray'>
+          No publicaremos nada en Facebook sin tu permiso.
+        </Disclaimer>
+    </SignUpContainer>
+	</Container>
 )
 
 

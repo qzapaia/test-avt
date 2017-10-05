@@ -4,6 +4,7 @@ import Text from '../Text';
 export const Container = styled.nav`
   background: white;
   padding-top: 10px;
+  width: 100%;
 `
 export const LogoContainer = styled.figure`
   display: flex;
@@ -20,4 +21,11 @@ export const MaxWidth = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   max-width: ${props=> props.theme.viewport.desktop}
+`
+export const SignupFacebook = styled.article`
+  position: relative;
+  color: ${props=>props.theme.colors.primary};
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 `
