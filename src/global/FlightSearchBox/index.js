@@ -97,7 +97,8 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             <InputDate
               range={value.leg == 1 ? true : false}
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
-              date={flight.dates}
+              dates={flight.dates}
+              forceDatesFormat={true}
             />
           </div>
         </div>
