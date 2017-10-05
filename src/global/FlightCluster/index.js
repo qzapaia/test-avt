@@ -26,7 +26,6 @@ const FlightCluster = ({
   onClick,
   data
 }) => {
-
   return (
     <div style={containerStyle}>
       <div style={routeContainer}>
@@ -42,16 +41,12 @@ const FlightCluster = ({
                 departureCity={r.header.departureCity} 
                 arrivalCity={r.header.arrivalCity}
               >
-
                 {
                   map(r.options, o => (
                     <FlightClusterRouteOption data={o} onClick={()=>{}} />
                   ))
                 }
               </FlightClusterRoute>
-            
-
-
             </div>
           ))
           

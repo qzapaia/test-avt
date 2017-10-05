@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Componente cluster para el resultado de búsqueda
 
 ## Basic use
 
@@ -8,43 +8,17 @@ import FlightCluster from 'avantrip-react/global/FlightCluster';
 
 export default () => (
   <FlightCluster
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    onClick={function}
+    data={object}
   />
 )
 ```
 
-
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
+#### `onClick={<Function>}`
 Event handler
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `data={<Object>}`
+Información que necesita.
 
-
-## Redux
-
-#### Actions
-```javascript
-import { sendData } from 'avantrip-react/global/FlightCluster/actions';
-import store from 'somewhere';
-
-store.dispatch(sendData({ email:"email@email.com" });
-// ...
-```
-
-#### Reducer
-```javascript
-import flightClusterReducer from 'avantrip-react/global/FlightCluster/reducer';
-import { createStore, combineReducers } from 'redux';
-
-const reducer = combineReducers({
-  flightCluster:flightClusterReducer,
-})
-
-const store = createStore(reducer);
-// ...
-```
