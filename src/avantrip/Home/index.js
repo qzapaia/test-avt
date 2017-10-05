@@ -25,7 +25,7 @@ const Home = ({
       <MaxWidth>
         <FlightSearchBoxAbsolute>
           <FlightSearchBox
-            title='busca tu vuelo'
+            title='Buscá tu vuelo'
           />
         </FlightSearchBoxAbsolute>
 

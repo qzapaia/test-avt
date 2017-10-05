@@ -20,6 +20,8 @@ export const FlightSearchBoxAbsolute = styled.div`
   top: 65px;
   left: 125px;
   z-index: 999;
+  width: 100%;
+  max-width: 550px;
 `
 export const MaxWidth = styled.div`
   margin: 0 auto;
