@@ -41,6 +41,11 @@ export const CardsContainer = styled.article`
     justify-content: center;
   }
 `
+export const FinancePromo = styled.figure`
+  display: flex;
+  margin-bottom: 20px;
+`
+
 export const FlightsBestSellers = Text.extend`
   background: white;
   padding: 10px;

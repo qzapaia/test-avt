@@ -8,7 +8,8 @@ import FeaturedDeals from '../FeaturedDeals/withData';
 import Text from '../Text';
 import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
-import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, FlightsBestSellers, ListContainer, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
+import Link from '../Link';
+import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, FlightsBestSellers, ListContainer, FinancePromo, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 import FeaturedProducts from '../FeaturedProducts/withData';
 
 const Home = ({
@@ -38,6 +39,12 @@ const Home = ({
         <FeaturedProducts type="promotionalFlights" />
       </CardsContainer>
       <ListContainer>
+        <FinancePromo>
+          <Link href='http://www.avantrip.com/oportunidades/financiacion-avantrip'>
+            <img src='https://static.avantrip.com/fkt-flight/images/Avantrip Banner Financiacion 20171003.jpg' />
+          </Link>
+        </FinancePromo>
+
         <FlightsBestSellers tag='h2' type='l' color='brand'>
           Vuelos más vendidos de la semana
         </FlightsBestSellers>

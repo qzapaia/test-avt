@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import Text from '../Text';
 
-export const Container = styled.div`
+export const Container = styled.nav`
   background: white;
+  padding-top: 10px;
 `
 export const LogoContainer = styled.figure`
   display: flex;
