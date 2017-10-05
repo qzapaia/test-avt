@@ -19,7 +19,7 @@ const initialState = {
       {
         originCity: '',
         destinationCity: '',
-        dates: {}
+        dates: undefined
       }
     ]
 };
@@ -50,14 +50,10 @@ export default (state = initialState, action) => {
       if(path == 'leg') {
         switch(val) {
           case '1':
+            const flightAux = [head(originState.flights)];
             delete originState.flights;
-            originState.flights = [];
-            originState.flights.push({
-              originCity: '',
-              destinationCity: '',
-              dates: {startDate:'',endDate:''}
-            });
-
+            originState.flights = flightAux;
+            
             if(state.flights[0].dates) {
               originState.flights[0].dates.startDate = state.flights[0].dates
             }
@@ -76,7 +72,6 @@ export default (state = initialState, action) => {
             }
             break
           case '3':
-            console.log(originState);
             originState.flights.length < 2 && originState.flights.push({
               originCity: '',destinationCity: '', dates: undefined
             });
