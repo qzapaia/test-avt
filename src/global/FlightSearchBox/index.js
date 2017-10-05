@@ -2,23 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RadiosGroup from '../RadioGroup';
 import NumberGroup from '../NumberGroup';
+import Select from '../Select';
 import InputText from '../InputText';
 import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
 import {Container} from './styled';
+import { map } from "lodash";
+import moment from "moment";
 
 const onCustomSearch = (next, value) => {
   next(value)
 }
 
-const customOnChange = (next, name) => value => {
-  next({
-    [name]:value
-  })
+const customOnSet = (next, value) => e => {
+  next(value)
 }
 
-const FlightSearchBox = ({title, onChange, onSearch, value}) => {
+const customOnChange = (next, name) => value => {
+
+  if(name == 'adults' || name == 'children' || name == 'infant') {
+    next({
+      [name]:value.value
+    })
+  } else {
+    next({
+      [name]:value
+    })
+  }
+}
+
+const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => {
   return (<Container>
     {title}
     <div>
@@ -42,87 +56,121 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
         value= {value.leg}
       />
     </div>
-    <div>
-      <InputText
-        onChange={customOnChange(onChange, 'originCity')}
-        placeholder= 'Ingresá el nombre de la ciudad de origen'
-        label='Desde'
-        value={value.originCity}
-        requiresExistingValue='true'
-      >
-        <option value="bue">Buenos Aires - Argentina</option>
-        <option value="mia">Miami - Estados Unidos</option>
-        <option value="new">New York - Estados Unidos</option>
-        <option value="syd">Sydney (New South Wales) - Australia</option>
-        <option value="rio">Río de Janeiro - Brasil</option>
-        <option value="flo">Florianópolis - Brasil</option>
-        <option value="mad">Madrid - España</option>
-        <option value="par">París - Francia</option>
-
-      </InputText>
-      <InputText
-        onChange={customOnChange(onChange, 'destinationCity')}
-        placeholder= 'Ingresá el nombre de la ciudad de destino'
-        label='Hacia'
-        value={value.destinationCity}
-        requiresExistingValue='true'
-      >
-        <option value="bue">Buenos Aires - Argentina</option>
-        <option value="mia">Miami - Estados Unidos</option>
-        <option value="new">New York - Estados Unidos</option>
-        <option value="syd">Sydney (New South Wales) - Australia</option>
-        <option value="rio">Río de Janeiro - Brasil</option>
-        <option value="flo">Florianópolis - Brasil</option>
-        <option value="mad">Madrid - España</option>
-        <option value="par">París - Francia</option>
-      </InputText>
-    </div>
-
-    <div>
-      <InputDate
-        range={true}
-        onChange={customOnChange(onChange, 'dates')}
-        dates={value.dates}
-      />
-    </div>
-
+    {
+      map(value.flights, (flight, idx) => (
+        <div>
+          <div>
+            <InputText
+              onChange={customOnChange(onChange, `flights[${idx}].originCity` )}
+              placeholder= 'Ingresá el nombre de la ciudad de origen'
+              label='Desde'
+              value={flight.originCity}
+              requiresExistingValue='true'
+            >
+            {
+              map(value.destinations, destination => (
+                <option
+                  city={destination.city}
+                  value={destination.iata_code}
+                >{destination.description}</option>
+              ))
+            }
+            </InputText>
+            <InputText
+              onChange={customOnChange(onChange, `flights[${idx}].destinationCity`)}
+              placeholder= 'Ingresá el nombre de la ciudad de destino'
+              label='Hacia'
+              option={flight}
+              value={flight.destinationCity}
+              requiresExistingValue='true'
+            >
+              {
+              map(value.destinations, destination => (
+                <option
+                  city={destination.city}
+                  value={destination.iata_code}
+                >{destination.description}</option>
+              ))
+            }
+            </InputText>
+          </div>
+          <div>
+            <InputDate
+              range={value.leg == 1 ? true : false}
+              onChange={customOnChange(onChange, `flights[${idx}].dates`)}
+              dates={flight.dates}
+              forceDatesFormat={true}
+            />
+          </div>
+        </div>
+      ))}
+      {value.leg == 3 &&<div>
+        <p><a onClick={customOnSet(onSetSearchBoxFlight, 'remove')}>Quitar -</a></p>
+        {value.flights.length < 3 &&
+          <p><span onClick={customOnSet(onSetSearchBoxFlight, 'add')}>Agregar +</span></p>
+        }
+      </div>}
     <div>
       <InputCheckbox
-        value='flexibleDate'
-        onChange={customOnChange(onChange, "flexibleDate")}
+        value='flexibleDates'
+        onChange={customOnChange(onChange, "flexibleDates")}
         type='checkbox'
         label='Mis fechas son flexibles'
-        checked={value.flexibleDate? true: false}
+        checked={value.flexibleDates? true: false}
       />
     </div>
     <div>
-      <NumberGroup
-        options={[
-          {
-            label:'Adultos',
-            id:'adults',
-            value: value.amountTraveller.adults,
-            min: '1',
-            max: '9'
-          },
-          {
-            label:'Niños',
-            id:'children',
-            value: value.amountTraveller.children || 0,
-            min: '0',
-            max: '9'
-          },
-          {
-            label:'Bebés',
-            id:'infant',
-            value: value.amountTraveller.infant || 0,
-            min: '0',
-            max: '9'
-          }
-        ]}
-        onChangeKeyValue={customOnChange(onChange, 'amountTraveller')}
-        label=''
-      />
+          <Select
+            name='adults'
+            placeholder='Adultos'
+            onChange={customOnChange(onChange, 'adults')}
+            value={value.adults}
+            options={[
+              {value: '1', label: '1'},
+              {value: '2', label: '2'},
+              {value: '3', label: '3'},
+              {value: '4', label: '4'},
+              {value: '5', label: '5'},
+              {value: '6', label: '6'},
+              {value: '7', label: '7'},
+              {value: '8', label: '8'},
+              {value: '9', label: '9'}
+            ]}
+            />
+            <Select
+            name='children'
+            placeholder='Niños'
+            onChange={customOnChange(onChange, 'children')}
+            value={value.children}
+            options={[
+              {value: '1', label: '1'},
+              {value: '2', label: '2'},
+              {value: '3', label: '3'},
+              {value: '4', label: '4'},
+              {value: '5', label: '5'},
+              {value: '6', label: '6'},
+              {value: '7', label: '7'},
+              {value: '8', label: '8'},
+              {value: '9', label: '9'}
+            ]}
+            />
+            <Select
+            name='infant'
+            placeholder='Bebés'
+            onChange={customOnChange(onChange, 'infant')}
+            value={value.infant}
+            options={[
+              {value: '1', label: '1'},
+              {value: '2', label: '2'},
+              {value: '3', label: '3'},
+              {value: '4', label: '4'},
+              {value: '5', label: '5'},
+              {value: '6', label: '6'},
+              {value: '7', label: '7'},
+              {value: '8', label: '8'},
+              {value: '9', label: '9'}
+            ]}
+            />
     </div>
     <div>
       <RadiosGroup
@@ -143,7 +191,6 @@ const FlightSearchBox = ({title, onChange, onSearch, value}) => {
     </div>
     <div>
       <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
-
     </div>
   </Container>)
 }
