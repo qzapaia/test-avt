@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styled';
+import { getSize } from '../../utils/media';
 
 const Test = ({
   text,
@@ -9,7 +10,7 @@ const Test = ({
   getRepos,
   flights,
 }) => (
-  <Container onClick={onClick}>
+  <Container size={getSize()}>
     Test component
     <br/>
     Counter {text}
