@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Text from '../Text';
 import Button from '../Button';
+import FinancingPromotion from '../FinancingPromotion';
 
 export const HomeContainer = styled.section`
   background: ${props=> props.theme.colors.lightgray};
@@ -40,10 +41,6 @@ export const CardsContainer = styled.article`
     flex-wrap: wrap;
     justify-content: center;
   }
-`
-export const FinancePromo = styled.figure`
-  display: flex;
-  margin-bottom: 20px;
 `
 
 export const FlightsBestSellers = Text.extend`

@@ -9,7 +9,7 @@ import { getData } from './actions';
 
 {{#redux}}
 const mapStateToProps = state => ({
-  repos: state.Redux.repos
+  repos: state.{{componentName}}.repos
 });
 
 const mapDispatchToProps = {
@@ -19,24 +19,14 @@ const mapDispatchToProps = {
 
 // GrahQL Query
 export const query = gql`{
-  hoteles {
-    search(
-      location:"3tke"
-      check_in:"2017-10-25"
-      check_out:"2017-10-28"
-      rooms:[{
-        adultos:2
-        menores:0
-        ages:[0]
-      }]
-      dateless:false
-    ) {
-      searchId
-      trackingCode
-      hoteles {
-        id
-        name
-        esDestacado
+  home{
+    content{
+      bestsellers_flights{
+        price_from,
+        image,
+        destination_name,
+        flight_type,
+        url
       }
     }
   }
@@ -44,8 +34,8 @@ export const query = gql`{
 
 
 const WithApolloComponent = graphql(query,{
-  props: ({ ownProps, data: { hoteles } }) => ({
-    hoteles: get(hoteles,'search.hoteles',[]).slice(0,10),
+  props: ({ ownProps, data: { home } }) => ({
+    flights: get(home,'content.bestsellers_flights',[]).slice(0,10),
   }),
 })({{componentName}});
 

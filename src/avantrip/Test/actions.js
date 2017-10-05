@@ -1,4 +1,4 @@
-export const SET_REPOS = '{{constantCase componentName}}_SET_REPOS';
+export const SET_REPOS = 'TEST_SET_REPOS';
 
 export const getData = id => async dispatch => {
   const res = await fetch('https://api.github.com/users/qzapaia/repos');

@@ -4,11 +4,11 @@ Muestra el banner de financiamiento de la home.
 ## Basic use
 
 ```javascript
-import BannerFinancing from 'avantrip-react/global/FinancingPromotion';
+import FinancingPromotion from 'avantrip-react/avantrip/FinancingPromotion';
 
 export default () => (
   <FinancingPromotion
-    banner={string}
+    data={object}
   />
 )
 ```
@@ -16,13 +16,18 @@ export default () => (
 
 ## Props
 
-#### `banner={<string>}`
-Url de la imagen que se muestra.
+#### `data={<object>}`
+Información utilizada para armar la promoción. Debe tener la forma:
+```javascript
+  {
+    image: "https://static.avantrip.com/fkt-flight/images/Avantrip Banner Financiacion 20170817.jpg"
+  }
+```
 
 ## Basic use WithData
 
 ```javascript
-import FinancingPromotion from 'avantrip-react/global/FinancingPromotion/withData';
+import FinancingPromotion from 'avantrip-react/avantrip/FinancingPromotion/withData';
 
 export default () => (
   <FinancingPromotionWithData />

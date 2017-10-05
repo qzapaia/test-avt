@@ -7,7 +7,7 @@ import Logo from '../Logo';
 import Text from '../Text';
 import Nav from '../Nav';
 import Link from '../Link';
-// import Signup from '../Signup/withData';
+import Signup from '../Signup/withData';
 import PurchaseAccess from '../PurchaseAccess/withData';
 
 const Header = ({currentLocation, phoneText}) => (
@@ -22,9 +22,8 @@ const Header = ({currentLocation, phoneText}) => (
             Viajar es la guita mejor invertida
         </Slogan>
       </LogoContainer>
-      {/* WATCH HERE */}
-      {/* <Signup />
-      <PurchaseAccess /> */}
+      <Signup />
+      <PurchaseAccess />
       <ContactAndPhoneInfo phoneText={phoneText} />
     </MaxWidth>
     <Nav currentLocation={currentLocation}/>
