@@ -28,4 +28,18 @@ export const SignupFacebook = styled.article`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-right: 10px;
+`
+export const MyTicket = styled.article`
+  position: relative;
+  color: ${props=>props.theme.colors.primary};
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-right: 10px;
+`
+
+export const RightNav = styled.div`
+  display: flex;
+  align-items: center;
 `

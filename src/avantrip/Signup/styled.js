@@ -3,7 +3,8 @@ import Text from '../Text';
 
 export const Container = styled.div`
   width: 100%;
-  transform: translateY(-15px);
+  ${'' /* transform: translateY(-15px); */}
+  height: 0;
   z-index: 999;
   left: 0;
   display: flex;

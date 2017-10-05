@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
-import {Container, LogoContainer, Slogan, MaxWidth, SignupFacebook} from './styled';
+import {Container, LogoContainer, Slogan, MaxWidth, SignupFacebook, RightNav, MyTicket} from './styled';
 import Logo from '../Logo';
 import Text from '../Text';
 import Nav from '../Nav';
@@ -23,18 +23,20 @@ const Header = ({currentLocation, phoneText}) => (
             Viajar es la guita mejor invertida
         </Slogan>
       </LogoContainer>
-      <SignupFacebook>
-        <Icon color='primary' id='Person' width='16px' height='16px' />
-        Ingresar
-        <Signup />
-      </SignupFacebook>
-      <Link>
-        <Icon color='primary' id='Description' width='16px' height='16px' />
-        Mi Compra
-      </Link>
-      {/*
-      <PurchaseAccess /> */}
-      <ContactAndPhoneInfo phoneText={phoneText} />
+      <RightNav>
+        <SignupFacebook>
+          <Icon color='primary' id='Person' width='16px' height='16px' />
+          Ingresar
+          <Signup />
+        </SignupFacebook>
+        <MyTicket>
+          <Icon color='primary' id='Description' width='16px' height='16px' />
+          Mi Compra
+          <PurchaseAccess />
+        </MyTicket>
+
+          <ContactAndPhoneInfo phoneText={phoneText} />
+      </RightNav>
     </MaxWidth>
     <Nav currentLocation={currentLocation}/>
 
