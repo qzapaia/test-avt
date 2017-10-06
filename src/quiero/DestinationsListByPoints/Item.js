@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DestinationsListByPointsItem = ({ id, destinoNombre, rango, rangoBusiness }) => (
+const Item = ({ id, destinoNombre, rango, rangoBusiness }) => (
 
     <div key={id} id={id}>
       <div>{ destinoNombre }</div>
@@ -10,15 +10,15 @@ const DestinationsListByPointsItem = ({ id, destinoNombre, rango, rangoBusiness 
     </div>
 )
 
-DestinationsListByPointsItem.propTypes = {
+Item.propTypes = {
   id: PropTypes.number.isRequired,
   destinoNombre: PropTypes.string.isRequired,
   rango: PropTypes.number.isRequired
 }
 
-DestinationsListByPointsItem.defaultProps = {
+Item.defaultProps = {
   destinoNombre:'',
   rango: 0
 }
 
-export default DestinationsListByPointsItem;
+export default Item;

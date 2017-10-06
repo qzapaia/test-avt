@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import List from '../List';
-import DestinationsListByPointsItem from './DestinationsListByPointsItem.js';
+import Item from './Item.js';
 
 const DestinationsListByPoints = ({ region, destinations }) => {
 
@@ -9,7 +9,7 @@ const DestinationsListByPoints = ({ region, destinations }) => {
   const children = [];
   for (var i = 0; i < destinationsLength; i++) {
     children.push(
-      <DestinationsListByPointsItem
+      <Item
         id = {i}
         destinoNombre = { destinations[i].destinoNombre }
         rango = { destinations[i].rango }
