@@ -40,7 +40,8 @@ export const CardsContainer = styled.article`
   > div{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
+    margin-right: 10px;
   }
 `
 
