@@ -193,7 +193,6 @@ export const Tooltip= styled.div`
   }
 `
 export const TooltipAlert= Text.extend`
-  width: 100%;
   display: flex;
   align-items: center;
 `

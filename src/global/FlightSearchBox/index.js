@@ -11,6 +11,7 @@ import { map } from "lodash";
 import moment from "moment";
 import Text from "../Text";
 import Icon from "../Icon";
+import ExpansionPanel from "../ExpansionPanel";
 import ReactTooltip from 'react-tooltip';
 import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem, Tooltip, TooltipAlert, TooltipTitle} from './styled';
 
@@ -181,6 +182,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           onChange={customOnChange(onChange, 'children')}
           value={value.children}
           options={[
+            {value: '0', label: '0'},
             {value: '1', label: '1'},
             {value: '2', label: '2'},
             {value: '3', label: '3'},
@@ -214,6 +216,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           onChange={customOnChange(onChange, 'infant')}
           value={value.infant}
           options={[
+            {value: '0', label: '0'},
             {value: '1', label: '1'},
             {value: '2', label: '2'},
             {value: '3', label: '3'},
@@ -227,24 +230,43 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           />
         </PassengerItem>
 
-    </Passengers>
-    <div>
-      <RadiosGroup
-        label='Clase'
-        onChange={customOnChange(onChange, "class")}
-        options={[
-          {
-            value: '1',
-            label: 'Económica'
-          },
-          {
-            value: '2',
-            label: 'Business'
+        <ExpansionPanel
+          SummaryInformation={({onChange, isExpanded}) =>
+            <div onClick={onChange}>
+              {
+                isExpanded ?
+                 <Text type='s'>
+                   - opciones
+                 </Text>
+                 :
+                 <Text type='s'>
+                   + opciones
+                 </Text>
+               }
+            </div>
           }
-        ]}
-        value= {value.class}
-      />
-    </div>
+          ExtendedInformation={({onChange}) =>
+            <div>
+              <div>
+                <RadiosGroup
+                  label='Clase'
+                  onChange={customOnChange(onChange, "class")}
+                  options={[
+                    {
+                      value: '1',
+                      label: 'Económica'
+                    },
+                    {
+                      value: '2',
+                      label: 'Business'
+                    }
+                  ]}
+                  value= {value.class}
+                />
+              </div>
+            </div>} />
+
+    </Passengers>
     <SearchButton>
       <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar vuelos</Button>
     </SearchButton>
