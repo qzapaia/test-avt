@@ -29,9 +29,10 @@ const ExpansionPanelWithState =  enhace((props) => {
   )
 })
 
-const FlightClusterRouteOption = ({data, onClick}) => {
+const FlightClusterRouteOption = ({data, onClick, selected}) => {
   return (
     <div>
+      {selected}
       <div style={{display:'flex', 'height':'70px', 'alignItems':'center'}} onClick={onClick}>
         <InputRadio style={{'flexGrow':1}}></InputRadio>
         <div style={{'flexGrow':10}}>

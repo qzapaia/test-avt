@@ -23,13 +23,26 @@ const routeContainer = {
   flexGrow:3 
 }
 
-const routeOptionHandler = optionSelected => {
-  console.log(optionSelected)
-}
+const OptionsSelector = JustOne(({select, isSelected, options, selectedOption})=>{
+  console.log(selectedOption)
+  return(<div>
+    {
+      map(options, (o, key) => (
+          <FlightClusterRouteOption 
+            data={o} 
+            onClick={ select(o.summaryInfo.id) } 
+            selected={ isSelected(o.summaryInfo.id) }
+          />
+      ))
+    }
+  </div>)
+})
 
 const FlightCluster = ({
-  onClick,
-  data
+  onCheckout,
+  selectRouteOption,
+  onSelectedRouteOption,
+  data,
 }) => {
   return (
     <div style={containerStyle}>
@@ -46,27 +59,11 @@ const FlightCluster = ({
                 departureCity={r.header.departureCity} 
                 arrivalCity={r.header.arrivalCity}
               >
-                {
-                  JustOne(({select, isSelected})=>(
-                    <div>
-                      {
-                        map(r.options, o => (
-                          <FlightClusterRouteOption 
-                            data={o} 
-                            onClick={
-                              () => {
-                                select(o.summaryInfo.id)
-                                routeOptionHandler(o.summaryInfo.id)
-                              }
-                            } 
-                            isSelected={isSelected(o.summaryInfo.id)} 
-                          />
-                        ))
-                      }
-                    </div>
-                  ))
-                  ({})
-                }
+                <OptionsSelector 
+                  selectedOption={selectRouteOption}
+                  onChange={ selectedOption => onSelectedRouteOption(selectedOption) } 
+                  options={r.options} 
+                  />
               </FlightClusterRoute>
             </div>
           ))
@@ -84,15 +81,6 @@ const FlightCluster = ({
     </div>
   )
 }
-
-/*
-                {
-                  map(r.options, o => (
-                    <FlightClusterRouteOption data={o} onClick={()=>{}} />
-                  ))
-                }
-
-*/
 
 
 FlightCluster.propTypes = {

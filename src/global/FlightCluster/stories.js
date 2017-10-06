@@ -12,18 +12,9 @@ import theme from '../styled.theme';
 import readme from './README.md';
 import reducer from "./reducer";
 
-const enhace = compose(
-  withState('counter','increment',0),
-)
+import { defaultsDeep } from 'lodash'
 
-const FlightClusterWithState =  enhace((props) => {
-  const { counter, increment } = props;
-
-  const clickHandler = () => {
-    action('click')(counter+1);
-    increment(counter+1);
-  }
-
+const generateCluster = () => {
   let cluster = {};
   cluster.additionalInfo = '¡Hasta 12 cuotas sin interés con Visa y Master del Banco Francés!'
   cluster.disclaimerText = '¿Qué incluye el precio?'
@@ -102,7 +93,52 @@ const FlightClusterWithState =  enhace((props) => {
       'arrivalIata':'MIA',
       'arrivalDate': new Date(),
       'scalesText': '1 Escala',
-      'totalTime': new Date()
+      'totalTime': new Date(),
+      'isSelected':false
+    },
+    'extendedInfo': {
+      'header':'Buenos Aires hacia Miami',
+      'flights':[flightSample1, flightSample2]
+    }
+  }
+
+  const sampleRouteOption2 = {
+    'summaryInfo': {
+      'id':123,
+      'airlineLogos':[
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
+      ],
+      'provider':'Operado por Air St Thomas',
+      'departureIata':'EZE',
+      'departureDate': new Date(),
+      'arrivalIata':'MIA',
+      'arrivalDate': new Date(),
+      'scalesText': '1 Escala',
+      'totalTime': new Date(),
+      'isSelected':false
+    },
+    'extendedInfo': {
+      'header':'Buenos Aires hacia Miami',
+      'flights':[flightSample1, flightSample2]
+    }
+  }
+
+  const sampleRouteOption3 = {
+    'summaryInfo': {
+      'id':12,
+      'airlineLogos':[
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
+      ],
+      'provider':'Operado por Air St Thomas',
+      'departureIata':'EZE',
+      'departureDate': new Date(),
+      'arrivalIata':'MIA',
+      'arrivalDate': new Date(),
+      'scalesText': '1 Escala',
+      'totalTime': new Date(),
+      'isSelected':false
     },
     'extendedInfo': {
       'header':'Buenos Aires hacia Miami',
@@ -117,7 +153,7 @@ const FlightClusterWithState =  enhace((props) => {
       arrivalCity: 'Nueva York',
       date:new Date()
     },
-    'options':[sampleRouteOption1,sampleRouteOption1]
+    'options':[sampleRouteOption1,sampleRouteOption2]
   }
 
   const sampleRoute2 = {
@@ -127,15 +163,36 @@ const FlightClusterWithState =  enhace((props) => {
       arrivalCity: 'Buenos Aires',
       date:new Date()
     },
-    'options':[sampleRouteOption1]
+    'options':[sampleRouteOption3]
   }
 
   cluster.routes.push(sampleRoute1);
   cluster.routes.push(sampleRoute2);
 
+  return cluster;
+} 
+
+const enhace = compose(
+  withState('cluster','selectRoute', generateCluster()),
+  withState('selectedOption','selectRouteOption', 0)
+)
+
+const FlightClusterWithState = enhace((props) => {
+  const { cluster, selectRoute, selectedOption, selectRouteOption } = props;
+
+  const onCheckout = () => {
+    console.log('ON CHECKOUT');
+  }
+
+  const onSelectedRouteOption = (selectedOption) => {
+    selectRouteOption(selectedOption)   
+  }
+
   return (
-    <FlightCluster {...props}  
-      onClick={clickHandler} 
+    <FlightCluster {...props}
+      onCheckout={onCheckout}
+      selectRouteOption={selectedOption}
+      onSelectedRouteOption={onSelectedRouteOption}
       data={cluster}
     />
   )
@@ -151,7 +208,6 @@ storiesOf('global/FlightCluster', module)
   }))
   .add('Default', () => (
     <FlightClusterWithState></FlightClusterWithState>
-    
   ))
   /*
   .add('With data', () => (
