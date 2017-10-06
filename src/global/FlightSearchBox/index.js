@@ -11,7 +11,8 @@ import { map } from "lodash";
 import moment from "moment";
 import Text from "../Text";
 import Icon from "../Icon";
-import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem} from './styled';
+import ReactTooltip from 'react-tooltip';
+import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem, Tooltip, TooltipAlert, TooltipTitle} from './styled';
 
 const onCustomSearch = (next, value) => {
   next(value)
@@ -129,10 +130,22 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
     </FlexibleDates>
     <Passengers>
       <PassengerItem>
-        
+        <Tooltip>
+          <TooltipAlert type='s' data-tip data-for="adults">
+            <TooltipTitle color='darkergray'>
+              Adultos
+            </TooltipTitle>
+            <Icon id='Help' color='darkergray' width='14px' height='14px' />
+          </TooltipAlert>
+          <ReactTooltip id='adults'>
+            <Text color='white'>
+              +11 años
+            </Text>
+          </ReactTooltip>
+        </Tooltip>
         <Select
           name='adults'
-          placeholder='Adultos'
+          placeholder='0'
           onChange={customOnChange(onChange, 'adults')}
           value={value.adults}
           options={[
@@ -149,9 +162,22 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           />
         </PassengerItem>
         <PassengerItem>
+          <Tooltip>
+            <TooltipAlert type='s' data-tip data-for="kids">
+              <TooltipTitle color='darkergray'>
+                Niños
+              </TooltipTitle>
+              <Icon id='Help' color='darkergray' width='14px' height='14px' />
+            </TooltipAlert>
+            <ReactTooltip id='kids'>
+              <Text color='white'>
+                2 a 11 años
+              </Text>
+            </ReactTooltip>
+          </Tooltip>
           <Select
           name='children'
-          placeholder='Niños'
+          placeholder='0'
           onChange={customOnChange(onChange, 'children')}
           value={value.children}
           options={[
@@ -169,9 +195,22 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
         </PassengerItem>
 
         <PassengerItem>
+          <Tooltip>
+            <TooltipAlert type='s' data-tip data-for="babies">
+              <TooltipTitle color='darkergray'>
+                Bebés
+              </TooltipTitle>
+              <Icon id='Help' color='darkergray' width='14px' height='14px' />
+            </TooltipAlert>
+            <ReactTooltip id='babies'>
+              <Text color='white'>
+                0 a 2 años
+              </Text>
+            </ReactTooltip>
+          </Tooltip>
           <Select
           name='infant'
-          placeholder='Bebés'
+          placeholder='0'
           onChange={customOnChange(onChange, 'infant')}
           value={value.infant}
           options={[

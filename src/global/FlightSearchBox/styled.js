@@ -170,12 +170,33 @@ export const PassengerItem= styled.div`
   display: flex;
   flex-wrap: wrap;
   flex: 0 0 24%;
+  > div{
+    width: 100%;
+  }
 `
-
 
 export const SearchButton= styled.div`
   margin-top: 10px;
 `
 export const DateContainer= styled.div`
   margin-top: 20px;
+`
+export const Tooltip= styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  .__react_component_tooltip.type-dark{
+    background: ${props=>props.theme.colors.primary}
+  }
+  .__react_component_tooltip.type-dark.place-top:after{
+    border-top-color: ${props=>props.theme.colors.primary}
+  }
+`
+export const TooltipAlert= Text.extend`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`
+export const TooltipTitle= Text.extend`
+  margin-right: 5px;
 `
