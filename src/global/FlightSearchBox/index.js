@@ -11,7 +11,7 @@ import { map } from "lodash";
 import moment from "moment";
 import Text from "../Text";
 import Icon from "../Icon";
-import {Container, MainTitle, TopSearch, Radios, FromTo} from './styled';
+import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem} from './styled';
 
 const onCustomSearch = (next, value) => {
   next(value)
@@ -41,28 +41,28 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
         <Icon id='Vuelos' width='18px' height='18px' />
         {title}
       </MainTitle>
-      <Radios>
-        <RadiosGroup
-          label=''
-          onChange={customOnChange(onChange, "leg")}
-          options={[
-            {
-              value: '1',
-              label: 'Ida y vuelta'
-            },
-            {
-              value: '2',
-              label: 'Solo ida'
-            },
-            {
-              value: '3',
-              label: 'Multidestino'
-            }
-          ]}
-          value= {value.leg}
-        />
-      </Radios>
     </TopSearch>
+    <Radios>
+      <RadiosGroup
+        label=''
+        onChange={customOnChange(onChange, "leg")}
+        options={[
+          {
+            value: '1',
+            label: 'Ida y vuelta'
+          },
+          {
+            value: '2',
+            label: 'Solo ida'
+          },
+          {
+            value: '3',
+            label: 'Multidestino'
+          }
+        ]}
+        value= {value.leg}
+      />
+    </Radios>
     {
       map(value.flights, (flight, idx) => (
         <div>
@@ -75,7 +75,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             >
             {
               map(value.destinations, destination => (
-                <option 
+                <option
                   city={destination.city}
                   value={`${destination.description} ${destination.iata_code}`}
                 >{`${destination.description} ${destination.iata_code}`}</option>
@@ -99,7 +99,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             }
             </InputText>
           </FromTo>
-          <div>
+          <DateContainer>
             <InputDate
               range={value.leg == 1 ? true : false}
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
@@ -107,8 +107,9 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               forceDatesFormat={true}
               startDatePlaceholderText='Partida'
               endDatePlaceholderText='Regreso'
+              placeholder='Partida'
             />
-          </div>
+          </DateContainer>
         </div>
       ))}
       {value.leg == 3 &&<div>
@@ -117,7 +118,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           <p><span onClick={customOnSet(onSetSearchBoxFlight, 'add')}>Agregar +</span></p>
         }
       </div>}
-    <div>
+    <FlexibleDates>
       <InputCheckbox
         value='flexibleDates'
         onChange={customOnChange(onChange, "flexibleDates")}
@@ -125,60 +126,69 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
         label='Mis fechas son flexibles'
         checked={value.flexibleDates? true: false}
       />
-    </div>
-    <div>
+    </FlexibleDates>
+    <Passengers>
+      <PassengerItem>
+        
+        <Select
+          name='adults'
+          placeholder='Adultos'
+          onChange={customOnChange(onChange, 'adults')}
+          value={value.adults}
+          options={[
+            {value: '1', label: '1'},
+            {value: '2', label: '2'},
+            {value: '3', label: '3'},
+            {value: '4', label: '4'},
+            {value: '5', label: '5'},
+            {value: '6', label: '6'},
+            {value: '7', label: '7'},
+            {value: '8', label: '8'},
+            {value: '9', label: '9'}
+          ]}
+          />
+        </PassengerItem>
+        <PassengerItem>
           <Select
-            name='adults'
-            placeholder='Adultos'
-            onChange={customOnChange(onChange, 'adults')}
-            value={value.adults}
-            options={[
-              {value: '1', label: '1'},
-              {value: '2', label: '2'},
-              {value: '3', label: '3'},
-              {value: '4', label: '4'},
-              {value: '5', label: '5'},
-              {value: '6', label: '6'},
-              {value: '7', label: '7'},
-              {value: '8', label: '8'},
-              {value: '9', label: '9'}
-            ]}
-            />
-            <Select
-            name='children'
-            placeholder='Niños'
-            onChange={customOnChange(onChange, 'children')}
-            value={value.children}
-            options={[
-              {value: '1', label: '1'},
-              {value: '2', label: '2'},
-              {value: '3', label: '3'},
-              {value: '4', label: '4'},
-              {value: '5', label: '5'},
-              {value: '6', label: '6'},
-              {value: '7', label: '7'},
-              {value: '8', label: '8'},
-              {value: '9', label: '9'}
-            ]}
-            />
-            <Select
-            name='infant'
-            placeholder='Bebés'
-            onChange={customOnChange(onChange, 'infant')}
-            value={value.infant}
-            options={[
-              {value: '1', label: '1'},
-              {value: '2', label: '2'},
-              {value: '3', label: '3'},
-              {value: '4', label: '4'},
-              {value: '5', label: '5'},
-              {value: '6', label: '6'},
-              {value: '7', label: '7'},
-              {value: '8', label: '8'},
-              {value: '9', label: '9'}
-            ]}
-            />
-    </div>
+          name='children'
+          placeholder='Niños'
+          onChange={customOnChange(onChange, 'children')}
+          value={value.children}
+          options={[
+            {value: '1', label: '1'},
+            {value: '2', label: '2'},
+            {value: '3', label: '3'},
+            {value: '4', label: '4'},
+            {value: '5', label: '5'},
+            {value: '6', label: '6'},
+            {value: '7', label: '7'},
+            {value: '8', label: '8'},
+            {value: '9', label: '9'}
+          ]}
+          />
+        </PassengerItem>
+
+        <PassengerItem>
+          <Select
+          name='infant'
+          placeholder='Bebés'
+          onChange={customOnChange(onChange, 'infant')}
+          value={value.infant}
+          options={[
+            {value: '1', label: '1'},
+            {value: '2', label: '2'},
+            {value: '3', label: '3'},
+            {value: '4', label: '4'},
+            {value: '5', label: '5'},
+            {value: '6', label: '6'},
+            {value: '7', label: '7'},
+            {value: '8', label: '8'},
+            {value: '9', label: '9'}
+          ]}
+          />
+        </PassengerItem>
+
+    </Passengers>
     <div>
       <RadiosGroup
         label='Clase'
@@ -196,9 +206,9 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
         value= {value.class}
       />
     </div>
-    <div>
-      <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
-    </div>
+    <SearchButton>
+      <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar vuelos</Button>
+    </SearchButton>
   </Container>)
 }
 

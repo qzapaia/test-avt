@@ -17,6 +17,10 @@ const StyledButton = styled.button`
   border: none;
   padding: 10px;
   cursor: pointer;
+  width: 100%;
+  &:active, &:focus{
+    outline: none;
+  }
 `
 
 StyledButton.propTypes = {

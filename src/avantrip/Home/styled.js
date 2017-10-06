@@ -17,11 +17,11 @@ export const MainSection = styled.section`
 
 export const FlightSearchBoxAbsolute = styled.div`
   position: absolute;
-  top: 65px;
-  left: 125px;
+  top: 30px;
+  left: 70px;
   z-index: 999;
   width: 100%;
-  max-width: 550px;
+  max-width: 450px;
 `
 export const MaxWidth = styled.div`
   margin: 0 auto;
@@ -34,14 +34,14 @@ export const FeaturedSection = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `
 export const CardsContainer = styled.article`
-  flex: 1 1 60%;
+  flex: 0 1 60%;
   > div{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    margin-right: 10px;
+    justify-content: flex-start;
   }
 `
 
@@ -53,7 +53,7 @@ export const FlightsBestSellers = Text.extend`
 
 
 export const ListContainer = styled.article`
-  flex: 1 1 30%;
+  flex: 0 1 30%;
 `
 
 
