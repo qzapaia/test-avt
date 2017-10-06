@@ -41,7 +41,7 @@ export default (state = initialState, action) => {
       let originState = clone(state);
       let path = Object.keys(payload)[0];
       let val = payload[path];
-      
+
       if(path.indexOf('dates')> -1 && state.leg != '1') {
         val = val.startDate;
       }
@@ -66,6 +66,7 @@ export default (state = initialState, action) => {
             originState.flights = [head(originState.flights)];
             if (has(originState.flights[0].dates, 'startDate')) {
               const auxDate = originState.flights[0].dates.startDate;
+              delete originState.flights[0].dates.startDate;
               originState.flights[0].dates = auxDate; 
             } else if(isEmpty(originState.flights[0].dates)) {
               originState.flights[0].dates = undefined;
@@ -94,27 +95,31 @@ export default (state = initialState, action) => {
       break;
 
     case SET_SEARCH:
-      const destinations = reduce(payload.flights, (init, flight) => {
+      const destinations = reduce(payload.flights, (init, flight,idx) => {
         let dateStart = '';
         let dateEnd = '';
         if(has(flight.dates, 'startDate')) {
           dateStart = flight.dates.startDate;
-          dateEnd = `dateTo=${moment(flight.dates.endDate).format("DD-MM-YYYY")}`;
+          dateEnd = `dateTo=${moment(flight.dates.endDate).format("DD-MM-YYYY")}&`;
         } else {
           dateStart = flight.dates;
         }
 
-        return init +=
-         `destinationFromId=${flight.originCity}&
-          destinationToId=${flight.destinationCity}&
-          dateFrom=${moment(dateStart).format("DD-MM-YYYY")}&
-          ${dateEnd}`;
+        init +=
+         `destinationFromId%5B${idx}%5D=${flight.originCity}&
+          destinationToId%5B${idx}%5D=${flight.destinationCity}&
+          dateFrom%5B${idx}%5D=${moment(dateStart).format("DD-MM-YYYY")}&`;
+          if(payload.leg == 1) {
+            init += dateEnd;
+          }
+          return init;
       }, '');
 
       const url = `/vuelos/av-seleccion-grupo=on&${destinations}isMulticity=${payload.flights.length>1 && 'true'}&
-                      round_trip=${payload.leg == 2 ?'on':''}&adults=${payload.adults}&
+                      round_trip=${(payload.leg == 2) ?'on':''}&adults=${payload.adults}&
                       children=${payload.children}&
-                      babies=${payload.infant}&${payload.flexibleDates? 'flexibleDates=on':''}
+                      ${(payload.leg == 2 || payload.leg == 3)? 'dateTo=&': ''}
+                      babies=${payload.infant}&${(payload.flexibleDates || payload.leg == 3)? 'flexibleDates=on&':''}
                       flightClass=${payload.class == 2 ?'NMO.GBL.SCL.BSN':'NMO.GBL.SCL.ECO'}`;
       
       console.log(url)

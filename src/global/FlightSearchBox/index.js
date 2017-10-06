@@ -31,8 +31,8 @@ const customOnChange = (next, name) => value => {
   }
 }
 
-const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => {
-  return (<div>
+const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => (
+  <div>
     {title}
     <div>
       <RadiosGroup
@@ -70,7 +70,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               map(value.destinations, destination => (
                 <option 
                   city={destination.city} 
-                  value={`${destination.description} ${destination.iata_code}`}
+                  value={destination.iata_code}
                 >{`${destination.description} ${destination.iata_code}`}</option>
               ))
             }
@@ -87,7 +87,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               map(value.destinations, destination => (
                 <option 
                   city={destination.city} 
-                  value={`${destination.description} ${destination.iata_code}`}
+                  value={destination.iata_code}
                 >{`${destination.description} ${destination.iata_code}`}</option>
               ))
             }
@@ -191,8 +191,9 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
     <div>
       <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
     </div>
-  </div>)
-}
+  </div>
+)
+
 
 FlightSearchBox.propTypes = {
   text: PropTypes.node.isRequired

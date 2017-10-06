@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FlightsearchBox from './'
+import FlightSearchBox from './'
 import { connect } from "react-redux";
 import { map } from "lodash";
 import { setSearchBoxValue, setSearch, getDestinations, setSearchBoxflight } from './actions';
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlightsearchBox);
+export default connect(mapStateToProps, mapDispatchToProps)(FlightSearchBox);
