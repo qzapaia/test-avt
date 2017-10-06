@@ -9,7 +9,7 @@ import generalDecorator from '../../stories.decorator.js';
 import TestWithData from './withData';
 
 import theme from '../styled.theme';
-import readme from './README.md';
+import readme from '../../global/Test/README.md';
 import reducer from "./reducer";
 
 const enhace = withState('counter','increment',0);

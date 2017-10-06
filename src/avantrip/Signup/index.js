@@ -5,7 +5,6 @@ import {Container, SignUpContainer, ExclusiveOffers, Disclaimer} from './styled'
 import FacebookLogin from './FacebookLogin';
 
 const facebookHandler = next => data => {
-  console.log("signup", data);
   next({
     facebook: data
   })

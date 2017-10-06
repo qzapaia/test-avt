@@ -75,10 +75,10 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             >
             {
               map(value.destinations, destination => (
-                <option
+                <option 
                   city={destination.city}
-                  value={destination.iata_code}
-                >{destination.description}</option>
+                  value={`${destination.description} ${destination.iata_code}`}
+                >{`${destination.description} ${destination.iata_code}`}</option>
               ))
             }
             </InputText>
@@ -93,8 +93,8 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               map(value.destinations, destination => (
                 <option
                   city={destination.city}
-                  value={destination.iata_code}
-                >{destination.description}</option>
+                  value={`${destination.description} ${destination.iata_code}`}
+                >{`${destination.description} ${destination.iata_code}`}</option>
               ))
             }
             </InputText>

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import InputText from "../InputText";
 import Text from "../Text";
 import Button from "../Button";
-import Icon from "../Icon";
 import {Container, FormTicket, MyTicketContainer, WhatCanIdo, WhatCanIdoList, WhatCanIdoItem} from './styled';
 
 const preventFormatAndContinueWith = (next, value) => e => {
