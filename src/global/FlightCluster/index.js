@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FareDetail from '../FareDetail'
 import FlightClusterRoute from './FlightClusterRoute'
 import FlightClusterRouteOption from './FlightClusterRouteOption'
+import JustOne from '../JustOne'
 
 import { map } from 'lodash'
 
@@ -20,6 +21,10 @@ const fareDetailContainer = {
 
 const routeContainer = {
   flexGrow:3 
+}
+
+const routeOptionHandler = optionSelected => {
+  console.log(optionSelected)
 }
 
 const FlightCluster = ({
@@ -42,9 +47,25 @@ const FlightCluster = ({
                 arrivalCity={r.header.arrivalCity}
               >
                 {
-                  map(r.options, o => (
-                    <FlightClusterRouteOption data={o} onClick={()=>{}} />
+                  JustOne(({select, isSelected})=>(
+                    <div>
+                      {
+                        map(r.options, o => (
+                          <FlightClusterRouteOption 
+                            data={o} 
+                            onClick={
+                              () => {
+                                select(o.summaryInfo.id)
+                                routeOptionHandler(o.summaryInfo.id)
+                              }
+                            } 
+                            isSelected={isSelected(o.summaryInfo.id)} 
+                          />
+                        ))
+                      }
+                    </div>
                   ))
+                  ({})
                 }
               </FlightClusterRoute>
             </div>
@@ -63,6 +84,16 @@ const FlightCluster = ({
     </div>
   )
 }
+
+/*
+                {
+                  map(r.options, o => (
+                    <FlightClusterRouteOption data={o} onClick={()=>{}} />
+                  ))
+                }
+
+*/
+
 
 FlightCluster.propTypes = {
 
