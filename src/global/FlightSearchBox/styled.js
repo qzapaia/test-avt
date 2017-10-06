@@ -8,12 +8,15 @@ export const Container = styled.div`
   input{
     ${'' /* don't get mad */}
     padding: 10px 5px;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 0 !important;
   }
   .react-autosuggest__suggestions-container{
     position: absolute;
     background: white;
     z-index: 9;
-    margin-top: 25px;
+    margin-top: 30px;
     width: 100%;
     left: 0;
   }
@@ -26,10 +29,11 @@ export const Container = styled.div`
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 0 10px 10px 10px;
+      border-width: 0 11px 10px 10px;
       border-color: transparent transparent white transparent;
       position: absolute;
       top: -10px;
+      left: 10px;
       z-index: 9999;
     }
     &:after{
@@ -39,15 +43,15 @@ export const Container = styled.div`
       position: absolute;
       content: "";
       transform: rotate(135deg);
-      border-bottom: 1px solid black;
-      border-left: 1px solid black;
-      top: -8px;
-      left: 2px;
+      border-bottom: 1px solid ${props=>props.theme.colors.darkgray};
+      border-left: 1px solid ${props=>props.theme.colors.darkgray};
+      top: -9px;
+      left: 12.5px;
     }
   }
   .react-autosuggest__suggestion{
     padding: 5px;
-    transition: 0.3s ease;
+    cursor: pointer;
     &:hover{
       background: ${props=>props.theme.colors.primary};
       button{
@@ -57,8 +61,43 @@ export const Container = styled.div`
     button{
       border: none;
       background: none;
-      transition: 0.3s ease;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 300;
+      &:active, &:focus{
+        outline: none;
+        box-shadow: none;
+      }
     }
+  }
+
+  .DateRangePicker{
+    margin-top: 20px;
+    width: 100%;
+  }
+  .DateRangePickerInput{
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .DateInput{
+    flex: 1;
+    padding: 5px 10px;
+  }
+  .DateRangePickerInput__arrow svg{
+    fill: ${props=>props.theme.colors.primary};
+  }
+  .DateInput__display-text {
+    padding: 0px 0px;
+    white-space: nowrap;
+    font-size: 15px;
+    overflow: hidden;
+  }
+  .DateInput__display-text--focused{
+    background: none;
+    border-color: transparent;
+    color: black;
+    font-weight: 400;
   }
 `
 export const MainTitle = Text.extend`
@@ -81,6 +120,7 @@ export const Radios = styled.div`
     display: flex;
     justify-content: space-around;
   }
+
 `
 export const FromTo = styled.div`
   display: flex;
@@ -89,5 +129,18 @@ export const FromTo = styled.div`
   position: relative;
   label{
     flex: 0 1 48%;
+    &:last-of-type{
+      .react-autosuggest__suggestions-list{
+        &:before{
+          left: inherit;
+          right: 42%;
+        }
+        &:after{
+          left: inherit;
+          right: calc(42% + 3px);
+        }
+
+      }
+    }
   }
 `

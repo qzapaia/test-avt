@@ -105,6 +105,8 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
               dates={flight.dates}
               forceDatesFormat={true}
+              startDatePlaceholderText='Partida'
+              endDatePlaceholderText='Regreso'
             />
           </div>
         </div>
