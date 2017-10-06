@@ -32,11 +32,14 @@ module.exports = function (plop) {
 
   plop.setActionType('copy', function (answers, config, plop) {
 
-    const { from,  to, replaceFrom, replaceTo } = config
+    let { from,  to, replaceFrom, replaceTo } = config
     const fromPath = plop.renderString(path.join(__dirname, from), answers);
     const toPath = plop.renderString(path.join(__dirname, to), answers);
 
 		cp.sync(fromPath, toPath);
+
+    replaceFrom.map && (replaceFrom=replaceFrom.map(r=>plop.renderString(r, answers)) )
+    replaceTo.map && ( replaceTo=replaceTo.map(r=>plop.renderString(r, answers)) )
 
     replace.sync({
       files: toPath,
@@ -202,15 +205,64 @@ module.exports = function (plop) {
             type: 'copy',
             from: 'src/global/{{componentName}}/stories.js',
             to: dirName + '/{{componentName}}/stories.js',
-            replaceFrom:'global',
-            replaceTo:data.ui,
+            replaceFrom: [
+              'global/',
+              'from "./README.md"',
+              "from './README.md'",
+            ],
+            replaceTo: [
+              data.ui+'/',
+              "from '../../global/{{componentName}}/README.md'",
+              "from '../../global/{{componentName}}/README.md'",
+            ],
         });
+
+        return actions;
+      }
+  });
+
+  plop.setGenerator('Clone Story', {
+      description: 'Clone the story',
+      prompts: [{
+          type: 'list',
+          name: 'name',
+          message: 'Global component to clone the story from',
+          choices: globalComponents,
+          validate: function (value) {
+              if ((/.+/).test(value)) { return true; }
+              return 'name is required';
+          }
+      },
+      {
+          type: 'list',
+          name: 'ui',
+          message: 'UI?',
+          choices: ui_options
+      }],
+      actions: function(data){
+        const dirName = 'src/'+data.ui;
+        const actions = [];
+
+        data.storyPath = data.ui + '/';
+        data.componentName = toPascalCase(data.name);
 
         actions.push({
             type: 'copy',
-            from: 'src/global/{{componentName}}/README.md',
-            to: dirName + '/{{componentName}}/README.md',
+            from: 'src/global/{{componentName}}/stories.js',
+            to: dirName + '/{{componentName}}/stories.js',
+            replaceFrom: [
+              'global/',
+              'from "./README.md"',
+              "from './README.md'",
+            ],
+            replaceTo: [
+              data.ui+'/',
+              "from '../../global/{{componentName}}/README.md'",
+              "from '../../global/{{componentName}}/README.md'",
+            ],
         });
+
+
 
         return actions;
       }

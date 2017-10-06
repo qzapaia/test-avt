@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Component} from "react";
 import addReadme from "storybook-readme/with-readme";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider as ApolloProvider } from "./apollo-client";
@@ -17,6 +17,7 @@ const analyticsMiddleware = actionsByAction({
   }
 })
 
+
 const createDecorator = config => (story, b, c, d) => {
   const { reducer } = config;
 
@@ -30,7 +31,9 @@ const createDecorator = config => (story, b, c, d) => {
 
   const newStory = () => (
     <ApolloProvider store={store}>
-      <ThemeProvider theme={config.theme}>{story()}</ThemeProvider>
+        <ThemeProvider theme={config.theme}>
+          {story()}
+        </ThemeProvider>
     </ApolloProvider>
   );
 
