@@ -8,7 +8,7 @@ import HistogramMonth from "./HistogramMonth";
 import CustomTooltip from "./CustomTooltip";
 
 import moment from "moment";
-import { map, groupBy, minBy, filter, isUndefined } from "lodash";
+import { map, groupBy, minBy, filter, isUndefined, find } from "lodash";
 
 const groupByMonth = flights => groupBy(flights, "month");
 
@@ -65,9 +65,8 @@ const PriceTrendCalendar = ({
   );
 
   selectedMonth = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
-  const dataByMonth = data[selectedMonth];
+  const dataByMonth = find(data, { 'month': selectedMonth });
   const bestPrice = getBestPriceBy(dataByMonth);
-
   return (
     <Container>
       {dataByMonth && (

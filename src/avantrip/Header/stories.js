@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './';
+import Header from './withData';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -8,6 +8,7 @@ import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
 import readme from './README.md';
+import reducer from './reducer';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
 import purchaseAccessReducer from '../PurchaseAccess/reducer';
@@ -16,9 +17,7 @@ storiesOf('avantrip/Header', module)
   .addDecorator(generalDecorator({
     readme,
     theme,
-    reducer: {
-      purchaseAccess:purchaseAccessReducer
-    }
+    reducer: reducer
   }))
   .add('Default', () => (
     <Header
