@@ -5,7 +5,7 @@ export const FooterContainer = styled.footer`
   background: ${props=>props.theme.colors.footer};
   padding: 30px 0 ;
 `
-export const MaxWidth = styled.footer`
+export const MaxWidth = styled.div`
   max-width: ${props=> props.theme.viewport.desktop};
   margin: 0 auto;
 `

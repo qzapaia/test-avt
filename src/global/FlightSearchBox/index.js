@@ -11,9 +11,9 @@ import { map } from "lodash";
 import moment from "moment";
 import Text from "../Text";
 import Icon from "../Icon";
-import ExpansionPanel from "../ExpansionPanel";
+import ExpansionPanelEnhacer from "../ExpansionPanel/enhacer";
 import ReactTooltip from 'react-tooltip';
-import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem, Tooltip, TooltipAlert, TooltipTitle, AddRemoveFlights, AddRemoveFlightsButton} from './styled';
+import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem, Tooltip, TooltipAlert, TooltipTitle, AddRemoveFlights, AddRemoveFlightsButton, MoreOptions, MoreOptionsContainer} from './styled';
 
 const onCustomSearch = (next, value) => {
   next(value)
@@ -36,7 +36,15 @@ const customOnChange = (next, name) => value => {
   }
 }
 
-const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => {
+const FlightSearchBox = ({
+  title,
+  onChange,
+  onSearch,
+  onSetSearchBoxFlight,
+  value,
+  expanded,
+  toggleExpand
+}) => {
   return (<Container>
     <TopSearch>
       <MainTitle type='m' tag='h1'>
@@ -235,41 +243,29 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           />
         </PassengerItem>
 
-        <ExpansionPanel
-          SummaryInformation={({onChange, isExpanded}) =>
-            <div onClick={onChange}>
+        <MoreOptions expanded={expanded} onClick={toggleExpand}>
+          {expanded ? '- ': '+ '}
+          opciones
+        </MoreOptions>
+
+        {expanded &&
+        <MoreOptionsContainer>
+          <RadiosGroup
+            label='Clase'
+            onChange={customOnChange(onChange, "class")}
+            options={[
               {
-                isExpanded ?
-                 <Text type='s'>
-                   - opciones
-                 </Text>
-                 :
-                 <Text type='s'>
-                   + opciones
-                 </Text>
-               }
-            </div>
-          }
-          ExtendedInformation={({onChange}) =>
-            <div>
-              <div>
-                <RadiosGroup
-                  label='Clase'
-                  onChange={customOnChange(onChange, "class")}
-                  options={[
-                    {
-                      value: '1',
-                      label: 'Económica'
-                    },
-                    {
-                      value: '2',
-                      label: 'Business'
-                    }
-                  ]}
-                  value= {value.class}
-                />
-              </div>
-            </div>} />
+                value: '1',
+                label: 'Económica'
+              },
+              {
+                value: '2',
+                label: 'Business'
+              }
+            ]}
+            value= {value.class}
+          />
+        </MoreOptionsContainer>}
 
     </Passengers>
     <SearchButton>
@@ -292,4 +288,4 @@ FlightSearchBox.defaultProps = {
   }
 }
 
-export default FlightSearchBox;
+export default ExpansionPanelEnhacer(FlightSearchBox);

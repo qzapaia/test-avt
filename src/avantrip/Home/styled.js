@@ -37,7 +37,7 @@ export const FeaturedSection = styled.div`
   justify-content: center;
 `
 export const CardsContainer = styled.article`
-  flex: 0 1 60%;
+  flex: 1 1 60%;
   > div{
     display: flex;
     flex-wrap: wrap;
@@ -45,15 +45,19 @@ export const CardsContainer = styled.article`
   }
 `
 
-export const FlightsBestSellers = Text.extend`
+export const FlightsBestSellers = styled.article`
+  display: block;
+`
+export const FlightsBestSellersTitle = Text.extend`
   background: white;
   padding: 10px;
   border-radius: 5px 5px 0 0;
 `
 
 
+
 export const ListContainer = styled.article`
-  flex: 0 1 30%;
+  flex: 1 1 30%;
 `
 
 
@@ -66,6 +70,7 @@ export const SubscribeSection = styled.div`
   margin: 15px auto;
   button{
     margin-left: -5px;
+    max-width: 150px;
   }
 `
 export const AgencyInfo = styled.article`
@@ -103,6 +108,7 @@ export const BestDealsListContainer = styled.div`
   display: flex;
   justify-content: center;
   min-width: 250px;
+  margin-top: 10px;
 `
 export const BestDealsList = styled.ul`
   background: white;

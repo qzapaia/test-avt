@@ -11,6 +11,7 @@ import readme from './README.md';
 import reducer from './reducer';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
+import purchaseAccessReducer from '../PurchaseAccess/reducer';
 
 storiesOf('avantrip/Header', module)
   .addDecorator(generalDecorator({

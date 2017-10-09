@@ -7,7 +7,8 @@ import thunk from "redux-thunk";
 import { get } from 'lodash';
 import 'babel-polyfill';
 import { actionsByAction } from './redux.middlewares';
-
+import mapActionToReducer from 'redux-action-reducer-mapper';
+import { getSize } from './utils/media';
 const composeEnhancers = window.top.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {}
 
@@ -17,17 +18,38 @@ const analyticsMiddleware = actionsByAction({
   }
 })
 
+const mediaReducer = mapActionToReducer({
+  default: {
+    size:null,
+    size_name:'',
+  },
+  SET_SCREEN_SIZE: (state, action) => ({
+    ...state,
+    ...action.payload
+  })
+});
 
 const createDecorator = config => (story, b, c, d) => {
   const { reducer } = config;
 
   const store = createStore(
-    reducer ? combineReducers(reducer) : state=>state,
+    reducer ? combineReducers({
+      ...reducer,
+      media:mediaReducer
+    }) : state=>state,
     initialState,
     composeEnhancers(
       applyMiddleware(thunk, analyticsMiddleware)
     )
   );
+
+  const setResize = () => store.dispatch({
+    type:'SET_SCREEN_SIZE',
+    payload:getSize()
+  })
+
+  setResize()
+  window.addEventListener("resize", setResize);
 
   const newStory = () => (
     <ApolloProvider store={store}>

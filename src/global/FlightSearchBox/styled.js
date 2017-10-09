@@ -230,3 +230,32 @@ export const AddRemoveFlightsButton= styled.button`
     outline: none;
   }
 `
+export const MoreOptions= styled.button`
+  background: none;
+  border: none;
+  color: ${props=>props.theme.colors.primary};
+  width: 70px;
+  padding: 0;
+  &:active, &:focus{
+    outline: none;
+  }
+  &:after{
+    content: "";
+    width: 5px;
+    height: 5px;
+    border: none;
+    border-bottom: 2px solid ${props=>props.theme.colors.primary};
+    border-left: 2px solid ${props=>props.theme.colors.primary};
+    border-radius: 0px;
+    position: relative;
+    margin-left: 5px;
+    display: inline-block;
+    transform: ${props=>props.expanded?'rotate(135deg) translateY(-1px) translateX(1px)':'rotate(-45deg) translateY(-1px) translateX(1px)'};
+
+  }
+
+`
+export const MoreOptionsContainer= styled.div`
+  width: 100%;
+  margin-top: 10px;
+`

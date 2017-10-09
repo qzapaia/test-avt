@@ -10,6 +10,7 @@ export const Container = styled.a`
   border-top: ${props=>props.listMode?'1px solid '+props.theme.colors.gray :''};
   padding: ${props=>props.listMode?'10px 5px':''};
   background: ${props=>props.listMode?'white':''};
+  flex: 0 1 47%;
 `
 export const MainPictureContainer = styled.figure`
   position: relative;
@@ -24,8 +25,8 @@ export const MainPictureContainer = styled.figure`
   margin: ${props=>props.listMode?'0px':''};
   background-color: ${props => props.theme.colors.gray};
   img{
-    max-width: 100%;
-    min-width: ${props=>props.listMode?'':'360px'};
+    width: 100%;
+    ${'' /* min-width: ${props=>props.listMode?'':'360px'}; */}
     min-height: ${props=>props.listMode?'100%':''};
   }
 `

@@ -6,11 +6,12 @@ import Text from '../Text/index'
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withState, compose } from 'recompose';
+import hoc from '../../global/ExpansionPanel/enhacer';
 
 import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
-import readme from './README.md';
+import readme from '../../global/ExpansionPanel/README.md';
 
 const enhace = withState('isExpanded','changeState',false);
 const ExpansionPanelWithState =  enhace((props) => {
@@ -27,6 +28,17 @@ const ExpansionPanelWithState =  enhace((props) => {
       onChange={changeHandler} />
   )
 })
+
+const MyComponent = hoc(({expanded, expand, toggleExpand}) => (
+  <div>
+    <button onClick={toggleExpand}>Expand</button>
+    <div>
+      {expanded && <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quis at quibusdam molestias non praesentium, cum provident dolor culpa mollitia adipisci nemo autem similique porro soluta doloremque, recusandae ex, minus.
+      </div>}
+    </div>
+  </div>
+))
 
 storiesOf('avantrip/ExpansionPanel', module)
   .addDecorator(generalDecorator({
@@ -53,4 +65,7 @@ storiesOf('avantrip/ExpansionPanel', module)
         <ExtendedInformation>
           ExtendedInformation
         </ExtendedInformation>} />
+  ))
+  .add('Usando el enhacer', () => (
+    <MyComponent />
   ))
