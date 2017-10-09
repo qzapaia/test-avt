@@ -10,7 +10,7 @@ import Subscribe from '../Subscribe';
 import BestDeals from './BestDeals';
 import Link from '../Link';
 import FinancingPromotion from '../FinancingPromotion/withData';
-import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, FlightsBestSellers, ListContainer, FinancePromo, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
+import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, FlightsBestSellers, FlightsBestSellersTitle, ListContainer, FinancePromo, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 import FeaturedProducts from '../FeaturedProducts/withData';
 
 const Home = ({
@@ -41,12 +41,14 @@ const Home = ({
       </CardsContainer>
       <ListContainer>
         <FinancingPromotion />
-        <FlightsBestSellers tag='h2' type='l' color='brand'>
-          Vuelos más vendidos de la semana
+        <FlightsBestSellers>
+          <FlightsBestSellersTitle tag='h2' type='l' color='brand'>
+            Vuelos más vendidos de la semana
+          </FlightsBestSellersTitle>
+          <FeaturedProducts
+            type="bestSellers"
+            listMode={true} />
         </FlightsBestSellers>
-        <FeaturedProducts
-          type="bestSellers"
-          listMode={true} />
       </ListContainer>
 
     </FeaturedSection>

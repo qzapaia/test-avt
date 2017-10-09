@@ -19,6 +19,7 @@ const Header = ({currentLocation, phoneText}) => (
         <Logo href="http://www.avantrip.com/"/>
         <Slogan
           color="brand"
+          tag='h1'
           >
             Viajar es la guita mejor invertida
         </Slogan>
