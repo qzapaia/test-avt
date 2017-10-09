@@ -1,5 +1,5 @@
 ## Description
-Componente para usos sarlanga.
+Este componente crea un cuadro de la sabana de destinos en QV
 
 ## Basic use
 
@@ -8,19 +8,30 @@ import DestinationsListByPoints from 'avantrip-react/quiero/DestinationsListByPo
 
 export default () => (
   <DestinationsListByPoints
-    onEvent={function}
-    message={string}
-    isActive={boolean}
+    region = 'Argentina'
+    destinations = { destinations }
   />
 )
 ```
 
-
 ## Props
 
-#### `onEvent={<Boolean> || <Function>}`
-Event handler
+#### `region={<String>}`
+Titulo del cuadro (Argentina, Europa, EEUU, etc.)
 
-#### `isActive={<Boolean>}`
-Enable an action within the component
+#### `destinations={<Array>}`
+Coleccion de objetos de destinos. Lo obtenemos del backend.
 
+Ej.
+
+```javascript
+
+const destinations = [
+  {destinoNombre: "Bahia Blanca", rango: 4000, rangoBusiness: 10000},
+  {destinoNombre: "Bariloche", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Calafate", rango: 4000, rangoBusiness: 25000},
+  {destinoNombre: "Mendoza", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Formosa", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Jujuy", rango: 4000 }
+];
+```

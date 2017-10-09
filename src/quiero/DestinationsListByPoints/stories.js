@@ -10,19 +10,41 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const children = [];
-for (var i = 0; i < 10; i++) {
-  children.push(<div key={i} id={i}>Children {i}</div>);
-}
+const destinosArgentina = [
+  {destinoNombre: "Bahia Blanca", rango: 4000, rangoBusiness: 10000},
+  {destinoNombre: "Bariloche", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Calafate", rango: 4000, rangoBusiness: 25000},
+  {destinoNombre: "Mendoza", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Formosa", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Jujuy", rango: 4000 }
+];
+
+const destinosArgentinaNoBusiness = [
+  {destinoNombre: "Bahia Blanca", rango: 1000},
+  {destinoNombre: "Bariloche", rango: 2000},
+  {destinoNombre: "Calafate", rango: 3000},
+  {destinoNombre: "Mendoza", rango: 4000},
+  {destinoNombre: "Formosa", rango: 5000},
+  {destinoNombre: "Jujuy", rango: 6000 }
+];
+
 
 storiesOf('quiero/DestinationsListByPoints', module)
   .addDecorator(generalDecorator({
     readme,
     theme
   }))
-  .add('Vista tipo lista', () => {
+  .add('Vista tipo lista Argentina', () => {
     return (
-      <DestinationsListByPoints type="list" region="Argentina">
-        {children}
-      </DestinationsListByPoints>
+      <DestinationsListByPoints
+        region="Argentina"
+        destinations={ destinosArgentina }
+      />
+  )})
+  .add('Vista tipo lista Argentina sin clase Business', () => {
+    return (
+      <DestinationsListByPoints
+        region="Argentina"
+        destinations={ destinosArgentinaNoBusiness }
+      />
   )})
