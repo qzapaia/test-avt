@@ -18,7 +18,7 @@ const generateCluster = () => {
   let cluster = {};
   cluster.additionalInfo = '¡Hasta 12 cuotas sin interés con Visa y Master del Banco Francés!'
   cluster.disclaimerText = '¿Qué incluye el precio?'
-  cluster.routes = [];
+  cluster.routes = {};
   cluster.fareDetail = {
     'referencePrice': 12802,
     'items': [{
@@ -146,6 +146,72 @@ const generateCluster = () => {
     }
   }
 
+    const sampleRouteOption4 = {
+    'summaryInfo': {
+      'id':4567,
+      'airlineLogos':[
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
+      ],
+      'provider':'Operado por Air St Thomas',
+      'departureIata':'EZE',
+      'departureDate': new Date(),
+      'arrivalIata':'MIA',
+      'arrivalDate': new Date(),
+      'scalesText': '1 Escala',
+      'totalTime': new Date(),
+      'isSelected':false
+    },
+    'extendedInfo': {
+      'header':'Buenos Aires hacia Miami',
+      'flights':[flightSample1, flightSample2]
+    }
+  }
+
+    const sampleRouteOption5 = {
+    'summaryInfo': {
+      'id':888,
+      'airlineLogos':[
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
+      ],
+      'provider':'Operado por Air St Thomas',
+      'departureIata':'EZE',
+      'departureDate': new Date(),
+      'arrivalIata':'MIA',
+      'arrivalDate': new Date(),
+      'scalesText': '1 Escala',
+      'totalTime': new Date(),
+      'isSelected':false
+    },
+    'extendedInfo': {
+      'header':'Buenos Aires hacia Miami',
+      'flights':[flightSample1, flightSample2]
+    }
+  }
+
+    const sampleRouteOption6 = {
+    'summaryInfo': {
+      'id':999,
+      'airlineLogos':[
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+        'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
+      ],
+      'provider':'Operado por Air St Thomas',
+      'departureIata':'EZE',
+      'departureDate': new Date(),
+      'arrivalIata':'MIA',
+      'arrivalDate': new Date(),
+      'scalesText': '1 Escala',
+      'totalTime': new Date(),
+      'isSelected':false
+    },
+    'extendedInfo': {
+      'header':'Buenos Aires hacia Miami',
+      'flights':[flightSample1, flightSample2]
+    }
+  }
+
   const sampleRoute1 = {
     'header': {
       title:'IDA',
@@ -166,32 +232,57 @@ const generateCluster = () => {
     'options':[sampleRouteOption3]
   }
 
-  cluster.routes.push(sampleRoute1);
-  cluster.routes.push(sampleRoute2);
+  const sampleRoute3 = {
+    'header': {
+      title:'Tramo 3',
+      departureCity: 'Nueva York',
+      arrivalCity: 'Buenos Aires',
+      date:new Date()
+    },
+    'options':[sampleRouteOption4,sampleRouteOption5,sampleRouteOption6]
+  }
+
+
+  cluster.routes.first = sampleRoute1;
+  cluster.routes.second = sampleRoute2;
+  cluster.routes.third = sampleRoute3;
 
   return cluster;
 } 
 
 const enhace = compose(
   withState('cluster','selectRoute', generateCluster()),
-  withState('selectedOption','selectRouteOption', 0)
+  withState('selectedOptions','selectRouteOption', 
+    {
+      firstRouteOptionId:123,
+      secondRouteOptionId:12,
+      thirdRouteOptionId:4567
+    }
+  )
 )
 
 const FlightClusterWithState = enhace((props) => {
-  const { cluster, selectRoute, selectedOption, selectRouteOption } = props;
+  const { cluster, selectRoute, selectedOptions, selectRouteOption } = props;
 
   const onCheckout = () => {
     console.log('ON CHECKOUT');
   }
 
   const onSelectedRouteOption = (selectedOption) => {
-    selectRouteOption(selectedOption)   
+    const clonedOptions = {};
+    defaultsDeep(clonedOptions, selectedOptions);
+
+    clonedOptions.firstRouteOptionId = selectedOption.firstRouteOptionId || clonedOptions.firstRouteOptionId;
+    clonedOptions.secondRouteOptionId = selectedOption.secondRouteOptionId || clonedOptions.secondRouteOptionId;
+    clonedOptions.thirdRouteOptionId = selectedOption.thirdRouteOptionId || clonedOptions.thirdRouteOptionId;
+
+    selectRouteOption(clonedOptions);
   }
 
   return (
     <FlightCluster {...props}
       onCheckout={onCheckout}
-      selectRouteOption={selectedOption}
+      selectRouteOptions={selectedOptions}
       onSelectedRouteOption={onSelectedRouteOption}
       data={cluster}
     />
