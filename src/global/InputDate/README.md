@@ -53,3 +53,6 @@ Numero de meses que se muestran
 
 #### `initialVisibleMonth={<Number>}`
 Mes que se muestra inicialmente
+
+#### `forceDatesFormat={<Boolean>}`
+Fuerza el formato {startDate} en el single date picker.

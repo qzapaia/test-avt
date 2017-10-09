@@ -7,15 +7,14 @@ import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
 import readme from './README.md';
-import reducer from './reducer';
-
+import reducer from "../../global/User/reducer";
 
 storiesOf('avantrip/Signup', module)
   .addDecorator(generalDecorator({
     readme,
     theme,
     reducer: {
-      signUp: reducer
+      user: reducer
     }
   }))
   .add('With data', () => (

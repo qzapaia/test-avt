@@ -1,10 +1,18 @@
-import React from 'react';
-import GlobalSignupWithData from '../../global/Signup/withData';
-import { ThemeProvider } from 'styled-components';
-import theme from './theme';
+import React from "react";
+import { connect } from "react-redux";
 
-export default (props) => (
-  <ThemeProvider theme={theme}>
-    <GlobalSignupWithData {...props} />
-  </ThemeProvider>
-)
+import FacebookLogin from "./";
+
+import { setFacebookUser } from '../../global/User/actions';
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onFacebookSignup: userData => {
+      dispatch(setFacebookUser(userData));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FacebookLogin);

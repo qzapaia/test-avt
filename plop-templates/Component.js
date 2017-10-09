@@ -10,7 +10,7 @@ const {{componentName}} = ({
   getRepos,
   {{/redux}}
   {{#withDataComponent}}
-  hoteles,
+  flights,
   {{/withDataComponent}}
 }) => (
   <Container onClick={onClick}>
@@ -21,10 +21,10 @@ const {{componentName}} = ({
     <strong>Click to increment</strong>
 
     {{#withDataComponent}}
-      <h3>Hoteles</h3>
-      {hoteles.map(r=>(
-        <div key={r.name}> {r.name} </div>
-      ))}
+    <h3>Vuelos</h3>
+    {flights.map(r=>(
+      <div key={r.url}> {r.destination_name} </div>
+    ))}
     {{/withDataComponent}}
 
     {{#redux}}
@@ -42,18 +42,18 @@ const {{componentName}} = ({
 {{componentName}}.propTypes = {
   text: PropTypes.node.isRequired,
   {{#withDataComponent}}
-  hoteles: PropTypes.arr,
+  flights: PropTypes.array,
   {{/withDataComponent}}
   {{#redux}}
   getRepos: PropTypes.func,
-  repos: PropTypes.arr,
+  repos: PropTypes.array,
   {{/redux}}
 }
 
 {{componentName}}.defaultProps = {
   text:'no value yet :(',
   {{#withDataComponent}}
-  hoteles:[],
+  flights:[],
   {{/withDataComponent}}
   {{#redux}}
   getRepos(){},

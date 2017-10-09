@@ -1,28 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Container } from './styled';
+import { getSize } from '../../utils/media';
 
-const TextoLoco = styled.div`
-  color:${props=>props.theme.color || 'red'}
-`
-
-const Test = ({text, onClick}) => (
-  <div onClick={onClick}>
-    <TextoLoco>Hola</TextoLoco>
+const Test = ({
+  text,
+  onClick,
+  repos,
+  getRepos,
+  flights,
+}) => (
+  <Container size={getSize()}>
     Test component
     <br/>
     Counter {text}
     <br/>
     <strong>Click to increment</strong>
-  </div>
+
+    <h3>Vuelos</h3>
+    {flights.map(r=>(
+      <div key={r.url}> {r.destination_name} </div>
+    ))}
+
+    <div>
+      <h3>Repos</h3>
+      <button onClick={getRepos}>Get Repos</button>
+      {repos.map(r=>(
+        <div key={r.name}> {r.name} </div>
+      ))}
+    </div>
+  </Container>
 )
 
 Test.propTypes = {
-  text: PropTypes.node.isRequired
+  text: PropTypes.node.isRequired,
+  flights: PropTypes.array,
+  getRepos: PropTypes.func,
+  repos: PropTypes.array,
 }
 
 Test.defaultProps = {
-  text:'no value yet :('
+  text:'no value yet :(',
+  flights:[],
+  getRepos(){},
+  repos:[],
 }
 
 export default Test;
