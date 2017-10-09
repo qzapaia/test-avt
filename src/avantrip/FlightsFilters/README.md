@@ -4,10 +4,43 @@ Componente para mostrar los filtros que pueden ser aplicados en el resultado de 
 ## Basic use
 
 ```javascript
-import FlightsFilters from 'avantrip-react/global/FlightsFiltersWithData';
+import FlightsFilters from 'avantrip-react/global/FlightsFilters';
 
 export default () => (
-   <FlightsFiltersWithData
+  <FlightsFilters
+    options=""
+    values=""
+    onChange=""
+    onClear=""
+    />
+)
+```
+## Props
+
+#### `options={<Collections>}`
+coleccion de la options de los filtros de vuelos
+{
+  label:"options 1",
+  value:: 1
+}
+
+#### `values={<Collections>}`
+coleccion de los valores seleccionas para aplicar los filtros
+
+#### `onChange={<Function>}`
+Inform when option is checked
+
+#### `onClear={<Function>}`
+Inform when option "all" is checked
+
+
+### Basic use with data
+
+```javascript
+import FlightsFiltersWithData from 'avantrip-react/avantrip/FlightsFiltersWithData';
+
+export default () => (
+ <FlightsFiltersWithData
     origin="BUE"
     destination="MIA"
     departureDate="15-03-2018"
@@ -21,8 +54,8 @@ export default () => (
     />
 )
 ```
-## Props
 
+## Props
 #### `origin={<String>}`
 IATA ciudad de Origen
 
@@ -53,26 +86,6 @@ tipo de canal desde donde se esta accediendo DESKTOP,MOBILE,ETC
 #### `portal={<String>}`
 ej.AVANTRIP
 
-### Basic use with data
-
-```javascript
-import FlightsFiltersWithData from 'avantrip-react/avantrip/FlightsFiltersWithData';
-
-export default () => (
- <FlightsFiltersWithData
-    origin="BUE"
-    destination="MIA"
-    departureDate="15-03-2018"
-    returningDate="26-03-2018"
-    passengersAdults="1"
-    passengersChildren="0"
-    passengersInfants="0"
-    cabinClass="Economy"
-    channel="Desktop"
-    portal="AVANTRIP"
-    />
-)
-```
 ## Redux
 
 #### Actions
