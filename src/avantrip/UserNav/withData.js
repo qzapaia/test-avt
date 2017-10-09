@@ -6,13 +6,12 @@ import UserNav from "./";
 import { get } from "lodash";
 import { logout } from '../../global/User/actions';
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => ({
     data: {
       name: get(state, "user.facebook.name", ""),
-      urlImage: get(state, "user.facebook.image", "")
+      urlImage: get(state, "user.facebook.urlImage", "")
     }
-}};
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return{
