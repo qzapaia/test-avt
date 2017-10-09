@@ -10,11 +10,15 @@ import theme from '../styled.theme';
 import readme from './README.md';
 
 import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
+import purchaseAccessReducer from '../PurchaseAccess/reducer';
 
 storiesOf('avantrip/Header', module)
   .addDecorator(generalDecorator({
     readme,
-    theme
+    theme,
+    reducer: {
+      purchaseAccess:purchaseAccessReducer
+    }
   }))
   .add('Default', () => (
     <Header
