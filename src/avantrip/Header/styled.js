@@ -22,7 +22,7 @@ export const MaxWidth = styled.div`
   margin: 0 auto;
   max-width: ${props=> props.theme.viewport.desktop}
 `
-export const SignupFacebook = styled.article`
+export const SignupFacebookContainer = styled.article`
   position: relative;
   color: ${props=>props.theme.colors.primary};
   display: flex;
@@ -30,7 +30,21 @@ export const SignupFacebook = styled.article`
   align-items: center;
   margin-right: 10px;
 `
-export const MyTicket = styled.article`
+export const Login = styled.button`
+  background: none;
+  border: none;
+  position: relative;
+  display: flex;
+  color: ${props=>props.theme.colors.primary};
+  align-items: center;
+  font-weight: 300;
+  cursor: pointer;
+  &:focus, &:active{
+    outline: none;
+  }
+`
+
+export const MyPurchaseContainer = styled.article`
   position: relative;
   color: ${props=>props.theme.colors.primary};
   display: flex;
@@ -38,6 +52,20 @@ export const MyTicket = styled.article`
   align-items: center;
   margin-right: 10px;
 `
+export const MyPurchaseButton = styled.button`
+  background: none;
+  border: none;
+  position: relative;
+  display: flex;
+  color: ${props=>props.theme.colors.primary};
+  align-items: center;
+  font-weight: 300;
+  cursor: pointer;
+  &:focus, &:active{
+    outline: none;
+  }
+`
+
 
 export const RightNav = styled.div`
   display: flex;

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import Text from '../Text';
 
 export const Container = styled.div`
-  width: 100%;
+  position: absolute;
+  left: 40px;
+  top: 20px;
   ${'' /* transform: translateY(-15px); */}
   height: 0;
   z-index: 999;
-  left: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
