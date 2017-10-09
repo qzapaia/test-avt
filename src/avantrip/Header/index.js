@@ -1,14 +1,50 @@
+import React from "react";
+import PropTypes from "prop-types";
 
-import React from 'react';
-import GlobalHeader from '../../global/Header';
-import { ThemeProvider } from 'styled-components';
+import ContactAndPhoneInfo from "../ContactAndPhoneInfo";
+import {
+  Container,
+  LogoContainer,
+  Slogan,
+  MaxWidth,
+  RightNav,
+  MyTicket
+} from "./styled";
+import Logo from "../Logo";
+import Text from "../Text";
+import Nav from "../Nav";
+import Link from "../Link";
+import Icon from "../Icon";
+import Signup from "../Signup/withData";
+import PurchaseAccess from "../PurchaseAccess/withData";
+import UserNav from "../UserNav/withData";
+import SignupFacebook from "./SignupFacebook";
+import MyPurchase from "./MyPurchase";
 
-const componentTheme = {}
+import { withState, compose } from "recompose";
 
-export default (props) => (
-  <ThemeProvider theme={componentTheme}>
-    <GlobalHeader {...props} />
-  </ThemeProvider>
-)
+const enhace = withState("isVisible", "clickSignup", false);
 
-  
+const Header = ({ currentLocation, phoneText, userData }) => (
+  <Container>
+    <MaxWidth>
+      <LogoContainer>
+        <Logo href="http://www.avantrip.com/" />
+        <Slogan color="brand">Viajar es la guita mejor invertida</Slogan>
+      </LogoContainer>
+      <RightNav>
+        {!userData && <SignupFacebook />}
+        <MyPurchase />
+        <ContactAndPhoneInfo phoneText={phoneText} />
+        <UserNav />
+      </RightNav>
+    </MaxWidth>
+    <Nav currentPathname={currentLocation} />
+  </Container>
+);
+
+Header.propTypes = {
+  phoneText: PropTypes.string
+};
+
+export default enhace(Header);

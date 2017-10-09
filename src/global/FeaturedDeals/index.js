@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Container from './container.styled';
+import {Container} from './styled';
 import Slider from '../Slider';
 
 import { map } from 'lodash';
@@ -12,9 +12,11 @@ const FeaturedDeals = ({
   <Container>
     <Slider settings={{autoplay: false}}>
       {map(deals, deal => (
-        <a style={{display:"inline"}} href={deal.url}>
-          <img src={deal.image} />
-        </a>
+        <div>
+          <a href={deal.url}>
+            <img src={deal.image} />
+          </a>
+        </div>
       ))}
     </Slider>
   </Container>

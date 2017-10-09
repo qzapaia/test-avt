@@ -43,7 +43,6 @@ storiesOf('global/ProductCard', module)
     <ProductCard
       href="http://www.google.com"
       media="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
-      //coinType ???
       price={15250}
       supportingInfo="Precio desde"
       subtitle="Ida y vuelta"

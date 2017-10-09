@@ -9,6 +9,9 @@ import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
 import { map } from "lodash";
 import moment from "moment";
+import Text from "../Text";
+import Icon from "../Icon";
+import {Container, MainTitle, TopSearch, Radios, FromTo} from './styled';
 
 const onCustomSearch = (next, value) => {
   next(value)
@@ -32,44 +35,48 @@ const customOnChange = (next, name) => value => {
 }
 
 const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => {
-  return (<div>
-    {title}
-    <div>
-      <RadiosGroup
-        label=''
-        onChange={customOnChange(onChange, "leg")}
-        options={[
-          {
-            value: '1',
-            label: 'ida y vuelta'
-          },
-          {
-            value: '2',
-            label: 'ida'
-          },
-          {
-            value: '3',
-            label: 'varios Destinos'
-          }
-        ]}
-        value= {value.leg}
-      />
-    </div>
+  return (<Container>
+    <TopSearch>
+      <MainTitle type='m' tag='h1'>
+        <Icon id='Vuelos' width='18px' height='18px' />
+        {title}
+      </MainTitle>
+      <Radios>
+        <RadiosGroup
+          label=''
+          onChange={customOnChange(onChange, "leg")}
+          options={[
+            {
+              value: '1',
+              label: 'Ida y vuelta'
+            },
+            {
+              value: '2',
+              label: 'Solo ida'
+            },
+            {
+              value: '3',
+              label: 'Multidestino'
+            }
+          ]}
+          value= {value.leg}
+        />
+      </Radios>
+    </TopSearch>
     {
       map(value.flights, (flight, idx) => (
         <div>
-          <div>
+          <FromTo>
             <InputText
               onChange={customOnChange(onChange, `flights[${idx}].originCity` )}
-              placeholder= 'Ingresá el nombre de la ciudad de origen' 
-              label='Desde'
+              placeholder= 'Desde'
               value={flight.originCity}
               requiresExistingValue='true'
             >
             {
               map(value.destinations, destination => (
                 <option 
-                  city={destination.city} 
+                  city={destination.city}
                   value={`${destination.description} ${destination.iata_code}`}
                 >{`${destination.description} ${destination.iata_code}`}</option>
               ))
@@ -77,35 +84,36 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             </InputText>
             <InputText
               onChange={customOnChange(onChange, `flights[${idx}].destinationCity`)}
-              placeholder= 'Ingresá el nombre de la ciudad de destino' 
-              label='Hacia'
+              placeholder= 'Hacia'
               option={flight}
               value={flight.destinationCity}
               requiresExistingValue='true'
             >
               {
               map(value.destinations, destination => (
-                <option 
-                  city={destination.city} 
+                <option
+                  city={destination.city}
                   value={`${destination.description} ${destination.iata_code}`}
                 >{`${destination.description} ${destination.iata_code}`}</option>
               ))
             }
             </InputText>
-          </div>
+          </FromTo>
           <div>
             <InputDate
               range={value.leg == 1 ? true : false}
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
               dates={flight.dates}
               forceDatesFormat={true}
+              startDatePlaceholderText='Partida'
+              endDatePlaceholderText='Regreso'
             />
           </div>
         </div>
       ))}
       {value.leg == 3 &&<div>
         <p><a onClick={customOnSet(onSetSearchBoxFlight, 'remove')}>Quitar -</a></p>
-        {value.flights.length < 3 && 
+        {value.flights.length < 3 &&
           <p><span onClick={customOnSet(onSetSearchBoxFlight, 'add')}>Agregar +</span></p>
         }
       </div>}
@@ -191,7 +199,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
     <div>
       <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
     </div>
-  </div>)
+  </Container>)
 }
 
 FlightSearchBox.propTypes = {

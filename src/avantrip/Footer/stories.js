@@ -26,4 +26,3 @@ storiesOf('avantrip/Footer', module)
   .add('Default', () => (
     <FooterWithState></FooterWithState>
   ))
-

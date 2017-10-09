@@ -13,6 +13,7 @@ export default () => (
     title={string}
     state={string}
     email={string}
+    buttonText={string}
   />
 )
 ```
@@ -33,6 +34,11 @@ Informa del estado de la transacción
 
 #### `email={<String>}`
 Valor del input email
+
+#### `buttonText={<String>}`
+Texto del boton. Por default 'enviar'
+
+
 
 ## Redux
 
