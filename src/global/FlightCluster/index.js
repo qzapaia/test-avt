@@ -23,15 +23,16 @@ const routeContainer = {
   flexGrow:3 
 }
 
-const OptionsSelector = JustOne(({select, isSelected, options, selectedOption})=>{
-  console.log(selectedOption)
+const OptionsSelector = JustOne(({select, selected, options, selectedOption})=>{
+  //console.log(options)
+  //console.log(selectedOption)
   return(<div>
     {
       map(options, (o, key) => (
           <FlightClusterRouteOption 
             data={o} 
             onClick={ select(o.summaryInfo.id) } 
-            selected={ isSelected(o.summaryInfo.id) }
+            selected={ selectedOption == o.summaryInfo.id ? true : false }
           />
       ))
     }
