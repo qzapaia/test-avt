@@ -5,18 +5,11 @@ export const Container = styled.div`
   display: block;
   background: white;
   padding: 10px;
-  input{
-    ${'' /* don't get mad */}
-    padding: 10px 5px;
-    font-size: 14px;
-    font-weight: 300;
-    border-radius: 0 !important;
-  }
   .react-autosuggest__suggestions-container{
     position: absolute;
     background: white;
     z-index: 9;
-    margin-top: 30px;
+    margin-top: 36px;
     width: 100%;
     left: 0;
   }
@@ -72,7 +65,6 @@ export const Container = styled.div`
   }
 
   .DateRangePicker{
-    margin-top: 20px;
     width: 100%;
   }
   .DateRangePickerInput{
@@ -90,8 +82,9 @@ export const Container = styled.div`
   .DateInput__display-text {
     padding: 0px 0px;
     white-space: nowrap;
-    font-size: 15px;
+    font-size: 11px;
     overflow: hidden;
+    color: ${props=>props.theme.colors.darkergray};
   }
   .DateInput__display-text--focused{
     background: none;
@@ -99,9 +92,32 @@ export const Container = styled.div`
     color: black;
     font-weight: 400;
   }
+  .DateRangePicker__picker--open-down {
+    top: 50px;
+  }
+  .DateInput--open-down.DateInput--with-caret{
+    &:after, &:before{
+      top: 40px;
+    }
+    &:after{
+      border-bottom-color: #fff;
+    }
+    &:before{
+      border-bottom-color: rgba(0,0,0,0.1);
+    }
+  }
+  .DayPickerKeyboardShortcuts__show{
+    display: none;
+  }
+  .DayPickerNavigation--horizontal .DayPickerNavigation__prev--default svg, .DayPickerNavigation--horizontal .DayPickerNavigation__next--default svg{
+    fill: ${props=>props.theme.colors.primary}
+  }
+  .SingleDatePickerInput{
+    border-color: ${props=>props.theme.colors.darkgray}
+  }
 `
 export const MainTitle = Text.extend`
-  margin: 10px 0;
+  margin-top: 10px;
   flex: 1;
   display: flex;
   align-items: center;
@@ -115,10 +131,16 @@ export const TopSearch = styled.div`
   align-items: center;
 `
 export const Radios = styled.div`
-  flex: 2;
+  width: 100%;
   > div > div{
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    label{
+      margin-top: 10px;
+    }
+    div{
+      flex: 1;
+    }
   }
 
 `
@@ -128,8 +150,9 @@ export const FromTo = styled.div`
   justify-content: space-between;
   position: relative;
   label{
-    flex: 0 1 48%;
-    &:last-of-type{
+    flex: 1 1 100%;
+    margin-top: 15px;
+    ${'' /* &:last-of-type{
       .react-autosuggest__suggestions-list{
         &:before{
           left: inherit;
@@ -141,6 +164,69 @@ export const FromTo = styled.div`
         }
 
       }
-    }
+    } */}
+  }
+`
+export const FlexibleDates= styled.div`
+  margin: 10px 0;
+`
+export const Passengers= styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+`
+export const PassengerItem= styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 24%;
+  > div{
+    width: 100%;
+  }
+`
+
+export const SearchButton= styled.div`
+  margin-top: 10px;
+`
+export const DateContainer= styled.div`
+  margin-top: 15px;
+  > div{
+    display: flex;
+  }
+  .SingleDatePicker{
+    flex: 1;
+  }
+`
+export const Tooltip= styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  .__react_component_tooltip.type-dark{
+    background: ${props=>props.theme.colors.primary}
+  }
+  .__react_component_tooltip.type-dark.place-top:after{
+    border-top-color: ${props=>props.theme.colors.primary}
+  }
+`
+export const TooltipAlert= Text.extend`
+  display: flex;
+  align-items: center;
+`
+export const TooltipTitle= Text.extend`
+  margin-right: 5px;
+`
+export const AddRemoveFlights= styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0;
+`
+export const AddRemoveFlightsButton= styled.button`
+  flex: 0 0 50%;
+  border: none;
+  background: none;
+  color: ${props=>props.theme.colors.primary};
+  cursor: pointer;
+  &:active, &:focus{
+    outline: none;
   }
 `

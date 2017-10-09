@@ -38,7 +38,7 @@ const Nav = ({currentPathname, children}) => {
         <Item>
           <LinkNav isActive={currentPage == 'hoteles'}>
             <LinkContainer href="http://www.avantrip.com/hoteles/">
-              {/* <Icon id='Hoteles' width='18px' height='18px' /> */}
+              <Icon id='Hotel' width='18px' height='18px' />
               <LinkText color='primary' type='s'>
                 Hoteles
               </LinkText>
@@ -88,14 +88,14 @@ const Nav = ({currentPathname, children}) => {
         <Item>
           <LinkNav isActive={currentPage == 'seguros'}>
             <LinkContainer href="http://www.avantrip.com/asistencia-al-viajero/">
-              {/* <Icon id='Seguros' width='18px' height='18px' /> */}
+              <Icon id='Travel' width='18px' height='18px' />
               <LinkText color='primary' type='s'>
                 Seguros
               </LinkText>
             </LinkContainer>
           </LinkNav>
         </Item>
-        
+
       </MaxWidth>
     </NavList>
   );

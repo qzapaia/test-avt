@@ -18,8 +18,8 @@ position: absolute;
 left: -100%;
   & ~ ${InputStyle} {
     background: url(${image});
-    ${props => props.type == 'checkbox' && props.checked ? 'background-position: 0 -132px' : props.type == 'checkbox' ? 'background-position: 0 -88px' : ''};
-    ${props => props.type == 'radio' && props.checked ? 'background-position: 0 -44px' : props.type == 'radio' ? 'background-position: 0 -22px' : ''};
+    ${props => props.type == 'checkbox' && props.checked ? 'background-position: 0 -133px' : props.type == 'checkbox' ? 'background-position: 0 -89px' : ''};
+    ${props => props.type == 'radio' && props.checked ? 'background-position: 0 -45px' : props.type == 'radio' ? 'background-position: 0 -23px' : ''};
     ${props => props.disabled ? 'opacity: 0.75' : ''};
   }
 `
