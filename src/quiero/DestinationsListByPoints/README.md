@@ -8,8 +8,8 @@ import DestinationsListByPoints from 'avantrip-react/quiero/DestinationsListByPo
 
 export default () => (
   <DestinationsListByPoints
-    region={string}
-    destinations={array}
+    region= 'Argentina'
+    destinations= { destinations }
   />
 )
 ```
@@ -17,7 +17,7 @@ export default () => (
 ## Props
 
 #### `region={<String>}`
-Titulo del cuadro
+Titulo del cuadro (Argentina, Europa, EEUU, etc.)
 
 #### `destionations={<Array>}`
 Coleccion de objetos de destinos. Lo obtenemos del backend

@@ -7,15 +7,15 @@ const DestinationsListByPoints = ({ region, destinations }) => {
 
   const destinationsLength = destinations.length;
   const children = [];
-  for (var i = 0; i < destinationsLength; i++) {
+  destinations.map((d) => {
     children.push(
       <Item
-        id = {i}
-        destinoNombre = { destinations[i].destinoNombre }
-        rango = { destinations[i].rango }
-        rangoBusiness = { destinations[i].rangoBusiness || undefined }
+        key = { d.destinoNombre }
+        name = { d.destinoNombre }
+        DefaultPoints = { d.rango }
+        BusinessPoints = { d.rangoBusiness }
       />);
-  }
+  });
 
   //Si destinations contiene datos de business muestro una columna mas
   const BusinessHeader = destinations.some((data) => (!isNaN(data.rangoBusiness))) && <span>Business</span>;

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Item = ({ id, destinoNombre, rango, rangoBusiness }) => (
+const Item = ({ key, name, DefaultPoints, BusinessPoints }) => (
 
-    <div key={id} id={id}>
-      <div>{ destinoNombre }</div>
-      <div>{ rango }</div>
-      <div>{ rangoBusiness && rangoBusiness }</div>
+    <div key={key}>
+      <div>{ name }</div>
+      <div>{ DefaultPoints }</div>
+      <div>{ BusinessPoints }</div>
     </div>
 )
 
