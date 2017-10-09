@@ -1,5 +1,5 @@
 ## Description
-Componente ubicado en el Header. Se encarga del registro con Facebook
+Componente ubicado en el Header. Se encarga del registro de un usuario.
 
 ## Basic use
 
@@ -16,28 +16,19 @@ export default () => (
 ## Props
 
 #### `onFacebookSignup={<Function>}`
-Handler para el botón de login con Facebook
+Handler para el botón de login con Facebook. Devuelve un objeto con la forma:
+```javascript
+{
+  facebook: {
+    email: {string},
+    id: {string},
+    name: {string},
+    accessToken: {string},
+    urlImage:{string}
+  }
+}
+```
+
 
 ## Redux
-
-#### Actions
-```javascript
-import { facebookSignup } from 'avantrip-react/avantrip/Signup/actions';
-import store from 'somewhere';
-
-store.dispatch(facebookSignup({}));
-// ...
-```
-
-#### Reducer
-```javascript
-import signupReducer from 'avantrip-react/avantrip/Signup/reducer';
-import { createStore, combineReducers } from 'redux';
-
-const reducer = combineReducers({
-  signup:signupReducer
-})
-
-const store = createStore(reducer);
-// ...
-```
+Utiliza el reducer y action del componente global/User.

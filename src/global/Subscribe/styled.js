@@ -1,6 +1,19 @@
 import styled from 'styled-components'
 
-export default styled.div`
+export const Container = styled.div`
   display: flex;
-  background-color: #ff0012;
+  align-items:center;
+  background-color: white;
+`
+export const TextContainer = styled.div`
+  margin:10px;
+  flex-grow: 1;
+`
+export const InputContainer = styled.div`
+  display: flex;
+  flex-grow: 2;
+`
+
+export const FormChildsContainer = styled.div`
+  display: flex;
 `

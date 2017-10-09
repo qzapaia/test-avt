@@ -23,6 +23,7 @@ const DateRangePickerWithState = enhace(props => {
     dates,
     onChange,
     range,
+    forceDatesFormat,
     onFocusChange,
     focused,
     numberOfMonths
@@ -43,7 +44,9 @@ const DateRangePickerWithState = enhace(props => {
     <SingleDatePicker
       {...props}
       date={dates}
-      onDateChange={onChange}
+      onDateChange={val=>{
+        forceDatesFormat ? onChange({startDate:val}) : onChange(val);
+      }}
       numberOfMonths={numberOfMonths || 1}
       isOutsideRange={isOutsideRange(props)}
       initialVisibleMonth={initialVisibleMonth(props)}
@@ -78,14 +81,17 @@ InputDate.propTypes = {
 
   initialVisibleMonth: PropTypes.number,
   range: PropTypes.bool,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+
+  forceDatesFormat: PropTypes.bool,
 };
 
 InputDate.defaultProps = {
   startDatePlaceholderText: "IDA",
   endDatePlaceholderText: "VUELTA",
   range: false,
-  placeholder: ""
+  placeholder: "",
+  forceDatesFormat:false
 };
 
 // customización overrideando css de airbnb, lo envuelvo en un comp

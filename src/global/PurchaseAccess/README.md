@@ -12,6 +12,7 @@ export default () => (
     onSubmit={function}
     onChange={function}
     value={object}
+    state={string}
   />
 )
 ```
@@ -36,3 +37,5 @@ Valor del componente tiene la forma de:
 }
 ```
 
+#### `state={"loading"}`
+Informa el estado de la trasacción
