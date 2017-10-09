@@ -1,24 +1,114 @@
-import { SET_REPOS } from './actions';
+import { map , set ,get, clone} from 'lodash';
+import { SET_CHANGE,SET_CLEAR } from './actions';
 
+/**
+ * Se define values como un object 
+ * para porder utilizar los metodos de loadash para el tratamientos de objetos
+ * y poder buscar los filtros navegando atravez del objetos ej: scales.0 or scales.1
+ * y poder tratarlos como key unicas. 
+ */
 const initialState = {
-  repos:[]
+  values:{}
 };
 
 export default (state = initialState, action) => {
-  const {
-    type,
-    payload
-  } = action;
+  const { type, payload} = action;
 
   switch(type){
-    case SET_REPOS:
+    case SET_CHANGE:
+      const {path,change: { checked, value } } = payload;
+      const prevValues = state.values;
+      
+      const newValues = clone(prevValues);
+      const pathValues = get(newValues,path,[]);
+
+      if(checked){
+        pathValues.push(value)
+        set(newValues,path,pathValues);
+      }else{
+        remove(pathValues, v => v== value)
+      }
       return {
         ...state,
-        repos:payload
+        values: newValues
       }
-      break;
+    break;
+    
+    case SET_CLEAR:
+      const newVals = clone(state.values);
+      let { id } = payload;
+
+      set(newVals,id,[]);
+
+      return{
+        ...state,
+        values: newVals
+      }
+    break;
 
     default:
       return state;
   }
+}
+
+export const populateFilters = (state={}) => {
+  
+  const filtros = get(state,'filters',{})
+  const references = state.references;
+  const airlines = get(state.filters,'airlines',{});
+  const scales = get(state.filters,'scales',{});
+  const schedules = get(state.filters,'schedules',{});
+  const airports = get(state.filters,'airports',{});
+
+  const newAirliens = map(Object.keys(airlines),code => ({
+    value: airlines[code],
+    labels: references.carriers[code]
+  }));
+
+  const newScales = map(Object.keys(scales),(code,k) => {
+    const objectValue = scales[code];
+    const opts = Object.keys(objectValue).map((c,j) => ({
+          label: `${c}(${objectValue[c]})` ,
+          value:c,
+    }));  
+    return { options: opts }
+  });
+  
+  const newSchedules = map(Object.keys(schedules),(code,k) => {
+    const objectValue = schedules[code];
+    const opts = Object.keys(objectValue).map((c,j) => ({
+          label: `${c}(${objectValue[c]})` ,
+          value:c,
+    }));  
+    return { options: opts }
+  });
+
+  const newAirports = map(Object.keys(airports),(code,k) => {
+    const objectValue = airports[code];
+     return Object.keys(objectValue).map((airport,j) => {
+      const keyDeparture = objectValue[airport];
+      const opts =  Object.keys(keyDeparture).map((v,i) => ({
+          label: `${v}(${keyDeparture[v]})` ,
+          value:v,   
+      }));
+      return {
+        options: opts
+      }
+    });  
+  });
+
+  let filters = {
+    airlines : newAirliens,
+    scales : newScales,
+    schedules : newSchedules,
+    airports: {
+      items:newAirports,
+      cities: map(references.cities,code => code)
+    }
+  }
+
+  return {
+    ...state,
+    filters
+  };
 }
