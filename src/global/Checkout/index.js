@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '../Button'
 
 const Checkout = ({values}) => {
   if(values.flights){
     return (
       <div>
           <div>Llego el respuesta del validate..!!!</div>
+          <br />
+          <Button type="cta">Comprar</Button>
       </div> 
     )
   }
