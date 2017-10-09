@@ -3,16 +3,14 @@ import FlightsFilters from './';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withState, compose } from 'recompose';
 
 import generalDecorator from '../../stories.decorator.js';
 import FlightsFiltersWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
-import reducer from "./reducer";
 
-import { remove, clone, set, get,map } from 'lodash';
+import reducer from "./reducer";
 
 const options = {
   scales:{
@@ -20,11 +18,11 @@ const options = {
       options:[
         {
           value:'1',
-          label: "una escala"
+          label: 'una escala'
         },
         {
           value:'2',
-          label: "dos escala"
+          label: 'dos escala'
         }
       ]
     },
@@ -32,11 +30,11 @@ const options = {
       options:[
         {
           value:'1',
-          label: "una escala"
+          label: 'una escala'
         },
         {
           value:'2',
-          label: "dos escala"
+          label: 'dos escala'
         }
       ]
     }
@@ -44,11 +42,11 @@ const options = {
   airlines:[
     {
       value:'1',
-      label: "una escala"
+      label: 'una escala'
     },
     {
       value:'2',
-      label: "dos escala"
+      label: 'dos escala'
     }
   ],
   schedules:{
@@ -56,11 +54,11 @@ const options = {
       options:[
         {
           value:'1',
-          label: "una escala"
+          label: 'una escala'
         },
         {
           value:'2',
-          label: "dos escala"
+          label: 'dos escala'
         }
       ]
     },
@@ -68,11 +66,11 @@ const options = {
       options:[
         {
           value:'1',
-          label: "una escala"
+          label: 'una escala'
         },
         {
           value:'2',
-          label: "dos escala"
+          label: 'dos escala'
         }
       ]
     }
@@ -82,11 +80,11 @@ const options = {
       options:[
         {
           value:'1',
-          label: "una escala"
+          label: 'una escala'
         },
         {
           value:'2',
-          label: "dos escala"
+          label: 'dos escala'
         }
       ]
     },
@@ -94,11 +92,11 @@ const options = {
       options:[
         {
           value:'1',
-          label: "una escala"
+          label: 'una escala'
         },
         {
           value:'2',
-          label: "dos escala"
+          label: 'dos escala'
         }
       ]
     }
@@ -106,18 +104,18 @@ const options = {
 }
 
 let search = {
-  origin: "BUE",
-  destination: "COR",
-  departureDate: "11-03-2018",
-  returningDate: "20-03-2018",
+  origin: 'BUE',
+  destination: 'COR',
+  departureDate: '11-03-2018',
+  returningDate: '20-03-2018',
   passengers: {
     adults: 1,
     children: 0,
     infants:0
   },
-  cabinClass: "Economy",
-  channel: "DESKTOP",
-  portal:"AVANTRIP"
+  cabinClass: 'Economy',
+  channel: 'DESKTOP',
+  portal:'AVANTRIP'
 }
 
 storiesOf('avantrip/FlightsFilters', module)
@@ -125,7 +123,7 @@ storiesOf('avantrip/FlightsFilters', module)
     readme,
     theme,
     reducer:{
-      FlightsFilters: reducer,
+      flightsFilters: reducer,
     },
   }))
   .add('Default', () => (

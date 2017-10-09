@@ -1,4 +1,4 @@
-import { map , set ,get, clone} from 'lodash';
+import { map , set ,get, clone, remove} from 'lodash';
 import { SET_CHANGE,SET_CLEAR } from './actions';
 
 /**
@@ -17,9 +17,7 @@ export default (state = initialState, action) => {
   switch(type){
     case SET_CHANGE:
       const {path,change: { checked, value } } = payload;
-      const prevValues = state.values;
-      
-      const newValues = clone(prevValues);
+      const newValues = clone(state.values);
       const pathValues = get(newValues,path,[]);
 
       if(checked){
@@ -52,13 +50,13 @@ export default (state = initialState, action) => {
 }
 
 export const populateFilters = (state={}) => {
-  
   const filtros = get(state,'filters',{})
   const references = state.references;
   const airlines = get(state.filters,'airlines',{});
   const scales = get(state.filters,'scales',{});
   const schedules = get(state.filters,'schedules',{});
   const airports = get(state.filters,'airports',{});
+  const flightType = get(state,'flightType',{})
 
   const newAirliens = map(Object.keys(airlines),code => ({
     value: airlines[code],
@@ -97,18 +95,19 @@ export const populateFilters = (state={}) => {
     });  
   });
 
-  let filters = {
+  const filters = {
     airlines : newAirliens,
     scales : newScales,
     schedules : newSchedules,
     airports: {
       items:newAirports,
       cities: map(references.cities,code => code)
-    }
+    },
+    flightType,
   }
 
   return {
     ...state,
-    filters
+    filters,
   };
 }

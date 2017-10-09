@@ -1,9 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styled';
-import ExpansionPanel from '../ExpansionPanel';
 import CheckboxGroup from '../CheckboxGroup';
 import { map, get } from 'lodash';
+
+
+const labelFlightsTramos = (type,position) => {
+  if(type == 'multidestino'){
+    return `Vuelo ${position + 1}`
+  }
+  return (position == 0)? "Ida" : "Vuelta"
+}
+
+const labelFlightsSchedules = (type,position) => {
+  if(type == 'multidestino'){
+    return `Vuelo ${position + 1}`
+  }
+  return (position == 0)? "Salida" : "Regreso"
+}
+
+const labelFlightsAirports = (type,position,city) => {
+  if(type == 'multidestino'){
+    return `Vuelo ${position + 1}`
+  }
+  return (position == 0)? `Salida ${city}` : `Regreso ${city}`
+}
 
 const FlightsFilters = ({
   options,
@@ -11,12 +32,6 @@ const FlightsFilters = ({
   onChange,
   onClear
 }) => {
-  map(options.airports.items, (airports, k) => (
-    map(airports,(optionsAirports,i)=>(
-      console.log(optionsAirports.options)
-      //console.log(get(values,['airports', `${k}.${i}`]))
-    )) 
-  ))    
 
   return(
   <Container>
@@ -26,7 +41,7 @@ const FlightsFilters = ({
       {map(options.scales, (scalesOptions, k) => (
         
         <CheckboxGroup
-          label={(k==0)?"Ida" : "Vuelta"}
+          label={labelFlightsTramos(options.flightType,k)}
           onChange={onChangeHandler(`scales.${k}`)(onChange)}
           options={scalesOptions.options}
           values={get(values,['scales', k])}
@@ -53,7 +68,7 @@ const FlightsFilters = ({
       {map(options.schedules, (schedulesOptions, k) => (
         
         <CheckboxGroup
-          label={(k==0)?"Salida" : "Regreso"}
+          label={labelFlightsSchedules(options.flightType,k)}
           onChange={onChangeHandler(`schedule.${k}`)(onChange)}
           options={schedulesOptions.options}
           values={get(values,['schedule', k])}
@@ -70,13 +85,10 @@ const FlightsFilters = ({
         map(options.airports.items, (airports, k) => (
           map(airports,(optionsAirports,i)=>(
             <CheckboxGroup
-            label={ (k==0)? `Salida ${options.airports.cities[i]}` : `Regreso ${options.airports.cities[i]}` }
+            label={ labelFlightsAirports(options.flightType,k,options.airports.cities[i]) }
             onChange={onChangeHandler(`airports.${k}.${i}`)(onChange)}
             options={optionsAirports.options}
-            values={
-              
-              get(values,`airports.${k}.${i}`)
-            }
+            values={ get(values,`airports.${k}.${i}`)}
             onClear={()=>onClear(`airports.${k}.${i}`)}
             allOptions={{
               label:<span>Todas los Aeropuertos</span>,
@@ -91,13 +103,6 @@ const FlightsFilters = ({
   </Container>
 )}
 
-FlightsFilters.propTypes = {
-  // text: PropTypes.node.isRequired,
-  // hoteles: PropTypes.arr,
-  // getRepos: PropTypes.func,
-  // repos: PropTypes.arr,
-}
-
 FlightsFilters.defaultProps = {
   values:{},
   options:{
@@ -105,9 +110,5 @@ FlightsFilters.defaultProps = {
   }
 }
 
-const onChangeHandler = id => next => change =>{
-  console.log(id,next)
-  next(id, change)
-} 
-
+const onChangeHandler = id => next => change => next(id, change)
 export default FlightsFilters;

@@ -90,10 +90,11 @@ ej.AVANTRIP
 
 #### Actions
 ```javascript
-import { sendData } from 'avantrip-react/global/FlightsFilters/actions';
+import { setChange, setClear } from 'avantrip-react/global/FlightsFilters/actions';
 import store from 'somewhere';
 
-store.dispatch(sendData({ email:"email@email.com" });
+store.dispatch(setChange({ path:"airports" ,change:{value:'AEP',event:'function' } });
+store.dispatch(setClear({ path:"airports" });
 // ...
 ```
 #### Reducer

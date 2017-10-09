@@ -6,10 +6,8 @@ import { connect } from "react-redux";
 import { getData, setChange, setClear } from "./actions";
 import { populateFilters } from './reducer';
 
-const mapStateToProps = ({FlightsFilters}) => ({
-  expanded:FlightsFilters.expanded,
-  options:FlightsFilters.options,
-  values:FlightsFilters.values,
+const mapStateToProps = ({flightsFilters}) => ({
+  values:flightsFilters.values
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -78,7 +76,8 @@ query FilterQuery(
   
       return populateFilters({
         filters:roundtrip.metas.filters,
-        references:roundtrip.references
+        references:roundtrip.references,
+        flightType:roundtrip.metas.flightType
       });
     }
   })(FlightsFiltersWithData);
