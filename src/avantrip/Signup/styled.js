@@ -7,7 +7,7 @@ export const Container = styled.div`
   top: 20px;
   ${'' /* transform: translateY(-15px); */}
   height: 0;
-  z-index: 999;
+  z-index: 1000;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

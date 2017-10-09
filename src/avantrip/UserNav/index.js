@@ -11,31 +11,20 @@ import { withState } from "recompose";
 const UserNav = ({ data, onClick, logout, showMenu }) => (
   <Container>
     <UserData onClick={e => onClick(!showMenu)}>
-      {data.urlImage && (
-        <UserLogo>
-          <img src={data.urlImage} />
-        </UserLogo>
-      )}
+      {data.urlImage &&
+      <UserLogo>
+        <img src={data.urlImage} />
+      </UserLogo>}
       <Text type="s">{data.name || data.email}</Text>
     </UserData>
     {showMenu && (
-      <UserMenu>
-        <Text
-          color="primary"
-          onClick={e => {
-            onClick(!showMenu);
-            logout();
-          }}
-        >
-          Cerrar sesión
-        </Text>
-        <Icon
-          id="Close"
-          color="primary"
-          onClick={e => {
-            onClick(!showMenu);
-          }}
-        />
+      <UserMenu
+        onClick={e => {
+          onClick(!showMenu);
+          logout();
+        }}>
+        <Text color="primary">Cerrar sesión</Text>
+        <Icon id="Close" color="primary" />
       </UserMenu>
     )}
   </Container>
@@ -58,7 +47,7 @@ UserNavWithState.propTypes = {
 };
 
 UserNavWithState.defaultProps = {
-  data: {}
+  data:{}
 };
 
 export default UserNavWithState;

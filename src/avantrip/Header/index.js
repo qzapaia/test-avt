@@ -8,7 +8,8 @@ import {
   Slogan,
   MaxWidth,
   RightNav,
-  MyTicket
+  MyPurchaseContainer,
+  SignupFacebookContainer
 } from "./styled";
 import Logo from "../Logo";
 import Text from "../Text";
@@ -18,15 +19,23 @@ import Icon from "../Icon";
 import Signup from "../Signup/withData";
 import PurchaseAccess from "../PurchaseAccess/withData";
 import UserNav from "../UserNav/withData";
-import SignupFacebook from "./SignupFacebook";
-import MyPurchase from "./MyPurchase";
 
 import { withState, compose } from "recompose";
 
-const enhace = withState("isVisible", "clickSignup", false);
+const enhace = withState("isVisible", "clickVisible", "");
 
+const changeVisibleState = (currentVisibleComp, changeVisibleComp, next) => {
+  next(currentVisibleComp != changeVisibleComp ? changeVisibleComp : "");
+};
 
-const Header = ({ currentLocation, phoneText, userData, media }) => (
+const Header = ({
+  currentPathname,
+  phoneText,
+  userData,
+  media,
+  isVisible,
+  clickVisible
+}) => (
   <Container>
     {/* {media.size > 2 && 'desktop'} */}
     <MaxWidth >
@@ -35,17 +44,34 @@ const Header = ({ currentLocation, phoneText, userData, media }) => (
         <Slogan tag='h1' color="brand">Viajar es la guita mejor invertida</Slogan>
       </LogoContainer>
       <RightNav>
-        {!userData && <SignupFacebook />}
-        <MyPurchase />
+        {!userData.facebook && (
+          <SignupFacebookContainer>
+            <span
+              onClick={e => changeVisibleState(isVisible, "signup", clickVisible)}>
+              <Icon color="primary" id="Person" width="16px" height="16px" />
+              Ingresar
+            </span>
+            {isVisible == "signup" && <Signup />}
+          </SignupFacebookContainer>
+        )}
+        <MyPurchaseContainer>
+          <span
+            onClick={ e => changeVisibleState(isVisible, "myPurchase", clickVisible)}>
+            <Icon color="primary" id="Description" width="16px" height="16px" />
+            Mi Compra
+          </span>
+          {isVisible == "myPurchase" && <PurchaseAccess />}
+        </MyPurchaseContainer>
         <ContactAndPhoneInfo phoneText={phoneText} />
         <UserNav />
       </RightNav>
     </MaxWidth>
-    <Nav currentPathname={currentLocation} />
+    <Nav currentPathname={currentPathname} />
   </Container>
 );
 
 Header.propTypes = {
+  currentPathname: PropTypes.string.isRequired,
   phoneText: PropTypes.string
 };
 

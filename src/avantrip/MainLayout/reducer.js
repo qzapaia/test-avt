@@ -1,3 +1,5 @@
-import homeReducer from '../Home/reducer';
+import headerReducer from "../Header/reducer";
 
-export default homeReducer;
+export default {
+  ...headerReducer
+}

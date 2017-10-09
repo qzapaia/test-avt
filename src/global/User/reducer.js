@@ -1,6 +1,6 @@
 import { FACEBOOK_SIGNUP_SET_USER, USER_LOG_OUT } from './actions';
 
-const initialState = null;
+const initialState = {};
 
 export default (state = initialState, action) => {
   const {type,payload} = action;
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
       }
       break;
     case USER_LOG_OUT:
-      return null;
+      return {};
       break;
     default:
       return state;

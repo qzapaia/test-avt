@@ -1,10 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import InputText from "../InputText";
 import Text from "../Text";
 import Button from "../Button";
 import Icon from "../Icon";
-import {Container, FormTicket, MyTicketContainer, WhatCanIdo, WhatCanIdoList, WhatCanIdoItem} from './styled';
+
+import {
+  Container,
+  FormTicket,
+  MyTicketContainer,
+  WhatCanIdo,
+  WhatCanIdoList,
+  WhatCanIdoItem
+} from "./styled";
 
 const preventFormatAndContinueWith = (next, value) => e => {
   e.preventDefault();
@@ -22,7 +31,7 @@ const PurchaseAccess = ({
     <Container>
       <MyTicketContainer>
 
-        <FormTicket onSubmit={preventFormatAndContinueWith(onSubmit)}>
+        <FormTicket onSubmit={preventFormatAndContinueWith(onSubmit, value)}>
         	<Text type='m' color='brand' tag='h3'>
             ¿Compraste un vuelo?
           </Text>

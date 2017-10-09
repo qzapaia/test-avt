@@ -4,7 +4,7 @@ import Text from '../Text';
 export const Container = styled.div`
   width: 100%;
   height: 0;
-  z-index: 999;
+  z-index: 1000;
   left: 0;
   display: flex;
   flex-wrap: wrap;
