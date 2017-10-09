@@ -12,8 +12,8 @@ const DestinationsListByPoints = ({ region, destinations }) => {
       <Item
         key = { d.destinoNombre }
         name = { d.destinoNombre }
-        DefaultPoints = { d.rango }
-        BusinessPoints = { d.rangoBusiness }
+        defaultPoints = { d.rango }
+        businessPoints = { d.rangoBusiness }
       />);
   });
 
