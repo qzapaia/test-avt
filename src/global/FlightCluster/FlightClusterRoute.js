@@ -56,11 +56,4 @@ FlightClusterRoute.propTypes = {
   arrivalCity: PropTypes.string.isRequired
 }
 
-FlightClusterRoute.defaultProps = {
-  title: '',
-  date: '',
-  departureCity: '',
-  arrivalCity: ''
-}
-
 export default FlightClusterRoute;
