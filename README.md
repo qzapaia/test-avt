@@ -57,6 +57,34 @@ https://github.com/acdlite/recompose
 import { get, map } from 'lodash';
 ```
 
+## Escuchar acciones de redux para ejecutar cosas (analytics)
+```javascript
+// ... imports
+import { actionsByAction } from 'avantrip-react/redux.middlewares';
+
+// Escucha cuando se lanza el action 'TEST_ACTION' y ejectua la función asociada
+const actionsMiddleware = actionsByAction({
+  TEST_ACTION(action){
+    console.log('action', action);
+  }
+})
+
+export default () => {
+  const store = createStore(
+    reducer,
+    initialState,
+    applyMiddleware(thunk, actionsMiddleware)
+  );
+
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+};
+
+```
+
 ## Datos útiles
 
 #### GraphQL integración

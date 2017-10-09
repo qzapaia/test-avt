@@ -9,6 +9,7 @@ export const Container = styled.a`
   max-width: ${props=>props.listMode?'':'450px'};
 `
 export const MainPictureContainer = styled.figure`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,4 +55,9 @@ export const IconContainer = styled.div`
   ${Container}:hover &{
     transform: rotate(-180deg) translateX(-5px);
   }
+`
+export const ImageTitleContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `

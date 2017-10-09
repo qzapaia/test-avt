@@ -1,14 +1,30 @@
-
 import React from 'react';
-import GlobalSignup from '../../global/Signup';
-import { ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
 
-const componentTheme = {}
+import FacebookLogin from './FacebookLogin';
 
-export default (props) => (
-  <ThemeProvider theme={componentTheme}>
-    <GlobalSignup {...props} />
-  </ThemeProvider>
+const facebookHandler = next => data => {
+  next({
+    facebook: data
+  })
+}
+
+const Signup = ({onFacebookSignup}) => (
+	<div>
+		<div>
+			¡Accedé y recibí ofertas exclusivas!
+		</div>
+    <FacebookLogin
+      onSignup={facebookHandler(onFacebookSignup)} />
+		<div>
+			No publicaremos nada en Facebook sin tu permiso.
+		</div>
+	</div>
 )
 
-  
+
+Signup.propTypes = {
+  onFacebookSignup:PropTypes.func.isRequired,
+}
+
+export default Signup;

@@ -1,14 +1,11 @@
-
 import React from 'react';
 import GlobalTest from '../../global/Test';
 import { ThemeProvider } from 'styled-components';
+import theme from './theme';
 
-const componentTheme = {
-  color:'blue'
-}
 
 export default (props) => (
-  <ThemeProvider theme={componentTheme}>
+  <ThemeProvider theme={theme}>
     <GlobalTest {...props} />
   </ThemeProvider>
 )
