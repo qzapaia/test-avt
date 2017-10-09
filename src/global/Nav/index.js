@@ -21,6 +21,31 @@ const getCurrentPage = (pathname) =>{
 
 const Nav = ({currentPathname, children}) => {
   let currentPage = getCurrentPage(currentPathname);
+
+  console.log('Mario!!!!',children);
+
+  return (
+    <NavList>
+    {
+      children.map( item => {
+          <Item>
+            <LinkNav isActive={ currentPage == item.id }>
+            <LinkContainer href="{ item.href }">
+              <Icon id='{ item.id }' width='18px' height='18px' />
+              <LinkText color='primary' type='s'>
+                Vuelos
+              </LinkText>
+            </LinkContainer>
+            </LinkNav>
+          </Item>
+      })
+    }
+    </NavList>
+  )
+}
+
+/*const Nav = ({currentPathname, children}) => {
+  let currentPage = getCurrentPage(currentPathname);
   return (
     <NavList>
       <Item>
@@ -36,7 +61,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'hoteles'}>
           <LinkContainer href="http://www.avantrip.com/hoteles/">
-            {/* <Icon id='Hoteles' width='18px' height='18px' /> */}
+            {// <Icon id='Hoteles' width='18px' height='18px' />}
             <LinkText color='primary' type='s'>
               Hoteles
             </LinkText>
@@ -86,7 +111,7 @@ const Nav = ({currentPathname, children}) => {
       <Item>
         <LinkNav isActive={currentPage == 'seguros'}>
           <LinkContainer href="http://www.avantrip.com/asistencia-al-viajero/">
-            {/* <Icon id='Seguros' width='18px' height='18px' /> */}
+            {// <Icon id='Seguros' width='18px' height='18px' />}
             <LinkText color='primary' type='s'>
               Seguros
             </LinkText>
@@ -95,7 +120,7 @@ const Nav = ({currentPathname, children}) => {
       </Item>
     </NavList>
   );
-}
+}*/
 
 Nav.propTypes = {
   currentPathname: PropTypes.string.isRequired

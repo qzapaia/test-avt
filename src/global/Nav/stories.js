@@ -16,8 +16,10 @@ storiesOf('global/styled@Nav', module)
     theme
   }))
   .add('Default', () => (
-    <Nav currentPathname="/vuelos/" />
-  ))
-  .add('Con currentPathname igual a /hoteles/', () => (
-    <Nav currentPathname="/hoteles/" />
+    <Nav currentPathname="/vuelos/">
+      <span id="vuelos" href="http://www.avantrip.com">Vuelos</span>
+      <span id="hoteles" href="http://www.avantrip.com">Hoteles</span>
+      <span id="autos" href="http://www.avantrip.com">Autos</span>
+      <span id="disney" href="http://www.avantrip.com">Disney</span>
+    </Nav>
   ))

@@ -10,5 +10,3 @@ export default (props) => (
     <GlobalNav {...props} />
   </ThemeProvider>
 )
-
-  
