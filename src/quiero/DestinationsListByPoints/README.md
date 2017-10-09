@@ -19,5 +19,19 @@ export default () => (
 #### `region={<String>}`
 Titulo del cuadro (Argentina, Europa, EEUU, etc.)
 
-#### `destionations={<Array>}`
-Coleccion de objetos de destinos. Lo obtenemos del backend
+#### `destinations={<Array>}`
+Coleccion de objetos de destinos. Lo obtenemos del backend.
+
+Ej.
+
+```javascript
+
+const destinations = [
+  {destinoNombre: "Bahia Blanca", rango: 4000, rangoBusiness: 10000},
+  {destinoNombre: "Bariloche", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Calafate", rango: 4000, rangoBusiness: 25000},
+  {destinoNombre: "Mendoza", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Formosa", rango: 4000, rangoBusiness: 15000},
+  {destinoNombre: "Jujuy", rango: 4000 }
+];
+```

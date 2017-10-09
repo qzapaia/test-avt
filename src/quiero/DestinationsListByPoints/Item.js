@@ -11,14 +11,16 @@ const Item = ({ name, defaultPoints, businessPoints }) => (
 )
 
 Item.propTypes = {
-  id: PropTypes.number.isRequired,
-  destinoNombre: PropTypes.string.isRequired,
-  rango: PropTypes.number.isRequired
+  name: PropTypes.string.isRequired,
+  defaultPoints: PropTypes.number.isRequired,
+  businessPoints: PropTypes.number.isRequired
+
 }
 
 Item.defaultProps = {
-  destinoNombre:'',
-  rango: 0
+  name:'',
+  defaultPoints: '',
+  businessPoints: ''
 }
 
 export default Item;

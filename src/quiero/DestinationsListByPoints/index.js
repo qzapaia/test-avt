@@ -5,18 +5,6 @@ import Item from './Item.js';
 
 const DestinationsListByPoints = ({ region, destinations }) => {
 
-  const destinationsLength = destinations.length;
-  const children = [];
-  destinations.map((d) => {
-    children.push(
-      <Item
-        key = { d.destinoNombre }
-        name = { d.destinoNombre }
-        defaultPoints = { d.rango }
-        businessPoints = { d.rangoBusiness }
-      />);
-  });
-
   //Si destinations contiene datos de business muestro una columna mas
   const BusinessHeader = destinations.some((data) => (!isNaN(data.rangoBusiness))) && <span>Business</span>;
 
@@ -29,7 +17,16 @@ const DestinationsListByPoints = ({ region, destinations }) => {
         { BusinessHeader }
       </div>
       <List type="list">
-        { children }
+        {
+          destinations.map((d) =>
+            <Item
+              key = { d.destinoNombre }
+              name = { d.destinoNombre }
+              defaultPoints = { d.rango }
+              businessPoints = { d.rangoBusiness }
+            />
+          )
+        }
       </List>
     </div>);
 }
