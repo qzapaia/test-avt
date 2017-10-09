@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import ProductCard from '../ProductCard';
 import FlightSearchBox from '../FlightSearchBox/withData';
-// import Slider from '../FlightSearchBox/withData';
-// import Slider from '../Slider';
 import FeaturedDeals from '../FeaturedDeals/withData';
 import Text from '../Text';
 import Subscribe from '../Subscribe';
@@ -12,13 +9,13 @@ import Link from '../Link';
 import FinancingPromotion from '../FinancingPromotion/withData';
 import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, FlightsBestSellers, FlightsBestSellersTitle, ListContainer, FinancePromo, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 import FeaturedProducts from '../FeaturedProducts/withData';
-
 const Home = ({
   text,
   onClick,
   repos,
   getRepos,
   hoteles,
+  media
 }) => (
   <HomeContainer onClick={onClick}>
     <MainSection>
@@ -35,8 +32,7 @@ const Home = ({
     </MainSection>
 
     <FeaturedSection>
-
-      <CardsContainer>
+      <CardsContainer mobile={media.size < 4}>
         <FeaturedProducts type="promotionalFlights" />
       </CardsContainer>
       <ListContainer>

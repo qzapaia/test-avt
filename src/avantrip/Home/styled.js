@@ -37,7 +37,7 @@ export const FeaturedSection = styled.div`
   justify-content: center;
 `
 export const CardsContainer = styled.article`
-  flex: 1 1 60%;
+  flex: ${props=>props.mobile ? '1 1 100%' : '1 1 60%'};
   > div{
     display: flex;
     flex-wrap: wrap;
