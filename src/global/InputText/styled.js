@@ -9,8 +9,9 @@ export const Label = styled.label`
     width: 100%;
     input{
       width: 100%;
-      border-radius: 4px;
-      padding: 5px 7.5px;
+      border-radius: 0px;
+      padding: 10px;
+      font-weight: 300;
       border: 1px solid ${props=>props.theme.colors.darkgray};
       &:active, &:focus{
         outline: none;
