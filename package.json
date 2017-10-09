@@ -29,6 +29,7 @@
     "cp": "^0.2.0",
     "currency-map-symbol": "^3.1.6",
     "fetch-once-q": "^1.0.3",
+    "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "react": "^15.6.1",
@@ -47,6 +48,7 @@
     "recompose": "^0.25.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "replace-in-file": "^3.0.0-beta.2",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
@@ -64,6 +66,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "compression": "^1.7.0",
+    "directory-list": "^1.1.1",
     "express": "^4.15.4",
     "plop": "^1.8.0",
     "prop-types": "^15.5.10",

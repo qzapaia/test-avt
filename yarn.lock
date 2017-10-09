@@ -2318,6 +2318,10 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+directory-list@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/directory-list/-/directory-list-1.1.1.tgz#85875db9147f24609c7b4f3d2baa1c6713793a1e"
+
 doctrine@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.0.0.tgz#c73d8d2909d22291e1a007a395804da8b665fe63"
@@ -3499,6 +3503,10 @@ jquery@>=1.7.2:
 js-base64@^2.1.9:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.3.2.tgz#a79a923666372b580f8e27f51845c6f7e8fbfbaf"
+
+js-cookie@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.1.4.tgz#da4ec503866f149d164cf25f579ef31015025d8d"
 
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
@@ -5282,6 +5290,14 @@ repeating@^2.0.0:
   resolved "https://registry.yarnpkg.com/repeating/-/repeating-2.0.1.tgz#5214c53a926d3552707527fbab415dbc08d06dda"
   dependencies:
     is-finite "^1.0.0"
+
+replace-in-file@^3.0.0-beta.2:
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/replace-in-file/-/replace-in-file-3.0.0-beta.2.tgz#d0b0b316364db4fd3dd018870c75740fa142d079"
+  dependencies:
+    chalk "^2.1.0"
+    glob "^7.1.2"
+    yargs "^8.0.2"
 
 request@^2.81.0:
   version "2.82.0"

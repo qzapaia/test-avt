@@ -9,9 +9,10 @@ const client = new ApolloClient({
   networkInterface
 });
 
-export const Provider = (props) => (
-  <ApolloProvider client={client}>
-    {React.cloneElement(props.children, props)}
+export const Provider = props => (
+  <ApolloProvider {...props} client={client}>
+    {/* {React.cloneElement(props.children, props)} */}
+    {props.children}
   </ApolloProvider>
 )
 

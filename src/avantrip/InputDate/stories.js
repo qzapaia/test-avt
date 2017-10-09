@@ -15,11 +15,15 @@ const enhace = compose(
 );
 
 const InputDateWithState =  enhace((props) => {
-  const { dates, onChange } = props;
+  const {
+    dates,
+    onChange,
+    forceDatesFormat } = props;
 
   const changeHandler = (val) => {
-    action('change')(val);
-    onChange(val);
+    const newValue = forceDatesFormat ? val.startDate : val;
+    action('change')(newValue);
+    onChange(newValue);
   }
 
   return (
@@ -35,6 +39,12 @@ storiesOf('avantrip/InputDate', module)
   .add('SingleDate', () => (
     <InputDateWithState
       placeholder="Fecha"
+    />
+  ))
+  .add('SingleDate con formato objeto en el format', () => (
+    <InputDateWithState
+      placeholder="Fecha"
+      forceDatesFormat={true}
     />
   ))
   .add('SingleDate entre el 1 de enero y el 28 de enero del 2018', () => (
