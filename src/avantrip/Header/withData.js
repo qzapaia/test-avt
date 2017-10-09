@@ -5,8 +5,9 @@ import { get } from "lodash";
 
 import Header from "./";
 
-const mapStateToProps = state => ({
-  userData: get(state, "user", null)
+const mapStateToProps = ({user, media}) => ({
+  userData: user,
+  media:media
 });
 
 export default connect(mapStateToProps)(Header);
