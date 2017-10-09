@@ -8,8 +8,8 @@ import DestinationsListByPoints from 'avantrip-react/quiero/DestinationsListByPo
 
 export default () => (
   <DestinationsListByPoints
-    region= 'Argentina'
-    destinations= { destinations }
+    region = 'Argentina'
+    destinations = { destinations }
   />
 )
 ```
