@@ -84,6 +84,7 @@ export const Container = styled.div`
     white-space: nowrap;
     font-size: 11px;
     overflow: hidden;
+    color: ${props=>props.theme.colors.darkergray};
   }
   .DateInput__display-text--focused{
     background: none;
@@ -104,6 +105,15 @@ export const Container = styled.div`
     &:before{
       border-bottom-color: rgba(0,0,0,0.1);
     }
+  }
+  .DayPickerKeyboardShortcuts__show{
+    display: none;
+  }
+  .DayPickerNavigation--horizontal .DayPickerNavigation__prev--default svg, .DayPickerNavigation--horizontal .DayPickerNavigation__next--default svg{
+    fill: ${props=>props.theme.colors.primary}
+  }
+  .SingleDatePickerInput{
+    border-color: ${props=>props.theme.colors.darkgray}
   }
 `
 export const MainTitle = Text.extend`
@@ -179,7 +189,13 @@ export const SearchButton= styled.div`
   margin-top: 10px;
 `
 export const DateContainer= styled.div`
-  margin-top: 20px;
+  margin-top: 15px;
+  > div{
+    display: flex;
+  }
+  .SingleDatePicker{
+    flex: 1;
+  }
 `
 export const Tooltip= styled.div`
   width: 100%;
@@ -198,4 +214,19 @@ export const TooltipAlert= Text.extend`
 `
 export const TooltipTitle= Text.extend`
   margin-right: 5px;
+`
+export const AddRemoveFlights= styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0;
+`
+export const AddRemoveFlightsButton= styled.button`
+  flex: 0 0 50%;
+  border: none;
+  background: none;
+  color: ${props=>props.theme.colors.primary};
+  cursor: pointer;
+  &:active, &:focus{
+    outline: none;
+  }
 `

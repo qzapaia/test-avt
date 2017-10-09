@@ -13,7 +13,7 @@ import Text from "../Text";
 import Icon from "../Icon";
 import ExpansionPanel from "../ExpansionPanel";
 import ReactTooltip from 'react-tooltip';
-import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem, Tooltip, TooltipAlert, TooltipTitle} from './styled';
+import {Container, MainTitle, TopSearch, Radios, FromTo, FlexibleDates, Passengers, SearchButton, DateContainer, PassengerItem, Tooltip, TooltipAlert, TooltipTitle, AddRemoveFlights, AddRemoveFlightsButton} from './styled';
 
 const onCustomSearch = (next, value) => {
   next(value)
@@ -114,12 +114,17 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           </DateContainer>
         </div>
       ))}
-      {value.leg == 3 &&<div>
-        <p><a onClick={customOnSet(onSetSearchBoxFlight, 'remove')}>Quitar -</a></p>
+      {value.leg == 3 &&
+        <AddRemoveFlights>
+          <AddRemoveFlightsButton onClick={customOnSet(onSetSearchBoxFlight, 'remove')}>
+            Quitar -
+          </AddRemoveFlightsButton>
         {value.flights.length < 3 &&
-          <p><span onClick={customOnSet(onSetSearchBoxFlight, 'add')}>Agregar +</span></p>
+          <AddRemoveFlightsButton onClick={customOnSet(onSetSearchBoxFlight, 'add')}>
+            Agregar +
+          </AddRemoveFlightsButton>
         }
-      </div>}
+      </AddRemoveFlights>}
     <FlexibleDates>
       <InputCheckbox
         value='flexibleDates'
