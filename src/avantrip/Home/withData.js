@@ -5,8 +5,8 @@ import { get } from 'lodash';
 import { connect } from "react-redux";
 import { getData } from './actions';
 
-const mapStateToProps = state => ({
-  repos: state.Redux.repos
+const mapStateToProps = ({Redux}) => ({
+  repos: Redux.repos
 });
 
 const mapDispatchToProps = {
