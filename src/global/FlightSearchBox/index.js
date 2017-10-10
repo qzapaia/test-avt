@@ -7,7 +7,7 @@ import InputText from '../InputText';
 import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
-import { map } from "lodash";
+import { map, has } from "lodash";
 import moment from "moment";
 
 const onCustomSearch = (next, value) => {
@@ -20,7 +20,7 @@ const customOnSet = (next, value) => e => {
 
 const customOnChange = (next, name) => value => {
 
-  if(name == 'adults' || name == 'children' || name == 'infant') {
+  if(name == 'adults' || name == 'children' || name == 'infants') {
     next({
       [name]:value.value
     })
@@ -31,6 +31,25 @@ const customOnChange = (next, name) => value => {
   }
 }
 
+const setDate = (values) => {
+  let valor = '';
+  if(values.index == 0) {
+    valor = moment().add('days', 2).format("YYYY-MM-DD")
+  } else {
+    valor = moment(values.flights[values.index-1].dates).format("YYYY-MM-DD");
+  }
+  return valor;
+}
+
+const optionsToIterate = (initVal, values) => {
+  const optionsValues = [];
+  for (let i = initVal; i <= values; i++) {
+    optionsValues.push({value: `${i}`, label: `${i}`});
+  }
+  return optionsValues;
+}
+
+  
 const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => (
   <div>
     {title}
@@ -81,7 +100,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               label='Hacia'
               option={flight}
               value={flight.destinationCity}
-              requiresExistingValue='true'
+              requiresExistingValue={true}
             >
               {
               map(value.destinations, destination => (
@@ -93,14 +112,20 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             }
             </InputText>
           </div>
+
+          { flight.error.state && <p style={{color: '#ff0000'}}>{flight.error.message}</p>}
+
           <div>
             <InputDate
               range={value.leg == 1 ? true : false}
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
               dates={flight.dates}
+              min={setDate({'flights':value.flights, 'leg': value.leg, 'index': idx}) }
+              max={moment().add('days', 360).format("YYYY-MM-DD")}
               forceDatesFormat={true}
             />
           </div>
+          
         </div>
       ))}
       {value.leg == 3 &&<div>
@@ -124,52 +149,24 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             placeholder='Adultos'
             onChange={customOnChange(onChange, 'adults')}
             value={value.adults}
-            options={[
-              {value: '1', label: '1'},
-              {value: '2', label: '2'},
-              {value: '3', label: '3'},
-              {value: '4', label: '4'},
-              {value: '5', label: '5'},
-              {value: '6', label: '6'},
-              {value: '7', label: '7'},
-              {value: '8', label: '8'},
-              {value: '9', label: '9'}
-            ]}
+            options={optionsToIterate(1,9)}
             />
-            <Select
+          <Select
             name='children'
             placeholder='Niños'
             onChange={customOnChange(onChange, 'children')}
             value={value.children}
-            options={[
-              {value: '1', label: '1'},
-              {value: '2', label: '2'},
-              {value: '3', label: '3'},
-              {value: '4', label: '4'},
-              {value: '5', label: '5'},
-              {value: '6', label: '6'},
-              {value: '7', label: '7'},
-              {value: '8', label: '8'},
-              {value: '9', label: '9'}
-            ]}
+            options={optionsToIterate(0,9)}
             />
-            <Select
-            name='infant'
+            
+          <Select
+            name='infants'
             placeholder='Bebés'
-            onChange={customOnChange(onChange, 'infant')}
-            value={value.infant}
-            options={[
-              {value: '1', label: '1'},
-              {value: '2', label: '2'},
-              {value: '3', label: '3'},
-              {value: '4', label: '4'},
-              {value: '5', label: '5'},
-              {value: '6', label: '6'},
-              {value: '7', label: '7'},
-              {value: '8', label: '8'},
-              {value: '9', label: '9'}
-            ]}
+            onChange={customOnChange(onChange, 'infants')}
+            value={value.infants}
+            options={optionsToIterate(0, value.adults)}
             />
+            { value.amountOfTravellers.state && <p style={{color:'#ff0000'}}>{value.amountOfTravellers.message}</p>}
     </div>
     <div>
       <RadiosGroup
