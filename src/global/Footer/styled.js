@@ -61,12 +61,14 @@ export const Faevyt = FooterImage.extend`
   background-position: 0 -189px;
   height: 24px;
   width: 49px;
+  flex: 0 0 49px;
 `
 export const Aviabue = FooterImage.extend`
   background-position: 0 -216px;
   height: 54px;
   margin: 0;
   width: 42px;
+  flex: 0 0 42px;
 `
 export const TripAdvisor = styled.p`
   background-image: url(https://www.tripadvisor.com.ar/img/cdsi/langs/en/tripadvisor_logo_132x24-23327-0.gif);
@@ -87,17 +89,20 @@ export const Visa = FooterImage.extend`
   height: 20px;
   margin: 0;
   width: 43px;
+  flex: 0 0 43px;
 `
 export const Mastercard = FooterImage.extend`
   background-position: 0 -40px;
   margin: 0;
   width: 49px;
+  flex: 0 0 49px;
   height: 30px;
 `
 export const American = FooterImage.extend`
   background-position: -59px -40px;
   margin: 0;
   width: 30px;
+  flex: 0 0 30px;
   height: 30px;
 `
 export const Cabal = FooterImage.extend`
@@ -105,18 +110,21 @@ export const Cabal = FooterImage.extend`
   height: 29px;
   margin: 0;
   width: 27px;
+  flex: 0 0 27px;
 `
 export const Diners = FooterImage.extend`
   background-position: -40px -80px;
   height: 29px;
   margin: 0;
   width: 39px;
+  flex: 0 0 39px;
 `
 export const Todopago = FooterImage.extend`
   background-position: -45px -152px;
   height: 29px;
   margin: 0;
   width: 45px;
+  flex: 0 0 45px;
 `
 
 export const CardsContainer = styled.div`
@@ -138,11 +146,13 @@ export const Geotrust = FooterImage.extend`
   background-position: 0 -269px;
   height: 40px;
   width: 80px;
+  flex: 0 0 80px;
 `
 export const Fiscal = FooterImage.extend`
   height: 63px;
   background-position: 0 -319px;
   width: 45px;
+  flex: 0 0 45px;
 `
 
 export const AvantripPymes = styled.a`
@@ -210,11 +220,13 @@ export const Facebook = FooterImage.extend`
   background-position: 2px -109px;
   height: 35px;
   width: 35px;
+  flex: 0 0 35px;
   margin-right: 5px;
 `
 export const Twitter = FooterImage.extend`
   background-position: 0px -149px;
   height: 35px;
   width: 35px;
+  flex: 0 0 35px;
   margin-left: 5px;
 `

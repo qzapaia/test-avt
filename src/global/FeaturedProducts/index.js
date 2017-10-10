@@ -11,7 +11,7 @@ import {Container, ImageTitleContainer, Layout} from "./styled";
 const FeaturedProducts = ({ products, listMode, layout }) => (
   <Container>
     {map(products, product => (
-      <Layout layout={layout}>
+      <Layout layout={layout} listMode={listMode} >
         <ProductCard
           key={"productCard" + product.title + product.price}
           href={product.href}

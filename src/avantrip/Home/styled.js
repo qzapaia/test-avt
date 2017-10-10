@@ -56,6 +56,9 @@ export const FlightsBestSellers = styled.article`
   ${props=>props.layout <= 2
     ?'flex: 1 1 100%; margin: 0 10px;'
     :''}
+  ${props=>props.layout == 0
+    ?'margin: 0;'
+    :''}
 
 `
 export const FlightsBestSellersTitle = Text.extend`
@@ -74,7 +77,7 @@ export const ListContainer = styled.article`
     ?'display: flex; flex-wrap: wrap; justify-content: space-between;'
     :''}
   ${props=>props.layout <= 2
-    ?'display: flex; flex-wrap: wrap; justify-content: center;'
+    ?'display: flex; flex-wrap: wrap; justify-content: center; margin-left: 0'
     :''}
 
 `
