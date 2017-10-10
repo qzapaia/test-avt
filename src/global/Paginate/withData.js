@@ -27,10 +27,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
   }
 }
-
-const PaginateWithData = (props) => {
-  return <Paginate pagesCount={0}/>
-}
   
 // GrahQL Query
 export const query = gql`
@@ -50,7 +46,7 @@ query PaginationQuery(
       availability{
         roundtrip(origin:$origin,destination:$destination,departureDate:$departureDate,returningDate:$returningDate,
           passengers:{ adults:$passengersAdults,children:$passengersChildren,infants:$passengersInfants },cabinClass:$cabinClass,channel:$channel,portal:$portal){
-          metas,references
+          clusters
         }
       }
     }
@@ -70,8 +66,17 @@ query PaginationQuery(
         channel : props.channel,
         portal : props.portal, 
       },
-    })
-  })(PaginateWithData);
+    }),
+    props: ({ ownProps, data }) => {
+      const roundtrip = get(data,'orchestrator.availability.roundtrip', {
+        clusters:[],
+      })
+      
+      return{
+        pagesCount:Number.parseInt(roundtrip.clusters.length/ownProps.showItemsByPage),
+      }
+    }
+  })(Paginate);
 
 const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentPaginate);
 export default WithDataComponent;

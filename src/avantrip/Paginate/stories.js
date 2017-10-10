@@ -15,6 +15,7 @@ import reducer from "../../global/Paginate/reducer";
 import { random } from 'lodash';
 
 const randomPagesCount = random(20);
+const showItems = 10;
 
 let search = {
   origin: "BUE",
@@ -30,6 +31,7 @@ let search = {
   channel: "DESKTOP",
   portal:"AVANTRIP"
 }
+
 
 storiesOf('avantrip/Paginate', module)
   .addDecorator(
@@ -55,5 +57,6 @@ storiesOf('avantrip/Paginate', module)
       passengersInfants={search.passengers.infants}
       cabinClass={search.cabinClass}
       channel={search.channel}
-      portal={search.portal} />
+      portal={search.portal}
+      showItemsCount={showItems} />
   ))

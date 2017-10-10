@@ -15,6 +15,7 @@ import reducer from "./reducer";
 import { random } from 'lodash';
 
 const randomPagesCount = 50;
+const showItems = 10;
 
 let search = {
   origin: "BUE",
@@ -56,6 +57,7 @@ storiesOf('global/Paginate', module)
       passengersInfants={search.passengers.infants}
       cabinClass={search.cabinClass}
       channel={search.channel}
-      portal={search.portal} />
+      portal={search.portal} 
+      showItemsByPage={showItems}/>
   ))
 
