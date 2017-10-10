@@ -32,10 +32,11 @@ const ProductCard = ({
     <MainPictureContainer listMode={listMode}>
       <img src={mediaImage} alt=""/>
       {listMode ?
-        null :
+        null : imageTitle != null ?
         <ImageTitleContainer>
           {imageTitle}
         </ImageTitleContainer>
+        : null
       }
     </MainPictureContainer>
     <MainInfoContainer listMode={listMode}>
