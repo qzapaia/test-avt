@@ -21,7 +21,7 @@ export default () => (
 Colleccion de productos a mostrar. Debe tener la forma:
 ``` javascript
 {
-  "media": "https://static.avantrip.com/fkt-flight/images/img-cluster-miami.jpg",
+  "mediaImage": "https://static.avantrip.com/fkt-flight/images/img-cluster-miami.jpg",
   "imageTitle": "Volando con American Airlines",
   "title": "Miami",
   "subtitle": "Ida y vuelta",

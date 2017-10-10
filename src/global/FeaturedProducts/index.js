@@ -14,7 +14,7 @@ const FeaturedProducts = ({ products, listMode }) => (
       <ProductCard
         key={"productCard" + product.title + product.price}
         href={product.href}
-        media={product.media}
+        mediaImage={product.mediaImage}
         price={Number(product.price)}
         supportingInfo={product.supportingInfo}
         subtitle={product.subtitle}

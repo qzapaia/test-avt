@@ -16,21 +16,21 @@ import Icon from '../Icon';
 import Price from '../Price';
 
 const ProductCard = ({
-                      href,
-                      target,
-                      listMode,
-                      media,
-                      price,
-                      supportingInfo,
-                      subtitle,
-                      title,
-                      imageTitle
-                    }) => {
-  console.log("href", href);
-  return <Container href={href} target={target} listMode={listMode}>
+    href,
+    target,
+    listMode,
+    mediaImage,
+    price,
+    supportingInfo,
+    subtitle,
+    title,
+    imageTitle,
+    media
+  }) => {
+  return <Container tablet={media.size < 4} href={href} target={target} listMode={listMode}>
 
     <MainPictureContainer listMode={listMode}>
-      <img src={media} alt=""/>
+      <img src={mediaImage} alt=""/>
       {listMode ?
         null :
         <ImageTitleContainer>
@@ -80,7 +80,7 @@ configurable.
 ProductCard.propTypes = {
   href:PropTypes.string,
   listMode:PropTypes.bool.isRequired,
-  media:PropTypes.node,
+  mediaImage:PropTypes.node,
   price:PropTypes.number,
   supportingInfo:PropTypes.string,
   subtitle:PropTypes.string,

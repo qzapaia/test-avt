@@ -35,7 +35,7 @@ storiesOf('avantrip/Home', module)
   }))
   .add('Default', () => (
     <MainLayout>
-      <Home></Home>
+      <Home />
     </MainLayout>
   ))
   // .add('With data', () => (

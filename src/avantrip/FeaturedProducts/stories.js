@@ -10,7 +10,7 @@ import theme from '../styled.theme';
 import readme from './README.md';
 
 const mockPromotionalFlights = [{
-  "media":
+  "mediaImage":
     "https://static.avantrip.com/fkt-flight/images/img-cluster-miami.jpg",
   "imageTitle": "Volando con American Airlines",
   "title": "Miami",
@@ -20,7 +20,7 @@ const mockPromotionalFlights = [{
   "price": "14.755",
   "href": "https://www.avantrip.com/oportunidades/vuelos-miami"
 },{
-  "media":
+  "mediaImage":
     "https://static.avantrip.com/fkt-flight/images/img-cluster-madrid.jpg",
   "imageTitle": "Volando con Latam",
   "title": "Madrid",
