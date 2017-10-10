@@ -16,12 +16,15 @@ export const MainSection = styled.section`
 `
 
 export const FlightSearchBoxAbsolute = styled.div`
-  position: absolute;
+  ${props=> props.layout > 1?'position: absolute;':'position: static'}
   top: 30px;
   left: 70px;
+  margin: 0 auto;
   z-index: 999;
   width: 100%;
-  max-width: 450px;
+  ${props=> props.layout > 1?'max-width: 450px;':'max-width: 97.5%'};
+  ${props=> props.layout == 0?'max-width: 100%':''};
+  ${props=> props.layout > 1?'':'padding-top: 15px'};
 `
 export const MaxWidth = styled.div`
   margin: 0 auto;

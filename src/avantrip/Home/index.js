@@ -21,7 +21,7 @@ const Home = ({
   <HomeContainer onClick={onClick}>
     <MainSection>
       <MaxWidth>
-        <FlightSearchBoxAbsolute>
+        <FlightSearchBoxAbsolute layout={media.size}>
           <FlightSearchBox
             title='Buscá tu vuelo'
           />
@@ -29,7 +29,7 @@ const Home = ({
 
       </MaxWidth>
       {/* Slider Home: */}
-      <FeaturedDeals />
+      {media.size > 1 ? <FeaturedDeals /> : null}
     </MainSection>
 
     <FeaturedSection>
