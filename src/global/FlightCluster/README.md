@@ -42,8 +42,112 @@ Información que debe venir estructurada:
     'taxes': 14633,
     'charges': 0,
     'finalPrice': 69.177
-  cluster.routes = [
-    {
+  cluster.routes : {
+    'first':{
+      'header': {
+        title:'IDA',
+        departureCity: 'Buenos Aires',
+        arrivalCity: 'Nueva York',
+        date:new Date()
+      },
+      'options':[
+        {
+          'summaryInfo': {
+            'id':123456,
+            'airlineLogos':[
+              'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+              'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
+            ],
+            'provider':'Operado por Air St Thomas',
+            'departureIata':'EZE',
+            'departureDate': new Date(),
+            'arrivalIata':'MIA',
+            'arrivalDate': new Date(),
+            'scalesText': '1 Escala',
+            'totalTime': new Date()
+          },
+          'extendedInfo': {
+            'header':'Buenos Aires hacia Miami',
+            'flights':[
+              {
+                departure:{
+                  iata:'ATL',
+                  date:new Date(),
+                  city:'Atlanta',
+                  airport:'Aerop. Intl. Hartsfield Jackson'
+                },
+                arrival:{
+                  iata:'MIA',
+                  date:new Date(),
+                  city:'Miami',
+                  airport:'Intl. de Miami'
+                },
+                common:{
+                  flightStep:2,
+                  flightNumber:'DA120',
+                  airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+                  provider:'Delta Air Lines',
+                  class:'Económica',
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    'second':{
+      'header': {
+        title:'IDA',
+        departureCity: 'Buenos Aires',
+        arrivalCity: 'Nueva York',
+        date:new Date()
+      },
+      'options':[
+        {
+          'summaryInfo': {
+            'id':123456,
+            'airlineLogos':[
+              'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+              'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
+            ],
+            'provider':'Operado por Air St Thomas',
+            'departureIata':'EZE',
+            'departureDate': new Date(),
+            'arrivalIata':'MIA',
+            'arrivalDate': new Date(),
+            'scalesText': '1 Escala',
+            'totalTime': new Date()
+          },
+          'extendedInfo': {
+            'header':'Buenos Aires hacia Miami',
+            'flights':[
+              {
+                departure:{
+                  iata:'ATL',
+                  date:new Date(),
+                  city:'Atlanta',
+                  airport:'Aerop. Intl. Hartsfield Jackson'
+                },
+                arrival:{
+                  iata:'MIA',
+                  date:new Date(),
+                  city:'Miami',
+                  airport:'Intl. de Miami'
+                },
+                common:{
+                  flightStep:2,
+                  flightNumber:'DA120',
+                  airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+                  provider:'Delta Air Lines',
+                  class:'Económica',
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    'third':{
       'header': {
         title:'IDA',
         departureCity: 'Buenos Aires',
@@ -95,7 +199,8 @@ Información que debe venir estructurada:
         }
       ]
     }
-  ];
+  }
+    
 }
 
 
