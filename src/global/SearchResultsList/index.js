@@ -2,11 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get, find, map } from 'lodash';
 import List from '../List';
+import FlightCluster from '../FlightCluster';
 
 
-const SearchResultsList = ({clusters,onClick}) => {
+const SearchResultsList = ({clusters, flightClusters,onClick}) => {
   let children = [];
 
+  //console.log('***********************************', flightClusters)
+  /*
+    onCheckout={onCheckout}
+    selectRouteOptions={selectedOptions}
+    onSelectedRouteOption={onSelectedRouteOption}
+    data={cluster}
+  */
+
+  flightClusters.map( (fc, i) => {
+    children.push(
+      <div key={i}>
+        <FlightCluster data={fc} /> 
+      </div>
+    )
+  });
+
+  /*
   clusters.map((cluster,i) => {
     children.push(
     <div key={i}>
@@ -16,10 +34,13 @@ const SearchResultsList = ({clusters,onClick}) => {
                 originalPrice: {cluster.price.originalPrice}
     </div>);
   });
+  */
 
-  return <List type="list">
-          {children}
-        </List>
+  return (
+    <List type="list">
+      {children}
+    </List>
+  )
 }
 
 export default SearchResultsList;
