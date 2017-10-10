@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import Text from '../Text';
 
 export const Container = styled.nav`
-  background: ${props=> props.layout <=2 ? props.theme.colors.brand :'white'};
+  ${'' /* background: ${props=> props.layout <=2 ? props.theme.colors.brand :'white'}; */}
+  background: white;
   padding-top: 10px;
   width: 100%;
   top: 0;

@@ -13,7 +13,7 @@ export const FooterItem = styled.li`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  flex: 0 0 25%;
+  flex: ${props=> props.layout <=2?'1 1 100%':'0 0 25%'};
   padding-right: 5px;
   &:not(:first-of-type){
     padding-left: 10px;
