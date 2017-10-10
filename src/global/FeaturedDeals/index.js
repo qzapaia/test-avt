@@ -10,7 +10,7 @@ const FeaturedDeals = ({
   deals,
 }) => (
   <Container>
-    <Slider settings={{autoplay: false}}>
+    <Slider>
       {map(deals, deal => (
         <div>
           <a href={deal.url}>
@@ -23,7 +23,7 @@ const FeaturedDeals = ({
 )
 
 FeaturedDeals.propTypes = {
-  deals: PropTypes.arr
+  deals: PropTypes.array
 }
 
 FeaturedDeals.defaultProps = {

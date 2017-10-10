@@ -10,7 +10,6 @@ const SUCCESS_STATE = 'success';
 
 const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email, buttonText}) => (
   <div>
-    {!subscriptionStatus &&
       <Container>
 
         <TextContainer>
@@ -42,12 +41,11 @@ const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email, but
           </Form>
         </InputContainer>
       </Container>
-    }
     {subscriptionStatus == SUCCESS_STATE &&
-      <div>Todo joya</div>
+      <Text>¡Gracias por suscribirte!</Text>
     }
     {subscriptionStatus == ERROR_STATE &&
-      <div>Todo mal</div>
+      <Text>Ocurrió un error. Intentá más tarde.</Text>
     }
   </div>
 )
