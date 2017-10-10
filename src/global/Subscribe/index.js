@@ -8,7 +8,7 @@ import Button from '../Button';
 const ERROR_STATE = 'error';
 const SUCCESS_STATE = 'success';
 
-const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email, buttonText}) => (
+const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email, buttonText, layout}) => (
   <div>
       <Container>
 
@@ -18,7 +18,7 @@ const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email, but
           </Text>
         </TextContainer>
 
-        <InputContainer>
+        <InputContainer layout={layout}>
 
           <Form onSubmit={ (e) => {
             e.preventDefault()

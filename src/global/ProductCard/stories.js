@@ -19,7 +19,7 @@ storiesOf('global/ProductCard', module)
   .add('Default', () => (
     <ProductCard
       href="http://www.google.com"
-      media="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
+      mediaImage="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
       //coinType ???
       price={15250}
       supportingInfo="Precio desde"
@@ -30,7 +30,7 @@ storiesOf('global/ProductCard', module)
   .add('List Mode true', () => (
     <ProductCard
       href="http://www.google.com"
-      media="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
+      mediaImage="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
       price={150}
       supportingInfo="Precio desde"
       subtitle="Ida y vuelta"
@@ -42,7 +42,7 @@ storiesOf('global/ProductCard', module)
   .add('Con un titulo de imagen', () => (
     <ProductCard
       href="http://www.google.com"
-      media="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
+      mediaImage="https://ofdoge.files.wordpress.com/2013/11/plane.jpg"
       price={15250}
       supportingInfo="Precio desde"
       subtitle="Ida y vuelta"

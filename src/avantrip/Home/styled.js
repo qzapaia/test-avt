@@ -16,12 +16,15 @@ export const MainSection = styled.section`
 `
 
 export const FlightSearchBoxAbsolute = styled.div`
-  position: absolute;
+  ${props=> props.layout > 1?'position: absolute;':'position: static'}
   top: 30px;
   left: 70px;
+  margin: 0 auto;
   z-index: 999;
   width: 100%;
-  max-width: 450px;
+  ${props=> props.layout > 1?'max-width: 450px;':'max-width: 97.5%'};
+  ${props=> props.layout == 0?'max-width: 100%':''};
+  ${props=> props.layout > 1?'':'padding-top: 15px'};
 `
 export const MaxWidth = styled.div`
   margin: 0 auto;
@@ -37,7 +40,7 @@ export const FeaturedSection = styled.div`
   justify-content: center;
 `
 export const CardsContainer = styled.article`
-  flex: 1 1 60%;
+  flex: ${props=>props.mobile ? '1 1 100%' : '1 1 60%'};
   > div{
     display: flex;
     flex-wrap: wrap;
@@ -47,6 +50,16 @@ export const CardsContainer = styled.article`
 
 export const FlightsBestSellers = styled.article`
   display: block;
+  ${props=>props.layout == 3
+    ?'flex: 0 0 48.5%; margin: 0 10px;'
+    :''}
+  ${props=>props.layout <= 2
+    ?'flex: 1 1 100%; margin: 0 10px;'
+    :''}
+  ${props=>props.layout == 0
+    ?'margin: 0;'
+    :''}
+
 `
 export const FlightsBestSellersTitle = Text.extend`
   background: white;
@@ -56,13 +69,18 @@ export const FlightsBestSellersTitle = Text.extend`
 
 
 
+
 export const ListContainer = styled.article`
   flex: 1 1 30%;
+  margin-left: 5px;
+  ${props=>props.layout == 3
+    ?'display: flex; flex-wrap: wrap; justify-content: space-between;'
+    :''}
+  ${props=>props.layout <= 2
+    ?'display: flex; flex-wrap: wrap; justify-content: center; margin-left: 0'
+    :''}
+
 `
-
-
-
-
 
 
 
@@ -118,10 +136,10 @@ export const BestDealsList = styled.ul`
   margin: 0 10px;
   max-width: 100%;
   ${BestDealsListContainer}:first-of-type &{
-    margin-left: 0;
+    ${props=>props.layout > 0?'margin-left: 0;':''};
   }
   ${BestDealsListContainer}:last-of-type &{
-    margin-right: 0;
+    ${props=>props.layout > 0?'margin-right: 0;':''};
   }
 
 `

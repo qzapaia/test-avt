@@ -34,10 +34,10 @@ const Header = ({
   userData,
   media,
   isVisible,
-  clickVisible
+  clickVisible,
+  layout 
 }) => (
-  <Container>
-    {/* {media.size > 2 && 'desktop'} */}
+  <Container layout={media.size}>
     <MaxWidth >
       <LogoContainer mobile={media.size < 2}>
         <Logo href="http://www.avantrip.com/" />

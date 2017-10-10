@@ -5,6 +5,6 @@ export default styled.div`
   img{
     border-radius: 5px;
     ${'' /* watch here */}
-    min-width: 450px;
+    ${'' /* min-width: 450px; */}
   }
 `

@@ -4,13 +4,13 @@ import {BestDealsContainer, BestDealsListContainer, BestDealsList, BestDealsItem
 
 
 const BestDeals = ({
-
+  layout
 }) => (
   <BestDealsContainer>
 
     <BestDealsListContainer>
 
-      <BestDealsList>
+      <BestDealsList layout={layout}>
 
         <BestDealsItem>
           <BestDealsLink href='#'>

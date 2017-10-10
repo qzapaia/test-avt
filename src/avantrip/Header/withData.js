@@ -5,7 +5,6 @@ import Header from "./";
 
 const mapStateToProps = ({user, media}) => ({
   userData: user,
-  test:console.log(media),
   media:media,
   currentPathname: location.pathname
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './';
+import Home from './withData';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -11,7 +11,7 @@ import HomeWithData from './withData';
 import theme from '../styled.theme';
 import readme from './README.md';
 import reducer from './reducer';
-import MainLayout from '../MainLayout';
+import MainLayout from '../MainLayout/withData';
 
 const enhace = withState('counter','increment',0);
 const HomeWithState =  enhace((props) => {
@@ -35,7 +35,7 @@ storiesOf('avantrip/Home', module)
   }))
   .add('Default', () => (
     <MainLayout>
-      <Home></Home>
+      <Home />
     </MainLayout>
   ))
   // .add('With data', () => (

@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import ProductCard from '../ProductCard';
 import FlightSearchBox from "../FlightSearchBox/withData";
-// import Slider from '../FlightSearchBox/withData';
-// import Slider from '../Slider';
 import FeaturedDeals from "../FeaturedDeals/withData";
 import Text from "../Text";
 import Subscribe from "../Subscribe";
@@ -37,11 +34,12 @@ const Home = ({
   repos,
   getRepos,
   hoteles,
+  media
 }) => (
   <HomeContainer onClick={onClick}>
     <MainSection>
       <MaxWidth>
-        <FlightSearchBoxAbsolute>
+        <FlightSearchBoxAbsolute layout={media.size}>
           <FlightSearchBox
             title='Buscá tu vuelo'
           />
@@ -49,23 +47,25 @@ const Home = ({
 
       </MaxWidth>
       {/* Slider Home: */}
-      <FeaturedDeals />
+      {media.size > 1 ? <FeaturedDeals /> : null}
     </MainSection>
 
     <FeaturedSection>
-
-      <CardsContainer>
-        <FeaturedProducts type="promotionalFlights" />
+      <CardsContainer mobile={media.size < 4}>
+        <FeaturedProducts
+          layout={media.size}
+          type="promotionalFlights"
+        />
       </CardsContainer>
-      <ListContainer>
+      <ListContainer layout={media.size}>
         <FinancingPromotion />
-        <FlightsBestSellers>
+        <FlightsBestSellers layout={media.size}>
           <FlightsBestSellersTitle tag='h2' type='l' color='brand'>
             Vuelos más vendidos de la semana
           </FlightsBestSellersTitle>
           <FeaturedProducts
             type="bestSellers"
-            listMode={true} />
+            listMode={media.size > 0} />
         </FlightsBestSellers>
       </ListContainer>
 
@@ -75,7 +75,7 @@ const Home = ({
 
     <SubscribeSection>
       <MaxWidth>
-        <Subscribe buttonText='Suscribirme' title="Recibí nuestras últimas ofertas" />
+        <Subscribe layout={media.size} buttonText='Suscribirme' title="Recibí nuestras últimas ofertas" />
       </MaxWidth>
     </SubscribeSection>
 
@@ -93,7 +93,7 @@ const Home = ({
         <Text tag='h2' type='m'>
           Elegí las mejores ofertas...
         </Text>
-        <BestDeals />
+        <BestDeals layout={media.size} />
       </MaxWidth>
     </ChooseBestDeals>
 
