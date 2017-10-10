@@ -4,7 +4,8 @@
   "description": "Avantrip React Components",
   "main": "/dist/index.js",
   "scripts": {
-    "build-storybook": "cross-env PROFILE=true && build-storybook -s ./statics",
+    "build-storybook": "build-storybook -s ./statics",
+    "profile": "export PROFILE=true && build-storybook -s ./statics",
     "copysrc": "rimraf dist && cp -r src dist && npm run copypackage",
     "copypackage": "cp -rf package.json dist",
     "copybabelrc": "cp .storybook/.babelrc ./",
