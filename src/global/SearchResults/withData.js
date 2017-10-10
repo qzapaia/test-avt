@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 import { getData } from './actions';
 
 const mapStateToProps = state => ({
-  repos: state.Redux.repos
+  //repos: state.Redux.repos
 });
 
 const mapDispatchToProps = {
-  getRepos:getData
+  //getRepos:getData
 };
 
 // GrahQL Query

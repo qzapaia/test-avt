@@ -10,10 +10,13 @@ import SearchResultsWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
-import reducer from "./reducer";
+
+import reducer from "../../global/SearchResults/reducer";
+
 
 const enhace = withState('counter','increment',0);
 const SearchResultsWithState =  enhace((props) => {
+
   const { counter, increment } = props;
 
   const clickHandler = () => {
@@ -26,14 +29,14 @@ const SearchResultsWithState =  enhace((props) => {
   )
 })
 
-storiesOf('global/SearchResults', module)
+storiesOf('avantrip/SearchResults', module)
   .addDecorator(generalDecorator({
     readme,
     theme,
     reducer
   }))
   .add('Default', () => (
-    <SearchResults />
+    <SearchResultsWithState />
     
   ))
 
