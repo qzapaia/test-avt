@@ -9,9 +9,9 @@ plugins.push(new webpack.DefinePlugin({
 }))
 
 if(process.env.PROFILE){
-  plugins.push(new BundleAnalyzerPlugin({
-    analyzerMode: 'static',
-  }))
+  // plugins.push(new BundleAnalyzerPlugin({
+  //   analyzerMode: 'static',
+  // }))
 }
 
 module.exports = {
