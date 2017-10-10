@@ -56,3 +56,6 @@ Mes que se muestra inicialmente
 
 #### `forceDatesFormat={<Boolean>}`
 Fuerza el formato {startDate} en el single date picker.
+
+#### `displayFormat={<String|Function>}`
+Establece el formato de la fecha a mostrar (moment)

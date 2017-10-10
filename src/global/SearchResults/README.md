@@ -4,13 +4,13 @@ Componente para usos sarlanga.
 ## Basic use
 
 ```javascript
-import {{componentName}} from 'avantrip-react/{{ui}}/{{componentName}}';
+import SearchResults from 'avantrip-react/global/SearchResults';
 
 export default () => (
-  <{{componentName}}
-    onEvent={(value)=>console.log(value)}
-    message={"Message"}
-    isActive={true}
+  <SearchResults
+    onEvent={function}
+    message={string}
+    isActive={boolean}
   />
 )
 ```
@@ -24,13 +24,12 @@ Event handler
 #### `isActive={<Boolean>}`
 Enable an action within the component
 
-{{#redux}}
 
 ## Redux
 
 #### Actions
 ```javascript
-import { sendData } from 'avantrip-react/{{ui}}/{{componentName}}/actions';
+import { sendData } from 'avantrip-react/global/SearchResults/actions';
 import store from 'somewhere';
 
 store.dispatch(sendData({ email:"email@email.com" });
@@ -39,14 +38,13 @@ store.dispatch(sendData({ email:"email@email.com" });
 
 #### Reducer
 ```javascript
-import {{camelCase name}}Reducer from 'avantrip-react/{{ui}}/{{componentName}}/reducer';
+import searchResultsReducer from 'avantrip-react/global/SearchResults/reducer';
 import { createStore, combineReducers } from 'redux';
 
 const reducer = combineReducers({
-  {{camelCase name}}:{{camelCase name}}Reducer,
+  searchResults:searchResultsReducer,
 })
 
 const store = createStore(reducer);
 // ...
 ```
-{{/redux}}

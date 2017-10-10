@@ -41,6 +41,12 @@ const {{componentName}} = ({
 
 {{componentName}}.propTypes = {
   text: PropTypes.node.isRequired,
+  // collection
+  // data: PropTypes.shape({
+  //   name: PropTypes.string,
+  //   value: PropTypes.number,
+  // }),
+
   {{#withDataComponent}}
   flights: PropTypes.array,
   {{/withDataComponent}}

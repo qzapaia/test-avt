@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Chart from "../Chart";
+import Text from "../Text";
 
 import Container from "./container.styled";
 import HistogramMonth from "./HistogramMonth";
 import CustomTooltip from "./CustomTooltip";
 
 import moment from "moment";
-import { map, groupBy, minBy, filter, isUndefined } from "lodash";
+import { map, groupBy, minBy, filter, isUndefined, find } from "lodash";
 
 const groupByMonth = flights => groupBy(flights, "month");
 
@@ -58,48 +59,47 @@ const PriceTrendCalendar = ({
   departureDate,
   returnDate
 }) => {
-  data = calculateBestPriceInOneYear(
+  const processedData = calculateBestPriceInOneYear(
     formatMonthlyFlights(
       groupByMonth(formatFlightData(data, departureDate, returnDate))
     )
   );
-
-  selectedMonth = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
-  const dataByMonth = data[selectedMonth];
+  const monthToShow = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
+  const dataByMonth = find(processedData, { 'month': monthToShow });
   const bestPrice = getBestPriceBy(dataByMonth);
 
-  return (
-    <Container>
-      {dataByMonth && (
-        <Chart
-          data={dataByMonth.flights}
-          value="price"
-          label="label"
-          onClick={onDaySelected}
-          CustomTooltip={CustomTooltip}
-          renderBar={args => {
-            if (args.price == bestPrice) {
-              args.fill = "green";
-            }
-            return args;
-          }}
-        />
-      )}
-      <HistogramMonth
-        data={data}
-        selectedMonth={selectedMonth}
-        onMonthSelected={onMonthSelected}
+  return <Container>
+    {dataByMonth && (
+      <Chart
+        data={dataByMonth.flights}
+        value="price"
+        label="label"
+        onClick={onDaySelected}
+        CustomTooltip={CustomTooltip}
+        renderBar={args => {
+          if (args.price == bestPrice) {
+            args.fill = "green";
+          }
+          return args;
+        }}
       />
-      <div>{disclaimer && <div>{disclaimer}</div>}</div>
-    </Container>
-  );
+    )}
+    <HistogramMonth
+      data={processedData}
+      selectedMonth={monthToShow}
+      onMonthSelected={onMonthSelected}
+    />
+    <div><Text>{disclaimer}</Text></div>
+  </Container>
 };
 
 PriceTrendCalendar.propTypes = {
   data: PropTypes.array.isRequired,
   disclaimer: PropTypes.string,
   onMonthSelected: PropTypes.func,
-  onDaySelected: PropTypes.func
+  onDaySelected: PropTypes.func,
+  departureDate: PropTypes.string,
+  returnDate: PropTypes.string
 };
 
 export default PriceTrendCalendar;
