@@ -130,10 +130,10 @@ export const BestDealsList = styled.ul`
   margin: 0 10px;
   max-width: 100%;
   ${BestDealsListContainer}:first-of-type &{
-    margin-left: 0;
+    ${props=>props.layout > 0?'margin-left: 0;':''};
   }
   ${BestDealsListContainer}:last-of-type &{
-    margin-right: 0;
+    ${props=>props.layout > 0?'margin-right: 0;':''};
   }
 
 `

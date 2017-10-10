@@ -75,7 +75,7 @@ const Home = ({
         <Text tag='h2' type='m'>
           Elegí las mejores ofertas...
         </Text>
-        <BestDeals />
+        <BestDeals layout={media.size} />
       </MaxWidth>
     </ChooseBestDeals>
 
