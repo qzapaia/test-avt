@@ -1,4 +1,3 @@
-
 import React from 'react';
 import GlobalButton from '../../global/Button';
 import { ThemeProvider } from 'styled-components';
@@ -10,5 +9,3 @@ export default (props) => (
     <GlobalButton {...props} />
   </ThemeProvider>
 )
-
-  
