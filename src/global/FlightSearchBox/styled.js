@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: block;
   background: white;
   padding: 10px;
+  border-radius: 5px;
   .react-autosuggest__suggestions-container{
     position: absolute;
     background: white;

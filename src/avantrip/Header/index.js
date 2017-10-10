@@ -26,9 +26,8 @@ import { withState, compose } from "recompose";
 const enhace = withState("isVisible", "clickSignup", false);
 
 
-const Header = ({ currentLocation, phoneText, userData, media }) => (
-  <Container>
-    {/* {media.size > 2 && 'desktop'} */}
+const Header = ({ currentLocation, phoneText, userData, media, layout }) => (
+  <Container layout={media.size}>
     <MaxWidth >
       <LogoContainer mobile={media.size < 2}>
         <Logo href="http://www.avantrip.com/" />

@@ -16,26 +16,27 @@ import Icon from '../Icon';
 import Price from '../Price';
 
 const ProductCard = ({
-                      href,
-                      target,
-                      listMode,
-                      media,
-                      price,
-                      supportingInfo,
-                      subtitle,
-                      title,
-                      imageTitle
-                    }) => {
-  console.log("href", href);
-  return <Container href={href} target={target} listMode={listMode}>
+    href,
+    target,
+    listMode,
+    mediaImage,
+    price,
+    supportingInfo,
+    subtitle,
+    title,
+    imageTitle,
+    mode
+  }) => {
+  return <Container mode={mode} href={href} target={target} listMode={listMode}>
 
     <MainPictureContainer listMode={listMode}>
-      <img src={media} alt=""/>
+      <img src={mediaImage} alt=""/>
       {listMode ?
-        null :
+        null : imageTitle != null ?
         <ImageTitleContainer>
           {imageTitle}
         </ImageTitleContainer>
+        : null
       }
     </MainPictureContainer>
     <MainInfoContainer listMode={listMode}>
@@ -80,13 +81,14 @@ configurable.
 ProductCard.propTypes = {
   href:PropTypes.string,
   listMode:PropTypes.bool.isRequired,
-  media:PropTypes.node,
+  mediaImage:PropTypes.node,
   price:PropTypes.number,
   supportingInfo:PropTypes.string,
   subtitle:PropTypes.string,
   title:PropTypes.string,
   target:PropTypes.string,
-  imageTitle: PropTypes.node
+  imageTitle: PropTypes.node,
+  mode: PropTypes.string
 }
 
 ProductCard.defaultProps = {

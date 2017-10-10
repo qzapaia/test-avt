@@ -4,13 +4,13 @@ export const Container = styled.a`
   display: ${props=>props.listMode?'flex':'inline-block'};
   overflow: hidden;
   width: ${props=>props.listMode?'100%':''};
-  margin: ${props=>props.listMode?'0':'0 10px'};
+  ${'' /* margin: ${props=>props.listMode?'0':'0 10px'}; */}
   margin-bottom: ${props=>props.listMode?'':'20px'};
 
   border-top: ${props=>props.listMode?'1px solid '+props.theme.colors.gray :''};
   padding: ${props=>props.listMode?'10px 5px':''};
   background: ${props=>props.listMode?'white':''};
-  flex: 0 1 47%;
+  flex: 1 1 100%;
 `
 export const MainPictureContainer = styled.figure`
   position: relative;
@@ -20,10 +20,11 @@ export const MainPictureContainer = styled.figure`
   width: 100%;
   overflow: hidden;
   border-radius: ${props=>props.listMode?'':'5px 5px 0 0'};
+  min-height: ${props=>props.listMode?'':'250px'};
   max-height: ${props=>props.listMode?'':'250px'};
   max-width: ${props=>props.listMode?'65px':''};
   margin: ${props=>props.listMode?'0px':''};
-  background-color: ${props => props.theme.colors.gray};
+  background-color: ${props => props.theme.colors.darkgray};
   img{
     width: 100%;
     ${'' /* min-width: ${props=>props.listMode?'':'360px'}; */}

@@ -5,12 +5,12 @@ import Text from '../Text';
 import Link from '../Link';
 import {FooterContainer, MaxWidth, FooterItem, FooterTitle, FooterList, FooterImage, ImageContainer, Faevyt, Aviabue, TripAdvisor, Visa, Mastercard, American, Cabal, Diners, Todopago, CardsContainer, ViewMore, Geotrust, Fiscal, AvantripPymes, ContactContainer, WeekDays, FooterLink, RockBottom, Copyright, SocialLinks, Facebook, Twitter} from './styled'
 
-const Footer = () => (
+const Footer = ({layout, media}) => (
  <FooterContainer>
    <MaxWidth>
      <FooterList>
 
-       <FooterItem>
+       <FooterItem layout={media.size}>
          <FooterTitle>
            <Icon id='Check' color='darkgray' width='14px' height='14px'/>
            <Text>
