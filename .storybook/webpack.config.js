@@ -1,5 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+const plugins = []
+
+plugins.push(new webpack.DefinePlugin({
+  'process.ui':JSON.stringify(process.argv[6])
+}))
+
+if(process.env.PROFILE){
+  plugins.push(new BundleAnalyzerPlugin({
+    analyzerMode: 'static',
+  }))
+}
 
 module.exports = {
   module: {
@@ -12,9 +25,5 @@ module.exports = {
       use: ['style-loader', 'css-loader']
     }]
   },
-  plugins:[
-    new webpack.DefinePlugin({
-      'process.ui':JSON.stringify(process.argv[6])
-    })
-  ]
+  plugins: plugins
 }

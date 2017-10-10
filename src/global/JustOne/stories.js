@@ -12,7 +12,7 @@ import { withState, compose } from 'recompose';
 
 const enhace = withState('selected','select');
 
-const Group = JustOne(({select, isSelected})=>(
+const Comp = ({select, isSelected})=>(
   <section>
     <h4>Click para elegir</h4>
     <div onClick={select(1)}>
@@ -25,8 +25,8 @@ const Group = JustOne(({select, isSelected})=>(
       Opción 3 {isSelected(3)?'seleccionado' : 'no seleccionado'}
     </div>
   </section>
-))
-
+)
+const Group = JustOne(Comp);
 const GroupWithState = enhace(Group);
 
 storiesOf('global/JustOne', module)
