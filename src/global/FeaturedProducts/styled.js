@@ -5,9 +5,9 @@ const layout = {
     4:'1 1 50%',
     3:'1 1 33%',
     2:'1 1 50%',
-    1:'1 1 100%',
+    1:'1 1 50%',
     0:'1 1 100%'
-  }
+  },
 }
 
 export const Container = styled.div`
@@ -19,5 +19,6 @@ export const ImageTitleContainer = styled.div`
 `
 export const Layout = styled.div`
   display: flex;
-  flex: ${props=>layout.flex[props.layout]}
+  flex: ${props=>layout.flex[props.layout]};
+  margin: ${props=>props.layout > 0? '0 10px' : '0' };
 `

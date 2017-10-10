@@ -4,7 +4,7 @@ export const Container = styled.a`
   display: ${props=>props.listMode?'flex':'inline-block'};
   overflow: hidden;
   width: ${props=>props.listMode?'100%':''};
-  margin: ${props=>props.listMode?'0':'0 10px'};
+  ${'' /* margin: ${props=>props.listMode?'0':'0 10px'}; */}
   margin-bottom: ${props=>props.listMode?'':'20px'};
 
   border-top: ${props=>props.listMode?'1px solid '+props.theme.colors.gray :''};

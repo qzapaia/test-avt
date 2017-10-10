@@ -55,14 +55,10 @@ export const FlightsBestSellersTitle = Text.extend`
 `
 
 
-
 export const ListContainer = styled.article`
   flex: 1 1 30%;
+  margin-left: 5px;
 `
-
-
-
-
 
 
 
