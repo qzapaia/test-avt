@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { map } from "lodash";
 
 import Icon from "../Icon";
-import ProductCard from "../ProductCard/withData";
+import ProductCard from "../ProductCard";
 import Text from "../Text";
 import {Container, ImageTitleContainer} from "./styled";
 
