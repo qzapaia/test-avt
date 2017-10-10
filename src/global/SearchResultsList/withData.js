@@ -19,7 +19,7 @@ const mapDispatchToProps = {
 };
 
 const SearchResultsListWithData = (props) => {
-    return (<SearchResultsList clusters={props.clusters} />)
+    return (<SearchResultsList clusters={props.clusters} flightClusters={props.flightClusters}/>)
 }
 
 // GrahQL Query
