@@ -25,9 +25,9 @@ const ProductCard = ({
     subtitle,
     title,
     imageTitle,
-    media
+    mode
   }) => {
-  return <Container tablet={media.size < 4} href={href} target={target} listMode={listMode}>
+  return <Container mode={mode} href={href} target={target} listMode={listMode}>
 
     <MainPictureContainer listMode={listMode}>
       <img src={mediaImage} alt=""/>
@@ -86,7 +86,8 @@ ProductCard.propTypes = {
   subtitle:PropTypes.string,
   title:PropTypes.string,
   target:PropTypes.string,
-  imageTitle: PropTypes.node
+  imageTitle: PropTypes.node,
+  mode: PropTypes.string
 }
 
 ProductCard.defaultProps = {

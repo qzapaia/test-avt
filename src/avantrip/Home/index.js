@@ -9,6 +9,7 @@ import Link from '../Link';
 import FinancingPromotion from '../FinancingPromotion/withData';
 import {HomeContainer, MainSection, MaxWidth, FlightSearchBoxAbsolute, FeaturedSection, CardsContainer, FlightsBestSellers, FlightsBestSellersTitle, ListContainer, FinancePromo, SubscribeSection, SubscribeForm, AgencyInfo, AgencyTitle, AgencyText, ChooseBestDeals} from './styled';
 import FeaturedProducts from '../FeaturedProducts/withData';
+
 const Home = ({
   text,
   onClick,
@@ -33,7 +34,10 @@ const Home = ({
 
     <FeaturedSection>
       <CardsContainer mobile={media.size < 4}>
-        <FeaturedProducts type="promotionalFlights" />
+        <FeaturedProducts
+          layout={media.size}
+          type="promotionalFlights"
+        />
       </CardsContainer>
       <ListContainer>
         <FinancingPromotion />
@@ -43,7 +47,7 @@ const Home = ({
           </FlightsBestSellersTitle>
           <FeaturedProducts
             type="bestSellers"
-            listMode={true} />
+            listMode={media.size > 0} />
         </FlightsBestSellers>
       </ListContainer>
 

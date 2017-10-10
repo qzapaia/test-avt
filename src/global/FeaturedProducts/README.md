@@ -11,6 +11,7 @@ export default () => (
   <FeaturedProducts
     products={collection}
     listMode={boolean}
+    layout={string}
   />
 )
 ```
@@ -32,6 +33,10 @@ Colleccion de productos a mostrar. Debe tener la forma:
 ```
 #### `listMode={<Boolean>}`
 Setea modo lista. Por defecto es falso.
+
+#### `layout={<String>}`
+define el layout (tamaño)
+
 
 
 ## Redux

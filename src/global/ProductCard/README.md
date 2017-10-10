@@ -46,3 +46,6 @@ Target del link
 
 #### `listMode={<String>}`
 Le informa a la card que se muestre en modo lista si corresponde
+
+#### `mode={<String>}`
+define como va a cambiar el componente

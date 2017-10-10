@@ -10,7 +10,7 @@ export const Container = styled.a`
   border-top: ${props=>props.listMode?'1px solid '+props.theme.colors.gray :''};
   padding: ${props=>props.listMode?'10px 5px':''};
   background: ${props=>props.listMode?'white':''};
-  flex: ${props=>props.tablet?'1 1 30%':'0 1 47%'};
+  flex: 1 1 100%;
 `
 export const MainPictureContainer = styled.figure`
   position: relative;
