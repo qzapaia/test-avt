@@ -39,9 +39,9 @@ const Home = ({
           type="promotionalFlights"
         />
       </CardsContainer>
-      <ListContainer>
+      <ListContainer layout={media.size}>
         <FinancingPromotion />
-        <FlightsBestSellers>
+        <FlightsBestSellers layout={media.size}>
           <FlightsBestSellersTitle tag='h2' type='l' color='brand'>
             Vuelos más vendidos de la semana
           </FlightsBestSellersTitle>
@@ -57,7 +57,7 @@ const Home = ({
 
     <SubscribeSection>
       <MaxWidth>
-        <Subscribe buttonText='Suscribirme' title="Recibí nuestras últimas ofertas" />
+        <Subscribe layout={media.size} buttonText='Suscribirme' title="Recibí nuestras últimas ofertas" />
       </MaxWidth>
     </SubscribeSection>
 

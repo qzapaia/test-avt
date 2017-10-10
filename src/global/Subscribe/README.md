@@ -38,6 +38,9 @@ Valor del input email
 #### `buttonText={<String>}`
 Texto del boton. Por default 'enviar'
 
+#### `layout={<String>}`
+layout del form
+
 
 
 ## Redux

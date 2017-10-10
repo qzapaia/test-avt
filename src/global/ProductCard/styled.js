@@ -20,10 +20,11 @@ export const MainPictureContainer = styled.figure`
   width: 100%;
   overflow: hidden;
   border-radius: ${props=>props.listMode?'':'5px 5px 0 0'};
+  min-height: ${props=>props.listMode?'':'250px'};
   max-height: ${props=>props.listMode?'':'250px'};
   max-width: ${props=>props.listMode?'65px':''};
   margin: ${props=>props.listMode?'0px':''};
-  background-color: ${props => props.theme.colors.gray};
+  background-color: ${props => props.theme.colors.darkgray};
   img{
     width: 100%;
     ${'' /* min-width: ${props=>props.listMode?'':'360px'}; */}

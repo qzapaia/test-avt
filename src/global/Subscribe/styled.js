@@ -17,7 +17,7 @@ export const TextContainer = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   flex: 1;
-  min-width: 400px;
+  ${props=>props.layout >= 1? 'min-width: 400px':'0'};
   max-width: 550px;
   input{
     font-size: 16px;

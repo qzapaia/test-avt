@@ -47,6 +47,13 @@ export const CardsContainer = styled.article`
 
 export const FlightsBestSellers = styled.article`
   display: block;
+  ${props=>props.layout == 3
+    ?'flex: 0 0 48.5%; margin: 0 10px;'
+    :''}
+  ${props=>props.layout <= 2
+    ?'flex: 1 1 100%; margin: 0 10px;'
+    :''}
+
 `
 export const FlightsBestSellersTitle = Text.extend`
   background: white;
@@ -55,9 +62,18 @@ export const FlightsBestSellersTitle = Text.extend`
 `
 
 
+
+
 export const ListContainer = styled.article`
   flex: 1 1 30%;
   margin-left: 5px;
+  ${props=>props.layout == 3
+    ?'display: flex; flex-wrap: wrap; justify-content: space-between;'
+    :''}
+  ${props=>props.layout <= 2
+    ?'display: flex; flex-wrap: wrap; justify-content: center;'
+    :''}
+
 `
 
 
