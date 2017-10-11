@@ -84,6 +84,7 @@ InputDate.propTypes = {
   placeholder: PropTypes.string,
 
   forceDatesFormat: PropTypes.bool,
+  displayFormat: DateRangePicker.propTypes.displayFormat,
 };
 
 InputDate.defaultProps = {
@@ -91,7 +92,8 @@ InputDate.defaultProps = {
   endDatePlaceholderText: "VUELTA",
   range: false,
   placeholder: "",
-  forceDatesFormat:false
+  forceDatesFormat:false,
+  displayFormat:'DD/MM/YYYY'
 };
 
 // customización overrideando css de airbnb, lo envuelvo en un comp

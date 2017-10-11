@@ -22,6 +22,7 @@ const NumberGroup = ({
     {label && <h4>{label}</h4>}
     {options.map(option => (
       <InputNumber
+        key={option.id}
         {...option}
         onChange ={handleChange(onChange,onChangeKeyValue)(option)}
       />

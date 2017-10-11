@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {NavList, Item, LinkNav, LinkText, LinkContainer} from './styled';
+import {NavList, Item, LinkNav, LinkText, LinkContainer, MaxWidth} from './styled';
 import Link from '../Link';
 import Text from '../Text';
 import Icon from '../Icon';
@@ -31,6 +31,7 @@ const Nav = ({currentPathname, children}) => {
   return (
     <ThemeProvider theme={baseTheme}>
       <NavList>
+        <MaxWidth>
         {children.map( item =>
             <Item>
               <LinkNav isActive={ currentPage == item.props.id }>
@@ -43,6 +44,7 @@ const Nav = ({currentPathname, children}) => {
               </LinkNav>
             </Item>
         )}
+        </MaxWidth>
       </NavList>
     </ThemeProvider>
   )

@@ -4,13 +4,20 @@ import Text from '../Text';
 import Link from '../Link';
 
 export const NavList = styled.ul`
+  margin-top: 15px;
+  border-top: 1px dotted ${props=> props.theme.colors.gray};
+`
+export const MaxWidth = styled.div`
   overflow: hidden;
   text-align: left;
   padding: 0;
   display: flex;
   width: 100%;
   justify-content: ${props=> props.theme.ulJustifyContent};
+  margin: 0 auto;
+  max-width: ${props=> props.theme.viewport.desktop}
 `
+
 export const Item = styled.li`
   box-sizing: border-box;
   display: inline-block;

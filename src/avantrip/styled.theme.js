@@ -8,9 +8,11 @@ export default {
     warning:'#F90',
     danger:'#F90',
     white:'#FFF',
+    lightgray:'#eee',
     gray:'#efefef',
     darkgray:'#ccc',
-    darkergray:'#666'
+    darkergray:'#666',
+    footer:'#f8f8fa'
   },
   texts:{
     hxxl:{
@@ -50,33 +52,36 @@ export default {
     //   black:'900'
     // }
   },
+  viewport:{
+    desktop: '1280px'
+  },
   buttons:{
     cta:{
       normal:{
         bgc:'brand',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     },
     scta:{
       normal:{
         bgc:'primary',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     },
     ghst:{
       normal:{
         bgc:'secondary',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     },
     link:{
       normal:{
         bgc:'alert',
         color:'white',
-        fontSize:'20px',
+        fontSize:'16px',
       }
     }
   },

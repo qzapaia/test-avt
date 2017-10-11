@@ -6,6 +6,7 @@ import Text from '../Text/index'
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withState, compose } from 'recompose';
+import hoc from './enhacer';
 
 import generalDecorator from '../../stories.decorator.js';
 
@@ -27,6 +28,17 @@ const ExpansionPanelWithState =  enhace((props) => {
       onChange={changeHandler} />
   )
 })
+
+const MyComponent = hoc(({expanded, expand, toggleExpand}) => (
+  <div>
+    <button onClick={toggleExpand}>Expand</button>
+    <div>
+      {expanded && <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quis at quibusdam molestias non praesentium, cum provident dolor culpa mollitia adipisci nemo autem similique porro soluta doloremque, recusandae ex, minus.
+      </div>}
+    </div>
+  </div>
+))
 
 storiesOf('global/ExpansionPanel', module)
   .addDecorator(generalDecorator({
@@ -53,4 +65,7 @@ storiesOf('global/ExpansionPanel', module)
         <ExtendedInformation>
           ExtendedInformation
         </ExtendedInformation>} />
+  ))
+  .add('Usando el enhacer', () => (
+    <MyComponent />
   ))
