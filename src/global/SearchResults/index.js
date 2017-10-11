@@ -7,8 +7,8 @@ import Paginate from '../Paginate/withData'
 import { get } from 'lodash';
 import { Container } from './styled';
 
-const SearchResults = ({ resultData , showItemsByPage, filters, clusters }) =>  {
- 
+const SearchResults = ({ showItemsByPage, filters, clusters }) =>  {
+
   const countPage = Number.parseInt((clusters.length/showItemsByPage));
 
   return (
@@ -20,17 +20,9 @@ const SearchResults = ({ resultData , showItemsByPage, filters, clusters }) =>  
 }
 
 SearchResults.propTypes = {
-  //text: PropTypes.node.isRequired,
-  //hoteles: PropTypes.arr,
-  //getRepos: PropTypes.func,
-  //repos: PropTypes.arr,
-}
-
-SearchResults.defaultProps = {
-  //text:'no value yet :(',
-  //hoteles:[],
-  //getRepos(){},
-  //repos:[],
+  showItemsByPage: PropTypes.number,
+  filters: PropTypes.arr,
+  clusters: PropTypes.arr,
 }
 
 export default SearchResults;

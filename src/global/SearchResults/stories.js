@@ -43,6 +43,97 @@ const SearchResultsWithState =  enhace((props) => {
   )
 })
 
+const newFilters = {
+  scales:{
+    0: {
+      options:[
+        {
+          value:'1',
+          label: 'una escala'
+        },
+        {
+          value:'2',
+          label: 'dos escala'
+        }
+      ]
+    },
+    1: {
+      options:[
+        {
+          value:'1',
+          label: 'una escala'
+        },
+        {
+          value:'2',
+          label: 'dos escala'
+        }
+      ]
+    }
+  },
+  airlines:[
+    {
+      value:'1',
+      label: 'una escala'
+    },
+    {
+      value:'2',
+      label: 'dos escala'
+    }
+  ],
+  schedules:{
+    0: {
+      options:[
+        {
+          value:'1',
+          label: 'una escala'
+        },
+        {
+          value:'2',
+          label: 'dos escala'
+        }
+      ]
+    },
+    1: {
+      options:[
+        {
+          value:'1',
+          label: 'una escala'
+        },
+        {
+          value:'2',
+          label: 'dos escala'
+        }
+      ]
+    }
+  },
+  airports:{
+    0: {
+      options:[
+        {
+          value:'1',
+          label: 'una escala'
+        },
+        {
+          value:'2',
+          label: 'dos escala'
+        }
+      ]
+    },
+    1: {
+      options:[
+        {
+          value:'1',
+          label: 'una escala'
+        },
+        {
+          value:'2',
+          label: 'dos escala'
+        }
+      ]
+    }
+  }
+}
+const newclusters = [{},{}];
 storiesOf('global/SearchResults', module)
   .addDecorator(generalDecorator({
     readme,
@@ -50,7 +141,10 @@ storiesOf('global/SearchResults', module)
     reducer
   }))
   .add('Default', () => (
-    <SearchResults />
+    <SearchResults 
+      showItemsByPage={2}
+      filters={newFilters} 
+      clusters={newclusters}/>
   ))
 
   .add('With data', () => (
