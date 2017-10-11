@@ -4,7 +4,6 @@ import ReactPaginate from 'react-paginate';
 
 /*https://github.com/AdeleD/react-paginate*/
 const Paginate = ({pagesCount, selectedPage, onPageSelected}) => {
-  console.log('pagesCount',pagesCount);
   return(
     <div>
       {pagesCount > 0 &&

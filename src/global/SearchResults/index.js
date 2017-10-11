@@ -11,8 +11,7 @@ import { Container } from './styled';
 const SearchResults = ({ showItemsByPage, filters, clusters }) =>  {
 
   const countPage = Number.parseInt((clusters.length/showItemsByPage));
-  console.log(clusters);
-
+  
   return (
     <Container>
       <Paginate  pageCount={countPage} />
