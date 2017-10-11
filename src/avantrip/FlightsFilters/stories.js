@@ -12,7 +12,7 @@ import readme from './README.md';
 
 import reducer from "./reducer";
 
-const options = {
+const filter = {
   scales:{
     0: {
       options:[
@@ -103,21 +103,6 @@ const options = {
   }
 }
 
-let search = {
-  origin: 'BUE',
-  destination: 'COR',
-  departureDate: '11-03-2018',
-  returningDate: '20-03-2018',
-  passengers: {
-    adults: 1,
-    children: 0,
-    infants:0
-  },
-  cabinClass: 'Economy',
-  channel: 'DESKTOP',
-  portal:'AVANTRIP'
-}
-
 storiesOf('avantrip/FlightsFilters', module)
   .addDecorator(generalDecorator({
     readme,
@@ -127,32 +112,9 @@ storiesOf('avantrip/FlightsFilters', module)
     },
   }))
   .add('Default', () => (
-    <FlightsFiltersWithData 
-      origin={search.origin}
-      destination={search.destination}
-      departureDate={search.departureDate}
-      returningDate={search.returningDate}
-      passengersAdults={search.passengers.adults}
-      passengersChildren= {search.passengers.children}
-      passengersInfants={search.passengers.infants}
-      cabinClass={search.cabinClass}
-      channel={search.channel}
-      portal={search.portal}
-    
-    />
+    <FlightsFiltersWithData options={filter} />
   ))
 
   .add('With data', () => (
-    <FlightsFiltersWithData
-      origin={search.origin}
-      destination={search.destination}
-      departureDate={search.departureDate}
-      returningDate={search.returningDate}
-      passengersAdults={search.passengers.adults}
-      passengersChildren= {search.passengers.children}
-      passengersInfants={search.passengers.infants}
-      cabinClass={search.cabinClass}
-      channel={search.channel}
-      portal={search.portal}
-      />
+    <FlightsFiltersWithData options={filter}/>
   ))

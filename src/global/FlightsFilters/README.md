@@ -19,9 +19,45 @@ export default () => (
 
 #### `options={<Collections>}`
 coleccion de la options de los filtros de vuelos
-{
-  label:"options 1",
-  value:: 1
+const filter = {
+  airtlines: [{
+      labels:"Aerolineas Argentinas",
+      value:29
+      }],
+  airports: {
+    cities:["",""],
+    items:[{
+      "0":{
+        "0": [{
+          labels:"Aerolineas Argentinas",
+          value:29
+        }]
+        "1":,
+      },
+      "1":
+    }],
+  } ,
+  filghtType: "roundtrip",
+  scales:[
+    0:{
+      options:[
+        {
+          labels:"Aerolineas Argentinas",
+          value:29
+        }
+      ]
+    }
+  ],
+  schedules:[
+    0:{
+      options:[
+        {
+          labels:"Aerolineas Argentinas",
+          value:29
+        }
+      ]
+    }
+  ],
 }
 
 #### `values={<Collections>}`
@@ -32,59 +68,6 @@ Inform when option is checked
 
 #### `onClear={<Function>}`
 Inform when option "all" is checked
-
-
-### Basic use with data
-
-```javascript
-import FlightsFiltersWithData from 'avantrip-react/avantrip/FlightsFiltersWithData';
-
-export default () => (
- <FlightsFiltersWithData
-    origin="BUE"
-    destination="MIA"
-    departureDate="15-03-2018"
-    returningDate="26-03-2018"
-    passengersAdults="1"
-    passengersChildren="0"
-    passengersInfants="0"
-    cabinClass="Economy"
-    channel="Desktop"
-    portal="AVANTRIP"
-    />
-)
-```
-
-## Props
-#### `origin={<String>}`
-IATA ciudad de Origen
-
-#### `destination={<String>}`
-IATA ciudad de Destino
-
-#### `departureDate={<String>}`
-Fecha de salida
-
-#### `returningDate={<String>}`
-Fecha de regreso
-
-#### `passengersAdults={<Integer>}`
-Cantidad de pasajeros adultos
-
-#### `passengersChildren={<Integer>}`
-Cantidad de pasajeros menores
-
-#### `passengersInfants={<Integer>}`
-Cantidad de pasajeros infantes
-
-#### `cabinClass={<String>}`
-Tipo de vuelo Economy|Bussines
-
-#### `channel={<String>}`
-tipo de canal desde donde se esta accediendo DESKTOP,MOBILE,ETC
-
-#### `portal={<String>}`
-ej.AVANTRIP
 
 ## Redux
 
