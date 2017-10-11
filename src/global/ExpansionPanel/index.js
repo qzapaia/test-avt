@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {withState} from "recompose";
+
+const enhace = withState("isExpanded", "onChange", false);
+
 const ExpansionPanel = ({
     SummaryInformation,
     ExtendedInformation,
@@ -27,4 +31,4 @@ ExpansionPanel.defaultProps = {
   isExpanded: false
 }
 
-export default ExpansionPanel;
+export default enhace(ExpansionPanel);

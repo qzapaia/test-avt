@@ -5,6 +5,7 @@ import Text from '../Text';
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 `
 
 export const TelContainer = styled.article`

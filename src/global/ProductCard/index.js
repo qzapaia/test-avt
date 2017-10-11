@@ -16,24 +16,28 @@ import Icon from '../Icon';
 import Price from '../Price';
 
 const ProductCard = ({
-                      href,
-                      target,
-                      listMode,
-                      media,
-                      price,
-                      supportingInfo,
-                      subtitle,
-                      title,
-                      imageTitle
-                    }) => {
-  console.log("href", href);
-  return <Container href={href} target={target} listMode={listMode}>
+    href,
+    target,
+    listMode,
+    mediaImage,
+    price,
+    supportingInfo,
+    subtitle,
+    title,
+    imageTitle,
+    mode
+  }) => {
+  return <Container mode={mode} href={href} target={target} listMode={listMode}>
 
     <MainPictureContainer listMode={listMode}>
-      <img src={media} alt=""/>
-      <ImageTitleContainer>
-        {imageTitle}
-      </ImageTitleContainer>
+      <img src={mediaImage} alt=""/>
+      {listMode ?
+        null : imageTitle != null ?
+        <ImageTitleContainer>
+          {imageTitle}
+        </ImageTitleContainer>
+        : null
+      }
     </MainPictureContainer>
     <MainInfoContainer listMode={listMode}>
 
@@ -47,17 +51,21 @@ const ProductCard = ({
           </Text>
         </SubtitleContainer>
       </LeftContainer>
-      <RightContainer>
-        <PriceContainer>
-          <Text color='brand' tag='p' type='xs'>
-            {supportingInfo}
-          </Text>
-          <Price color='brand' tag='p' type='xl' price={price} />
-        </PriceContainer>
-        <IconContainer>
-          <Icon width='40px' height='40px' id='Back' color='brand' />
-        </IconContainer>
-      </RightContainer>
+
+      {price ?
+        <RightContainer listMode={listMode}>
+          <PriceContainer>
+            <Text color='brand' tag='p' type='xs'>
+              {supportingInfo}
+            </Text>
+            <Price color='brand' tag='p' type='xl' price={price} />
+          </PriceContainer>
+          <IconContainer listMode={listMode}>
+            <Icon width='40px' height='40px' id='Back' color='brand' />
+          </IconContainer>
+        </RightContainer>
+
+        :null}
 
     </MainInfoContainer>
 
@@ -73,13 +81,14 @@ configurable.
 ProductCard.propTypes = {
   href:PropTypes.string,
   listMode:PropTypes.bool.isRequired,
-  media:PropTypes.node,
+  mediaImage:PropTypes.node,
   price:PropTypes.number,
   supportingInfo:PropTypes.string,
   subtitle:PropTypes.string,
   title:PropTypes.string,
   target:PropTypes.string,
-  imageTitle: PropTypes.node
+  imageTitle: PropTypes.node,
+  mode: PropTypes.string
 }
 
 ProductCard.defaultProps = {
