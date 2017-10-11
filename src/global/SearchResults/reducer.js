@@ -4,6 +4,5 @@ import paginateReducer from "../Paginate/reducer"
 export default {
   paginate:paginateReducer,
   flightsFilters:filterReducer,
-
 }
 

@@ -3,78 +3,21 @@ import PropTypes from 'prop-types';
 
 import SearchResultsListWithData from '../SearchResultsList/withData'
 import FlightsFiltersWithData from  '../FlightsFilters/withData';
-import PaginateWithData from '../Paginate/withData'
+import Paginate from '../Paginate/withData'
+import { get } from 'lodash';
+import { Container } from './styled';
 
-let search = {
-  origin: 'BUE',
-  destination: 'COR',
-  departureDate: '11-03-2018',
-  returningDate: '20-03-2018',
-  passengers: {
-    adults: 1,
-    children: 0,
-    infants:0
-  },
-  cabinClass: 'Economy',
-  channel: 'DESKTOP',
-  portal:'AVANTRIP'
+const SearchResults = ({ resultData , showItemsByPage, filters, clusters }) =>  {
+ 
+  const countPage = Number.parseInt((clusters.length/showItemsByPage));
+
+  return (
+    <Container>
+      <Paginate  pageCount={countPage} />
+      <FlightsFiltersWithData options={filters} />
+    </Container>
+  )
 }
-
-const SearchResults = ({
-  text,
-  onClick,
-  repos,
-  getRepos,
-  hoteles,
-}) => (
-  <div >
-    
-    <div>
-
-      <FlightsFiltersWithData 
-        origin={search.origin}
-        destination={search.destination}
-        departureDate={search.departureDate}
-        returningDate={search.returningDate}
-        passengersAdults={search.passengers.adults}
-        passengersChildren= {search.passengers.children}
-        passengersInfants={search.passengers.infants}
-        cabinClass={search.cabinClass}
-        channel={search.channel}
-        portal={search.portal}/>
-
-    </div>  
-    
-    <div>
-      <SearchResultsListWithData 
-        origin={search.origin}
-        destination={search.destination}
-        departureDate={search.departureDate}
-        returningDate={search.returningDate}
-        passengersAdults={search.passengers.adults}
-        passengersChildren= {search.passengers.children}
-        passengersInfants={search.passengers.infants}
-        cabinClass={search.cabinClass}
-        channel={search.channel}
-        portal={search.portal}/>
-
-    </div>  
-    <h2>Paginacion</h2>
-    <PaginateWithData
-      origin={search.origin}
-      destination={search.destination}
-      departureDate={search.departureDate}
-      returningDate={search.returningDate}
-      passengersAdults={search.passengers.adults}
-      passengersChildren= {search.passengers.children}
-      passengersInfants={search.passengers.infants}
-      cabinClass={search.cabinClass}
-      channel={search.channel}
-      portal={search.portal}
-      showItemsByPage={10}
-       />
-  </div>
-)
 
 SearchResults.propTypes = {
   //text: PropTypes.node.isRequired,

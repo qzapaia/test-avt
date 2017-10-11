@@ -27,63 +27,6 @@ Página seleccionada
 Handler de la acción de selección de página
 
 
-### Basic use with data
-
-```javascript
-import PaginateWithData from 'avantrip-react/global/PaginateWithData';
-
-export default () => (
- <PaginateWithData
-    origin="BUE"
-    destination="MIA"
-    departureDate="15-03-2018"
-    returningDate="26-03-2018"
-    passengersAdults="1"
-    passengersChildren="0"
-    passengersInfants="0"
-    cabinClass="Economy"
-    channel="Desktop"
-    portal="AVANTRIP"
-    showItemsByPage="10"
-    />
-)
-```
-
-## Props
-#### `origin={<String>}`
-IATA ciudad de Origen
-
-#### `destination={<String>}`
-IATA ciudad de Destino
-
-#### `departureDate={<String>}`
-Fecha de salida
-
-#### `returningDate={<String>}`
-Fecha de regreso
-
-#### `passengersAdults={<Integer>}`
-Cantidad de pasajeros adultos
-
-#### `passengersChildren={<Integer>}`
-Cantidad de pasajeros menores
-
-#### `passengersInfants={<Integer>}`
-Cantidad de pasajeros infantes
-
-#### `cabinClass={<String>}`
-Tipo de vuelo Economy|Bussines
-
-#### `channel={<String>}`
-tipo de canal desde donde se esta accediendo DESKTOP,MOBILE,ETC
-
-#### `portal={<String>}`
-ej.AVANTRIP
-
-### `showItemsByPage=(<Integer>)`
-cantidad de items que se mostrara por pagina,
-
-
 ## Redux
 
 #### Actions
