@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const ClusterItem = styled.article`
   display: flex;
   align-items: center;
-  min-height: 70px;
   padding: 0 10px;
   cursor: pointer;
   &:not(:last-of-type){
@@ -24,11 +23,14 @@ export const AirlineName = styled.p`
   flex-direction: column;
   justify-content: center;
   margin-left: 10px;
+  min-height: 70px;
+
 `
 export const InfoContainer = styled.article`
   display: flex;
   flex-wrap: wrap;
-  margin-left: 10px;
+  align-items: center;
+
 `
 export const AirlineContainer = styled.div`
   flex: 0 0 31%;
@@ -42,7 +44,7 @@ export const FromTo = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 290px;
-  margin-left: 40px;
+  margin-left: 5.5%;
 `
 export const Detail = styled.div`
   margin-left: 40px;

@@ -33,11 +33,11 @@ const ExpansionPanelWithState =  enhace((props) => {
 const FlightClusterRouteOption = ({data, onClick, selected}) => {
   return (
     <ClusterItem onClick={onClick} selected={selected}>
-      <InputRadio checked ={selected} />
       <ClusterContent>
         <ExpansionPanelWithState
           SummaryInformation={({onChange, isExpanded})  =>
             <InfoContainer>
+              <InputRadio checked ={selected} />
               <AirlineContainer>
                 <figure>
                   {
