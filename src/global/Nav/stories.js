@@ -9,6 +9,12 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
+const pathNames = [
+  { id: 'vuelos',   name: 'Vuelos',   url:'http://www.avantrip.com', icon: 'Vuelos'},
+  { id: 'hoteles',  name: 'Hoteles',  url:'http://www.avantrip.com', icon: 'Hotel'},
+  { id: 'autos',    name: 'Autos',    url:'http://www.avantrip.com', icon: 'Autos'},
+  { id: 'pasesesdisney', name: 'Pases Disney', url:'http://www.avantrip.com', icon: 'PasesDisney'}
+];
 
 storiesOf('global/styled@Nav', module)
   .addDecorator(generalDecorator({
@@ -17,9 +23,8 @@ storiesOf('global/styled@Nav', module)
   }))
   .add('Default', () => (
     <Nav currentPathname="/vuelos/">
-      <span id="vuelos" href="http://www.avantrip.com">Vuelos</span>
-      <span id="hoteles" href="http://www.avantrip.com">Hoteles</span>
-      <span id="autos" href="http://www.avantrip.com">Autos</span>
-      <span id="disney" href="http://www.avantrip.com">Disney</span>
+      {pathNames.map(path =>
+          <span id={path.id} icon={path.icon} href={path.url}>{path.name}</span>
+      )}
     </Nav>
   ))

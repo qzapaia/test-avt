@@ -4,12 +4,12 @@ import GlobalNav from '../../global/Nav';
 import { ThemeProvider } from 'styled-components';
 
 const componentTheme = {
-  ulJustifyContent : "space-between",
+  ulJustifyContent : "flex-center",
   liMaxWidth: "100px",
   divLineHeight: "36px",
   divHoverColor: "black",
-  divHoverBgColor: "transparent",
-  divBeforeBgColor: "darkgray",
+  divHoverBgColor: "orange",
+  divBeforeBgColor: "orange",
 }
 
 export default (props) => (

@@ -5,122 +5,48 @@ import {NavList, Item, LinkNav, LinkText, LinkContainer} from './styled';
 import Link from '../Link';
 import Text from '../Text';
 import Icon from '../Icon';
+import { ThemeProvider } from 'styled-components';
+import { defaults } from 'lodash';
 
-const getCurrentPage = (pathname) =>{
-  let currentPage;
-  switch (pathname) {
-    case "/hoteles/":
-      currentPage = "hoteles";
-      break;
-    case "/vuelos/":
-    default:
-      currentPage = "vuelos";
-  }
-  return currentPage;
-}
+//Defino el theme por default, parentTheme lo envia los objectos que extienden global.
+const baseTheme = (parentTheme) => defaults(parentTheme,{
+  ulJustifyContent : "space-between",
+  liMaxWidth: "100px",
+  divLineHeight: "36px",
+  divHoverColor: "black",
+  divHoverBgColor: "transparent",
+  divBeforeBgColor: "grey"
+});
 
 const Nav = ({currentPathname, children}) => {
-  let currentPage = getCurrentPage(currentPathname);
 
-  console.log('Mario!!!!',children);
+  const getCurrentPage = (pathname) =>{
+    let currentPathname;
+    currentPathname = pathname.replace(/\//g,'');
+    return currentPathname;
+  }
+
+  const currentPage = getCurrentPage(currentPathname);
 
   return (
-    <NavList>
-    {
-      children.map( item => {
-          <Item>
-            <LinkNav isActive={ currentPage == item.id }>
-            <LinkContainer href="{ item.href }">
-              <Icon id='{ item.id }' width='18px' height='18px' />
-              <LinkText color='primary' type='s'>
-                Vuelos
-              </LinkText>
-            </LinkContainer>
-            </LinkNav>
-          </Item>
-      })
-    }
-    </NavList>
+    <ThemeProvider theme={baseTheme}>
+      <NavList>
+        {children.map( item =>
+            <Item>
+              <LinkNav isActive={ currentPage == item.props.id }>
+                <LinkContainer href={ item.props.href }>
+                  <Icon id={ item.props.icon } width='18px' height='18px' />
+                  <LinkText color='primary' type='s'>
+                    { item.props.children }
+                  </LinkText>
+                </LinkContainer>
+              </LinkNav>
+            </Item>
+        )}
+      </NavList>
+    </ThemeProvider>
   )
 }
-
-/*const Nav = ({currentPathname, children}) => {
-  let currentPage = getCurrentPage(currentPathname);
-  return (
-    <NavList>
-      <Item>
-        <LinkNav isActive={currentPage == 'vuelos'}>
-          <LinkContainer href="http://www.avantrip.com/vuelos/">
-            <Icon id='Vuelos' width='18px' height='18px' />
-            <LinkText color='primary' type='s'>
-              Vuelos
-            </LinkText>
-          </LinkContainer>
-        </LinkNav>
-      </Item>
-      <Item>
-        <LinkNav isActive={currentPage == 'hoteles'}>
-          <LinkContainer href="http://www.avantrip.com/hoteles/">
-            {// <Icon id='Hoteles' width='18px' height='18px' />}
-            <LinkText color='primary' type='s'>
-              Hoteles
-            </LinkText>
-          </LinkContainer>
-        </LinkNav>
-      </Item>
-      <Item>
-        <LinkNav isActive={currentPage == 'paquetes'}>
-          <LinkContainer href="http://www.avantrip.com/paquetes/">
-            <Icon id='Paquetes' width='14px' height='14px' />
-            <LinkText color='primary' type='s'>
-              Paquetes
-            </LinkText>
-          </LinkContainer>
-        </LinkNav>
-      </Item>
-      <Item>
-        <LinkNav isActive={currentPage == 'autos'}>
-          <LinkContainer href="http://www.avantrip.com/autos/">
-          <Icon id='Autos' width='19px' height='19px' />
-            <LinkText color='primary' type='s'>
-              Autos
-            </LinkText>
-          </LinkContainer>
-        </LinkNav>
-      </Item>
-      <Item>
-        <LinkNav isActive={currentPage == 'pases'}>
-          <LinkContainer href="http://pasesdisney.avantrip.com/">
-            <Icon id='PasesDisney' width='15px' height='15px' />
-            <LinkText color='primary' type='s'>
-              Pases Disney
-            </LinkText>
-          </LinkContainer>
-        </LinkNav>
-      </Item>
-      <Item>
-        <LinkNav isActive={currentPage == 'cruceros'}>
-          <LinkContainer href="http://www.avantrip.com/cruceros/">
-            <Icon id='Cruceros' width='18px' height='18px' />
-            <LinkText color='primary' type='s'>
-              Cruceros
-            </LinkText>
-          </LinkContainer>
-        </LinkNav>
-      </Item>
-      <Item>
-        <LinkNav isActive={currentPage == 'seguros'}>
-          <LinkContainer href="http://www.avantrip.com/asistencia-al-viajero/">
-            {// <Icon id='Seguros' width='18px' height='18px' />}
-            <LinkText color='primary' type='s'>
-              Seguros
-            </LinkText>
-          </LinkContainer>
-        </LinkNav>
-      </Item>
-    </NavList>
-  );
-}*/
 
 Nav.propTypes = {
   currentPathname: PropTypes.string.isRequired
