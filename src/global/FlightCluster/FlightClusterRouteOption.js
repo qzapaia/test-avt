@@ -5,7 +5,7 @@ import Text from '../Text';
 import InputRadio from '../InputRadio';
 import ExpansionPanel from '../ExpansionPanel';
 import {ExpandButton, ExtendedInformation} from '../ExpansionPanel/styled';
-import {ClusterItem, ClusterContent, AirlineName, InfoContainer, AirlineContainer, FromTo, Detail, Origin, Arrival, Scale, Iata, Date} from './styled';
+import {ClusterItem, ClusterContent, AirlineName, InfoContainer, AirlineContainer, FromTo, Detail, Origin, Arrival, Scale, Iata, Date, TripTitle, IataBold, MediumBold, DetailDeparture, DetailFlight, DetailArrival, DetailExtended, MainDetail, Delay, DelayContainer, Step, AirlineDetail} from './styled';
 import { withState } from 'recompose';
 
 import { map } from 'lodash'
@@ -99,94 +99,95 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
 
           ExtendedInformation={({onChange}) =>
             <ExtendedInformation>
-              <div>
-                <div style={{backgroundColor:'lightgrey', 'height':'35px', display:'flex','alignItems':'center'}}>
-                  <div>
-                    {data.extendedInfo.header}
-                  </div>
-                </div>
-                {
-                  map(data.extendedInfo.flights, (f, index) => (
-                    <div>
-                      <div style={{display:'flex','justifyContent':'center'}}>
-                        <div style={{margin:'10px', 'flexGrow':'1', 'flexBasis': '0'}}>
-                          <div style={{textAlign:'right'}}>
-                            SALIDA
-                          </div>
-                          <div style={{textAlign:'right'}}>
-                            {moment(f.departure.date).format('ddd. DD MMM [de] YYYY')}
-                          </div>
-                          <div style={{textAlign:'right'}}>
-                            {f.departure.iata}
-                          </div>
-                          <div style={{textAlign:'right'}}>
-                            {moment(f.departure.date).format('HH:mm[hs]')}
-                          </div>
-                          <div style={{textAlign:'right'}}>
-                            {f.departure.city}
-                          </div>
-                          <div style={{textAlign:'right'}}>
-                            {f.departure.airport}
-                          </div>
-                        </div>
+              <TripTitle>
+                <Text tag='h1' type='m'>
+                  {data.extendedInfo.header}
+                </Text>
+                <Text tag='h2' type='m'>
+                  Duracion: {moment(data.summaryInfo.totalTime).format('HH:mm[hs]')}
+                </Text>
+              </TripTitle>
+              {
+                map(data.extendedInfo.flights, (f, index) => (
+                  <MainDetail>
+                    <DetailDeparture style={{margin:'10px', 'flexGrow':'1', 'flexBasis': '0'}}>
+                      <Text type='m'>
+                        SALIDA
+                      </Text>
+                      <MediumBold type='m' tag='strong'>
+                        {moment(f.departure.date).format('ddd. DD MMM [de] YYYY')}
+                      </MediumBold>
+                      <IataBold tag='strong' type='xl'>
+                        {f.departure.iata}
+                      </IataBold>
+                      <MediumBold type='m' tag='strong'>
+                        {moment(f.departure.date).format('HH:mm[hs]')}
+                      </MediumBold>
+                      <Text>
+                        {f.departure.city}
+                      </Text>
+                      <Text>
+                        {f.departure.airport}
+                      </Text>
+                    </DetailDeparture>
 
-                        <div style={{margin:'10px', 'flexGrow':'1', 'flexBasis': '0'}}>
-                          <div style={{padding:'10px', backgroundColor:'lightgrey'}}>
-                            {f.common.flightStep} Tramo
-                          </div>
-                          <div style={{display:'flex','alignItems':'center', 'justifyContent':'center', margin:'5px'}}>
-                            <img src={f.common.airlineLogo} />
-                            <div>{f.common.provider}</div>
-                          </div>
-                          <div style={{textAlign:'center', margin:'5px'}}>
-                            {f.common.class}
-                          </div>
-                          <div style={{textAlign:'center', margin:'5px'}}>
-                            {f.common.flightNumber}
-                          </div>
+                    <DetailFlight>
+                      <Step>
+                        {f.common.flightStep} Tramo
+                      </Step>
+                      <AirlineDetail>
+                        <img src={f.common.airlineLogo} />
+                        <Text tag='figcaption'>
+                          {f.common.provider}
+                        </Text>
+                      </AirlineDetail>
+                      <Text>
+                        {f.common.class}
+                      </Text>
+                      <Text>
+                        {f.common.flightNumber}
+                      </Text>
+                    </DetailFlight>
 
-                        </div>
-
-                        <div style={{margin:'10px', 'flexGrow':'1', 'flexBasis': '0'}}>
-                          <div>
-                            LLEGADA
-                          </div>
-                          <div>
-                            {moment(f.arrival.date).format('ddd. DD MMM [de] YYYY')}
-                          </div>
-                          <div>
-                            {f.arrival.iata}
-                          </div>
-                          <div>
-                            {moment(f.arrival.date).format('HH:mm[hs]')}
-                          </div>
-                          <div>
-                            {f.arrival.city}
-                          </div>
-                          <div>
-                            {f.arrival.airport}
-                          </div>
-                        </div>
+                    <DetailArrival style={{margin:'10px', 'flexGrow':'1', 'flexBasis': '0'}}>
+                      <div>
+                        LLEGADA
                       </div>
-                      {
-                        data.extendedInfo.flights.length > 1 &&
-                        index != data.extendedInfo.flights.length-1 &&
-                        <div style={{
-                          'borderWidth': '1px',
-                          'borderStyle': 'dashed',
-                          'padding':'5px',
-                          'textAlign':'center'
-                        }}>
+                      <div>
+                        <MediumBold type='m' tag='strong'>
+                          {moment(f.arrival.date).format('ddd. DD MMM [de] YYYY')}
+                        </MediumBold>
+                      </div>
+                      <div>
+                        <IataBold tag='strong' type='xl'>
+                          {f.arrival.iata}
+                        </IataBold>
+                      </div>
+                      <div>
+                        <MediumBold type='m' tag='strong'>
+                          {moment(f.arrival.date).format('HH:mm[hs]')}
+                        </MediumBold>
+                      </div>
+                      <div>
+                          {f.arrival.city}
+                      </div>
+                      <div>
+                          {f.arrival.airport}
+                      </div>
+                    </DetailArrival>
+                    {
+                      data.extendedInfo.flights.length > 1 &&
+                      index != data.extendedInfo.flights.length-1 &&
+                      <DelayContainer>
+                        <Delay tag='h3'>
                           Escala en {f.arrival.city} con espera de 23hs 59m
-                        </div>
-
-                      }
-
-                    </div>
-                    )
+                        </Delay>
+                      </DelayContainer>
+                    }
+                  </MainDetail>
                   )
-                }
-              </div>
+                )
+              }
             </ExtendedInformation>
           }
         />
