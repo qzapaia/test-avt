@@ -1,28 +1,28 @@
 import React from "react";
+import { gql, graphql } from 'react-apollo';
 import { connect } from "react-redux";
 import Paginate from "./";
+
+import { get } from 'lodash';
 
 import { setPagesCount, setSelectedPage } from "./actions";
 
 const mapStateToProps = state => {
   return {
-    pagesCount: state.paginate.pagesCount,
     selectedPage: state.paginate.selectedPage
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  dispatch(
-    setPagesCount(ownProps.pagesCount)
-  )
-
   return {
     onPageSelected: selectedPage => {
       dispatch(
         setSelectedPage(selectedPage)
       );
-    }
+    },
+    pagesCount:ownProps.pageCount 
   }
 }
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Paginate);
+
+const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(Paginate);
+export default WithDataComponent;
