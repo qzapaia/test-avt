@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import SearchResultsListWithData from '../SearchResultsList/withData'
 import FlightsFiltersWithData from  '../FlightsFilters/withData';
 import Paginate from '../Paginate/withData'
-import { get } from 'lodash';
 import { Container } from './styled';
 
 
 const SearchResults = ({ showItemsByPage, filters, clusters }) =>  {
 
-  const countPage = Number.parseInt((clusters.length/showItemsByPage));
+  const countPage = Math.ceil((clusters.length/showItemsByPage));
   
   return (
     <Container>

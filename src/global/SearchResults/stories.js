@@ -53,7 +53,7 @@ const newFilters = {
         },
         {
           value:'2',
-          label: 'dos escala'
+          label: 'dos escalas'
         }
       ]
     },
@@ -65,7 +65,7 @@ const newFilters = {
         },
         {
           value:'2',
-          label: 'dos escala'
+          label: 'dos escalas'
         }
       ]
     }
@@ -77,7 +77,7 @@ const newFilters = {
     },
     {
       value:'2',
-      label: 'dos escala'
+      label: 'dos escalas'
     }
   ],
   schedules:{
@@ -89,7 +89,7 @@ const newFilters = {
         },
         {
           value:'2',
-          label: 'dos escala'
+          label: 'dos escalas'
         }
       ]
     },
@@ -101,7 +101,7 @@ const newFilters = {
         },
         {
           value:'2',
-          label: 'dos escala'
+          label: 'dos escalas'
         }
       ]
     }
@@ -115,7 +115,7 @@ const newFilters = {
         },
         {
           value:'2',
-          label: 'dos escala'
+          label: 'dos escalas'
         }
       ]
     },
@@ -127,7 +127,7 @@ const newFilters = {
         },
         {
           value:'2',
-          label: 'dos escala'
+          label: 'dos escalas'
         }
       ]
     }
