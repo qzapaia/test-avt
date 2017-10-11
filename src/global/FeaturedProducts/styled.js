@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const layout = {
   flex:{
     4:'1 1 45%',
-    3:'1 1 33%',
+    3:'1 1 30%',
     2:'1 1 45%',
     1:'1 1 100%',
     0:'1 1 100%'
