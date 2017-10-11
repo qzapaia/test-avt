@@ -146,7 +146,7 @@ const generateCluster = () => {
     }
   }
 
-    const sampleRouteOption4 = {
+  const sampleRouteOption4 = {
     'summaryInfo': {
       'id':4567,
       'airlineLogos':[
@@ -168,7 +168,7 @@ const generateCluster = () => {
     }
   }
 
-    const sampleRouteOption5 = {
+  const sampleRouteOption5 = {
     'summaryInfo': {
       'id':888,
       'airlineLogos':[
@@ -190,7 +190,7 @@ const generateCluster = () => {
     }
   }
 
-    const sampleRouteOption6 = {
+  const sampleRouteOption6 = {
     'summaryInfo': {
       'id':999,
       'airlineLogos':[
