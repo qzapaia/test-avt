@@ -7,10 +7,10 @@ import Paginate from '../Paginate/withData'
 import { Container } from './styled';
 
 
-const SearchResults = ({ showItemsByPage, filters, flightClusters,clusters }) =>  {
-
-  const countPage = Math.ceil((flightClusters.length/showItemsByPage));
+const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems }) =>  {
   
+  const countPage = Math.ceil((countItems/showItemsByPage));
+  //applyPaginate(getState())
   return (
     <Container>
       <div style={{display:"flex"}}>

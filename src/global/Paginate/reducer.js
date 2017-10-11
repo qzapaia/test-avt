@@ -3,7 +3,9 @@ import {
   SET_SELECTED_PAGE
 } from "./actions";
 
-const initialState = 0;
+const initialState = {
+  selectedPage: 0
+};
 
 export default (state = initialState, action) => {
   const { type, pagesCount, selectedPage } = action;

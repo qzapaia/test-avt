@@ -161,6 +161,10 @@ const getFlightCluster = c => {
   return fc;
 }
 
+const setPaginteToList = (clusters,state) => {
+  //console.log(state);
+}
+
 export const populateStages = (state={}) => {
   const masterStages = state.stages;
   
@@ -177,6 +181,8 @@ export const populateStages = (state={}) => {
   const flightClusters = map(clusters, c => {
     return getFlightCluster(c)
   })
+
+  setPaginteToList(flightClusters,state)
 
   return {
     ...state,
