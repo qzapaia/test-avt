@@ -65,7 +65,30 @@ const SearchQuery = {
           }
         }
       }
-    }`  
+    }`,
+  multitrip: gql`
+  query multiTripQuery(
+    $origin: [String]!,
+    $destination: [String]!,
+    $departureDate: [String]!,
+    $passengersAdults: Int!,
+    $passengersChildren: Int!,
+    $passengersInfants: Int!,
+    $cabinClass: FligthCabinClassInput!,
+    $channel: String!,
+    $portal: String!){ 
+      orchestrator{
+        availability{
+          multitrip(origin:$origin,destination:$destination,departureDate:$departureDate,
+            passengers:{adults:$passengersAdults,children:$passengersChildren,infants:$passengersInfants} cabinClass:$cabinClass,channel:$channel,portal:$portal){
+            clusters,
+            stages,
+            metas,
+            references
+          }
+        }
+      }
+    }`
 }
 
 
@@ -125,13 +148,70 @@ const WithApolloComponentSearch = compose(
       },
     }),
     props: ({ ownProps, data }) => {
-      const oneway = get(data,'orchestrator.availability.oneway', { })
-      return { resultData: oneway }
+      const oneway = get(data,'orchestrator.availability.oneway', { 
+        metas:[],
+        references:[],
+        clusters:[]
+      })
+
+      const filters =  populateFilters({
+        filters:oneway.metas.filters,
+        references:oneway.references,
+        flightType:oneway.metas.flightType
+      });
+
+      const newClusters = populateStages({
+        clusters:oneway.clusters,
+        stages:oneway.stages
+      });
+
+      return { 
+        ...filters,
+        ...newClusters
+      }
     },
     skip: (ownProps) => !(ownProps.leg === 'oneway'),
+  }),
+  graphql(SearchQuery.multitrip,{
+    options: props => ({
+      variables : {
+        origin : props.origin,
+        destination : props.destination,
+        departureDate : props.departureDate,
+        passengersAdults : props.passengersAdults,
+        passengersChildren : props.passengersChildren,
+        passengersInfants : props.passengersInfants,
+        cabinClass : props.cabinClass,
+        channel : props.channel,
+        portal : props.portal
+      },
+    }),
+    props: ({ ownProps, data }) => {
+      const multitrip = get(data,'orchestrator.availability.multitrip', { 
+        metas:[],
+        references:[],
+        clusters:[]
+      })
+
+      const filters =  populateFilters({
+        filters:multitrip.metas.filters,
+        references:multitrip.references,
+        flightType:multitrip.metas.flightType
+      });
+
+      const newClusters = populateStages({
+        clusters:multitrip.clusters,
+        stages:multitrip.stages
+      });
+
+      return { 
+        ...filters,
+        ...newClusters
+      }
+    },
+    skip: (ownProps) => !(ownProps.leg === 'multitrip'),
   }),    
 )(SearchResults)
 
 const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);
-
 export default WithDataComponent;

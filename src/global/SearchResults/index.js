@@ -7,14 +7,21 @@ import Paginate from '../Paginate/withData'
 import { Container } from './styled';
 
 
-const SearchResults = ({ showItemsByPage, filters, clusters }) =>  {
+const SearchResults = ({ showItemsByPage, filters, flightClusters,clusters }) =>  {
 
-  const countPage = Math.ceil((clusters.length/showItemsByPage));
+  const countPage = Math.ceil((flightClusters.length/showItemsByPage));
   
   return (
     <Container>
-      <Paginate  pageCount={countPage} />
-      <FlightsFiltersWithData options={filters} />
+      <div style={{display:"flex"}}>
+        <div style={{flexGrow:"1"}}> 
+          <FlightsFiltersWithData options={filters} />
+        </div>
+        <div style={{flexGrow:"10"}}> 
+          <SearchResultsListWithData flightClusters={flightClusters}  />
+          <Paginate  pageCount={countPage} />
+        </div>
+      </div>
     </Container>
   )
 }

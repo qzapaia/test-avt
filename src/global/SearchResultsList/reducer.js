@@ -125,8 +125,6 @@ const getFlightCluster = c => {
   fc.disclaimerText = c.disclaimerText;
   fc.routes = {};
 
-  console.log(c)
-
   if(c.stages.length>0){
 
     if(c.stages[0]){
