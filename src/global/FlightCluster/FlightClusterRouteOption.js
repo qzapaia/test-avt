@@ -5,7 +5,7 @@ import Text from '../Text';
 import InputRadio from '../InputRadio';
 import ExpansionPanel from '../ExpansionPanel';
 import {ExpandButton, ExtendedInformation} from '../ExpansionPanel/styled';
-import {ClusterItem} from './styled';
+import {ClusterItem, ClusterContent, AirlineName, InfoContainer, AirlineContainer, FromTo, Detail, Origin, Arrival, Scale, Iata, Date} from './styled';
 import { withState } from 'recompose';
 
 import { map } from 'lodash'
@@ -32,61 +32,69 @@ const ExpansionPanelWithState =  enhace((props) => {
 
 const FlightClusterRouteOption = ({data, onClick, selected}) => {
   return (
-    <ClusterItem onClick={onClick}>
-      <InputRadio checked ={selected} style={{'flexGrow':1}} />
-      <div style={{'flexGrow':10}}>
+    <ClusterItem onClick={onClick} selected={selected}>
+      <InputRadio checked ={selected} />
+      <ClusterContent>
         <ExpansionPanelWithState
           SummaryInformation={({onChange, isExpanded})  =>
-            <div>
-              <div style={{display:'flex','alignItems':'center', 'justifyContent':'space-around'}}>
-                <div>
+            <InfoContainer>
+              <AirlineContainer>
+                <figure>
                   {
                     map(data.summaryInfo.airlineLogos, a => (
                       <img src={a} />
                     ))
                   }
-                </div>
-
-                <div>
-                  {data.summaryInfo.provider}
-                </div>
-                <div>
-                  <div>
-                    {data.summaryInfo.departureIata}
-                  </div>
-                  <div>
-                    {moment(data.summaryInfo.departureDate).format('HH:mm[hs]')}
-                  </div>
-                </div>
-
-                <ExpandButton onClick={onChange}>
-                  <Text type='s'>
-                    {data.summaryInfo.scalesText}
+                </figure>
+                <AirlineName>
+                  <Text tag='p'>
+                    {data.summaryInfo.airlineName}
                   </Text>
-                </ExpandButton>
+                  <Text type='xs' tag='p'>
+                    {data.summaryInfo.provider}
+                  </Text>
+                </AirlineName>
+              </AirlineContainer>
+              <FromTo>
+                <Origin>
+                  <Iata>
+                    {data.summaryInfo.departureIata}
+                  </Iata>
+                  <Date>
+                    {moment(data.summaryInfo.departureDate).format('HH:mm[hs]')}
+                  </Date>
+                </Origin>
 
-                <div>
-                  <div>
-                    {data.summaryInfo.arrivalIata}
-                  </div>
-                  <div>
-                    {moment(data.summaryInfo.arrivalDate).format('HH:mm[hs]')}
-                  </div>
-                </div>
-
-                <div>
-                  <div>
-                    {moment(data.summaryInfo.totalTime).format('HH:mm[hs]')}
-                  </div>
+                <Scale>
                   <ExpandButton onClick={onChange}>
                     <Text type='s'>
-                      Detalle
+                      {data.summaryInfo.scalesText}
                     </Text>
                   </ExpandButton>
-                </div>
+                </Scale>
 
-              </div>
-            </div>
+                <Arrival>
+                  <Iata>
+                    {data.summaryInfo.arrivalIata}
+                  </Iata>
+                  <Date>
+                    {moment(data.summaryInfo.arrivalDate).format('HH:mm[hs]')}
+                  </Date>
+                </Arrival>
+              </FromTo>
+
+              <Detail>
+                <div>
+                  {moment(data.summaryInfo.totalTime).format('HH:mm[hs]')}
+                </div>
+                <ExpandButton onClick={onChange}>
+                  <Text type='s'>
+                    Detalle
+                  </Text>
+                </ExpandButton>
+              </Detail>
+
+            </InfoContainer>
           }
 
           ExtendedInformation={({onChange}) =>
@@ -182,7 +190,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
             </ExtendedInformation>
           }
         />
-      </div>
+      </ClusterContent>
     </ClusterItem>
   )
 }

@@ -54,6 +54,7 @@ const generateCluster = () => {
       flightNumber:'DA110',
       airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
       provider:'Delta Air Lines',
+      airlineName:'American Airlines',
       class:'Económica',
     }
   }
@@ -76,6 +77,7 @@ const generateCluster = () => {
       flightNumber:'DA120',
       airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
       provider:'Delta Air Lines',
+      airlineName:'American Airlines',
       class:'Económica',
     }
   }
@@ -88,6 +90,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -110,6 +113,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -132,6 +136,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -154,6 +159,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -176,6 +182,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -198,6 +205,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -248,11 +256,11 @@ const generateCluster = () => {
   cluster.routes.third = sampleRoute3;
 
   return cluster;
-} 
+}
 
 const enhace = compose(
   withState('cluster','selectRoute', generateCluster()),
-  withState('selectedOptions','selectRouteOption', 
+  withState('selectedOptions','selectRouteOption',
     {
       firstRouteOptionId:123,
       secondRouteOptionId:12,
