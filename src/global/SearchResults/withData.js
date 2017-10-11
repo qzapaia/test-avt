@@ -103,8 +103,6 @@ const WithApolloComponentSearch = compose(
         stages:roundtrip.stages
       });
 
-      console.log(filters)
-      debugger;
       return { 
         ...filters,
         ...newClusters

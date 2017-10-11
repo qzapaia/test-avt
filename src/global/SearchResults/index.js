@@ -7,9 +7,11 @@ import Paginate from '../Paginate/withData'
 import { get } from 'lodash';
 import { Container } from './styled';
 
+
 const SearchResults = ({ showItemsByPage, filters, clusters }) =>  {
 
   const countPage = Number.parseInt((clusters.length/showItemsByPage));
+  console.log(clusters);
 
   return (
     <Container>
