@@ -44,9 +44,7 @@ const Home = ({
             title='Buscá tu vuelo'
           />
         </FlightSearchBoxAbsolute>
-
       </MaxWidth>
-      {/* Slider Home: */}
       {media.size > 1 ? <FeaturedDeals /> : null}
     </MainSection>
 
@@ -68,10 +66,7 @@ const Home = ({
             listMode={media.size > 0} />
         </FlightsBestSellers>
       </ListContainer>
-
     </FeaturedSection>
-
-
 
     <SubscribeSection>
       <MaxWidth>
@@ -99,9 +94,5 @@ const Home = ({
 
   </HomeContainer>
 )
-
-Home.propTypes = {}
-
-Home.defaultProps = {}
 
 export default Home;

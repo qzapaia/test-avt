@@ -7,5 +7,5 @@ export default {
   search:searchReducer,
   purchaseAccess:purchaseAccessReducer,
   ...mainLayoutReducer,
-  homeSubscribe: homeSubscribe
+  homeSubscribe
 }

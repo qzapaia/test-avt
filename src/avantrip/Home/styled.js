@@ -67,9 +67,6 @@ export const FlightsBestSellersTitle = Text.extend`
   border-radius: 5px 5px 0 0;
 `
 
-
-
-
 export const ListContainer = styled.article`
   flex: 1 1 30%;
   margin-left: 5px;
@@ -81,8 +78,6 @@ export const ListContainer = styled.article`
     :''}
 
 `
-
-
 
 export const SubscribeSection = styled.div`
   margin: 15px auto;
@@ -141,7 +136,6 @@ export const BestDealsList = styled.ul`
   ${BestDealsListContainer}:last-of-type &{
     ${props=>props.layout > 0?'margin-right: 0;':''};
   }
-
 `
 
 export const BestDealsItem= styled.li`

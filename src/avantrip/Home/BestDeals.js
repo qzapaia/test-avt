@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BestDealsContainer, BestDealsListContainer, BestDealsList, BestDealsItem, BestDealsLink} from './styled'
 
+import {
+  BestDealsContainer,
+  BestDealsListContainer,
+  BestDealsList,
+  BestDealsItem,
+  BestDealsLink
+} from "./styled";
 
 const BestDeals = ({
   layout
@@ -163,9 +169,5 @@ const BestDeals = ({
 
   </BestDealsContainer>
 )
-
-BestDeals.propTypes = {}
-
-BestDeals.defaultProps = {}
 
 export default BestDeals;
