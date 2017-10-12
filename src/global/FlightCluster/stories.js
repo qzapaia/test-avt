@@ -32,7 +32,13 @@ const generateCluster = () => {
       'price': 622
     }],
     'taxes': 14633,
-    'charges': 0,
+    'charges': 5500,
+    'priceWithoutInterest': 64.907,
+    'interest': {
+      'TEA': 5.24,
+      'CFT': 6.46,
+      'value': 4271
+    },
     'finalPrice': 69.177
   }
 
@@ -54,6 +60,7 @@ const generateCluster = () => {
       flightNumber:'DA110',
       airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
       provider:'Delta Air Lines',
+      airlineName:'American Airlines',
       class:'Económica',
     }
   }
@@ -76,9 +83,36 @@ const generateCluster = () => {
       flightNumber:'DA120',
       airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
       provider:'Delta Air Lines',
+      airlineName:'American Airlines',
       class:'Económica',
     }
   }
+
+
+  const flightSample3 = {
+    departure:{
+      iata:'ATL',
+      date:new Date(),
+      city:'Atlanta',
+      airport:'Aerop. Intl. Hartsfield Jackson'
+    },
+    arrival:{
+      iata:'MIA',
+      date:new Date(),
+      city:'Miami',
+      airport:'Intl. de Miami'
+    },
+    common:{
+      flightStep:3,
+      flightNumber:'DA120',
+      airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+      provider:'Delta Air Lines',
+      airlineName:'American Airlines',
+      class:'Económica',
+    }
+  }
+
+
 
   const sampleRouteOption1 = {
     'summaryInfo': {
@@ -88,17 +122,18 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
       'arrivalDate': new Date(),
-      'scalesText': '1 Escala',
+      'scalesText': '2 Escalas',
       'totalTime': new Date(),
       'isSelected':false
     },
     'extendedInfo': {
       'header':'Buenos Aires hacia Miami',
-      'flights':[flightSample1, flightSample2]
+      'flights':[flightSample1, flightSample2, flightSample3]
     }
   }
 
@@ -110,6 +145,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -132,6 +168,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -154,6 +191,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -176,6 +214,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -198,6 +237,7 @@ const generateCluster = () => {
         'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/Z8.png?adq-20170927-0'
       ],
       'provider':'Operado por Air St Thomas',
+      'airlineName': 'American Airlines',
       'departureIata':'EZE',
       'departureDate': new Date(),
       'arrivalIata':'MIA',
@@ -248,11 +288,11 @@ const generateCluster = () => {
   cluster.routes.third = sampleRoute3;
 
   return cluster;
-} 
+}
 
 const enhace = compose(
   withState('cluster','selectRoute', generateCluster()),
-  withState('selectedOptions','selectRouteOption', 
+  withState('selectedOptions','selectRouteOption',
     {
       firstRouteOptionId:123,
       secondRouteOptionId:12,

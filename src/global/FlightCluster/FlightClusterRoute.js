@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Moment from 'moment';
 import Text from '../Text/index';
 import Icon from '../Icon/index';
-import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator, IconContainer} from './containerFlightClusterRoute.styled'
+import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator, IconContainer, City} from './containerFlightClusterRoute.styled'
 
 // TODO: Resolver locales
 
@@ -36,13 +36,13 @@ const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) =>
       	</DateContent>
       </DateContainer>
       <CitiesContainer>
-      	<Text>
+      	<City>
       		{departureCity}
-      	</Text>
+      	</City>
       	<Separator />
-      	<Text>
+      	<City>
       		{arrivalCity}
-      	</Text>
+      	</City>
       </CitiesContainer>
     </Container>
     {children}
