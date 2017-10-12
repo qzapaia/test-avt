@@ -44,7 +44,7 @@ const WithApolloComponent = compose(
     props: ({ ownProps, data: { home } }) => ({
       products: map(get(home,'content.bestsellers_flights',[]), bestSeller => ({
         price: bestSeller.price_from.replace(".", ""),
-        media: bestSeller.image,
+        mediaImage: bestSeller.image,
         title: bestSeller.destination_name,
         subtitle: bestSeller.flight_type,
         href: bestSeller.url
@@ -56,7 +56,7 @@ const WithApolloComponent = compose(
     props: ({ ownProps, data: { home } }) => ({
       products: map(get(home,'content.promotional_banners',[]), flight => ({
         price: flight.price.replace(".", ""),
-        media: flight.image,
+        mediaImage: flight.image,
         imageTitle: flight.publication_type,
         title: flight.destination_name,
         subtitle: flight.sub_title_bottom,

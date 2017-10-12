@@ -38,7 +38,7 @@ module.exports = function (plop) {
 
 		cp.sync(fromPath, toPath);
 
-    replaceFrom.map && (replaceFrom=replaceFrom.map(r=>plop.renderString(r, answers)) )
+    // replaceFrom.map && (replaceFrom=replaceFrom.map(r=>plop.renderString(r, answers)) )
     replaceTo.map && ( replaceTo=replaceTo.map(r=>plop.renderString(r, answers)) )
 
     replace.sync({
@@ -252,13 +252,13 @@ module.exports = function (plop) {
             to: dirName + '/{{componentName}}/stories.js',
             replaceFrom: [
               'global/',
-              'from "./README.md"',
-              "from './README.md'",
+              /[\'](.\/)(?!')/g,
+              /[\"](.\/)(?!")/g,
             ],
             replaceTo: [
-              data.ui+'/',
-              "from '../../global/{{componentName}}/README.md'",
-              "from '../../global/{{componentName}}/README.md'",
+              data.ui + '/',
+              "'../../global/{{componentName}}/",
+              "\"../../global/{{componentName}}/",
             ],
         });
 

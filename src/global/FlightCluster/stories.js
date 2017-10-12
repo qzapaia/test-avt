@@ -88,6 +88,32 @@ const generateCluster = () => {
     }
   }
 
+
+  const flightSample3 = {
+    departure:{
+      iata:'ATL',
+      date:new Date(),
+      city:'Atlanta',
+      airport:'Aerop. Intl. Hartsfield Jackson'
+    },
+    arrival:{
+      iata:'MIA',
+      date:new Date(),
+      city:'Miami',
+      airport:'Intl. de Miami'
+    },
+    common:{
+      flightStep:3,
+      flightNumber:'DA120',
+      airlineLogo: 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/CM.png?adq-20170927-0',
+      provider:'Delta Air Lines',
+      airlineName:'American Airlines',
+      class:'Económica',
+    }
+  }
+
+
+
   const sampleRouteOption1 = {
     'summaryInfo': {
       'id':123456,
@@ -101,13 +127,13 @@ const generateCluster = () => {
       'departureDate': new Date(),
       'arrivalIata':'MIA',
       'arrivalDate': new Date(),
-      'scalesText': '1 Escala',
+      'scalesText': '2 Escalas',
       'totalTime': new Date(),
       'isSelected':false
     },
     'extendedInfo': {
       'header':'Buenos Aires hacia Miami',
-      'flights':[flightSample1, flightSample2]
+      'flights':[flightSample1, flightSample2, flightSample3]
     }
   }
 

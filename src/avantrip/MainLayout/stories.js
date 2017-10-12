@@ -1,23 +1,28 @@
 import React from 'react';
-import Header from './';
+import MainLayout from './';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { withState, compose } from 'recompose';
 
 import generalDecorator from '../../stories.decorator.js';
+import MainLayoutWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
 
-import ContactAndPhoneInfo from '../ContactAndPhoneInfo';
+import reducer from "./reducer";
 
-storiesOf('global/Header', module)
+
+storiesOf('avantrip/MainLayout', module)
   .addDecorator(generalDecorator({
     readme,
-    theme
+    theme,
+    reducer
   }))
   .add('Default', () => (
-    <Header
-      phoneText="0810-222-2826"
-      currentPathname="/vuelos/"/>
+    <MainLayout></MainLayout>
   ))
+  // .add('With data', () => (
+  //   <MainLayoutWithData></MainLayoutWithData>
+  // ))

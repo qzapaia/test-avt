@@ -17,15 +17,19 @@ import { random } from 'lodash';
 const randomPagesCount = random(20);
 
 storiesOf('avantrip/Paginate', module)
-  .addDecorator(
-    generalDecorator({
-      readme,
-      theme,
-      reducer: {
-        paginate: reducer
-      }
-    })
-  )
-  .add('Default', () => (
-    <PaginateWithData pagesCount={randomPagesCount} ></PaginateWithData>
-  ))
+.addDecorator(
+  generalDecorator({
+    readme,
+    theme,
+    reducer: {
+      paginate: reducer
+    }
+  })
+)
+.add('Default', () => (
+  <Paginate pagesCount={randomPagesCount} ></Paginate>
+))
+.add('With Data',()=> (
+  <PaginateWithData pageCount={randomPagesCount}/>
+))
+

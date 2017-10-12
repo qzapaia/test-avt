@@ -1,6 +1,6 @@
 
 import React from 'react';
-import GlobalSubscribe from '../../global/Subscribe';
+import GlobalSubscribe from '../../global/Subscribe/withData';
 import { ThemeProvider } from 'styled-components';
 
 const componentTheme = {}
@@ -10,5 +10,3 @@ export default (props) => (
     <GlobalSubscribe {...props} />
   </ThemeProvider>
 )
-
-  

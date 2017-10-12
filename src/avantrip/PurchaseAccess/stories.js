@@ -10,7 +10,7 @@ import generalDecorator from "../../stories.decorator.js";
 
 import theme from "../styled.theme";
 import readme from "./README.md";
-import reducer from "../../global/PurchaseAccess/reducer";
+import reducer from "./reducer";
 
 const enhace = compose(
   withState("formValue", "updateFormValue", {

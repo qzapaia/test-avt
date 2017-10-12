@@ -24,3 +24,27 @@ export const DetailInfo = styled.p`
 export const FarePerPerson = Text.extend`
   margin: 5px 0;
 `
+
+export const ViewDetails = styled.button`
+  &:focus, &:active{
+    outline: none;
+  }
+  color: ${props=>props.theme.colors.primary};
+  text-transform: uppercase;
+  align-self: center;
+  background: none;
+  border: none;
+`
+
+export const ExpandContainer = Container.extend`
+  animation: 0.5s expand ease;
+  @keyframes expand {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+
+  }
+`

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import {get} from 'lodash';
 import Autosuggest from 'react-autosuggest';
+import {Label} from './styled';
 
 const childrenToOpions = children => {
   return children.map(c=>({
@@ -113,7 +114,7 @@ class InputText extends Component {
     };
 
     return (
-      <label>
+      <Label>
         {label && <span>{label}</span>}
         {icon && <Icon id={icon} />}
         <Autosuggest
@@ -125,7 +126,7 @@ class InputText extends Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
         />
-      </label>
+      </Label>
     );
   }
 }

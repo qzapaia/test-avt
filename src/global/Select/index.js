@@ -37,7 +37,7 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   options: PropTypes.array,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   searchable: PropTypes.bool,
   clearable: PropTypes.bool,
 
