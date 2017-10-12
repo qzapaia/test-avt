@@ -68,6 +68,17 @@ const FareDetail = ({
         </DetailInfo>
       }
 
+    { detailInfo.taxes &&
+      <Text tag='p'>
+        <Text type='xs'>
+          TEA {detailInfo.taxes.TEA}%
+        </Text>
+        <Text type='xs'>
+          CFT {detailInfo.taxes.CFT}%
+        </Text>
+      </Text>
+    }
+
     <DetailInfo>
       <Text>
         Precio final
@@ -79,16 +90,7 @@ const FareDetail = ({
         color='brand'
       />
     </DetailInfo>
-    { detailInfo.taxes &&
-      <Text tag='p'>
-        <Text type='xs'>
-          TEA {detailInfo.taxes.TEA}%
-        </Text>
-        <Text type='xs'>
-          CFT {detailInfo.taxes.CFT}%
-        </Text>
-      </Text>
-    }
+
   </Container>
 )
 

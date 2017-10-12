@@ -10,6 +10,7 @@ export const Container = styled.article`
 export const DetailInfo = styled.p`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   margin: 5px 0;
