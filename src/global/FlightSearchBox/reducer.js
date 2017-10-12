@@ -9,7 +9,7 @@ import {
 } from './actions';
 const initialState = {
   destinations:[],  
-  value: {
+  values: {
     leg:'1',
     adults:1,
     children:0,
@@ -48,27 +48,27 @@ export default (state = initialState, action) => {
       let path = Object.keys(payload)[0];
       let val = payload[path];
 
-      if(path.indexOf('dates')> -1 && state.value.leg != '1') {
+      if(path.indexOf('dates')> -1 && state.values.leg != '1') {
         val = val.startDate;
       }
 
-      set(originState.value, path, val);
+      set(originState.values, path, val);
 
-      if(originState.value.leg == 3 && path.indexOf('dates')> -1) {
+      if(originState.values.leg == 3 && path.indexOf('dates')> -1) {
         switch(path) {
           case 'flights[0].dates':
 
-            if(originState.value.flights[1] && originState.value.flights[1].dates && moment(originState.value.flights[0].dates).isAfter(originState.value.flights[1].dates)) {
-              originState.value.flights[1].dates = originState.value.flights[0].dates;
+            if(originState.values.flights[1] && originState.values.flights[1].dates && moment(originState.values.flights[0].dates).isAfter(originState.values.flights[1].dates)) {
+              originState.values.flights[1].dates = originState.values.flights[0].dates;
             }
 
-            if(originState.value.flights[2] && originState.value.flights[2].dates && moment(originState.value.flights[0].dates).isAfter(originState.value.flights[2].dates)) {
-              originState.value.flights[2].dates = originState.value.flights[0].dates;
+            if(originState.values.flights[2] && originState.values.flights[2].dates && moment(originState.values.flights[0].dates).isAfter(originState.values.flights[2].dates)) {
+              originState.values.flights[2].dates = originState.values.flights[0].dates;
             }
           break;
           case 'flights[1].dates':
-            if(originState.value.flights[2] && originState.value.flights[2].dates && moment(originState.value.flights[1].dates).isAfter(originState.value.flights[2].dates)) {
-              originState.value.flights[2].dates = originState.value.flights[1].dates;
+            if(originState.values.flights[2] && originState.values.flights[2].dates && moment(originState.values.flights[1].dates).isAfter(originState.values.flights[2].dates)) {
+              originState.values.flights[2].dates = originState.values.flights[1].dates;
             }
           break;
          }
@@ -77,39 +77,39 @@ export default (state = initialState, action) => {
       if(path == 'leg') {
         switch(val) {
           case '1':
-            const flightAux = [head(originState.value.flights)];
-            delete originState.value.flights;
-            originState.value.flights = flightAux;
+            const flightAux = [head(originState.values.flights)];
+            delete originState.values.flights;
+            originState.values.flights = flightAux;
             
-            if(state.value.flights[0].dates) {
-              originState.value.flights[0].dates.startDate = state.value.flights[0].dates
+            if(state.values.flights[0].dates) {
+              originState.values.flights[0].dates.startDate = state.values.flights[0].dates
             }
-            if(state.value.flights[1] && state.value.flights[1].dates) {
-              originState.value.flights[0].dates.endDate = state.value.flights[1].dates
+            if(state.values.flights[1] && state.values.flights[1].dates) {
+              originState.values.flights[0].dates.endDate = state.values.flights[1].dates
             }
             
             break
           case '2':
-            originState.value.flights = [head(originState.value.flights)];
-            if (has(originState.value.flights[0].dates, 'startDate')) {
-              const auxDate = originState.value.flights[0].dates.startDate;
-              delete originState.value.flights[0].dates.startDate;
-              originState.value.flights[0].dates = auxDate; 
-            } else if(isEmpty(originState.value.flights[0].dates)) {
-              originState.value.flights[0].dates = undefined;
+            originState.values.flights = [head(originState.values.flights)];
+            if (has(originState.values.flights[0].dates, 'startDate')) {
+              const auxDate = originState.values.flights[0].dates.startDate;
+              delete originState.values.flights[0].dates.startDate;
+              originState.values.flights[0].dates = auxDate; 
+            } else if(isEmpty(originState.values.flights[0].dates)) {
+              originState.values.flights[0].dates = undefined;
             }
             break
           case '3':
-            originState.value.flights.length < 2 && originState.value.flights.push({
+            originState.values.flights.length < 2 && originState.values.flights.push({
               originCity: '',destinationCity: '', dates: undefined, error: {state: false,message:''}
             });
 
-            if(state.value.flights[0].dates && state.value.flights[0].dates.endDate) {
-              originState.value.flights[1].dates = state.value.flights[0].dates.endDate;
+            if(state.values.flights[0].dates && state.values.flights[0].dates.endDate) {
+              originState.values.flights[1].dates = state.values.flights[0].dates.endDate;
             }
             
-            if(state.value.flights[0].dates && state.value.flights[0].dates.startDate) {
-              originState.value.flights[0].dates = state.value.flights[0].dates.startDate;
+            if(state.values.flights[0].dates && state.values.flights[0].dates.startDate) {
+              originState.values.flights[0].dates = state.values.flights[0].dates.startDate;
             }
 
           break
@@ -118,18 +118,18 @@ export default (state = initialState, action) => {
         }
       }
 
-      if(path == 'adults' && val < originState.value.infants) {
-        originState.value.infants = val;
+      if(path == 'adults' && val < originState.values.infants) {
+        originState.values.infants = val;
       }
 
-      if( (path == 'adults' || path == 'children' || path == 'infants' ) && (parseInt(originState.value.adults) + parseInt(originState.value.children) + parseInt(originState.value.infants)) > 9 ) {
+      if( (path == 'adults' || path == 'children' || path == 'infants' ) && (parseInt(originState.values.adults) + parseInt(originState.values.children) + parseInt(originState.values.infants)) > 9 ) {
         originState.errors.amountOfTravellers = 'La cantidad de pasajeros no puede ser mayor a 9';
       } else {
-        originState.value.amountOfTravellers = '';
+        originState.values.amountOfTravellers = '';
       }
 
       if(path.indexOf('destinationCity') > -1 || path.indexOf('originCity') > -1) {
-        forEach(originState.value.flights, (flight, idx) => {
+        forEach(originState.values.flights, (flight, idx) => {
           if(flight.originCity == flight.destinationCity && flight.originCity.length > 0) {
             flight.destinationCity = '';
           }
@@ -142,15 +142,15 @@ export default (state = initialState, action) => {
     case CREATE_SEARCH:
 
       let SEODestinations = 'http://avantrip.apps.int.devtrip.com.ar/vuelos/';
-      const destinations = reduce(payload.value.flights, (init, flight,idx) => {
+      const destinations = reduce(payload.flights, (init, flight,idx) => {
         let dateStart = '';
         let dateEnd = '';
-        const originCity = find(payload.destinations, ['iata_code', flight.originCity]);
-        const destinationCity = find(payload.destinations, ['iata_code', flight.destinationCity]);
+        const originCity = find(state.destinations, ['iata_code', flight.originCity]);
+        const destinationCity = find(state.destinations, ['iata_code', flight.destinationCity]);
 
         if(originCity && destinationCity) {
           SEODestinations += `${kebabCase(destinationCity.city)}-desde-${kebabCase(originCity.city)}`;
-          if(payload.value.flights.length>1 && idx+1 < payload.value.flights.length) {
+          if(payload.flights.length>1 && idx+1 < payload.flights.length) {
             SEODestinations += '-y-';
           }
         }
@@ -164,14 +164,14 @@ export default (state = initialState, action) => {
 
         init +=
          `destinationFromId%5B${idx}%5D=${flight.originCity}&destinationToId%5B${idx}%5D=${flight.destinationCity}&dateFrom%5B${idx}%5D=${moment(dateStart).format("DD-MM-YYYY")}&`;
-          if(payload.value.leg == 1) {
+          if(payload.leg == 1) {
             init += dateEnd;
           }
           return init;
       }, '');
       
 
-      const url = `${SEODestinations}?av-seleccion-grupo=on&${destinations}isMulticity=${payload.value.flights.length>1 && 'true'}&round_trip=${(payload.value.leg == 2) ?'on':''}&adults=${payload.value.adults}&children=${payload.value.children}&${(payload.value.leg == 2 || payload.value.leg == 3)? 'dateTo=&': ''}babies=${payload.value.infants}&${(payload.value.flexibleDates || payload.value.leg == 3)? 'flexibleDates=on&':''}flightClass=${payload.value.class == 1 ?'NMO.GBL.SCL.ECO':'NMO.GBL.SCL.BSN'}`;
+      const url = `${SEODestinations}?av-seleccion-grupo=on&${destinations}isMulticity=${payload.flights.length>1 && 'true'}&round_trip=${(payload.leg == 2) ?'on':''}&adults=${payload.adults}&children=${payload.children}&${(payload.leg == 2 || payload.leg == 3)? 'dateTo=&': ''}babies=${payload.infants}&${(payload.flexibleDates || payload.leg == 3)? 'flexibleDates=on&':''}flightClass=${payload.class == 1 ?'NMO.GBL.SCL.ECO':'NMO.GBL.SCL.BSN'}`;
       
       console.log(url)
 
@@ -186,22 +186,21 @@ export default (state = initialState, action) => {
       const originStateLeg = clone(state);
       if(payload == 'add') {
         
-        if(originStateLeg.value.flights.length <= 2) {
-          originStateLeg.value.flights.push({
+        if(originStateLeg.values.flights.length <= 2) {
+          originStateLeg.values.flights.push({
             originCity: '',
             destinationCity: '',
-            dates: undefined,
-            error: {state: false,message:''}
+            dates: undefined
           })
         }
-      } else if(originStateLeg.value.flights.length == 3) {
-        originStateLeg.value.flights.pop();
+      } else if(originStateLeg.values.flights.length == 3) {
+        originStateLeg.values.flights.pop();
         } else {
-          originStateLeg.value.leg = '1';
-          originStateLeg.value.flights.pop();
+          originStateLeg.values.leg = '1';
+          originStateLeg.values.flights.pop();
          
-          if(state.value.flights[0].dates) {
-            originStateLeg.value.flights[0].dates.startDate = state.value.flights[0].dates;
+          if(state.values.flights[0].dates) {
+            originStateLeg.values.flights[0].dates.startDate = state.values.flights[0].dates;
           }
       }
       return {

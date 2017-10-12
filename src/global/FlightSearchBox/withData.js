@@ -5,7 +5,8 @@ import { map } from "lodash";
 import { setSearchBoxValue, createSearch, getDestinations, setSearchBoxflight } from './actions';
 
 const mapStateToProps = state => ({
-  searchValues: state.search,
+  values: state.search.values,
+  errors: state.search.errors,
   destinations: map(state.search.destinations, destination => ({
     description: destination.description,
     iata_code: destination.iata_code,

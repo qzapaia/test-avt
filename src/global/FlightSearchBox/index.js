@@ -93,7 +93,9 @@ const FlightSearchBox = ({
   onChange,
   onSearch,
   onSetSearchBoxFlight,
-  searchValues,
+  values,
+  errors,
+  destinations,
   expanded,
   toggleExpand
 }) => {
@@ -122,11 +124,11 @@ const FlightSearchBox = ({
             label: 'Multidestino'
           }
         ]}
-        value= {searchValues.value.leg}
+        value= {values.leg}
       />
     </Radios>
     {
-      map(searchValues.value.flights, (flight, idx) => (
+      map(values.flights, (flight, idx) => (
         <div>
           <FromTo>
             <InputText
@@ -136,7 +138,7 @@ const FlightSearchBox = ({
               requiresExistingValue='true'
             >
               {
-                map(searchValues.destinations, destination => (
+                map(destinations, destination => (
                   <option 
                     city={destination.city} 
                     value={destination.iata_code}
@@ -152,15 +154,15 @@ const FlightSearchBox = ({
               value={flight.destinationCity}
               requiresExistingValue={true}
             >
-              {createOptionsDestinations(searchValues.destinations, flight, 'destinationCity')}
+              {createOptionsDestinations(destinations, flight, 'destinationCity')}
             </InputText>
           </FromTo>
           <DateContainer>
             <InputDate
-              range={searchValues.value.leg == 1 ? true : false}
+              range={values.leg == 1 ? true : false}
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
               dates={flight.dates}
-              min={setDateAccordingFlight({'flights':searchValues.value.flights, 'leg': searchValues.value.leg, 'index': idx}) }
+              min={setDateAccordingFlight({'flights':values.flights, 'leg': values.leg, 'index': idx}) }
               max={moment().add('days', 360).format("YYYY-MM-DD")}
               forceDatesFormat={true}
               startDatePlaceholderText='Partida'
@@ -170,25 +172,25 @@ const FlightSearchBox = ({
           </DateContainer>
         </div>
       ))}
-      {searchValues.value.leg == 3 &&
+      {values.leg == 3 &&
         <AddRemoveFlights>
           <AddRemoveFlightsButton onClick={customOnSet(onSetSearchBoxFlight, 'remove')}>
             Quitar -
           </AddRemoveFlightsButton>
-        {searchValues.value.flights.length < 3 &&
+        {values.flights.length < 3 &&
           <AddRemoveFlightsButton onClick={customOnSet(onSetSearchBoxFlight, 'add')}>
             Agregar +
           </AddRemoveFlightsButton>
         }
       </AddRemoveFlights>}
-    {searchValues.value.leg != 3 &&
+    {values.leg != 3 &&
       <FlexibleDates>
         <InputCheckbox
           value='flexibleDates'
           onChange={customOnChange(onChange, "flexibleDates")}
           type='checkbox'
           label='Mis fechas son flexibles'
-          checked={searchValues.value.flexibleDates? true: false}
+          checked={values.flexibleDates? true: false}
         />
     </FlexibleDates>}
     <Passengers>
@@ -210,8 +212,8 @@ const FlightSearchBox = ({
           name='adults'
           placeholder='1'
           onChange={customOnChange(onChange, 'adults')}
-          value={searchValues.value.adults}
-          options={optionsToIterate(searchValues.value, 'adults')}
+          value={values.adults}
+          options={optionsToIterate(values, 'adults')}
           />
         </PassengerItem>
         <PassengerItem>
@@ -232,8 +234,8 @@ const FlightSearchBox = ({
           name='children'
           placeholder='0'
           onChange={customOnChange(onChange, 'children')}
-          value={searchValues.value.children}
-          options={optionsToIterate(searchValues.value, 'children')}
+          value={values.children}
+          options={optionsToIterate(values, 'children')}
           />
         </PassengerItem>
 
@@ -255,8 +257,8 @@ const FlightSearchBox = ({
             name='infants'
             placeholder='0'
             onChange={customOnChange(onChange, 'infants')}
-            value={searchValues.value.infants}
-            options={optionsToIterate(searchValues.value, 'infants')}
+            value={values.infants}
+            options={optionsToIterate(values, 'infants')}
           />
         </PassengerItem>
 
@@ -280,13 +282,13 @@ const FlightSearchBox = ({
                 label: 'Business'
               }
             ]}
-            value= {searchValues.value.class}
+            value= {values.class}
           />
         </MoreOptionsContainer>}
 
     </Passengers>
     <SearchButton>
-      <Button onClick={() => onCustomSearch(onSearch, searchValues)}>Buscar vuelos</Button>
+      <Button onClick={() => onCustomSearch(onSearch, values)}>Buscar vuelos</Button>
     </SearchButton>
   </Container>)
 }
@@ -296,7 +298,7 @@ FlightSearchBox.propTypes = {
 }
 
 FlightSearchBox.defaultProps = {
-  value:{
+  values:{
     leg: 1,
     amountTraveller:{
       adults: 1
