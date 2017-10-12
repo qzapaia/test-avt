@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Text from '../Text';
+import Icon from '../Icon';
 import InputRadio from '../InputRadio';
 import ExpansionPanel from '../ExpansionPanel';
 import {ExpandButton, ExtendedInformation} from '../ExpansionPanel/styled';
-import {ClusterItem, ClusterContent, AirlineName, InfoContainer, AirlineContainer, FromTo, Detail, Origin, Arrival, Scale, Iata, Date, TripTitle, IataBold, MediumBold, DetailDeparture, DetailFlight, DetailArrival, DetailExtended, MainDetail, Delay, DelayContainer, Step, AirlineDetail} from './styled';
+import {ClusterItem, ClusterContent, AirlineName, InfoContainer, AirlineContainer, FromTo, Detail, Origin, Arrival, Scale, Iata, Date, TripTitle, IataBold, MediumBold, DetailDeparture, DetailFlight, DetailArrival, DetailExtended, MainDetail, Delay, DelayContainer, Step, AirlineDetail, BoldText, FlightNumber, Disclaimer} from './styled';
 import { withState } from 'recompose';
 
 import { map } from 'lodash'
@@ -104,7 +105,12 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
                   {data.extendedInfo.header}
                 </Text>
                 <Text tag='h2' type='m'>
-                  Duracion: {moment(data.summaryInfo.totalTime).format('HH:mm[hs]')}
+                  <Text>
+                    Duracion:
+                  </Text>
+                  <BoldText>
+                    {moment(data.summaryInfo.totalTime).format('HH:mm[hs]')}
+                  </BoldText>
                 </Text>
               </TripTitle>
               {
@@ -133,7 +139,10 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
 
                     <DetailFlight>
                       <Step>
-                        {f.common.flightStep} Tramo
+                        <Icon id='Vuelos' width='14px' height='14px'/>
+                        <BoldText>
+                          {f.common.flightStep}° Tramo
+                        </BoldText>
                       </Step>
                       <AirlineDetail>
                         <img src={f.common.airlineLogo} />
@@ -142,38 +151,43 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
                         </Text>
                       </AirlineDetail>
                       <Text>
-                        {f.common.class}
+                        <Text>
+                          Clase:
+                        </Text>
+                        <BoldText>
+                          {f.common.class}
+                        </BoldText>
                       </Text>
-                      <Text>
-                        {f.common.flightNumber}
-                      </Text>
+                      <FlightNumber>
+                        <Icon id='Vuelos' width='12px' height='12px'/>
+                        <Text>
+                          Vuelo N°:
+                        </Text>
+                        <BoldText>
+                          {f.common.flightNumber}
+                        </BoldText>
+                      </FlightNumber>
                     </DetailFlight>
 
                     <DetailArrival style={{margin:'10px', 'flexGrow':'1', 'flexBasis': '0'}}>
-                      <div>
+                      <Text type='m'>
                         LLEGADA
-                      </div>
-                      <div>
-                        <MediumBold type='m' tag='strong'>
-                          {moment(f.arrival.date).format('ddd. DD MMM [de] YYYY')}
-                        </MediumBold>
-                      </div>
-                      <div>
-                        <IataBold tag='strong' type='xl'>
-                          {f.arrival.iata}
-                        </IataBold>
-                      </div>
-                      <div>
-                        <MediumBold type='m' tag='strong'>
-                          {moment(f.arrival.date).format('HH:mm[hs]')}
-                        </MediumBold>
-                      </div>
-                      <div>
+                      </Text>
+                      <MediumBold type='m' tag='strong'>
+                        {moment(f.arrival.date).format('ddd. DD MMM [de] YYYY')}
+                      </MediumBold>
+                      <IataBold tag='strong' type='xl'>
+                        {f.arrival.iata}
+                      </IataBold>
+                      <MediumBold type='m' tag='strong'>
+                        {moment(f.arrival.date).format('HH:mm[hs]')}
+                      </MediumBold>
+                      <Text>
                           {f.arrival.city}
-                      </div>
-                      <div>
+                      </Text>
+                      <Text>
                           {f.arrival.airport}
-                      </div>
+                      </Text>
                     </DetailArrival>
                     {
                       data.extendedInfo.flights.length > 1 &&
@@ -188,6 +202,9 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
                   )
                 )
               }
+              <Disclaimer tag='p' type='xs'>
+                Los horarios están expresados en la hora local de cada ciudad
+              </Disclaimer>
             </ExtendedInformation>
           }
         />

@@ -150,14 +150,36 @@ export const Delay = Text.extend`
 `
 
 export const Step = styled.h2`
-  padding: 10px;
+  padding: 7px;
   background: ${props=>props.theme.colors.gray};
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 
 `
 export const AirlineDetail = styled.figure`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+export const BoldText = Text.extend`
+  font-weight: 400;
+  margin-left: 5px;
+`
+export const FlightNumber = Text.extend`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  svg{
+    margin-right: 5px;
+  }
+`
+export const Disclaimer = Text.extend`
+  text-align: center;
+  font-style: italic;
+  margin: 5px;
 `
