@@ -25,9 +25,6 @@ const initialState = {
     ]
   },
   errors: {
-    adults:'',
-    children:'',
-    infants:'',
     amountOfTravellers: '',
     flights: []
   }

@@ -10,8 +10,9 @@ export default () => (
   <FlightSearchBox
     title={String}
     onChange={Function}
-    onClick={Function}
-    values={Collection}
+    onSearch={Function}
+    onSetSearchBoxFlight={Function}
+    searchValues={Collection}
   />
 )
 ```
@@ -25,18 +26,33 @@ title of the Component
 #### `onChange={<Function>}`
 Event handler that receive as a parameter the key and value from the selected item.
 
-#### `onClick={<Function>}`
+#### `onSearch={<Function>}`
 Event trigger when the button is clicked and send the values of the search
 
-#### `value={<Collection>}`
+#### `onSetSearchBoxFlight={<Function>}`
+Event handler that receive as a parameter to add o remove flight.
+
+#### `searchValues={<Object>}`
 Values selected. They must respect the format: 
 ```javascript
-  [{
+  [destinations:[],  
+  value: {
     leg:'1',
-    amountTraveller:{adults:'1', babies: '1', children: '1'},
+    adults:1,
+    children:0,
+    infants:0,
     class:'1',
-    flexibleDate: true, 
-    originCity: "bue", 
-    destinationCity: "mia"
+    flexibleDates: false,
+    flights: [
+      {
+        originCity: '',
+        destinationCity: '',
+        dates: undefined
+      }
+    ]
+  },
+  errors: {
+    amountOfTravellers: '',
+    flights: []
   }]
 ```
