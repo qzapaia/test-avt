@@ -32,7 +32,13 @@ const generateCluster = () => {
       'price': 622
     }],
     'taxes': 14633,
-    'charges': 0,
+    'charges': 5500,
+    'priceWithoutInterest': 64.907,
+    'interest': {
+      'TEA': 5.24,
+      'CFT': 6.46,
+      'value': 4271
+    },
     'finalPrice': 69.177
   }
 

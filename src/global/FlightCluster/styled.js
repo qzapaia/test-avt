@@ -186,4 +186,5 @@ export const Disclaimer = Text.extend`
 export const FareDetailContainer = styled.article`
   flex: 1;
   min-width: 220px;
+  padding: 0 20px;
 `

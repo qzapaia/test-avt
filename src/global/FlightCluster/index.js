@@ -15,11 +15,6 @@ const containerStyle = {
   display:'flex'
 }
 
-const fareDetailContainer = {
-  flexGrow:1,
-  backgroundColor:'lightGrey'
-}
-
 const routeContainer = {
   flexGrow:3
 }
