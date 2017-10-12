@@ -183,3 +183,7 @@ export const Disclaimer = Text.extend`
   font-style: italic;
   margin: 5px;
 `
+export const FareDetailContainer = styled.article`
+  flex: 1;
+  min-width: 220px;
+`
