@@ -12,17 +12,24 @@ const initialState = {
   value: {
     leg:'1',
     adults:1,
+    children:0,
+    infants:0,
     class:'1',
-    amountOfTravellers: {state: false,message:''},
     flexibleDates: false,
     flights: [
       {
         originCity: '',
         destinationCity: '',
-        dates: undefined,
-        error: {state: false,message:''}
+        dates: undefined
       }
     ]
+  },
+  errors: {
+    adults:'',
+    children:'',
+    infants:'',
+    amountOfTravellers: '',
+    flights: []
   }
 };
 
@@ -114,12 +121,14 @@ export default (state = initialState, action) => {
         }
       }
 
+      if(path == 'adults' && val < originState.value.infants) {
+        originState.value.infants = val;
+      }
+
       if( (path == 'adults' || path == 'children' || path == 'infants' ) && (parseInt(originState.value.adults) + parseInt(originState.value.children) + parseInt(originState.value.infants)) > 9 ) {
-        originState.value.amountOfTravellers.state = true;
-        originState.value.amountOfTravellers.message = 'La cantidad de pasajeros no puede ser mayor a 9';
+        originState.errors.amountOfTravellers = 'La cantidad de pasajeros no puede ser mayor a 9';
       } else {
-        originState.value.amountOfTravellers.state = false;
-        originState.value.amountOfTravellers.message = '';
+        originState.value.amountOfTravellers = '';
       }
 
       if(path.indexOf('destinationCity') > -1 || path.indexOf('originCity') > -1) {
@@ -158,11 +167,12 @@ export default (state = initialState, action) => {
 
         init +=
          `destinationFromId%5B${idx}%5D=${flight.originCity}&destinationToId%5B${idx}%5D=${flight.destinationCity}&dateFrom%5B${idx}%5D=${moment(dateStart).format("DD-MM-YYYY")}&`;
-          if(payload.leg == 1) {
+          if(payload.value.leg == 1) {
             init += dateEnd;
           }
           return init;
       }, '');
+      
 
       const url = `${SEODestinations}?av-seleccion-grupo=on&${destinations}isMulticity=${payload.value.flights.length>1 && 'true'}&round_trip=${(payload.value.leg == 2) ?'on':''}&adults=${payload.value.adults}&children=${payload.value.children}&${(payload.value.leg == 2 || payload.value.leg == 3)? 'dateTo=&': ''}babies=${payload.value.infants}&${(payload.value.flexibleDates || payload.value.leg == 3)? 'flexibleDates=on&':''}flightClass=${payload.value.class == 1 ?'NMO.GBL.SCL.ECO':'NMO.GBL.SCL.BSN'}`;
       

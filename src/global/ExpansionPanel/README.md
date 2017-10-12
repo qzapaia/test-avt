@@ -36,3 +36,21 @@ isExpanded.
 #### `isExpanded={<Boolean>}`
 En true muestra el nodo extendedInformation, de lo contrario,
 lo oculta.
+
+
+## Enhacer (HOC)
+
+```javascript
+import ExpansionPanelEnhacer from 'avantrip-react/avantrip/ExpansionPanel/enhacer';
+
+const MyComponent = ExpansionPanelEnhacer(({expanded, expand, toggleExpand}) => (
+  <div>
+    <button onClick={toggleExpand}>Expand</button>
+    <div>
+      {expanded && <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quis at quibusdam molestias non praesentium, cum provident dolor culpa mollitia adipisci nemo autem similique porro soluta doloremque, recusandae ex, minus.
+      </div>}
+    </div>
+  </div>
+))
+```

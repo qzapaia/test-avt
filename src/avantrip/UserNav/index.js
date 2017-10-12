@@ -11,9 +11,10 @@ import { withState } from "recompose";
 const UserNav = ({ data, onClick, logout, showMenu }) => (
   <Container>
     <UserData onClick={e => onClick(!showMenu)}>
+      {data.urlImage &&
       <UserLogo>
         <img src={data.urlImage} />
-      </UserLogo>
+      </UserLogo>}
       <Text type="s">{data.name || data.email}</Text>
     </UserData>
     {showMenu && (

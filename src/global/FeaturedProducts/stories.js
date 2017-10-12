@@ -11,8 +11,7 @@ import readme from "./README.md";
 
 const mockPromotionalFlights = [
   {
-    media:
-      "https://static.avantrip.com/fkt-flight/images/img-cluster-miami.jpg",
+    mediaImage:"https://static.avantrip.com/fkt-flight/images/img-cluster-miami.jpg",
     imageTitle: "Volando con American Airlines",
     title: "Miami",
     subtitle: "Ida y vuelta",
@@ -22,8 +21,7 @@ const mockPromotionalFlights = [
     href: "https://www.avantrip.com/oportunidades/vuelos-miami"
   },
   {
-    media:
-      "https://static.avantrip.com/fkt-flight/images/img-cluster-madrid.jpg",
+    mediaImage:"https://static.avantrip.com/fkt-flight/images/img-cluster-madrid.jpg",
     imageTitle: "Volando con Latam",
     title: "Madrid",
     subtitle: "Ida y vuelta",

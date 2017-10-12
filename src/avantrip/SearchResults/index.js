@@ -1,13 +1,13 @@
 
 import React from 'react';
-import GlobalJustOne from '../../global/JustOne';
+import GlobalSearchResults from '../../global/SearchResults';
 import { ThemeProvider } from 'styled-components';
 
 const componentTheme = {}
 
 export default (props) => (
   <ThemeProvider theme={componentTheme}>
-    <GlobalJustOne {...props} />
+    <GlobalSearchResults {...props} />
   </ThemeProvider>
 )
 

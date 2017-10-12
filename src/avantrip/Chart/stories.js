@@ -13,7 +13,7 @@ import { withState, compose } from "recompose";
 import { ThemeProvider } from "styled-components";
 
 import theme from "../styled.theme";
-import readme from "./README.md";
+import readme from '../../global/Chart/README.md';
 
 const addReadme = comp => withReadme(readme, comp);
 
@@ -32,27 +32,14 @@ const clickHandler = value => {
   action("click")(value);
 };
 
-const CustomTooltip = React.createClass({
-  propTypes: {
-    type: PropTypes.string,
-    payload: PropTypes.array
-  },
-  render() {
-    const { active } = this.props;
-
-    if (active) {
-      const { payload, label } = this.props;
-      return (
-        <div >
-          <p>{payload[0].payload.name}</p>
-          <p>ARS {payload[0].payload.price}</p>
-        </div>
-      );
-    }
-
-    return null;
-  }
-});
+const CustomTooltip = ({active, payload, label}) => (
+  <div>
+    {active && <div>
+      <p>{payload[0].payload.name}</p>
+      <p>ARS {payload[0].payload.price}</p>
+    </div>}
+  </div>
+);
 
 storiesOf("avantrip/Chart", module)
   .add(

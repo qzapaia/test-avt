@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as SVGS from './imports.js';
-import {withTheme} from 'styled-components'
+import {withTheme} from 'styled-components';
 import {get} from 'lodash';
 
 const Icon = ({

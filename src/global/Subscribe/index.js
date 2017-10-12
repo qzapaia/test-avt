@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, TextContainer, InputContainer, FormChildsContainer }  from './styled';
+import { Container, TextContainer, InputContainer, FormChildsContainer, Form }  from './styled';
 import InputText from '../InputText';
 import Text from '../Text';
 import Button from '../Button';
@@ -8,20 +8,19 @@ import Button from '../Button';
 const ERROR_STATE = 'error';
 const SUCCESS_STATE = 'success';
 
-const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email}) => (
+const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email, buttonText, layout}) => (
   <div>
-    {!subscriptionStatus &&
       <Container>
 
         <TextContainer>
-          <Text color='brand' tag='h4' type='l'>
+          <Text color='brand' tag='h2' type='l'>
             {title}
           </Text>
         </TextContainer>
 
-        <InputContainer>
+        <InputContainer layout={layout}>
 
-          <form onSubmit={ (e) => {
+          <Form onSubmit={ (e) => {
             e.preventDefault()
             onSubscribe(email)
           }} >
@@ -35,17 +34,18 @@ const Subscribe = ({onSubscribe, onChange, title, subscriptionStatus, email}) =>
                 requiresExistingValue={false}
                 placeholder="Ingresá tu dirección de email"
               />
-              <Button>Enviar</Button>
+              <Button>
+                {buttonText}
+              </Button>
             </FormChildsContainer>
-          </form>
+          </Form>
         </InputContainer>
       </Container>
-    }
     {subscriptionStatus == SUCCESS_STATE &&
-      <div>Todo joya</div>
+      <Text>¡Gracias por suscribirte!</Text>
     }
     {subscriptionStatus == ERROR_STATE &&
-      <div>Todo mal</div>
+      <Text>Ocurrió un error. Intentá más tarde.</Text>
     }
   </div>
 )
@@ -54,7 +54,15 @@ Subscribe.propTypes = {
   onSubscribe:PropTypes.func.isRequired,
   email:PropTypes.string,
   title:PropTypes.string.isRequired,
+  buttonText:PropTypes.string.isRequired,
   subscriptionStatus:PropTypes.oneOf([SUCCESS_STATE, ERROR_STATE])
 }
+
+Subscribe.defaultProps = {
+  buttonText:'Enviar'
+}
+
+
+
 
 export default Subscribe;

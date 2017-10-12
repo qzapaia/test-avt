@@ -11,7 +11,7 @@ export default () => (
     href={string}
     target={string}
     listMode={boolean}
-    media={string}
+    mediaImage={string}
     price={string}
     supportingInfo={string}
     subtitle={string}
@@ -32,7 +32,7 @@ Subtitulo
 #### `supportingInfo={<String>}`
 Texto de soporte
 
-#### `media={<String>}`
+#### `mediaImage={<String>}`
 URL de la imagen de soporte
 
 #### `price={<String>}`
@@ -46,3 +46,6 @@ Target del link
 
 #### `listMode={<String>}`
 Le informa a la card que se muestre en modo lista si corresponde
+
+#### `mode={<String>}`
+define como va a cambiar el componente

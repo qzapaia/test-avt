@@ -14,7 +14,7 @@ import reducer from "./reducer";
 
 import { random } from 'lodash';
 
-const randomPagesCount = random(20);
+const randomPagesCount = 10;
 
 storiesOf('global/Paginate', module)
   .addDecorator(
@@ -27,6 +27,9 @@ storiesOf('global/Paginate', module)
     })
   )
   .add('Default', () => (
-    <PaginateWithData pagesCount={randomPagesCount} ></PaginateWithData>
+    <Paginate pagesCount={randomPagesCount} ></Paginate>
+  ))
+  .add('With Data',()=> (
+    <PaginateWithData pageCount={randomPagesCount}/>
   ))
 

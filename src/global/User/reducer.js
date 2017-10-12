@@ -7,11 +7,13 @@ export default (state = initialState, action) => {
 
   switch(type){
     case FACEBOOK_SIGNUP_SET_USER:
-    case USER_LOG_OUT:
       return {
         ...state,
         ...payload
       }
+      break;
+    case USER_LOG_OUT:
+      return {};
       break;
     default:
       return state;
