@@ -4,12 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import { defaults } from 'lodash';
 
 const componentTheme = (parentTheme) => defaults(parentTheme,{
-  ulJustifyContent : "space-between",
-  liMaxWidth: "100px",
-  divLineHeight: "36px",
-  divHoverColor: "black",
-  divHoverBgColor: "transparent",
-  divBeforeBgColor: parentTheme.colors.darkergray,
+  navJustifyContent : "space-between",
+  itemMaxWidth: "100px",
+  containerLineHeight: "36px",
+  containerHoverColor: "black",
+  containerHoverBgColor: "transparent",
+  containerBeforeBgColor: parentTheme.colors.darkergray,
 });
 
 export default (props) => (

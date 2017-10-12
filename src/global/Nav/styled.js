@@ -13,7 +13,7 @@ export const MaxWidth = styled.div`
   padding: 0;
   display: flex;
   width: 100%;
-  justify-content: ${props=> props.theme.ulJustifyContent};
+  justify-content: ${props=> props.theme.navJustifyContent};
   margin: 0 auto;
   max-width: ${props=> props.theme.viewport.desktop}
 `
@@ -24,7 +24,7 @@ export const Item = styled.li`
   position: relative;
   text-align: center;
   flex: 1;
-  max-width: ${props=>props.theme.liMaxWidth};
+  max-width: ${props=>props.theme.itemMaxWidth};
   z-index: 100;
 `
 export const LinkContainer = Link.extend`
@@ -36,11 +36,11 @@ export const LinkContainer = Link.extend`
 
 export const LinkNav = styled.div`
   &:hover {
-    color: ${props=> props.theme.divHoverColor};
-    background-color: ${props=> props.theme.divHoverBgColor};
+    color: ${props=> props.theme.containerHoverColor};
+    background-color: ${props=> props.theme.containerHoverBgColor};
     &::before{
       flex-basis: 100%;
-      background: ${props=> props.theme.divBeforeBgColor}
+      background: ${props=> props.theme.containerBeforeBgColor}
     }
     svg{
       fill: black !important;
@@ -51,14 +51,14 @@ export const LinkNav = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  line-height: ${props=> props.theme.divLineHeight};
+  line-height: ${props=> props.theme.containerLineHeight};
   &::before{
     content: "";
     display: flex;
     flex-basis: ${props=>props.isActive ? '100%' : '15px'};
     height: 3px;
     transition: all .2s ease-in-out 0s;
-    background: ${props=>props.isActive ? props.theme.divBeforeBgColor : 'transparent'};
+    background: ${props=>props.isActive ? props.theme.containerBeforeBgColor : 'transparent'};
   }
   svg{
     fill: ${props=>props.isActive ? 'black' : props.theme.colors.primary} !important;

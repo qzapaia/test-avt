@@ -5,12 +5,12 @@ import { ThemeProvider } from 'styled-components';
 import { defaults } from 'lodash';
 
 const componentTheme = (parentTheme) => defaults(parentTheme,{
-  ulJustifyContent : "flex-center",
-  liMaxWidth: "100px",
-  divLineHeight: "36px",
-  divHoverColor: "black",
-  divHoverBgColor: "orange",
-  divBeforeBgColor: "orange",
+  navJustifyContent : "flex-center",
+  itemMaxWidth: "100px",
+  containerLineHeight: "36px",
+  containerHoverColor: "black",
+  containerHoverBgColor: "orange",
+  containerBeforeBgColor: "orange",
 });
 
 export default (props) => (

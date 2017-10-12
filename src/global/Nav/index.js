@@ -10,12 +10,12 @@ import { defaults } from 'lodash';
 
 //Defino el theme por default, parentTheme lo envia los objectos que extienden global.
 const baseTheme = (parentTheme) => defaults(parentTheme,{
-  ulJustifyContent : "space-between",
-  liMaxWidth: "100px",
-  divLineHeight: "24px",
-  divHoverColor: "black",
-  divHoverBgColor: "transparent",
-  divBeforeBgColor: parentTheme.colors.alert
+  navJustifyContent : "space-between",
+  itemMaxWidth: "100px",
+  containerLineHeight: "24px",
+  containerHoverColor: "black",
+  containerHoverBgColor: "transparent",
+  containerBeforeBgColor: parentTheme.colors.alert
 });
 
 const Nav = ({currentPathname, children}) => {
