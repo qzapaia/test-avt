@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import Text from '../Text';
 
+export const Container = styled.article`
+  display: block;
+  background: white;
+`
+
 export const ClusterItem = styled.article`
   display: flex;
   align-items: center;
@@ -20,13 +25,14 @@ export const AirlineName = styled.p`
   flex-direction: column;
   justify-content: center;
   margin-left: 10px;
-  min-height: 70px;
 
 `
 export const InfoContainer = styled.article`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  min-height: 70px;
+
 
 `
 export const AirlineContainer = styled.div`
@@ -187,4 +193,9 @@ export const FareDetailContainer = styled.article`
   flex: 1;
   min-width: 220px;
   padding: 0 20px;
+`
+export const AdditionalInfo = Text.extend`
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
 `

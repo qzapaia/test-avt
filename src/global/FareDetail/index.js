@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Price from '../Price';
-import {Container, DetailInfo, FarePerPerson, ViewDetails, ExpandContainer} from './styled';
+import {Container, DetailInfo, FarePerPerson, ViewDetails, ExpandContainer, FinalPrice} from './styled';
 import ExpansionPanelEnhacer from "../ExpansionPanel/enhacer";
 
 
@@ -86,7 +86,7 @@ const FareDetail = ({
         }
       </ExpandContainer>
     }
-    <DetailInfo>
+    <FinalPrice>
       <Text>
         Precio final
       </Text>
@@ -96,7 +96,7 @@ const FareDetail = ({
         type='xl'
         color='brand'
       />
-    </DetailInfo>
+    </FinalPrice>
 
     <ViewDetails expanded={expanded} onClick={toggleExpand}>
       {expanded? 'Ocultar detalle' : 'Ver detalle'}
