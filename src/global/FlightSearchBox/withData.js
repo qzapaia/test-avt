@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import FlightSearchBox from './'
 import { connect } from "react-redux";
 import { map } from "lodash";
-import { setSearchBoxValue, setSearch, getDestinations, setSearchBoxflight } from './actions';
+import { setSearchBoxValue, createSearch, getDestinations, setSearchBoxflight } from './actions';
 
 const mapStateToProps = state => ({
-  value: state.search,
+  searchValues: state.search,
   destinations: map(state.search.destinations, destination => ({
     description: destination.description,
     iata_code: destination.iata_code,
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(setSearchBoxValue(keyValue))
     },
     onSearch: value => {
-      dispatch(setSearch(value))
+      dispatch(createSearch(value))
     }
   };
 };

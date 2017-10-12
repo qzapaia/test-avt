@@ -1,4 +1,4 @@
-export const SET_SEARCH = 'SET_SEARCH';
+export const CREATE_SEARCH = 'CREATE_SEARCH';
 export const SET_SEARCH_BOX_VALUE = 'SET_SEARCH_BOX_VALUE';
 export const SET_DESTINATION_DATA = 'SET_DESTINATION_DATA';
 export const SET_SEARCH_BOX_FLIGHT = 'SET_SEARCH_BOX_FLIGHT';
@@ -19,8 +19,8 @@ export const setDestinations = data => ({
   payload: {destinations:data}
 })
 
-export const setSearch = value => ({
-  type:SET_SEARCH,
+export const createSearch = value => ({
+  type:CREATE_SEARCH,
   payload:value
 });
 

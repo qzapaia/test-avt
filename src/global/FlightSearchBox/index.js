@@ -7,7 +7,7 @@ import InputText from '../InputText';
 import InputDate from '../InputDate';
 import InputCheckbox from '../InputCheckbox';
 import Button from '../Button';
-import { map, has } from "lodash";
+import { map, has, forEach, times, parseInt, drop } from "lodash";
 import moment from "moment";
 
 const onCustomSearch = (next, value) => {
@@ -31,10 +31,12 @@ const customOnChange = (next, name) => value => {
   }
 }
 
-const setDate = (values) => {
+const setDateAccordingFlight = (values) => {
   let valor = '';
-  if(values.index == 0) {
+  if(values.index == 0 && !has(values.flights[values.index].dates, 'startDate')) {
     valor = moment().add('days', 2).format("YYYY-MM-DD")
+  } else if(values.index == 0 && has(values.flights[values.index].dates, 'startDate')) {
+    valor = moment(values.flights[values.index].dates.startDate).format("YYYY-MM-DD");
   } else {
     valor = moment(values.flights[values.index-1].dates).format("YYYY-MM-DD");
   }
@@ -43,14 +45,29 @@ const setDate = (values) => {
 
 const optionsToIterate = (initVal, values) => {
   const optionsValues = [];
-  for (let i = initVal; i <= values; i++) {
-    optionsValues.push({value: `${i}`, label: `${i}`});
-  }
+  times(values, (idx) => {
+    optionsValues.push({value: idx, label: idx});
+  })
+  
+  initVal && drop(optionsValues)
   return optionsValues;
 }
+      
+const createOptionsDestinations = (allDestinations, flight) => {
 
+  const options = [];
+  forEach(allDestinations, (destination) => {
+     if(flight.originCity != destination.iata_code){
+        options.push(<option 
+          city={destination.city} 
+          value={destination.iata_code}
+        >{`${destination.description} ${destination.iata_code}`}</option>)
+      }
+  });
+  return options;
+}
   
-const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value}) => (
+const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, searchValues}) => (
   <div>
     {title}
     <div>
@@ -71,11 +88,11 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             label: 'varios Destinos'
           }
         ]}
-        value= {value.leg}
+        value= {searchValues.value.leg}
       />
     </div>
     {
-      map(value.flights, (flight, idx) => (
+      map(searchValues.value.flights, (flight, idx) => (
         <div>
           <div>
             <InputText
@@ -86,7 +103,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               requiresExistingValue='true'
             >
             {
-              map(value.destinations, destination => (
+              map(searchValues.destinations, destination => (
                 <option 
                   city={destination.city} 
                   value={destination.iata_code}
@@ -94,6 +111,9 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               ))
             }
             </InputText>
+            
+            { flight.error.state && <p style={{color: '#ff0000'}}>{flight.error.message}</p>}            
+            
             <InputText
               onChange={customOnChange(onChange, `flights[${idx}].destinationCity`)}
               placeholder= 'Ingresá el nombre de la ciudad de destino' 
@@ -102,25 +122,17 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
               value={flight.destinationCity}
               requiresExistingValue={true}
             >
-              {
-              map(value.destinations, destination => (
-                <option 
-                  city={destination.city} 
-                  value={destination.iata_code}
-                >{`${destination.description} ${destination.iata_code}`}</option>
-              ))
-            }
+             {createOptionsDestinations(searchValues.destinations, flight)}
+
             </InputText>
+            
           </div>
-
-          { flight.error.state && <p style={{color: '#ff0000'}}>{flight.error.message}</p>}
-
           <div>
             <InputDate
-              range={value.leg == 1 ? true : false}
+              range={searchValues.value.leg == 1 ? true : false}
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
               dates={flight.dates}
-              min={setDate({'flights':value.flights, 'leg': value.leg, 'index': idx}) }
+              min={setDateAccordingFlight({'flights':searchValues.value.flights, 'leg': searchValues.value.leg, 'index': idx}) }
               max={moment().add('days', 360).format("YYYY-MM-DD")}
               forceDatesFormat={true}
             />
@@ -128,9 +140,9 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
           
         </div>
       ))}
-      {value.leg == 3 &&<div>
+      {searchValues.value.leg == 3 &&<div>
         <p><a onClick={customOnSet(onSetSearchBoxFlight, 'remove')}>Quitar -</a></p>
-        {value.flights.length < 3 && 
+        {searchValues.value.flights.length < 3 && 
           <p><span onClick={customOnSet(onSetSearchBoxFlight, 'add')}>Agregar +</span></p>
         }
       </div>}
@@ -140,7 +152,7 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
         onChange={customOnChange(onChange, "flexibleDates")}
         type='checkbox'
         label='Mis fechas son flexibles'
-        checked={value.flexibleDates? true: false}
+        checked={searchValues.value.flexibleDates? true: false}
       />
     </div>
     <div>
@@ -148,25 +160,25 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             name='adults'
             placeholder='Adultos'
             onChange={customOnChange(onChange, 'adults')}
-            value={value.adults}
-            options={optionsToIterate(1,9)}
+            value={searchValues.value.adults}
+            options={optionsToIterate(true,10)}
             />
           <Select
             name='children'
             placeholder='Niños'
             onChange={customOnChange(onChange, 'children')}
-            value={value.children}
-            options={optionsToIterate(0,9)}
+            value={searchValues.value.children}
+            options={optionsToIterate(false,10)}
             />
             
           <Select
             name='infants'
             placeholder='Bebés'
             onChange={customOnChange(onChange, 'infants')}
-            value={value.infants}
-            options={optionsToIterate(0, value.adults)}
+            value={searchValues.value.infants}
+            options={optionsToIterate(false, parseInt(searchValues.value.adults+1))}
             />
-            { value.amountOfTravellers.state && <p style={{color:'#ff0000'}}>{value.amountOfTravellers.message}</p>}
+            { searchValues.value.amountOfTravellers.state && <p style={{color:'#ff0000'}}>{searchValues.value.amountOfTravellers.message}</p>}
     </div>
     <div>
       <RadiosGroup
@@ -182,11 +194,11 @@ const FlightSearchBox = ({title, onChange, onSearch, onSetSearchBoxFlight, value
             label: 'Business'
           }
         ]}
-        value= {value.class}
+        value= {searchValues.value.class}
       />
     </div>
     <div>
-      <Button onClick={() => onCustomSearch(onSearch, value)}>Buscar</Button>
+      <Button onClick={() => onCustomSearch(onSearch, searchValues)}>Buscar</Button>
     </div>
   </div>
 )
