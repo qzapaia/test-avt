@@ -12,10 +12,10 @@ import { defaults } from 'lodash';
 const baseTheme = (parentTheme) => defaults(parentTheme,{
   ulJustifyContent : "space-between",
   liMaxWidth: "100px",
-  divLineHeight: "36px",
+  divLineHeight: "24px",
   divHoverColor: "black",
   divHoverBgColor: "transparent",
-  divBeforeBgColor: "grey"
+  divBeforeBgColor: parentTheme.colors.alert
 });
 
 const Nav = ({currentPathname, children}) => {
