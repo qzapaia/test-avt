@@ -7,6 +7,7 @@ import FlightCluster from '../FlightCluster';
 
 const SearchResultsList = ({clusters, flightClusters, onClick}) => {
   let children = [];
+
   flightClusters.map( (fc, i) => {
     children.push(
       <div key={i} style={{padding:'20px'}}>

@@ -166,6 +166,7 @@ const setPaginteToList = (clusters,state) => {
 }
 
 export const populateStages = (state={}) => {
+
   const masterStages = state.stages;
   
   const clusters = state.clusters.map(c=>({

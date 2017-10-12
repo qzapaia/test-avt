@@ -7,8 +7,7 @@ import { getData } from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
 import { populateStages } from '../SearchResultsList/reducer'
 import { getClustersWithFilter } from '../SearchResults/reducer'
-
-
+import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
 
 const mapStateToProps = (state) => {
   const {paginate,flightsFilters} =  state;
@@ -146,11 +145,17 @@ const mapResultsToProps = ({ownProps, data }) => {
     stages:trip.stages
   });
 
-  const clustersFiltered = getClustersWithFilter({newClusters,paginate,showItemsByPage,filters})
+  // ¿Se puede hacer esto? newClusters.clusters
+  const comparisonFlights = populateComparisonFlights({
+    comparisonFlights:newClusters.clusters,
+  });
   
+  const clustersFiltered = getClustersWithFilter({newClusters,paginate,showItemsByPage,filters})
+
   return { 
     ...newfilters,
     flightClusters:clustersFiltered,
+    comparisonFlights:comparisonFlights,
     countItems : newClusters.flightClusters.length
   }
 };
