@@ -1,4 +1,3 @@
-
 import React from 'react';
 import GlobalText from '../../global/Text';
 import { ThemeProvider } from 'styled-components';
