@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Chart from "../Chart";
 import Text from "../Text";
 
-import Container from "./container.styled";
+import Container from "./styled";
 import HistogramMonth from "./HistogramMonth";
 import CustomTooltip from "./CustomTooltip";
 
@@ -78,7 +78,7 @@ const PriceTrendCalendar = ({
         CustomTooltip={CustomTooltip}
         renderBar={args => {
           if (args.price == bestPrice) {
-            args.fill = "green";
+            args.fill = "#94c627";
           }
           return args;
         }}
