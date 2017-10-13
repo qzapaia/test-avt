@@ -27,7 +27,7 @@ const OptionsSelector = JustOne(({select, selected, options, selectedOption})=>{
       map(options, (o, key) => (
           <FlightClusterRouteOption
             data={o}
-            onClick={ select(o.summaryInfo.id) }
+            onClick={ e => select(o.summaryInfo.id) }
             selected={ selectedOption == o.summaryInfo.id ? true : false }
           />
       ))

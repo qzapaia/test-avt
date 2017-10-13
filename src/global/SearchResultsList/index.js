@@ -8,12 +8,12 @@ import FlightCluster from '../FlightCluster';
 const SearchResultsList = ({clusters, flightClusters, onClick}) => {
   let children = [];
 
-  flightClusters.map( (fc, i) => {
+  map(flightClusters, fc => {
     children.push(
-      <div key={i} style={{padding:'20px'}}>
-        <FlightCluster data={fc} /> 
+      <div style={{ padding: "20px" }}>
+        <FlightCluster data={fc} />
       </div>
-    )
+    );
   });
 
   /*
