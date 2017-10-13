@@ -10,17 +10,17 @@ import theme from '../styled.theme';
 import readme from './README.md';
 
 const pathNames = [
-  { id: 'vuelos',   name: 'Vuelos',   url:'http://www.avantrip.com', icon: 'Vuelos'},
-  { id: 'hoteles',  name: 'Hoteles',  url:'http://www.avantrip.com', icon: 'Hotel'},
-  { id: 'paquetes', name: 'Paquetes',    url:'http://www.avantrip.com', icon: 'Paquetes'},
-  { id: 'autos',    name: 'Autos',    url:'http://www.avantrip.com', icon: 'Autos'},
-  { id: 'pasesesdisney', name: 'Pases Disney', url:'http://www.avantrip.com', icon: 'PasesDisney'},
-  { id: 'cruceros',    name: 'Cruceros',    url:'http://www.avantrip.com', icon: 'Cruceros'},
-  { id: 'seguros',    name: 'Seguros',    url:'http://www.avantrip.com', icon: 'Lock'},
+  { id: 'vuelos',   name: 'Vuelos',   url:'https://www.quieroviajes.avantrip.com/', icon: ''},
+  { id: 'hoteles',  name: 'Hoteles',  url:'https://www.quieroviajes.avantrip.com/', icon: ''},
+  { id: 'paquetes', name: 'Paquetes',    url:'https://www.quieroviajes.avantrip.com/', icon: ''},
+  { id: 'autos',    name: 'Autos',    url:'https://www.quieroviajes.avantrip.com/', icon: ''},
+  { id: 'pasesesdisney', name: 'Pases Disney', url:'https://www.quieroviajes.avantrip.com/', icon: ''},
+  { id: 'cruceros',    name: 'Cruceros',    url:'https://www.quieroviajes.avantrip.com/', icon: ''},
+  { id: 'eminent',    name: 'Exlusivo Eminent',    url:'https://www.quieroviajes.avantrip.com/', icon: ''},
 ];
 
 
-storiesOf('avantrip/styled@Nav', module)
+storiesOf('quiero/styled@Nav', module)
   .addDecorator(generalDecorator({
     readme,
     theme

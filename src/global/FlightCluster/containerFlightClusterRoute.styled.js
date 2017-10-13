@@ -12,7 +12,7 @@ export const Container = styled.article`
 export const DateContainer = styled.article`
   display: flex;
   flex-wrap: wrap;
-  flex: 0 0 30%;
+  flex: 0 0 35%;
 `
 export const DateTitle = styled.h4`
   margin-top: 4px;
@@ -36,17 +36,27 @@ export const DateContent = styled.span`
 `
 export const CitiesContainer = styled.article`
   display: flex;
-  flex: 0 0 50%;
-  max-width: 420px;
+  flex: 1 0 50%;
+  max-width: 300px;
+  margin-left: 40px;
   align-items: center;
   justify-content: space-between;
-  > *{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-  }
+
 `
+export const City = Text.extend`
+  flex: 1;
+  display: flex;
+  &:first-of-type{
+    justify-content: flex-end;
+    padding-right: 5px;
+  }
+  &:last-of-type{
+    justify-content: flex-start;
+    padding-left: 5px;
+  }
+
+`
+
 export const Separator = styled.div`
   flex: 1.75;
   border-bottom: 1px dotted ${props => props.theme.colors.darkgray};

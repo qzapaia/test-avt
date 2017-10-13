@@ -37,5 +37,8 @@ export default {
       size:'12px',
       weight:'300'
     }
+  },
+  viewport:{
+    desktop: '1280px'
   }
 }

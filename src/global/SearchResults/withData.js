@@ -6,11 +6,16 @@ import { connect } from "react-redux";
 import { getData } from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
 import { populateStages } from '../SearchResultsList/reducer'
+import { getClustersWithFilter } from '../SearchResults/reducer'
+import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
 
-
-const mapStateToProps = state => ({
-  //repos: state.Redux.repos
-});
+const mapStateToProps = (state) => {
+  const {paginate,flightsFilters} =  state;
+  return {
+    paginate: paginate,
+    filters: flightsFilters
+  }
+};
 
 const mapDispatchToProps = {
   //getRepos:getData
@@ -65,73 +70,115 @@ const SearchQuery = {
           }
         }
       }
-    }`  
+    }`,
+  multitrip: gql`
+  query multiTripQuery(
+    $origin: [String]!,
+    $destination: [String]!,
+    $departureDate: [String]!,
+    $passengersAdults: Int!,
+    $passengersChildren: Int!,
+    $passengersInfants: Int!,
+    $cabinClass: FligthCabinClassInput!,
+    $channel: String!,
+    $portal: String!){ 
+      orchestrator{
+        availability{
+          multitrip(origin:$origin,destination:$destination,departureDate:$departureDate,
+            passengers:{adults:$passengersAdults,children:$passengersChildren,infants:$passengersInfants} cabinClass:$cabinClass,channel:$channel,portal:$portal){
+            clusters,
+            stages,
+            metas,
+            references
+          }
+        }
+      }
+    }`
 }
+
+const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,passengersAdults,passengersChildren,passengersInfants,cabinClass,channel,portal,leg }) => {
+  
+  const values = {
+    origin,
+    destination,
+    departureDate,
+    passengersAdults,
+    passengersChildren,
+    passengersInfants,
+    cabinClass,
+    channel,
+    portal
+  }
+
+  if(leg == 'roundtrip'){
+    return {
+      variables: {
+        ...values,
+        returningDate
+      },
+    };
+  }
+  
+  return {
+    variables: {
+      ...values
+    },
+  };
+};
+
+const mapResultsToProps = ({ownProps, data }) => {
+  const {paginate, showItemsByPage,filters} = ownProps;
+  const trip = get(data,`orchestrator.availability.${ownProps.leg}`, { 
+    metas:[],
+    references:[],
+    clusters:[]
+  })
+
+  const newfilters =  populateFilters({
+    filters:trip.metas.filters,
+    references:trip.references,
+    flightType:trip.metas.flightType
+  });
+
+  const newClusters = populateStages({
+    clusters:trip.clusters,
+    stages:trip.stages
+  });
+
+  // ¿Se puede hacer esto? newClusters.clusters
+  const comparisonFlights = populateComparisonFlights({
+    comparisonFlights:newClusters.clusters,
+  });
+  
+  const clustersFiltered = getClustersWithFilter({newClusters,paginate,showItemsByPage,filters})
+
+  return { 
+    ...newfilters,
+    flightClusters:clustersFiltered,
+    comparisonFlights:comparisonFlights,
+    countItems : newClusters.flightClusters.length
+  }
+};
 
 
 const WithApolloComponentSearch = compose(
   graphql(SearchQuery.roundtrip,{
-    options: props => ({
-      variables : {
-        origin : props.origin,
-        destination : props.destination,
-        departureDate : props.departureDate,
-        returningDate : props.returningDate,
-        passengersAdults : props.passengersAdults,
-        passengersChildren : props.passengersChildren,
-        passengersInfants : props.passengersInfants,
-        cabinClass : props.cabinClass,
-        channel : props.channel,
-        portal : props.portal
-      },
-    }),
-    props: ({ ownProps, data }) => {
-      const roundtrip = get(data,'orchestrator.availability.roundtrip', { 
-        metas:[],
-        references:[],
-        clusters:[]
-      })
-
-      const filters =  populateFilters({
-        filters:roundtrip.metas.filters,
-        references:roundtrip.references,
-        flightType:roundtrip.metas.flightType
-      });
-
-      const newClusters = populateStages({
-        clusters:roundtrip.clusters,
-        stages:roundtrip.stages
-      });
-
-      return { 
-        ...filters,
-        ...newClusters
-      }
-    },
+    options: mapPropsToOptions,
+    props: mapResultsToProps,
     skip: (ownProps) => !(ownProps.leg === 'roundtrip'),
   }),
   graphql(SearchQuery.oneway,{
-    options: props => ({
-      variables : {
-        origin : props.origin,
-        destination : props.destination,
-        departureDate : props.departureDate,
-        passengersAdults : props.passengersAdults,
-        passengersChildren : props.passengersChildren,
-        passengersInfants : props.passengersInfants,
-        cabinClass : props.cabinClass,
-        channel : props.channel,
-        portal : props.portal
-      },
-    }),
-    props: ({ ownProps, data }) => {
-      const oneway = get(data,'orchestrator.availability.oneway', { })
-      return { resultData: oneway }
-    },
+    options: mapPropsToOptions,
+    props: mapResultsToProps,
     skip: (ownProps) => !(ownProps.leg === 'oneway'),
+  }),
+  graphql(SearchQuery.multitrip,{
+    options: mapPropsToOptions,
+    props: mapResultsToProps,
+    skip: (ownProps) => !(ownProps.leg === 'multitrip'),
   }),    
 )(SearchResults)
 
-const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);
 
+const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);
 export default WithDataComponent;

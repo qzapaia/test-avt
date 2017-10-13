@@ -2,19 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import SearchResultsListWithData from '../SearchResultsList/withData'
-import FlightsFiltersWithData from  '../FlightsFilters/withData';
+import FlightsFiltersWithData from  '../FlightsFilters/withData'
+import FlightsComparisonTableWithData from  '../FlightsComparisonTable/withData'
 import Paginate from '../Paginate/withData'
 import { Container } from './styled';
 
 
-const SearchResults = ({ showItemsByPage, filters, clusters }) =>  {
+const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems, comparisonFlights }) =>  {
 
-  const countPage = Math.ceil((clusters.length/showItemsByPage));
-  
+  const countPage = Math.ceil((countItems/showItemsByPage));
+  //applyPaginate(getState())
+
   return (
     <Container>
-      <Paginate  pageCount={countPage} />
-      <FlightsFiltersWithData options={filters} />
+      <div style={{display:"flex"}}>
+        <div style={{flexGrow:"1"}}>
+          <FlightsFiltersWithData options={filters} />
+        </div>
+        <div style={{flexGrow:"10"}}>
+          {/*<FlightsComparisonTableWithData flights={comparisonFlights} />*/}
+          {/*<SearchResultsListWithData flightClusters={flightClusters} />*/}
+          <Paginate  pageCount={countPage} />
+        </div>
+      </div>
     </Container>
   )
 }

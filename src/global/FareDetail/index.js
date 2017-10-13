@@ -1,71 +1,109 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Text from '../Text';
+import Price from '../Price';
+import {Container, DetailInfo, FarePerPerson, ViewDetails, ExpandContainer, FinalPrice} from './styled';
+import ExpansionPanelEnhacer from "../ExpansionPanel/enhacer";
 
-const Title = styled.h1`
-  color:${props=>props.theme.color};
-`
+
 const FareDetail = ({
                       title,
                       currency,
-                      detailInfo
+                      detailInfo,
+                      expanded,
+                      toggleExpand
                    }) => (
-  <div>
-    <div>
-      {title}
-    </div>
-    <div>
-        <div>
-          <Title>
-            <Text>Tarifa por adulto</Text>
-          </Title>
-        </div>
-        <div>
-          {currency} {detailInfo.referencePrice}
-        </div>
-    </div>
-    <div>
-      { detailInfo.items.map(item => (
-        <div>
-          <span>
-            {item.label}
-          </span>
-          <span>
-            {currency}
-            {item.price}
-          </span>
-        </div>
-      ))}
-    </div>
-    <div>
-      <div>
-        <span><Text>Precio contado</Text></span>
-        <span>{currency} {detailInfo.priceWithoutInterest}</span>
-      </div>
-      {detailInfo.interest &&
-        <div>
-          <span><Text>Intereses</Text></span>
-          <span>{currency} {detailInfo.interest.value}</span>
-        </div>
-      }
-    </div>
-    <div>
-      <div>
-        <Text>Precio final</Text>
-      </div>
-      <div>
-        {currency} {detailInfo.finalPrice}
-      </div>
-      { detailInfo.interest &&
-        <div>
-          <Text>TEA {detailInfo.interest.TEA}%</Text>
-          -
-          <Text>CFT {detailInfo.interest.CFT}%</Text>
-        </div>
-      }
-    </div>
-  </div>
+  <Container>
+
+    {expanded &&
+      <ExpandContainer>
+        <Text type='l'>
+          {title}
+        </Text>
+        <Price
+          currency={currency}
+          price={detailInfo.referencePrice}
+          type='xl'
+          color='darkergray'
+        />
+        <FarePerPerson tag='h2' type='xs' color='darkergray'>
+          Tarifa por adulto
+        </FarePerPerson>
+        { detailInfo.items.map(item => (
+          <DetailInfo>
+            <Text color='darkergray'>
+              {item.label}
+            </Text>
+            <Price
+              currency={currency}
+              price={item.price}
+              type='s'
+              color='darkergray'
+            />
+          </DetailInfo>
+        ))}
+          {/* <div>
+            <span><Text>Precio contado</Text></span>
+            <span>{currency} {detailInfo.priceWithoutInterest}</span>
+          </div> */}
+          {detailInfo.taxes &&
+            <DetailInfo>
+              <Text>
+                Intereses
+              </Text>
+              <Price
+                currency={currency}
+                price={detailInfo.taxes}
+                type='s'
+                color='darkergray'
+              />
+            </DetailInfo>
+          }
+
+          {detailInfo.charges &&
+            <DetailInfo>
+              <Text>
+                Intereses
+              </Text>
+              <Price
+                currency={currency}
+                price={detailInfo.charges}
+                type='s'
+                color='darkergray'
+              />
+            </DetailInfo>
+          }
+
+        { detailInfo.taxes &&
+          <Text tag='p'>
+            <Text type='xs'>
+              TEA {detailInfo.taxes.TEA}%
+            </Text>
+            <Text type='xs'>
+              CFT {detailInfo.taxes.CFT}%
+            </Text>
+          </Text>
+        }
+      </ExpandContainer>
+    }
+    <FinalPrice>
+      <Text>
+        Precio final
+      </Text>
+      <Price
+        currency={currency}
+        price={detailInfo.finalPrice}
+        type='xl'
+        color='brand'
+      />
+    </FinalPrice>
+
+    <ViewDetails expanded={expanded} onClick={toggleExpand}>
+      {expanded? 'Ocultar detalle' : 'Ver detalle'}
+    </ViewDetails>
+
+
+  </Container>
 )
 
 FareDetail.propTypes = {
@@ -78,4 +116,4 @@ FareDetail.defaultProps = {
   theme:{}
 }
 
-export default FareDetail;
+export default ExpansionPanelEnhacer(FareDetail);
