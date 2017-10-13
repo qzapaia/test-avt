@@ -16,7 +16,7 @@ const enhace = withState('counter','increment',0);
 
 let search = {
   origin: 'BUE',
-  destination: 'MIA',
+  destination: 'DME',
   departureDate: '11-03-2018',
   returningDate: '20-03-2018',
   passengers: {
