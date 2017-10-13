@@ -160,5 +160,5 @@ storiesOf('global/SearchResults', module)
       channel={search.channel}
       portal={search.portal}
       leg={search.leg} 
-      showItemsByPage={20}/>
+      showItemsByPage={5}/>
   ))
