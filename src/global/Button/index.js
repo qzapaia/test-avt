@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 const colorByButton = (state, attrName) => props => {
+  console.log('Mario',props);
   const { theme, type } = props;
   const attrValue = get(theme.buttons,[type,state,attrName]);
+  console.log('Mario2',type,state,attrName);
 
   return theme.colors[attrValue];
 }

@@ -15,7 +15,7 @@ const Sep = styled.div`
 `
 
 
-storiesOf('global/styled@Button', module)
+storiesOf('quiero/styled@Button', module)
   .addDecorator(generalDecorator({
     readme,
     theme
@@ -30,6 +30,9 @@ storiesOf('global/styled@Button', module)
       </Sep>
       <Sep>
         <Button type="ghst">ghst button</Button>
+      </Sep>
+      <Sep>
+        <Button type="link">link button</Button>
       </Sep>
     </div>
   ))
