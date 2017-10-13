@@ -141,12 +141,14 @@ const mapResultsToProps = ({ownProps, data }) => {
   });
 
   const newClusters = populateStages({
+    references:trip.references,
     clusters:trip.clusters,
     stages:trip.stages
   });
 
   // ¿Se puede hacer esto? newClusters.clusters
   const comparisonFlights = populateComparisonFlights({
+    references:trip.references,
     comparisonFlights:newClusters.clusters,
   });
   

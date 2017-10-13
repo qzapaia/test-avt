@@ -1,9 +1,24 @@
 import { SET_REPOS } from './actions';
-import { get, find, map } from 'lodash';
+import { get, find, map, flatMap } from 'lodash';
 
 const initialState = {
   repos:[]
 };
+
+const references = (function(){
+  let _data = [];
+  function set(ref){
+    _data = ref;
+  }
+  function get(id){
+    return _data;
+  }
+  return {
+    set: set,
+    get: get
+  };
+}());
+
 
 export default (state = initialState, action) => {
   const {
@@ -40,32 +55,38 @@ const getScaleLabel = scale => {
   }
 } 
 
-const getFlight = ( f, index ) => {
-  let flight = {};
+const getFlightSegments = ( f, index ) => {
+  let flightSegments = [];
 
-  flight.common = {
-    'flightStep': index+1,
-    'flightNumber': f.code,
-    'airlineLogo': getAirlineLogos([f.marketingCarrier]),
-    'provider': f.marketingCarrier,
-    'class': 'Económica',
-  }
+  map(f.segments, (fs, segmentsIndex)  => {
+    let flight = {};
 
-  flight.departure = {
-    'iata': f.segments[0].departure.location,
-    'date': f.segments[0].departure.date,
-    'city': `Ciudad de ${f.segments[0].departure.location}`,
-    'airport': `Aeropuerto de ${f.segments[0].departure.location}`
-  }
+    flight.common = {
+      'flightStep': index+segmentsIndex+1,
+      'flightNumber': f.code,
+      'airlineLogo': getAirlineLogos([f.marketingCarrier]),
+      'provider': references.get().carriers[f.marketingCarrier],
+      'class': 'Económica',
+    }
 
-  flight.arrival = {
-    'iata': f.segments[0].arrival.location,
-    'date': f.segments[0].arrival.date,
-    'city': `Ciudad de ${f.segments[0].arrival.location}`,
-    'airport': `Aeropuerto de ${f.segments[0].arrival.location}`
-  }
+    flight.departure = {
+      'iata': fs.departure.location,
+      'date': fs.departure.date,
+      'city': `Ciudad de ${references.get().cities[fs.departure.location]}`,
+      'airport': `Aeropuerto de ${references.get().airports[fs.departure.location]}`
+    }
 
-  return flight;
+    flight.arrival = {
+      'iata': fs.arrival.location,
+      'date': fs.arrival.date,
+      'city': `Ciudad de ${references.get().cities[fs.arrival.location]}`,
+      'airport': `Aeropuerto de ${references.get().airports[fs.arrival.location]}`
+    }
+
+    flightSegments.push(flight);    
+  })
+
+  return flightSegments;
 }
 
 //¿Esto debería ser un componente aparte?
@@ -84,7 +105,7 @@ const getRouteOption = ro => {
   routeOption.summaryInfo = {
     'id': ro.index, 
     'airlineLogos': getAirlineLogos(ro.marketingCarriers), //validar
-    'provider':`Operado por ${ro.validatingCarrier}`, //validar
+    'provider':`Operado por ${references.get().carriers[ro.validatingCarrier]}`, //validar
     'departureIata': ro.departureAirport,
     'departureDate': ro.departureDate,
     'arrivalIata': ro.arrivalAirport,
@@ -92,11 +113,13 @@ const getRouteOption = ro => {
     'scalesText': getScaleLabel(ro.scales),
     'totalTime': ro.duration,
     'isSelected':false
-  }  
+  }
 
   routeOption.extendedInfo = {
     'header': 'Buenos Aires hacia Córdoba',
-    'flights': map(ro.flights, ( r, index )  => getFlight(r, index))
+    'flights': flatMap(ro.flights, ( r, index )  => {
+      return getFlightSegments( r, index ) 
+    })
   }
 
   return routeOption;
@@ -111,7 +134,7 @@ const getRoute = r => {
     departureCity: 'Nueva York',
     arrivalCity: 'Buenos Aires',
     date:new Date()
-  } 
+  }
 
   route.options = map(r.options, ro => getRouteOption(ro));
 
@@ -132,10 +155,12 @@ const getFlightCluster = c => {
     }
 
     if(c.stages[1]){
+      c.stages[1].references = references;
       fc.routes.second = getRoute(c.stages[1]);      
     }
 
     if(c.stages[2]){
+      c.stages[2].references = references;
       fc.routes.third = getRoute(c.stages[2]);      
     }
 
@@ -168,6 +193,8 @@ const setPaginteToList = (clusters,state) => {
 export const populateStages = (state={}) => {
 
   const masterStages = state.stages;
+
+  references.set(state.references);
   
   const clusters = state.clusters.map(c=>({
     ...c,
@@ -176,7 +203,7 @@ export const populateStages = (state={}) => {
     })),
 
     additionalInfo : "¡Hasta 12 cuotas sin interés con Visa y Master del Banco Francés!",
-    disclaimerText : "¿Qué incluye el precio?",
+    disclaimerText : "¿Qué incluye el precio?"
   }))
 
   const flightClusters = map(clusters, c => {
