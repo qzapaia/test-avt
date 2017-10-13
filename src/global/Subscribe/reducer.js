@@ -1,31 +1,24 @@
-import { SUBSCRIPTION_COMPLETE, SET_EMAIL } from './actions';
+import {
+  SUBSCRIPTION_COMPLETE,
+  SUBSCRIPTION_SET_EMAIL,
+  SUBSCRIPTION_SET_CITY
+} from "./actions";
 
 const initialState = {};
 
 export default (state = initialState, action) => {
-  const {type, payload, email} = action;
+  const { type, payload } = action;
 
-  switch(type){
+  switch (type) {
+    case SUBSCRIPTION_SET_EMAIL:
     case SUBSCRIPTION_COMPLETE:
-      if(payload.state){
-        return {
-          ...state,
-          subscriptionStatus: 'success'
-        }
-      } else {
-        return {
-          ...state,
-          subscriptionStatus: 'error'
-        }
-      }
-      break;
-    case SET_EMAIL:
+    case SUBSCRIPTION_SET_CITY:
       return {
         ...state,
-        email
+        ...payload
       };
       break;
     default:
       return state;
   }
-}
+};

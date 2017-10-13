@@ -1,19 +1,19 @@
 ## Description
-Suscripcion a cosas generales del site.
+Suscripción a newsletter. Son dos tipos de suscripciones, una con solo un email y otra con un email y un destino. Son utilizados en la home y en el resultado de búsqueda respectivamente.
 
 ## Basic use
 
 ```javascript
-import Subscribe from 'avantrip-react/avantrip/Subscribe';
+import TripSubscribe from 'avantrip-react/global/Subscribe';
 
 export default () => (
   <Subscribe
-    onSubscribe={function}
     onChange={function}
-    title={string}
-    state={string}
+    onSubscribe={function}
     email={string}
-    buttonText={string}
+    title={string}
+    subscriptionStatus={string}
+    value={object}
   />
 )
 ```
@@ -21,85 +21,51 @@ export default () => (
 ## Props
 
 #### `onSubscribe={<Function>}`
-Subscribe
+Escucha el envío de la suscripcion. Recibe un objeto con los valores para ejecutar la suscripcion
 
 #### `onChange={<Function>}`
-Handler de cambios en el input email
-
-#### `title={<String>}`
-Título de la caja
-
-#### `state={success|error}`
-Informa del estado de la transacción
+Recibe el valor en cada cambio en el input de email.
 
 #### `email={<String>}`
-Valor del input email
+Email que se envía la info.
 
-#### `buttonText={<String>}`
-Texto del boton. Por default 'enviar'
+#### `subscriptionStatus={success|error}`
+Informa del estado de la transacción
 
-#### `layout={<String>}`
-layout del form
+#### `value={<String>}`
+Objecto que debe tener la forma:
+```
+{
+  city: {string},
+}
+```
 
+#### `title={<String>}`
+Título de la caja. Si se le agrega al texto el string [city], el mismo será reemplazado por la ciudad de la  propiedad value.
 
 
 ## Redux
 
 #### Actions
 ```javascript
-export const SUBSCRIPTION_INIT = 'SUBSCRIPTION_INIT';
-export const SUBSCRIPTION_COMPLETE = 'SUBSCRIPTION_COMPLETE';
-export const SET_EMAIL = 'SET_EMAIL';
+import { subscribe, setEmail } from 'avantrip-react/global/Subscribe/actions';
+import store from 'somewhere';
 
-// Alto Hardcoding Papas
-export const subscribe = data => {
-  return subscriptionResult({state: true});
-}
-
-export const subscriptionResult = state => ({
-  type:SUBSCRIPTION_COMPLETE,
-  payload:state
-})
-
-export const setEmail = email => ({
-  type:SET_EMAIL,
-  email
-})
-
+//type: es el tipo de suscripcion(Home || Search)
+store.dispatch(subscribe(type, { email:"email@email.com", city: "Miami" });
+store.dispatch(setEmail(email);
+// ...
 ```
 
 #### Reducer
 ```javascript
-import { SUBSCRIPTION_COMPLETE, SET_EMAIL } from './actions';
+import subscribeReducer from 'avantrip-react/global/Subscribe/reducer';
+import { createStore, combineReducers } from 'redux';
 
-const initialState = {};
+const reducer = combineReducers({
+  subscribe:suscribeReducer,
+})
 
-export default (state = initialState, action) => {
-  const {type, payload, email} = action;
-
-  switch(type){
-    case SUBSCRIPTION_COMPLETE:
-      if(payload.state){
-        return {
-          ...state,
-          subscriptionStatus: 'success'
-        }
-      } else {
-        return {
-          ...state,
-          subscriptionStatus: 'error'
-        }
-      }
-      break;
-    case SET_EMAIL:
-      return {
-        ...state,
-        email
-      };
-      break;
-    default:
-      return state;
-  }
-}
-
+const store = createStore(reducer);
+// ...
 ```
