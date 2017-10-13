@@ -9,6 +9,5 @@ RUN npm i
 
 COPY . /app/
 
-RUN npm run build-storybook
-RUN npm run build
-CMD npm run start
+RUN npm run build-storybook && npm run build
+CMD npm start

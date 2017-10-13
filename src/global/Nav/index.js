@@ -20,7 +20,7 @@ const baseTheme = (parentTheme) => defaults(parentTheme,{
 
 const Nav = ({currentPathname, children}) => {
 
-  const getCurrentPage = (pathname) =>{
+  const getCurrentPage = (pathname = "") =>{
     let currentPathname;
     currentPathname = pathname.replace(/\//g,'');
     return currentPathname;

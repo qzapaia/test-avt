@@ -1,5 +1,5 @@
 {
-  "presets": ["react", "stage-0", "env"],
+  "presets": ["next/babel", "es2015", "stage-0"],
   "plugins": [
     ["transform-regenerator"],
     ["inline-react-svg"],
@@ -12,6 +12,9 @@
       "extensions": [
         ".png"
       ]
+    }],
+    ["babel-plugin-styled-components", {
+      "ssr": true
     }]
   ]
 }

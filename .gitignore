@@ -4,5 +4,6 @@ dist
 storybook-static
 test.js
 .babelrc
+!/.storybook/**/
 todo.txt
 .next

@@ -39,6 +39,9 @@ Example: Load only **quiero** components.
 ## Generate or remove components
 `yarn run gen`
 
+## Run Next (local)
+`yarn run devnext`
+
 ## Preview de master en int
 http://avantrip-react.api.int.devtrip.com.ar/storybook
 
