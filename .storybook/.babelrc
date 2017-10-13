@@ -12,6 +12,9 @@
       "extensions": [
         ".png"
       ]
+    }],
+    ["babel-plugin-styled-components", {
+      "ssr": true
     }]
   ]
 }
