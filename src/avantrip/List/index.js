@@ -1,4 +1,3 @@
-
 import React from 'react';
 import GlobalList from '../../global/List';
 import { ThemeProvider } from 'styled-components';
@@ -10,5 +9,3 @@ export default (props) => (
     <GlobalList {...props} />
   </ThemeProvider>
 )
-
-  
