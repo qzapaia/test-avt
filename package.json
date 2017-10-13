@@ -13,6 +13,7 @@
     "build-npm": "rimraf dist && npm run copybabelrc && babel src -d dist && npm run copypackage && npm run copyreadme",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node server",
+    "devnext": "node server",
     "dev": "npm run storybook",
     "test": "...",
     "storybook": "start-storybook -p 9001 -s ./statics",
@@ -60,7 +61,7 @@
     "express": "^4.16.2",
     "cross-env": "^5.0.5",
     "compression": "^1.7.0",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "@storybook/addon-options": "^3.2.12",
