@@ -7,8 +7,8 @@ import thunk from "redux-thunk";
 import { get } from 'lodash';
 import 'babel-polyfill';
 import { actionsByAction } from './redux.middlewares';
-import mapActionToReducer from 'redux-action-reducer-mapper';
 import { getSize } from './utils/media';
+import { reducer as mediaReducer } from './utils/media';
 const composeEnhancers = window.top.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {}
 
@@ -16,17 +16,6 @@ const analyticsMiddleware = actionsByAction({
   TEST_ACTION(a){
     console.log('TEST ACTION, ACA LE MANDÁ EL ANALYTICS LE MANDÁ', a);
   }
-})
-
-const mediaReducer = mapActionToReducer({
-  default: {
-    size:null,
-    size_name:'',
-  },
-  SET_SCREEN_SIZE: (state, action) => ({
-    ...state,
-    ...action.payload
-  })
 });
 
 const createDecorator = config => (story, b, c, d) => {
@@ -47,8 +36,7 @@ const createDecorator = config => (story, b, c, d) => {
     type:'SET_SCREEN_SIZE',
     payload:getSize()
   })
-
-  setResize()
+  
   window.addEventListener("resize", setResize);
 
   const newStory = () => (
