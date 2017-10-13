@@ -11,7 +11,7 @@
     "copybabelrc": "cp .storybook/.babelrc ./",
     "copyreadme": "cp README.md dist",
     "build-npm": "rimraf dist && npm run copybabelrc && babel src -d dist && npm run copypackage && npm run copyreadme",
-    "build": "next build",
+    "build": "npm run copybabelrc && next build",
     "start": "cross-env NODE_ENV=production node server",
     "devnext": "node server",
     "dev": "npm run storybook",
