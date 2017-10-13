@@ -16,7 +16,7 @@ const enhace = withState('counter','increment',0);
 
 let search = {
   origin: 'BUE',
-  destination: 'COR',
+  destination: 'MIA',
   departureDate: '11-03-2018',
   returningDate: '20-03-2018',
   passengers: {
@@ -142,7 +142,7 @@ storiesOf('global/SearchResults', module)
   }))
   .add('Default', () => (
     <SearchResults 
-      showItemsByPage={2}
+      showItemsByPage={20}
       filters={newFilters} 
       clusters={newclusters}/>
   ))
@@ -160,5 +160,5 @@ storiesOf('global/SearchResults', module)
       channel={search.channel}
       portal={search.portal}
       leg={search.leg} 
-      showItemsByPage={2}/>
+      showItemsByPage={20}/>
   ))

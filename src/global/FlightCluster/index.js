@@ -27,7 +27,7 @@ const OptionsSelector = JustOne(({select, selected, options, selectedOption})=>{
       map(options, (o, key) => (
           <FlightClusterRouteOption
             data={o}
-            onClick={ select(o.summaryInfo.id) }
+            onClick={ e => select(o.summaryInfo.id) }
             selected={ selectedOption == o.summaryInfo.id ? true : false }
           />
       ))
@@ -62,10 +62,13 @@ const FlightCluster = ({
                   arrivalCity={data.routes.first.header.arrivalCity}
                 >
                   <OptionsSelector
+                    /*
                     selectedOption={selectRouteOptions.firstRouteOptionId}
+
                     onChange={ selectedOption => onSelectedRouteOption(
                       { 'firstRouteOptionId':selectedOption }
                     )}
+                    */
                     options={data.routes.first.options}
                     />
                 </FlightClusterRoute>
@@ -81,10 +84,12 @@ const FlightCluster = ({
                   arrivalCity={data.routes.second.header.arrivalCity}
                 >
                   <OptionsSelector
+                    /*
                     selectedOption={selectRouteOptions.secondRouteOptionId}
                     onChange={ selectedOption => onSelectedRouteOption(
                       { 'secondRouteOptionId':selectedOption }
                     )}
+                    */
                     options={data.routes.second.options}
                     />
                 </FlightClusterRoute>
@@ -100,10 +105,12 @@ const FlightCluster = ({
                   arrivalCity={data.routes.third.header.arrivalCity}
                 >
                   <OptionsSelector
+                    /*
                     selectedOption={selectRouteOptions.thirdRouteOptionId}
                     onChange={ selectedOption => onSelectedRouteOption(
                       { 'thirdRouteOptionId':selectedOption }
                     )}
+                    */
                     options={data.routes.third.options}
                     />
                 </FlightClusterRoute>

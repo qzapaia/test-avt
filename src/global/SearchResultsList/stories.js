@@ -28,13 +28,13 @@ const SearchResultsListWithState =  enhace((props) => {
 })
 let search = {
   origin: "BUE",
-  destination: "COR",
-  departureDate: "12-03-2018",
-  returningDate: "22-03-2018",
+  destination: "BER",
+  departureDate: "03-01-2018",
+  returningDate: "31-01-2018",
   passengers: {
-    adults: 1,
+    adults: 2,
     children: 1,
-    infants:0
+    infants:1
   },
   cabinClass: "Economy",
   channel: "DESKTOP",
