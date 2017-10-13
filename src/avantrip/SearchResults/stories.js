@@ -9,9 +9,9 @@ import generalDecorator from '../../stories.decorator.js';
 import SearchResultsWithData from './withData';
 
 import theme from '../styled.theme';
-import readme from './README.md';
+import readme from '../../global/SearchResults/README.md';
 
-import reducer from "../../global/SearchResults/reducer";
+import reducer from "./reducer";
 
 
 const enhace = withState('counter','increment',0);
@@ -128,9 +128,9 @@ storiesOf('avantrip/SearchResults', module)
     reducer
   }))
   .add('Default', () => (
-    <SearchResults 
+    <SearchResults
     showItemsByPage={2}
-    filters={newFilters} 
+    filters={newFilters}
     clusters={newclusters}/>
   ))
 
