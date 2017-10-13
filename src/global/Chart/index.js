@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { pick } from 'lodash';
+import Price from '../Price';
 
 import {BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, Rectangle, ResponsiveContainer} from 'recharts';
 
@@ -11,8 +12,8 @@ const onClickHandler = (e, onClick) => {
 const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar }) => {
   settings = pick(settings, ['barColor']);
 
-  let max = Math.max.apply(Math,data.map(o => o[label]));
-  let min = Math.min.apply(Math,data.map(o => o[label]));
+  let max = Math.max.apply(Math,data.map(o => o[value]));
+  let min = Math.min.apply(Math,data.map(o => o[value]));
 
   return (
     <ResponsiveContainer>
@@ -37,7 +38,7 @@ const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar 
           shape={args=><Rectangle {...renderBar(args)}/>}
           fill={ settings.barColor }
           onClick={e => onClickHandler(e, onClick)} />
-        <ReferenceLine y={max} label={max} stroke="red" />
+        {/* <ReferenceLine y={max} label={max} stroke="red" /> */}
         <ReferenceLine y={min} label={min} stroke="green" />
       </BarChart>
     </ResponsiveContainer>
