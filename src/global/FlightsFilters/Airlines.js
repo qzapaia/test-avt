@@ -9,20 +9,21 @@ import Icon from "../Icon";
 import {ExpandButton} from "./styled";
 
 
-const labelFlightsTramos = (type,position) => {
+const labelFlightsAirports = (type,position,city) => {
   if(type == 'multidestino'){
     return `Vuelo ${position + 1}`
   }
-  return (position == 0)? "Ida" : "Vuelta"
+  return (position == 0)? `Salida ${city}` : `Regreso ${city}`
 }
 
 
-const Scales = ({options, onChange, values, expanded, toggleExpand, onClear}) => {
+
+const Airlines = ({options, onChange, values, expanded, toggleExpand, onClear}) => {
   return(
     <List>
       <ExpandButton expanded={expanded} onClick={toggleExpand}>
         <Text tag='h2' type='s'>
-          Escalas Tramos
+          Aerolíneas
         </Text>
         <Icon id='Back' height='18px' width='18px' color='darkergray' />
       </ExpandButton>
@@ -30,15 +31,16 @@ const Scales = ({options, onChange, values, expanded, toggleExpand, onClear}) =>
         map(options.scales, (scalesOptions, k) => (
           <Text tag='li' type='xs'>
             <CheckboxGroup
-              label={labelFlightsTramos(options.flightType,k)}
-              onChange={onChangeHandler(`scales.${k}`)(onChange)}
-              options={scalesOptions.options}
-              values={get(values,['scales', k])}
-              onClear={()=>onClear(`scales.${k}`)}
+
+              onChange={onChangeHandler('airlines')(onChange)}
+              options={options.airlines}
+              values={get(values,'airlines',[])}
+              onClear={()=>onClear('airlines')}
               allOptions={{
-                label:<span>Todas las escalas</span>,
-                checked:false}}
-              />
+                label: <span>Todas las aerolineas</span>,
+                checked: false
+              }}
+            />
           </Text>
           ))
       }
@@ -48,4 +50,4 @@ const Scales = ({options, onChange, values, expanded, toggleExpand, onClear}) =>
 
 
 const onChangeHandler = id => next => change => next(id, change)
-export default ExpansionPanelEnhacer(Scales);
+export default ExpansionPanelEnhacer(Airlines);

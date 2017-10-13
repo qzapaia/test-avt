@@ -8,39 +8,38 @@ import Text from "../Text";
 import Icon from "../Icon";
 import {ExpandButton} from "./styled";
 
-
-const labelFlightsTramos = (type,position) => {
+const labelFlightsSchedules = (type,position) => {
   if(type == 'multidestino'){
     return `Vuelo ${position + 1}`
   }
-  return (position == 0)? "Ida" : "Vuelta"
+  return (position == 0)? "Salida" : "Regreso"
 }
 
-
-const Scales = ({options, onChange, values, expanded, toggleExpand, onClear}) => {
+const Hours = ({options, onChange, values, expanded, toggleExpand, onClear}) => {
   return(
     <List>
       <ExpandButton expanded={expanded} onClick={toggleExpand}>
         <Text tag='h2' type='s'>
-          Escalas Tramos
+          Horarios
         </Text>
         <Icon id='Back' height='18px' width='18px' color='darkergray' />
       </ExpandButton>
       {expanded &&
-        map(options.scales, (scalesOptions, k) => (
+        map(options.schedules, (schedulesOptions, k) => (
           <Text tag='li' type='xs'>
             <CheckboxGroup
-              label={labelFlightsTramos(options.flightType,k)}
-              onChange={onChangeHandler(`scales.${k}`)(onChange)}
-              options={scalesOptions.options}
-              values={get(values,['scales', k])}
-              onClear={()=>onClear(`scales.${k}`)}
+              label={labelFlightsSchedules(options.flightType,k)}
+              onChange={onChangeHandler(`schedule.${k}`)(onChange)}
+              options={schedulesOptions.options}
+              values={get(values,['schedule', k])}
+              onClear={()=>onClear(`schedule.${k}`)}
               allOptions={{
-                label:<span>Todas las escalas</span>,
+                label:<span>Todas los Horarios</span>,
                 checked:false}}
               />
-          </Text>
-          ))
+            </Text>
+        ))
+
       }
     </List>
   )
@@ -48,4 +47,4 @@ const Scales = ({options, onChange, values, expanded, toggleExpand, onClear}) =>
 
 
 const onChangeHandler = id => next => change => next(id, change)
-export default ExpansionPanelEnhacer(Scales);
+export default ExpansionPanelEnhacer(Hours);
