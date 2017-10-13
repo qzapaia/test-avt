@@ -42,6 +42,7 @@ export default styled.div`
   .recharts-reference-line{
     line{
       stroke: black;
+      stroke-dasharray: 2px;
     }
   }
 `

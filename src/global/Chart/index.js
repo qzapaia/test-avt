@@ -2,8 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { pick } from 'lodash';
 import Price from '../Price';
+//
+// const ReferenceLine = (props) => {
+//   console.log({props})
+//   return (
+//     <span>
+//       HOLA
+//     </span>
+//   )
+// }
 
-import {BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, Rectangle, ResponsiveContainer} from 'recharts';
+import {BarChart, Bar, XAxis, YAxis, Tooltip, Rectangle, ReferenceLine, ResponsiveContainer} from 'recharts';
 
 const onClickHandler = (e, onClick) => {
   onClick(e.payload);
@@ -39,7 +48,9 @@ const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar 
           fill={ settings.barColor }
           onClick={e => onClickHandler(e, onClick)} />
         {/* <ReferenceLine y={max} label={max} stroke="red" /> */}
+        {/* <ReferenceLine  /> */}
         <ReferenceLine y={min} label={min} stroke="green" />
+
       </BarChart>
     </ResponsiveContainer>
   )
