@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import { Container } from './styled';
 import CheckboxGroup from '../CheckboxGroup';
 import { map, get } from 'lodash';
+import ExpansionPanelEnhacer from "../ExpansionPanel/enhacer";
+import Scales from './Scales';
 
-
-const labelFlightsTramos = (type,position) => {
-  if(type == 'multidestino'){
-    return `Vuelo ${position + 1}`
-  }
-  return (position == 0)? "Ida" : "Vuelta"
-}
 
 const labelFlightsSchedules = (type,position) => {
   if(type == 'multidestino'){
@@ -36,21 +31,8 @@ const FlightsFilters = ({
   return(
   <Container>
     <h2>Filtros de Búsqueda</h2>
-    <h3>Escalas Tramos</h3>
+    <Scales expanded={true} values={values} onChange={onChange} options={options} />
     <div>
-      {map(options.scales, (scalesOptions, k) => (
-        
-        <CheckboxGroup
-          label={labelFlightsTramos(options.flightType,k)}
-          onChange={onChangeHandler(`scales.${k}`)(onChange)}
-          options={scalesOptions.options}
-          values={get(values,['scales', k])}
-          onClear={()=>onClear(`scales.${k}`)}
-          allOptions={{
-            label:<span>Todas las escalas</span>,
-            checked:false}}
-          />
-      ))}
 
       <CheckboxGroup
         label={'airlines'}
@@ -66,7 +48,7 @@ const FlightsFilters = ({
 
       <h4>Horarios</h4>
       {map(options.schedules, (schedulesOptions, k) => (
-        
+
         <CheckboxGroup
           label={labelFlightsSchedules(options.flightType,k)}
           onChange={onChangeHandler(`schedule.${k}`)(onChange)}
@@ -77,11 +59,11 @@ const FlightsFilters = ({
             label:<span>Todas los Horarios</span>,
             checked:false}}
           />
-      ))}  
-      
+      ))}
+
 
       <h4>Aeropuertos</h4>
-      { 
+      {
         map(options.airports.items, (airports, k) => (
           map(airports,(optionsAirports,i)=>(
             <CheckboxGroup
@@ -94,10 +76,10 @@ const FlightsFilters = ({
               label:<span>Todas los Aeropuertos</span>,
               checked:false}}
             />
-          )) 
+          ))
         ))
-      }  
-    
+      }
+
     </div>
 
   </Container>
