@@ -31,5 +31,8 @@ storiesOf('global/styled@Button', module)
       <Sep>
         <Button type="ghst">ghst button</Button>
       </Sep>
+      <Sep>
+        <Button type="link">link button</Button>
+      </Sep>
     </div>
   ))
