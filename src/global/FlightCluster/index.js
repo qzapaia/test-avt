@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FareDetail from '../FareDetail'
-import FlightClusterRoute from './FlightClusterRoute'
-import FlightClusterRouteOption from './FlightClusterRouteOption'
-import JustOne from '../JustOne'
+import FareDetail from '../FareDetail';
+import FlightClusterRoute from './FlightClusterRoute';
+import FlightClusterRouteOption from './FlightClusterRouteOption';
+import JustOne from '../JustOne';
+import Text from '../Text';
+import Icon from '../Icon';
+import {FareDetailContainer, Container, AdditionalInfo} from './styled';
 
 import { map } from 'lodash'
 
@@ -14,22 +17,17 @@ const containerStyle = {
   display:'flex'
 }
 
-const fareDetailContainer = {
-  flexGrow:1,
-  backgroundColor:'lightGrey'
-}
-
 const routeContainer = {
-  flexGrow:3 
+  flexGrow:3
 }
 
 const OptionsSelector = JustOne(({select, selected, options, selectedOption})=>{
   return(<div>
     {
       map(options, (o, key) => (
-          <FlightClusterRouteOption 
-            data={o} 
-            onClick={ select(o.summaryInfo.id) } 
+          <FlightClusterRouteOption
+            data={o}
+            onClick={ e => select(o.summaryInfo.id) }
             selected={ selectedOption == o.summaryInfo.id ? true : false }
           />
       ))
@@ -45,80 +43,93 @@ const FlightCluster = ({
 }) => {
 
   return (
-    <div style={containerStyle}>
-      <div style={routeContainer}>
-        <div style={{'padding':'10px','color':'green'}}>
-          {data.additionalInfo}
+    <Container>
+
+      <AdditionalInfo type='s' color='success'>
+        <Icon id='Mood' color='success' />
+        {data.additionalInfo}
+      </AdditionalInfo>
+      <div style={containerStyle}>
+        <div style={routeContainer}>
+
+
+            {data.routes.first &&
+              <div>
+                <FlightClusterRoute
+                  title={data.routes.first.header.title}
+                  date={data.routes.first.header.date}
+                  departureCity={data.routes.first.header.departureCity}
+                  arrivalCity={data.routes.first.header.arrivalCity}
+                >
+                  <OptionsSelector
+                    /*
+                    selectedOption={selectRouteOptions.firstRouteOptionId}
+
+                    onChange={ selectedOption => onSelectedRouteOption(
+                      { 'firstRouteOptionId':selectedOption }
+                    )}
+                    */
+                    options={data.routes.first.options}
+                    />
+                </FlightClusterRoute>
+              </div>
+            }
+
+            {data.routes.second &&
+              <div>
+                <FlightClusterRoute
+                  title={data.routes.second.header.title}
+                  date={data.routes.second.header.date}
+                  departureCity={data.routes.second.header.departureCity}
+                  arrivalCity={data.routes.second.header.arrivalCity}
+                >
+                  <OptionsSelector
+                    /*
+                    selectedOption={selectRouteOptions.secondRouteOptionId}
+                    onChange={ selectedOption => onSelectedRouteOption(
+                      { 'secondRouteOptionId':selectedOption }
+                    )}
+                    */
+                    options={data.routes.second.options}
+                    />
+                </FlightClusterRoute>
+              </div>
+            }
+
+            {data.routes.third &&
+              <div>
+                <FlightClusterRoute
+                  title={data.routes.third.header.title}
+                  date={data.routes.third.header.date}
+                  departureCity={data.routes.third.header.departureCity}
+                  arrivalCity={data.routes.third.header.arrivalCity}
+                >
+                  <OptionsSelector
+                    /*
+                    selectedOption={selectRouteOptions.thirdRouteOptionId}
+                    onChange={ selectedOption => onSelectedRouteOption(
+                      { 'thirdRouteOptionId':selectedOption }
+                    )}
+                    */
+                    options={data.routes.third.options}
+                    />
+                </FlightClusterRoute>
+              </div>
+            }
+
+          <div style={{'padding':'10px','color':'blue'}}>
+            {data.disclaimerText}
+          </div>
         </div>
-      
-          
-          {data.routes.first && 
-            <div>
-              <FlightClusterRoute
-                title={data.routes.first.header.title} 
-                date={data.routes.first.header.date} 
-                departureCity={data.routes.first.header.departureCity} 
-                arrivalCity={data.routes.first.header.arrivalCity}
-              >
-                <OptionsSelector 
-                  selectedOption={selectRouteOptions.firstRouteOptionId}
-                  onChange={ selectedOption => onSelectedRouteOption(
-                    { 'firstRouteOptionId':selectedOption }
-                  )} 
-                  options={data.routes.first.options} 
-                  />
-              </FlightClusterRoute>
-            </div>            
-          }
 
-          {data.routes.second && 
-            <div>
-              <FlightClusterRoute
-                title={data.routes.second.header.title} 
-                date={data.routes.second.header.date} 
-                departureCity={data.routes.second.header.departureCity} 
-                arrivalCity={data.routes.second.header.arrivalCity}
-              >
-                <OptionsSelector 
-                  selectedOption={selectRouteOptions.secondRouteOptionId}
-                  onChange={ selectedOption => onSelectedRouteOption(
-                    { 'secondRouteOptionId':selectedOption }
-                  )} 
-                  options={data.routes.second.options} 
-                  />
-              </FlightClusterRoute>
-            </div>            
-          }
 
-          {data.routes.third && 
-            <div>
-              <FlightClusterRoute
-                title={data.routes.third.header.title} 
-                date={data.routes.third.header.date} 
-                departureCity={data.routes.third.header.departureCity} 
-                arrivalCity={data.routes.third.header.arrivalCity}
-              >
-                <OptionsSelector 
-                  selectedOption={selectRouteOptions.thirdRouteOptionId}
-                  onChange={ selectedOption => onSelectedRouteOption(
-                    { 'thirdRouteOptionId':selectedOption }
-                  )} 
-                  options={data.routes.third.options} 
-                  />
-              </FlightClusterRoute>
-            </div>            
-          }
-          
-        <div style={{'padding':'10px','color':'blue'}}>
-          {data.disclaimerText}
-        </div>
+        <FareDetailContainer>
+          <FareDetail currency="ARS" detailInfo={data.fareDetail}></FareDetail>
+        </FareDetailContainer>
+
       </div>
+    </Container>
 
-
-      <div style={fareDetailContainer}>
-        <FareDetail currency="ARS" detailInfo={data.fareDetail}></FareDetail>
-      </div>
-    </div>
   )
 }
 

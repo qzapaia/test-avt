@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 import Link from '../Link';
 
-
 export const NavList = styled.ul`
   margin-top: 15px;
   border-top: 1px dotted ${props=> props.theme.colors.gray};
@@ -14,7 +13,7 @@ export const MaxWidth = styled.div`
   padding: 0;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: ${props=> props.theme.navJustifyContent};
   margin: 0 auto;
   max-width: ${props=> props.theme.viewport.desktop}
 `
@@ -25,7 +24,7 @@ export const Item = styled.li`
   position: relative;
   text-align: center;
   flex: 1;
-  max-width: 100px;
+  max-width: ${props=>props.theme.itemMaxWidth};
   z-index: 100;
 `
 export const LinkContainer = Link.extend`
@@ -37,10 +36,11 @@ export const LinkContainer = Link.extend`
 
 export const LinkNav = styled.div`
   &:hover {
-    color: black;
+    color: ${props=> props.theme.containerHoverColor};
+    background-color: ${props=> props.theme.containerHoverBgColor};
     &::before{
       flex-basis: 100%;
-      background: ${props=> props.theme.colors.darkergray}
+      background: ${props=> props.theme.containerBeforeBgColor}
     }
     svg{
       fill: black !important;
@@ -51,14 +51,14 @@ export const LinkNav = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  line-height: 36px;
+  line-height: ${props=> props.theme.containerLineHeight};
   &::before{
     content: "";
     display: flex;
     flex-basis: ${props=>props.isActive ? '100%' : '15px'};
     height: 3px;
     transition: all .2s ease-in-out 0s;
-    background: ${props=>props.isActive ? props.theme.colors.darkergray : 'transparent'};
+    background: ${props=>props.isActive ? props.theme.containerBeforeBgColor : 'transparent'};
   }
   svg{
     fill: ${props=>props.isActive ? 'black' : props.theme.colors.primary} !important;

@@ -6,7 +6,7 @@ import ContainerList from './styled';
 const List = ({type, children}) => (
   <ContainerList type={type}>
     {children.map(child => (
-      <li key={child.props.id}>{child}</li>
+      <li key={child.props.id}>{ child }</li>
     ))}
   </ContainerList>
 )

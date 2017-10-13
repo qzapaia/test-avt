@@ -5,9 +5,10 @@ import ReactPaginate from 'react-paginate';
 /*https://github.com/AdeleD/react-paginate*/
 const Paginate = ({pagesCount, selectedPage, onPageSelected}) => {
   return(
-    <div>
+    <div style={{display:"flex"}}>
       {pagesCount > 0 &&
         <ReactPaginate 
+          style={{display:"flex"}}
           previousLabel={"Anterior"}
           nextLabel={"Siguiente"}
           pageCount={pagesCount}

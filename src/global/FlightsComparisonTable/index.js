@@ -65,93 +65,92 @@ const flightGroupStyle = {
 }
 
 const FlightsComparisonTable = ({flights}) => {
+  const groupedFlightsByAirlines = getBestPricesByStop(groupByAirlineName(flights));
 
-	const groupedFlightsByAirlines = getBestPricesByStop(groupByAirlineName(flights));
+  const groupedBestFlightsByPrice = getBestPricesByStopWithGroupedFlights(groupedFlightsByAirlines);
 
-	const groupedBestFlightsByPrice = getBestPricesByStopWithGroupedFlights(groupedFlightsByAirlines);
+  return(
+    <div style={containerStyle}>
+      <div style={firstColumnStyle}>
+        <div>
+          Precio más bajo por adulto
+        </div>
+        <div>
+          <div>------------------</div>
+          <div>
+            Vuelo directo
+          </div>
+          <div>------------------</div>
+          <div>
+            1 escala
+          </div>
+          <div>------------------</div>
+          <div>
+            2 o más escalas
+          </div>
+        </div>
+      </div>
 
-	return(
-	  <div style={containerStyle}>
-	    <div style={firstColumnStyle}>
-	    	<div>
-	    		Precio más bajo por adulto
-	    	</div>
-	    	<div>
-	    		<div>------------------</div>
-	    		<div>
-	    			Vuelo directo
-	    		</div>
-	    		<div>------------------</div>
-	    		<div>
-	    			1 escala
-	    		</div>
-	    		<div>------------------</div>
-	    		<div>
-	    			2 o más escalas
-	    		</div>
-	    	</div>
-	    </div>
+      <div style={secondColumnStyle}>
+        <div>
+          <div>
+            Mejor precio
+          </div>
+        </div>
 
-	    <div style={secondColumnStyle}>
-				<div>
-		    	<div>
-		    		Mejor precio
-		    	</div>
-    		</div>
+        {_.map(groupedBestFlightsByPrice, f =>
 
-				{_.map(groupedBestFlightsByPrice, f =>
+          <div>
+            -------------
+            <br />
+            {f.price}
+          </div>
 
-					<div>
-	    			-------------
-	    			<br />
-	    			{f.price}
-					</div>
+        )}
+      </div>
 
-				)}
-	    </div>
+      <div style={thirdColumnStyle}>
+        <div>
+          --------Izquierda
+        </div>
 
-	    <div style={thirdColumnStyle}>
-	    	<div>
-	    		--------Izquierda
-	    	</div>
+        {_.map(groupedFlightsByAirlines, (flights, airlineName) => 
+          (
 
-	    	{_.map(groupedFlightsByAirlines, (flights, airlineName) => 
-	    		(
+            <div style={flightGroupStyle} >
 
-	    			<div style={flightGroupStyle} >
+              <div>
+                <div>
+                  <img src={flights.logo} />
+                </div>
+                <div>
+                  {flights.label}
+                </div>
+              </div>
 
-	    				<div>
-			    			<div>
-			    				<img src={flights.logo} />
-			    			</div>
-			    			<div>
-			    				{flights.label}
-			    			</div>
-			    		</div>
+              {_.map(flights.stops, f =>
 
-	    				{_.map(flights.stops, f =>
+                <div>
+                  -------------
+                  <br />
+                  {f.price}
+                </div>
 
-	    					<div>
-				    			-------------
-				    			<br />
-				    			{f.price}
-	    					</div>
+              )}
 
-	    				)}
+            </div>
 
-	    			</div>
+          )
+        )}
 
-	    		)
-	    	)}
-
-	    	<div>
-	    		--------Derecha
-	    	</div>
-	    </div>
+        <div>
+          --------Derecha
+        </div>
+      </div>
 
 
-	  </div>
-	)
+    </div>
+  )
 }
 
 FlightsComparisonTable.propTypes = {
