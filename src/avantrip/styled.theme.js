@@ -43,14 +43,6 @@ export default {
       size:'12px',
       weight:'300'
     },
-    // weight:{
-    //   thin:'200',
-    //   light:'300',
-    //   book:'normal',
-    //   semibold:'500',
-    //   bold:'600',
-    //   black:'900'
-    // }
   },
   viewport:{
     desktop: '1280px'

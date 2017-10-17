@@ -33,7 +33,6 @@ const Home = ({
   subscribe
 }) => (
   <HomeContainer>
-    {console.log("subscribe", subscribe)}
     <MainSection>
       <MaxWidth>
         <FlightSearchBoxAbsolute layout={media.size}>
