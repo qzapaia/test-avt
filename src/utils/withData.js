@@ -12,7 +12,7 @@ function getComponentDisplayName (Component) {
   return Component.displayName || Component.name || 'Unknown'
 }
 
-export default config => ComposedComponent => {
+export default (config, cb) => ComposedComponent => {
   return class WithData extends React.Component {
     static displayName = `WithData(${getComponentDisplayName(ComposedComponent)})`
     static propTypes = {
@@ -78,6 +78,7 @@ export default config => ComposedComponent => {
       super(props)
       this.apollo = initApollo(config.apollo)
       this.redux = initRedux(this.apollo, this.props.serverState, config.reducers)
+      cb && cb(this.apollo, this.redux);
     }
 
     render () {
