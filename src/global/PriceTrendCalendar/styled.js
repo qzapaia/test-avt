@@ -87,14 +87,16 @@ export const ContainerMonth = styled.div`
   }
   .slick-slider {
     position: relative;
-    display: flex;
     align-items: center;
+    ${props=>props.layout < 2?'':'display: flex'}
   }
   .slick-prev, .slick-next{
-    position: relative;
-    left: 0;
+    position: ${props=>props.layout < 2?'absolute':'relative'};
+    width: ${props=>props.layout < 2?'30px':''};
+    height: ${props=>props.layout < 2?'30px':''};
+    border-radius: ${props=>props.layout < 2?'50%':''};
+    background: ${props=>props.layout < 2?'white':'none'};
     flex: 0 1 100px;
-    background: none;
     opacity: 1;
     &:after{
       width: 14px;
@@ -102,8 +104,19 @@ export const ContainerMonth = styled.div`
       border-width: 4px;
       border-bottom-color: ${props=>props.theme.colors.primary};
       border-left-color: ${props=>props.theme.colors.primary};
+      left: 7.5px;
+      top: 7.5px;
     }
   }
+  .slick-prev{
+    left: ${props=>props.layout < 2?'0':''};
+    top: ${props=>props.layout < 2?'20px':''};
+  }
+  .slick-next{
+    right: ${props=>props.layout < 2?'0':''};
+    top: ${props=>props.layout < 2?'20px':''};
+  }
+
 `
 export const CenterText = Text.extend`
   display: flex;

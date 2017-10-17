@@ -69,7 +69,6 @@ const PriceTrendCalendar = ({
   const monthToShow = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
   const dataByMonth = find(processedData, { 'month': monthToShow });
   const bestPrice = getBestPriceBy(dataByMonth);
-  console.log(media)
 
   return <Container>
     {dataByMonth && (
