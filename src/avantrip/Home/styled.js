@@ -10,7 +10,6 @@ export const HomeContainer = styled.section`
 export const MainSection = styled.section`
   display: block;
   .slick-track{
-    min-height: 450px;
     display: flex;
   }
 `

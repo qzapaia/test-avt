@@ -61,6 +61,14 @@ export const SliderContainer = styled.div`
   .slick-slider{
     position: relative;
   }
+  .slick-slide{
+    a{
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+  }
   .sliderDots{
     list-style: none;
     margin: 0;
