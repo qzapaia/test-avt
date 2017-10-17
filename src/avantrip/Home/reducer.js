@@ -1,11 +1,11 @@
 import searchReducer from '../FlightSearchBox/reducer';
 import purchaseAccessReducer from '../PurchaseAccess/reducer';
 import mainLayoutReducer from '../MainLayout/reducer';
-import homeSubscribe from '../Subscribe/reducer';
+import subscribeReducer from '../Subscribe/reducer';
 
 export default {
   search:searchReducer,
   purchaseAccess:purchaseAccessReducer,
   ...mainLayoutReducer,
-  homeSubscribe
+  subscribe:subscribeReducer,
 }

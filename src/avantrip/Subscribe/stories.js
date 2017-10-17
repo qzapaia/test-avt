@@ -1,35 +1,38 @@
-import React from 'react'
-import Subscribe from './'
+import React from "react";
 
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { withState, compose } from 'recompose'
+import HomeSubscribe from "./homeSubscribe";
+import TripSubscribe from "./tripSubscribe";
+import enhaceStory from "../../global/Subscribe/storiesEnhace";
 
-import generalDecorator from '../../stories.decorator.js';
+import { storiesOf } from "@storybook/react";
 
-import theme from '../styled.theme';
-import readme from './README.md'
+import generalDecorator from "../../stories.decorator.js";
 
-storiesOf('avantrip/Subscribe', module)
-  .addDecorator(generalDecorator({
-    readme,
-    theme
-  }))
-  .add('Default', () => (
-    <Subscribe
-      title="Recibí nuestras últimas ofertas"
-      onSubscribe={action('subscribe sent')}
-    />
-  ))
-  .add('Successful subscription', () => (
-    <Subscribe
-      title="Recibí nuestras últimas ofertas"
-      state="success"
-    />
-  ))
-  .add('Failed subscription', () => (
-    <Subscribe
-      title="Recibí nuestras últimas ofertas"
-      state="error"
-    />
-  ))
+import theme from "../styled.theme";
+import readme from "../../global/Subscribe/README.md";
+import reducer from "../../global/Subscribe/reducer";
+
+storiesOf("avantrip/Subscribe", module)
+  .addDecorator(
+    generalDecorator({
+      readme,
+      theme,
+      reducer: {
+        subscribe: reducer
+      }
+    })
+  )
+  .add("Suscribirme a newsletters", () => {
+    const HomeSubscribeEnhaced = enhaceStory(HomeSubscribe);
+    return <HomeSubscribeEnhaced title="Recibí nuestras últimas ofertas" />;
+  })
+  .add("Suscribirme a newsletters de un destino", () => {
+    const TripSubscribeEnhaced = enhaceStory(TripSubscribe);
+    return (
+      <TripSubscribeEnhaced
+        value={{ city: "Buenos Aires" }}
+        title={`Te avisamos cuando tengamos los precios
+        más bajos a [city].`}
+      />
+    );
+  });

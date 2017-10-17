@@ -12,7 +12,10 @@ const fs = require('fs');
 app.prepare()
 .then(() => {
   const server = express()
-  !dev && server.use(compression());
+
+  !dev && server.use(compression()) && console.log('gzip');
+
+  server.use('/storybook', express.static('storybook-static'));
 
   server.use(express.static('./statics'));
 
@@ -28,9 +31,7 @@ app.prepare()
 
   server.get('*', (req, res) => {
     return handle(req, res)
-  })
-
-  server.use('/storybook',express.static('storybook-static'));
+  });
 
 
   server.listen(port, (err) => {

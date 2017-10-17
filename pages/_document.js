@@ -13,6 +13,8 @@ export default class MyDocument extends Document {
           <title>Avantrip.com - Agencia de turismo y viajes líder en Argentina</title>
           <link rel="stylesheet" href="/base.css"/>
           <link rel="stylesheet" href="/fonts.css"/>
+          <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+          <script src="/onLoadStagSans.js"></script>
           {styleTags}
         </Head>
 

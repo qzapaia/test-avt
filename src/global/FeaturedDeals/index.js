@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container } from './styled';
+import { Container, Slide } from './styled';
 import Slider from '../Slider';
 
 import { map } from 'lodash';
 
 const optimizeImage = url => (
-  'https://res.cloudinary.com/avantrip-com/image/fetch/w_1280,q_95/'+
+  'https://res.cloudinary.com/avantrip-com/image/fetch/w_1440/'+
   url
 )
 
@@ -17,11 +17,7 @@ const FeaturedDeals = ({
   <Container>
     <Slider>
       {map(deals, deal => (
-        <div>
-          <a href={deal.url}>
-            <img src={optimizeImage(deal.image)} />
-          </a>
-        </div>
+        <Slide bg={optimizeImage(deal.image)} href={deal.url} />
       ))}
     </Slider>
   </Container>
