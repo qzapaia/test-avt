@@ -19,6 +19,9 @@ const references = (function(){
   };
 }());
 
+const getCityName = airportIata => {
+  return references.get().cities[references.get().hierarchies[airportIata].city]
+}
 
 export default (state = initialState, action) => {
   const {
@@ -72,14 +75,14 @@ const getFlightSegments = ( f, index ) => {
     flight.departure = {
       'iata': fs.departure.location,
       'date': fs.departure.date,
-      'city': `Ciudad de ${references.get().cities[fs.departure.location]}`,
+      'city': `Ciudad de ${getCityName(fs.departure.location)}`,
       'airport': `Aeropuerto de ${references.get().airports[fs.departure.location]}`
     }
 
     flight.arrival = {
       'iata': fs.arrival.location,
       'date': fs.arrival.date,
-      'city': `Ciudad de ${references.get().cities[fs.arrival.location]}`,
+      'city': `Ciudad de ${getCityName(fs.arrival.location)}`,
       'airport': `Aeropuerto de ${references.get().airports[fs.arrival.location]}`
     }
 
@@ -155,12 +158,10 @@ const getFlightCluster = c => {
     }
 
     if(c.stages[1]){
-      c.stages[1].references = references;
       fc.routes.second = getRoute(c.stages[1]);      
     }
 
     if(c.stages[2]){
-      c.stages[2].references = references;
       fc.routes.third = getRoute(c.stages[2]);      
     }
 
