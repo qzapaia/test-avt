@@ -14,6 +14,8 @@ app.prepare()
   const server = express()
   !dev && server.use(compression());
 
+  server.use('/storybook', express.static('storybook-static'));
+
   server.use(express.static('./statics'));
 
   server.get('*', (req, res, n) => {
@@ -28,9 +30,7 @@ app.prepare()
 
   server.get('*', (req, res) => {
     return handle(req, res)
-  })
-
-  server.use('/storybook',express.static('storybook-static'));
+  });
 
 
   server.listen(port, (err) => {
