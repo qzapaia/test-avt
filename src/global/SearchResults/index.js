@@ -20,8 +20,8 @@ const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems, c
           <FlightsFiltersWithData options={filters} />
         </div>
         <div style={{flexGrow:"10"}}>
-          {/*<FlightsComparisonTableWithData flights={comparisonFlights} />*/}
-          {/*<SearchResultsListWithData flightClusters={flightClusters} />*/}
+          <FlightsComparisonTableWithData flights={comparisonFlights} />
+          <SearchResultsListWithData flightClusters={flightClusters} />
           <Paginate  pageCount={countPage} />
         </div>
       </div>

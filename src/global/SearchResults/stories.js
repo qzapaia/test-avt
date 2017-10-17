@@ -16,7 +16,7 @@ const enhace = withState('counter','increment',0);
 
 let search = {
   origin: 'BUE',
-  destination: 'MIA',
+  destination: 'DME',
   departureDate: '11-03-2018',
   returningDate: '20-03-2018',
   passengers: {
@@ -28,6 +28,21 @@ let search = {
   channel: 'DESKTOP',
   portal:'AVANTRIP',
   leg:"roundtrip",
+}
+
+let multiTripSearch = {
+  origin: ["BUE","MIA","LHR"],
+  destination: ["MIA","LHR","DME"],
+  departureDate: ["10-01-2018","17-01-2018","25-01-2018"],
+  passengers: {
+    adults: 1,
+    children: 0,
+    infants:0
+  },
+  cabinClass: 'Economy',
+  channel: 'DESKTOP',
+  portal:'AVANTRIP',
+  leg:"multitrip",
 }
 
 const SearchResultsWithState =  enhace((props) => {
@@ -160,5 +175,19 @@ storiesOf('global/SearchResults', module)
       channel={search.channel}
       portal={search.portal}
       leg={search.leg} 
+      showItemsByPage={20}/>
+  ))
+  .add('With multi trip data', () => (
+    <SearchResultsWithData
+      origin={multiTripSearch.origin}
+      destination={multiTripSearch.destination}
+      departureDate={multiTripSearch.departureDate}
+      passengersAdults={multiTripSearch.passengers.adults}
+      passengersChildren= {multiTripSearch.passengers.children}
+      passengersInfants={multiTripSearch.passengers.infants}
+      cabinClass={multiTripSearch.cabinClass}
+      channel={multiTripSearch.channel}
+      portal={multiTripSearch.portal}
+      leg={multiTripSearch.leg} 
       showItemsByPage={20}/>
   ))
