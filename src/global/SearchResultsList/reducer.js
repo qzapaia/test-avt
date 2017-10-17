@@ -53,7 +53,7 @@ const getScaleLabel = scale => {
     default:
       return 'Directo'
   }
-} 
+}
 
 const getFlightSegments = ( f, index ) => {
   let flightSegments = [];
@@ -64,9 +64,12 @@ const getFlightSegments = ( f, index ) => {
     flight.common = {
       'flightStep': index+segmentsIndex+1,
       'flightNumber': f.code,
-      'airlineLogo': getAirlineLogos([f.marketingCarrier]),
-      'provider': references.get().carriers[f.marketingCarrier],
+      'airlines': getAirlines([f.marketingCarrier]),
       'class': 'Económica',
+    }
+
+    if(f.operatingCarrier != f.marketingCarrier ){
+      flight.common['provider'] = getAirlines([f.operatingCarrier]);
     }
 
     flight.departure = {
@@ -83,16 +86,18 @@ const getFlightSegments = ( f, index ) => {
       'airport': `Aeropuerto de ${references.get().airports[fs.arrival.location]}`
     }
 
-    flightSegments.push(flight);    
+    flightSegments.push(flight);
   })
 
   return flightSegments;
 }
 
-//¿Esto debería ser un componente aparte?
-const getAirlineLogos = airlineIatas => (
-  map(airlineIatas, a => `https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/${a}.png?adq-20170927-0`)
-)
+const getAirlines = airlinesCodes => (
+  map(airlinesCodes, code =>({
+      "code": code,
+      "name": references.get().carriers[code]
+  }))
+);
 
 const getRouteOption = ro => {
   let routeOption = {};
@@ -103,9 +108,8 @@ const getRouteOption = ro => {
   // Duration que significa
 
   routeOption.summaryInfo = {
-    'id': ro.index, 
-    'airlineLogos': getAirlineLogos(ro.marketingCarriers), //validar
-    'provider':`Operado por ${references.get().carriers[ro.validatingCarrier]}`, //validar
+    'id': ro.index,
+    'airlines': getAirlines(ro.marketingCarriers),
     'departureIata': ro.departureAirport,
     'departureDate': ro.departureDate,
     'arrivalIata': ro.arrivalAirport,
@@ -115,10 +119,17 @@ const getRouteOption = ro => {
     'isSelected':false
   }
 
+  if(ro.codeshare){
+    const provider = find(ro.flights, (flight) =>{
+      return flight.operatingCarrier != flight.marketingCarrier;
+    });
+    routeOption.summaryInfo["provider"] =  getAirlines([provider.operatingCarrier]);
+  }
+
   routeOption.extendedInfo = {
     'header': 'Buenos Aires hacia Córdoba',
     'flights': flatMap(ro.flights, ( r, index )  => {
-      return getFlightSegments( r, index ) 
+      return getFlightSegments( r, index )
     })
   }
 
@@ -127,7 +138,7 @@ const getRouteOption = ro => {
 
 const getRoute = r => {
   let route = {};
-
+console.log(r);
   //Ojo con el label de los tramos. TODO cuando haya multidestinos
   route.header = {
     title:'Ida',
@@ -151,17 +162,17 @@ const getFlightCluster = c => {
   if(c.stages.length>0){
 
     if(c.stages[0]){
-      fc.routes.first = getRoute(c.stages[0]);      
+      fc.routes.first = getRoute(c.stages[0]);
     }
 
     if(c.stages[1]){
       c.stages[1].references = references;
-      fc.routes.second = getRoute(c.stages[1]);      
+      fc.routes.second = getRoute(c.stages[1]);
     }
 
     if(c.stages[2]){
       c.stages[2].references = references;
-      fc.routes.third = getRoute(c.stages[2]);      
+      fc.routes.third = getRoute(c.stages[2]);
     }
 
   }
@@ -195,7 +206,7 @@ export const populateStages = (state={}) => {
   const masterStages = state.stages;
 
   references.set(state.references);
-  
+
   const clusters = state.clusters.map(c=>({
     ...c,
     stages:map(c.stages,stage=>({

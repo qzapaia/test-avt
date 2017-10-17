@@ -16,7 +16,7 @@ const enhace = withState('counter','increment',0);
 
 let search = {
   origin: 'BUE',
-  destination: 'DME',
+  destination: 'MOW',
   departureDate: '11-03-2018',
   returningDate: '20-03-2018',
   passengers: {
@@ -141,9 +141,9 @@ storiesOf('global/SearchResults', module)
     reducer
   }))
   .add('Default', () => (
-    <SearchResults 
+    <SearchResults
       showItemsByPage={20}
-      filters={newFilters} 
+      filters={newFilters}
       clusters={newclusters}/>
   ))
 
@@ -159,6 +159,6 @@ storiesOf('global/SearchResults', module)
       cabinClass={search.cabinClass}
       channel={search.channel}
       portal={search.portal}
-      leg={search.leg} 
+      leg={search.leg}
       showItemsByPage={20}/>
   ))

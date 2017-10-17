@@ -5,6 +5,7 @@ import Text from '../Text';
 import Icon from '../Icon';
 import InputRadio from '../InputRadio';
 import ExpansionPanel from '../ExpansionPanel';
+import AirlineLogo from '../AirlineLogo';
 import {ExpandButton, ExtendedInformation} from '../ExpansionPanel/styled';
 import {
   ClusterItem,
@@ -38,7 +39,7 @@ import {
 
 import { withState } from 'recompose';
 
-import { map } from 'lodash'
+import { map, get } from 'lodash'
 
 const formatMinutes = minutes => moment()
                                 .startOf('day')
@@ -54,19 +55,23 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
             <InputRadio onChange={onClick} checked ={selected} />
             <AirlineContainer>
               <figure>
-                {
-                  map(data.summaryInfo.airlineLogos, a => (
-                    <img src={a} />
-                  ))
-                }
+                {map(data.summaryInfo.airlines, airline => (
+                  <AirlineLogo code={airline.code} />
+                ))}
               </figure>
               <AirlineName>
+                {data.summaryInfo.airlines.length < 2 &&
                 <Text tag='p'>
-                  {data.summaryInfo.airlineName}
+                  {map(data.summaryInfo.airlines, airline => (
+                    airline.name
+                  ))}
                 </Text>
-                <Text type='xs' tag='p'>
-                  {data.summaryInfo.provider}
-                </Text>
+                }
+                {data.summaryInfo.provider &&
+                  <Text type='xs' tag='p'>
+                    Operado por {get(data, "summaryInfo.provider[0].name")}
+                  </Text>
+                }
               </AirlineName>
             </AirlineContainer>
             <FromTo>
@@ -128,7 +133,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
             </TripTitle>
             {
               map(data.extendedInfo.flights, (f, index) => (
-                <MainDetail>
+                <MainDetail key={"flight" + f.arrival.iata + f.arrival.date+f.departure.iata + f.departure.date}>
                   <DetailDeparture style={{margin:'10px', 'flexGrow':'1', 'flexBasis': '0'}}>
                     <Text type='m'>
                       SALIDA
@@ -158,10 +163,13 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
                       </BoldText>
                     </Step>
                     <AirlineDetail>
-                      <img src={f.common.airlineLogo} />
-                      <Text tag='figcaption'>
-                        {f.common.provider}
-                      </Text>
+                      <AirlineLogo code={get(f, "common.airlines[0].code")} />
+                      {get(f, "common.airlines[0].name")}
+                      {f.common.provider &&
+                        <Text tag='figcaption'>
+                          {"Operado por: " + get(f, "common.provider[0].name")}
+                        </Text>
+                      }
                     </AirlineDetail>
                     <Text>
                       <Text>
