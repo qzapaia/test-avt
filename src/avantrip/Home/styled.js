@@ -16,7 +16,7 @@ export const MainSection = styled.section`
 
 export const FlightSearchBoxAbsolute = styled.div`
   ${props=> props.layout > 1?'position: absolute;':'position: static'}
-  top: 30px;
+  top: 25px;
   left: 70px;
   margin: 0 auto;
   z-index: 999;

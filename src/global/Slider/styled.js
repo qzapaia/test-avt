@@ -67,6 +67,7 @@ export const SliderContainer = styled.div`
       height: 100%;
       justify-content: center;
       align-items: center;
+      min-height: 420px;
     }
   }
   .sliderDots{
