@@ -10,16 +10,15 @@ export const HomeContainer = styled.section`
 export const MainSection = styled.section`
   display: block;
   .slick-track{
-    min-height: 450px;
     display: flex;
   }
 `
 
 export const FlightSearchBoxAbsolute = styled.article`
   ${({ layout }) => (layout > 1 ? 'position:absolute' : '')};
-  z-index: 20;
-  top: 30px;
-  left: 70px;
+  z-index: 90;
+  top: 40px;
+  left: 60px;
   margin: 0 auto;
   width: 100%;
   max-width: ${props=> props.layout > 1? '450px':'97.5%'};

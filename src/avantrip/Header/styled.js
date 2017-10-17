@@ -63,6 +63,7 @@ export const Login = styled.button`
   align-items: center;
   font-weight: 300;
   cursor: pointer;
+  line-height: 10px;
   &:focus, &:active{
     outline: none;
   }
@@ -85,6 +86,7 @@ export const MyPurchaseButton = styled.button`
   align-items: center;
   font-weight: 300;
   cursor: pointer;
+  line-height: 10px;
   &:focus, &:active{
     outline: none;
   }
