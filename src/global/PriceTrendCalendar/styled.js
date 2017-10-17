@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Text from '../Text'
 
 export default styled.div`
   .recharts-tooltip-cursor{
@@ -46,8 +47,65 @@ export default styled.div`
     }
     &:last-of-type{
       line{
-        stroke: ${props=> props.theme.colors.darkgray};
+        stroke: ${props=> props.theme.colors.darkergray};
       }
     }
   }
+`
+
+
+export const CalendarMonth = styled.button`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background: white;
+  > *{
+    margin: 2.5px 0;
+  }
+`
+
+export const ContainerMonth = styled.div`
+  overflow: hidden;
+  .slick-track {
+    display: flex;
+  }
+  .bestPrice {
+    &${CalendarMonth}{
+      color: ${props=>props.theme.colors.success};
+
+    }
+  }
+  .selectedMonth {
+    background-color: ${props=>props.theme.colors.primary} !important;
+    color: white !important;
+  }
+  .slick-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .slick-prev, .slick-next{
+    position: relative;
+    left: 0;
+    flex: 0 1 100px;
+    background: none;
+    opacity: 1;
+    &:after{
+      width: 14px;
+      height: 14px;
+      border-width: 4px;
+      border-bottom-color: ${props=>props.theme.colors.primary};
+      border-left-color: ${props=>props.theme.colors.primary};
+    }
+  }
+`
+export const CenterText = Text.extend`
+  display: flex;
+  align-items: center;
 `

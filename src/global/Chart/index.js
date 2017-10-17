@@ -41,8 +41,6 @@ const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar 
       </PromoPriceContainer>
       <ResponsiveContainer>
         <BarChart
-          // width={settings.width}
-          // height={settings.height}
           data={data}
           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
           <XAxis
