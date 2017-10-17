@@ -9,6 +9,7 @@ import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
 import readme from './README.md';
+import reducer from "./reducer";
 
 const enhace = withState('value','changeCurrency','1');
 
@@ -46,7 +47,10 @@ const CurrencySelectorWithState =  enhace((props) => {
 storiesOf('global/CurrencySelector', module)
   .addDecorator(generalDecorator({
     readme,
-    theme
+    theme,
+    reducer:{
+      currencyMoney: reducer,
+    }
   }))
   .add('Default', () => (
     <CurrencySelectorWithState></CurrencySelectorWithState>
