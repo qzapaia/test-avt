@@ -49,6 +49,22 @@ export default (state = initialState, action) => {
   }
 }
 
+const getScaleLabel = scale => {
+  switch(scale){
+    case 0:
+      return 'Directo';
+    break;
+    case 1:
+      return '1 escala';
+    break;
+    case 2:
+      return '2 escalas';
+    break;
+    default:
+      return 'Directo'
+  }
+} 
+
 export const populateFilters = (state={}) => {
   const filtros = get(state,'filters',{})
   const references = state.references;
@@ -66,7 +82,7 @@ export const populateFilters = (state={}) => {
   const newScales = map(Object.keys(scales),(code,k) => {
     const objectValue = scales[code];
     const opts = Object.keys(objectValue).map((c,j) => ({
-          label: `${c}(${objectValue[c]})` ,
+          label: `${getScaleLabel(Number.parseInt(c))}(${objectValue[c]})` ,
           value:c,
     }));  
     return { options: opts }
@@ -86,7 +102,7 @@ export const populateFilters = (state={}) => {
      return Object.keys(objectValue).map((airport,j) => {
       const keyDeparture = objectValue[airport];
       const opts =  Object.keys(keyDeparture).map((v,i) => ({
-          label: `${v}(${keyDeparture[v]})` ,
+          label: `${get(references,`airports.${v}`)} - ${v} (${keyDeparture[v]})` ,
           value:v,   
       }));
       return {
