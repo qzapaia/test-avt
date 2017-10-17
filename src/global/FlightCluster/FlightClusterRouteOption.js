@@ -11,10 +11,12 @@ import { withState } from 'recompose';
 
 import { map } from 'lodash'
 
-const formatMinutes = minutes => moment()
-                                .startOf('day')
-                                .add(minutes, 'minutes')
-                                .format('hh[hs] mm[m] ')
+const formatMinutes = totalMinutes => {
+  const hours = Math.floor(totalMinutes/60);
+  const minutes = (totalMinutes/60 - hours) * 60;
+
+  return moment.duration(hours, 'hours').asHours() + 'hs ' + Math.round(moment.duration(minutes, 'minutes').asMinutes()) + 'm' 
+}
 
 const enhace = withState('isExpanded','changeState', false);
 const ExpansionPanelWithState =  enhace((props) => {
@@ -86,7 +88,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
 
               <Detail>
                 <div>
-                  {moment(data.summaryInfo.totalTime).format('HH:mm[hs]')}
+                  {formatMinutes(data.summaryInfo.totalTime)}
                 </div>
                 <ExpandButton onClick={onChange}>
                   <Text type='s'>
@@ -109,7 +111,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => {
                     Duracion:
                   </Text>
                   <BoldText>
-                    {moment(data.summaryInfo.totalTime).format('HH:mm[hs]')}
+                    {formatMinutes(data.summaryInfo.totalTime)}
                   </BoldText>
                 </Text>
               </TripTitle>
