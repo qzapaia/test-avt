@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { pick } from 'lodash';
 import Price from '../Price';
-import {ChartContainer, PromoPrice} from './styled';
+import Text from '../Text';
+import ReactTooltip from 'react-tooltip';
+import {ChartContainer, PromoPrice, PromoPriceMax, PromoPriceContainer} from './styled';
 import {BarChart, Bar, XAxis, YAxis, Tooltip, Rectangle, ReferenceLine, ResponsiveContainer} from 'recharts';
 
 const onClickHandler = (e, onClick) => {
@@ -17,9 +19,26 @@ const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar 
 
   return (
     <ChartContainer>
-      <PromoPrice top={min}>
-        <Price price={min} type='xs' />
-      </PromoPrice>
+      <PromoPriceContainer>
+        <PromoPriceMax top={max} data-tip data-for="MaxPrice">
+          <Price price={max} type='xs' />
+        </PromoPriceMax>
+        <ReactTooltip id='MaxPrice'>
+          <Text type='xs' color='white'>
+            Tarifa mas alta
+          </Text>
+        </ReactTooltip>
+
+        <PromoPrice top={min} data-tip data-for="MinPrice">
+          <Price price={min} type='xs' />
+        </PromoPrice>
+        <ReactTooltip id='MinPrice'>
+          <Text type='xs' color='white'>
+            Tarifa mas baja
+          </Text>
+        </ReactTooltip>
+
+      </PromoPriceContainer>
       <ResponsiveContainer>
         <BarChart
           // width={settings.width}
@@ -43,6 +62,7 @@ const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar 
             fill={ settings.barColor }
             onClick={e => onClickHandler(e, onClick)} />
           <ReferenceLine y={min} />
+          <ReferenceLine y={max} />
         </BarChart>
       </ResponsiveContainer>
     </ChartContainer>

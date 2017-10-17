@@ -41,8 +41,13 @@ export default styled.div`
   }
   .recharts-reference-line{
     line{
-      stroke: black;
+      stroke: ${props=> props.theme.colors.success};
       stroke-dasharray: 2px;
+    }
+    &:last-of-type{
+      line{
+        stroke: ${props=> props.theme.colors.darkgray};
+      }
     }
   }
 `

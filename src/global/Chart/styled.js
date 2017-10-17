@@ -4,7 +4,6 @@ import Text from '../Text';
 export const ChartContainer = styled.div`
   position: relative;
   display: flex;
-  align-items: flex-start;
 `
 export const PromoPrice = styled.div`
   background: ${props=>props.theme.colors.success};
@@ -16,4 +15,14 @@ export const PromoPrice = styled.div`
     font-weight: 400;
     color: white !important;
   }
+`
+export const PromoPriceMax = PromoPrice.extend`
+  background: ${props=>props.theme.colors.gray};
+  *{
+    color: ${props=>props.theme.colors.darkergray} !important;
+  }
+`
+export const PromoPriceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `
