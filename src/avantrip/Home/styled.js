@@ -17,8 +17,8 @@ export const MainSection = styled.section`
 export const FlightSearchBoxAbsolute = styled.article`
   ${({ layout }) => (layout > 1 ? 'position:absolute' : '')};
   z-index: 90;
-  top: 25px;
-  left: 70px;
+  top: 40px;
+  left: 60px;
   margin: 0 auto;
   width: 100%;
   max-width: ${props=> props.layout > 1? '450px':'97.5%'};
