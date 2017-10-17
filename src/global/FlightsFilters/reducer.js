@@ -52,15 +52,15 @@ export default (state = initialState, action) => {
 export const populateFilters = (state={}) => {
   const filtros = get(state,'filters',{})
   const references = state.references;
-  const airlines = get(state.filters,'airlines',{});
+  const airlines = get(state.filters,'carriers',{});
   const scales = get(state.filters,'scales',{});
   const schedules = get(state.filters,'schedules',{});
   const airports = get(state.filters,'airports',{});
   const flightType = get(state,'flightType',{})
 
   const newAirliens = map(Object.keys(airlines),code => ({
-    value: airlines[code],
-    labels: references.carriers[code]
+    value: code,
+    label: references.carriers[code]
   }));
 
   const newScales = map(Object.keys(scales),(code,k) => {
@@ -92,7 +92,7 @@ export const populateFilters = (state={}) => {
       return {
         options: opts
       }
-    });  
+    }).reverse();  
   });
 
   const filters = {

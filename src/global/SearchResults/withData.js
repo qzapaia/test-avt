@@ -180,6 +180,7 @@ const WithApolloComponentSearch = compose(
     props: mapResultsToProps,
     skip: (ownProps) => !(ownProps.leg === 'multitrip'),
   }),    
+
 )(SearchResults)
 
 
