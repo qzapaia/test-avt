@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import Chart from "./";
+import Chart from "./withData";
 import moment from "moment";
 
 import withReadme from "storybook-readme/with-readme";

@@ -4,6 +4,8 @@ import Text from '../Text';
 export const ChartContainer = styled.div`
   position: relative;
   display: flex;
+  flex-direction: ${props=>props.layout?'column':'row'};
+  align-items: ${props=>props.layout?'center':'stretch'}
 `
 export const PromoPrice = styled.div`
   background: ${props=>props.theme.colors.success};

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Chart from "../Chart";
+import Chart from "../Chart/withData";
 import Text from "../Text";
 
 import Container from "./styled";
@@ -50,6 +50,7 @@ const getBestPriceBy = dataByMonth =>
   dataByMonth.isBestPriceOfYear &&
   dataByMonth.bestPrice;
 
+
 const PriceTrendCalendar = ({
   data,
   selectedMonth,
@@ -57,7 +58,8 @@ const PriceTrendCalendar = ({
   onDaySelected,
   onMonthSelected,
   departureDate,
-  returnDate
+  returnDate,
+  media
 }) => {
   const processedData = calculateBestPriceInOneYear(
     formatMonthlyFlights(
@@ -67,6 +69,7 @@ const PriceTrendCalendar = ({
   const monthToShow = isUndefined(selectedMonth) ? moment().month() : selectedMonth;
   const dataByMonth = find(processedData, { 'month': monthToShow });
   const bestPrice = getBestPriceBy(dataByMonth);
+  console.log(media)
 
   return <Container>
     {dataByMonth && (
@@ -88,6 +91,7 @@ const PriceTrendCalendar = ({
       data={processedData}
       selectedMonth={monthToShow}
       onMonthSelected={onMonthSelected}
+      layout={media.size}
     />
     <div><Text>{disclaimer}</Text></div>
   </Container>

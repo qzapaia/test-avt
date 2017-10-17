@@ -29,14 +29,19 @@ const sliderSettings = {
   dots: false,
   slidesToShow: 5,
   infinite: false,
+};
+const mobileSliderSettings = {
+  dots: false,
+  slidesToShow: 1,
+  infinite: false,
   centerMode: true
 };
 
-const HistogramMonth = ({ data, selectedMonth, onMonthSelected }) => {
+const HistogramMonth = ({ data, selectedMonth, onMonthSelected, layout }) => {
   sliderSettings["initialSlide"] = selectedMonth;
   return (
     <ContainerMonth>
-      <Slider settings={sliderSettings}>
+      <Slider settings={layout < 2 ? mobileSliderSettings:sliderSettings}>
         {map(sortBy(data, ["year", "month"]), dataByMonth => (
           <CalendarMonth
             key={"month" + dataByMonth.month + dataByMonth.bestPrice}

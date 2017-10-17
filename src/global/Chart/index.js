@@ -11,14 +11,25 @@ const onClickHandler = (e, onClick) => {
   onClick(e.payload);
 }
 
-const Chart = ({data, value, label, onClick, settings, CustomTooltip, renderBar }) => {
-  settings = pick(settings, ['barColor']);
+const Chart = ({
+  data,
+  value,
+  label,
+  onClick,
+  settings,
+  CustomTooltip,
+  renderBar,
+  media,
+  layout
+}) => {
+  settings = pick(settings,
+     ['barColor']);
 
   let max = Math.max.apply(Math,data.map(o => o[value]));
   let min = Math.min.apply(Math,data.map(o => o[value]));
 
   return (
-    <ChartContainer>
+    <ChartContainer layout={media.size < 2}>
       <PromoPriceContainer>
         <PromoPriceMax top={max} data-tip data-for="MaxPrice">
           <Price price={max} type='xs' />
@@ -83,6 +94,7 @@ Chart.defaultProps = {
     // height: 150,
     barColor: '#abd3ee'
   },
+  media:{},
   renderBar:args=>args
 }
 
