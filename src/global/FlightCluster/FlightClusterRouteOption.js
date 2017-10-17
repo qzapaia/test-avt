@@ -41,7 +41,6 @@ import { withState } from 'recompose';
 import { map } from 'lodash'
 
 const formatMinutes = totalMinutes => {
-  console.log(totalMinutes)
   const hours = Math.floor(totalMinutes/60);
   const minutes = (totalMinutes/60 - hours) * 60;
 
