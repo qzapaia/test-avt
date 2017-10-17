@@ -159,7 +159,7 @@ const getRoute = ( r, stageLabel ) => {
     title:stageLabel,
     departureCity: getCityName(route.options[0].summaryInfo.departureIata),
     arrivalCity: getCityName(route.options[0].summaryInfo.arrivalIata),
-    date:new Date()
+    date:route.options[0].summaryInfo.departureDate
   }
 
   return route;

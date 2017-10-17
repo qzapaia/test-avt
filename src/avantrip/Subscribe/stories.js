@@ -1,8 +1,8 @@
 import React from "react";
 import {withState, compose} from "recompose";
 
-import HomeSubscribeWithData from "./homeSubscribe";
-import TripSubscribeWithData from "./tripSubscribe";
+import HomeSubscribe from "./homeSubscribe";
+import TripSubscribe from "./tripSubscribe";
 
 import { storiesOf, action } from "@storybook/react";
 
@@ -76,10 +76,10 @@ storiesOf("avantrip/Subscribe", module)
     />
   ))
   .add("Suscribirme a newsletters withData", () => (
-    <HomeSubscribeWithData title="Recibí nuestras últimas ofertas" />
+    <HomeSubscribe title="Recibí nuestras últimas ofertas" />
   ))
   .add("Suscribirme a newsletters de un destino withData", () => (
-    <TripSubscribeWithData
+    <TripSubscribe
       value={{ city: "Buenos Aires" }}
       title={`Te avisamos cuando tengamos los precios
       más bajos a [city].`}
