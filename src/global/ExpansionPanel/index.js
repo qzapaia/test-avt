@@ -11,7 +11,6 @@ const ExpansionPanel = ({
     isExpanded,
     onChange}) => (
       <div>
-        {console.log("isExpanded", isExpanded)}
        <SummaryInformation
          onChange={()=>onChange(!isExpanded)}
          isExpanded={isExpanded}/>
