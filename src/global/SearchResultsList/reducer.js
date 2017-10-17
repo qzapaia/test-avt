@@ -75,15 +75,15 @@ const getFlightSegments = ( f, index ) => {
     flight.departure = {
       'iata': fs.departure.location,
       'date': fs.departure.date,
-      'city': `Ciudad de ${getCityName(fs.departure.location)}`,
-      'airport': `Aeropuerto de ${references.get().airports[fs.departure.location]}`
+      'city': `${getCityName(fs.departure.location)}`,
+      'airport': `${references.get().airports[fs.departure.location]}`
     }
 
     flight.arrival = {
       'iata': fs.arrival.location,
       'date': fs.arrival.date,
-      'city': `Ciudad de ${getCityName(fs.arrival.location)}`,
-      'airport': `Aeropuerto de ${references.get().airports[fs.arrival.location]}`
+      'city': `${getCityName(fs.arrival.location)}`,
+      'airport': `${references.get().airports[fs.arrival.location]}`
     }
 
     flightSegments.push(flight);    
@@ -119,11 +119,14 @@ const getRouteOption = ro => {
   }
 
   routeOption.extendedInfo = {
-    'header': 'Buenos Aires hacia Córdoba',
     'flights': flatMap(ro.flights, ( r, index )  => {
       return getFlightSegments( r, index ) 
     })
   }
+
+  routeOption.extendedInfo.header = 
+    `${routeOption.extendedInfo.flights[0].departure.city} hacia 
+    ${routeOption.extendedInfo.flights[routeOption.extendedInfo.flights.length-1].arrival.city}`
 
   return routeOption;
 }
