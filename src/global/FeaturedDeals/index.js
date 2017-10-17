@@ -8,6 +8,7 @@ import { map } from 'lodash';
 
 const optimizeImage = url => (
   'https://res.cloudinary.com/avantrip-com/image/fetch/w_1440/'+
+  // 'https://res.cloudinary.com/avantrip-com/image/fetch/h_450/'+
   url
 )
 

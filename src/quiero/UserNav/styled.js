@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import StyledLink from '../Link/container.styled';
 
 export const StyledUserNav = styled.div`
   text-align:right;
@@ -11,7 +10,7 @@ export const StyledPipe = styled.span`
   padding: 0 5px;
 `
 
-export const StyledLinkUserNav = StyledLink.extend`
+export const StyledLinkUserNav = styled.div`
 	position: relative;
 	margin: 0 7px 0 0;
 	> span{
@@ -25,7 +24,7 @@ export const StyledLinkUserNav = StyledLink.extend`
 	    right: -8px;
 	}
   	:hover{
-  		text-decoration: none;  	
+  		text-decoration: none;
   	}
   	:before{
   		content:'';

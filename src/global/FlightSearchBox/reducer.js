@@ -1,14 +1,14 @@
 import { clone, set, head, has, reduce, isEmpty, forEach, find, kebabCase } from 'lodash';
 import moment from 'moment';
-import { 
-  CREATE_SEARCH, 
+import {
+  CREATE_SEARCH,
   SET_SEARCH_BOX_VALUE,
   SET_DESTINATION_DATA,
   SET_SEARCH_BOX_FLIGHT
 
 } from './actions';
 const initialState = {
-  destinations:[],  
+  destinations:[],
   values: {
     leg:'1',
     adults:1,
@@ -73,28 +73,28 @@ export default (state = initialState, action) => {
           break;
          }
       }
-      
+
       if(path == 'leg') {
         switch(val) {
           case '1':
             const flightAux = [head(originState.values.flights)];
             delete originState.values.flights;
             originState.values.flights = flightAux;
-            
+
             if(state.values.flights[0].dates) {
               originState.values.flights[0].dates.startDate = state.values.flights[0].dates
             }
             if(state.values.flights[1] && state.values.flights[1].dates) {
               originState.values.flights[0].dates.endDate = state.values.flights[1].dates
             }
-            
+
             break
           case '2':
             originState.values.flights = [head(originState.values.flights)];
             if (has(originState.values.flights[0].dates, 'startDate')) {
               const auxDate = originState.values.flights[0].dates.startDate;
               delete originState.values.flights[0].dates.startDate;
-              originState.values.flights[0].dates = auxDate; 
+              originState.values.flights[0].dates = auxDate;
             } else if(isEmpty(originState.values.flights[0].dates)) {
               originState.values.flights[0].dates = undefined;
             }
@@ -107,7 +107,7 @@ export default (state = initialState, action) => {
             if(state.values.flights[0].dates && state.values.flights[0].dates.endDate) {
               originState.values.flights[1].dates = state.values.flights[0].dates.endDate;
             }
-            
+
             if(state.values.flights[0].dates && state.values.flights[0].dates.startDate) {
               originState.values.flights[0].dates = state.values.flights[0].dates.startDate;
             }
@@ -169,10 +169,10 @@ export default (state = initialState, action) => {
           }
           return init;
       }, '');
-      
+
 
       const url = `${SEODestinations}?av-seleccion-grupo=on&${destinations}isMulticity=${payload.flights.length>1 && 'true'}&round_trip=${(payload.leg == 2) ?'on':''}&adults=${payload.adults}&children=${payload.children}&${(payload.leg == 2 || payload.leg == 3)? 'dateTo=&': ''}babies=${payload.infants}&${(payload.flexibleDates || payload.leg == 3)? 'flexibleDates=on&':''}flightClass=${payload.class == 1 ?'NMO.GBL.SCL.ECO':'NMO.GBL.SCL.BSN'}`;
-      
+
       console.log(url)
 
       return {
@@ -185,7 +185,7 @@ export default (state = initialState, action) => {
 
       const originStateLeg = clone(state);
       if(payload == 'add') {
-        
+
         if(originStateLeg.values.flights.length <= 2) {
           originStateLeg.values.flights.push({
             originCity: '',
@@ -198,7 +198,7 @@ export default (state = initialState, action) => {
         } else {
           originStateLeg.values.leg = '1';
           originStateLeg.values.flights.pop();
-         
+
           if(state.values.flights[0].dates) {
             originStateLeg.values.flights[0].dates.startDate = state.values.flights[0].dates;
           }
