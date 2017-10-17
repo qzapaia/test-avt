@@ -6,11 +6,9 @@ import { action } from '@storybook/addon-actions';
 import { withState, compose } from 'recompose';
 
 import generalDecorator from '../../stories.decorator.js';
-import FlightClusterWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from '../../global/FlightCluster/README.md';
-import reducer from "./reducer";
 
 import { defaultsDeep } from 'lodash'
 
@@ -333,15 +331,7 @@ storiesOf('avantrip/FlightCluster', module)
   .addDecorator(generalDecorator({
     readme,
     theme,
-    reducer:{
-      FlightCluster: reducer,
-    },
   }))
   .add('Default', () => (
     <FlightClusterWithState></FlightClusterWithState>
-  ))
-  /*
-  .add('With data', () => (
-    <FlightClusterWithData></FlightClusterWithData>
-  ))
-  */
+  ));
