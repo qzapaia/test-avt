@@ -16,7 +16,7 @@ const generateCluster = () => {
   let cluster = {};
   cluster.additionalInfo = '¡Hasta 12 cuotas sin interés con Visa y Master del Banco Francés!'
   cluster.disclaimerText = '¿Qué incluye el precio?'
-  cluster.routes = {};
+  cluster.routes = [];
   cluster.fareDetail = {
     'referencePrice': 12802,
     'items': [{
@@ -277,10 +277,7 @@ const generateCluster = () => {
     'options':[sampleRouteOption4,sampleRouteOption5,sampleRouteOption6]
   }
 
-
-  cluster.routes.first = sampleRoute1;
-  cluster.routes.second = sampleRoute2;
-  cluster.routes.third = sampleRoute3;
+  cluster.routes = [sampleRoute1, sampleRoute2, sampleRoute3];
 
   return cluster;
 }
