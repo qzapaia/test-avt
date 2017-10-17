@@ -140,9 +140,6 @@ const mapResultsToProps = ({ownProps, data }) => {
     flightType:trip.metas.flightType
   });
 
-  console.log(trip.stages)
-  console.log(trip.references)
-
   const newClusters = populateStages({
     references:trip.references,
     clusters:trip.clusters,

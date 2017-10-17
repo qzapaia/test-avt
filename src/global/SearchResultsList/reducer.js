@@ -131,15 +131,15 @@ const getRouteOption = ro => {
 const getRoute = r => {
   let route = {};
 
+  route.options = map(r.options, ro => getRouteOption(ro));
+
   //Ojo con el label de los tramos. TODO cuando haya multidestinos
   route.header = {
     title:'Ida',
-    departureCity: 'Nueva York',
-    arrivalCity: 'Buenos Aires',
+    departureCity: getCityName(route.options[0].summaryInfo.departureIata),
+    arrivalCity: getCityName(route.options[0].summaryInfo.arrivalIata),
     date:new Date()
   }
-
-  route.options = map(r.options, ro => getRouteOption(ro));
 
   return route;
 }
