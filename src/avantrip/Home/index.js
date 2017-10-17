@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FlightSearchBox from "../FlightSearchBox/withData";
 import FeaturedDeals from "../FeaturedDeals/withData";
 import Text from "../Text";
-import Subscribe from "../Subscribe";
+import Subscribe from "../Subscribe/homeSubscribe";
 import BestDeals from "./BestDeals";
 import Link from "../Link";
 import FinancingPromotion from "../FinancingPromotion/withData";
@@ -29,14 +29,11 @@ import FeaturedProducts from "../FeaturedProducts/withData";
 
 
 const Home = ({
-  text,
-  onClick,
-  repos,
-  getRepos,
-  hoteles,
-  media
+  media,
+  subscribe
 }) => (
-  <HomeContainer onClick={onClick}>
+  <HomeContainer>
+    {console.log("subscribe", subscribe)}
     <MainSection>
       <MaxWidth>
         <FlightSearchBoxAbsolute layout={media.size}>
@@ -70,7 +67,7 @@ const Home = ({
 
     <SubscribeSection>
       <MaxWidth>
-        <Subscribe layout={media.size} buttonText='Suscribirme' title="Recibí nuestras últimas ofertas" />
+        <Subscribe layout={media.size} buttonText='Suscribirme' title="Recibí nuestras últimas ofertas" email={subscribe.email} subscriptionStatus={subscribe.status}/>
       </MaxWidth>
     </SubscribeSection>
 

@@ -1,14 +1,12 @@
 
 import React from 'react';
-import GlobalTripSubscribe from '../../global/TripSubscribe';
+import GlobalSubscribe from '../../global/Subscribe/homeSubscribeWithData';
 import { ThemeProvider } from 'styled-components';
 
 const componentTheme = {}
 
 export default (props) => (
   <ThemeProvider theme={componentTheme}>
-    <GlobalTripSubscribe {...props} />
+    <GlobalSubscribe {...props} />
   </ThemeProvider>
 )
-
-  

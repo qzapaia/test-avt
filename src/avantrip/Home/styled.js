@@ -15,16 +15,16 @@ export const MainSection = styled.section`
   }
 `
 
-export const FlightSearchBoxAbsolute = styled.div`
-  ${props=> props.layout > 1?'position: absolute;':'position: static'}
+export const FlightSearchBoxAbsolute = styled.article`
+  ${({ layout }) => (layout > 1 ? 'position:absolute' : '')};
+  z-index: 20;
   top: 30px;
   left: 70px;
   margin: 0 auto;
-  z-index: 999;
   width: 100%;
-  ${props=> props.layout > 1?'max-width: 450px;':'max-width: 97.5%'};
-  ${props=> props.layout == 0?'max-width: 100%':''};
-  ${props=> props.layout > 1?'':'padding-top: 15px'};
+  max-width: ${props=> props.layout > 1? '450px':'97.5%'};
+  max-width: ${props=> props.layout == 0? '100%':''};
+  padding-top: ${props=> props.layout > 1?'':'15px'};
 `
 export const MaxWidth = styled.div`
   margin: 0 auto;
