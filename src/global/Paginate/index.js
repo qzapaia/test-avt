@@ -15,6 +15,7 @@ const Paginate = ({pagesCount, selectedPage, onPageSelected}) => {
           marginPagesDisplayed={5}
           pageRangeDisplayed={10}
           onPageChange={ value => onPageSelected(value.selected)}
+          disableInitialCallback={true}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
