@@ -39,7 +39,6 @@ const mobileSliderSettings = {
 
 const HistogramMonth = ({ data, selectedMonth, onMonthSelected, layout }) => {
   sliderSettings["initialSlide"] = selectedMonth;
-  console.log(layout)
   return (
     <ContainerMonth layout={layout}>
       <Slider settings={layout < 2 ? mobileSliderSettings:sliderSettings}>
