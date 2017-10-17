@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Chart from "../Chart";
+import Chart from "../Chart/withData";
 import Text from "../Text";
 
-import Container from "./container.styled";
+import Container from "./styled";
 import HistogramMonth from "./HistogramMonth";
 import CustomTooltip from "./CustomTooltip";
 
@@ -50,6 +50,7 @@ const getBestPriceBy = dataByMonth =>
   dataByMonth.isBestPriceOfYear &&
   dataByMonth.bestPrice;
 
+
 const PriceTrendCalendar = ({
   data,
   selectedMonth,
@@ -57,7 +58,8 @@ const PriceTrendCalendar = ({
   onDaySelected,
   onMonthSelected,
   departureDate,
-  returnDate
+  returnDate,
+  media
 }) => {
   const processedData = calculateBestPriceInOneYear(
     formatMonthlyFlights(
@@ -78,7 +80,7 @@ const PriceTrendCalendar = ({
         CustomTooltip={CustomTooltip}
         renderBar={args => {
           if (args.price == bestPrice) {
-            args.fill = "green";
+            args.fill = "#94c627";
           }
           return args;
         }}
@@ -88,6 +90,7 @@ const PriceTrendCalendar = ({
       data={processedData}
       selectedMonth={monthToShow}
       onMonthSelected={onMonthSelected}
+      layout={media.size}
     />
     <div><Text>{disclaimer}</Text></div>
   </Container>

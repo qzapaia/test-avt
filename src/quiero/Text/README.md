@@ -15,7 +15,6 @@ export default () => (
 )
 ```
 
-
 ### Props
 #### `type={hxxl|xxl|xl|l|m|s|xs}`
 Tipo de texto a utilizar. Los valores de cada tipo están establecidos

@@ -1,21 +1,11 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from 'react';
+import GlobalColors from '../../global/Colors';
+import { ThemeProvider } from 'styled-components';
 
-const StyledColors = styled.div`
-  background-color: ${props => props.theme.colors[props.color]};
-  width: 150px;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color:white;
-  font-size: 25px;
-  margin: 10px;
-`
+const componentTheme = {}
 
-StyledColors.propTypes = {
-  color: PropTypes.string.isRequired
-}
-
-
-export default StyledColors;
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalColors {...props} />
+  </ThemeProvider>
+)
