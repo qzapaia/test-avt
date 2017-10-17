@@ -27,8 +27,7 @@ const Airlines = ({options, onChange, values, expanded, toggleExpand, onClear}) 
         </Text>
         <Icon id='Back' height='18px' width='18px' color='darkergray' />
       </ExpandButton>
-      {expanded &&
-        map(options.scales, (scalesOptions, k) => (
+      { expanded &&
           <Text tag='li' type='xs'>
             <CheckboxGroup
 
@@ -42,8 +41,7 @@ const Airlines = ({options, onChange, values, expanded, toggleExpand, onClear}) 
               }}
             />
           </Text>
-          ))
-      }
+      }    
     </List>
   )
 }

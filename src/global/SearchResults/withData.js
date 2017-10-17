@@ -5,9 +5,11 @@ import { get } from 'lodash';
 import { connect } from "react-redux";
 import { getData } from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
-import { populateStages } from '../SearchResultsList/reducer'
+import { populateStages , populateCluster } from '../SearchResultsList/reducer'
 import { getClustersWithFilter } from '../SearchResults/reducer'
 import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
+
+import { defaultsDeep } from 'lodash';
 
 const mapStateToProps = (state) => {
   const {paginate,flightsFilters} =  state;
@@ -134,27 +136,55 @@ const mapResultsToProps = ({ownProps, data }) => {
     clusters:[]
   })
 
+  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
+  let tempClusters = [];
+  defaultsDeep(tempClusters, trip.clusters);
+  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
+
   const newfilters =  populateFilters({
     filters:trip.metas.filters,
     references:trip.references,
     flightType:trip.metas.flightType
   });
 
+  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
+  for(var i=0; i<tempClusters.length; i++){
+    if(tempClusters[i]['0']){
+      tempClusters[i].stages = [];
+      tempClusters[i].stages.push(tempClusters[i]['0'])
+    }
+    
+    if(tempClusters[i]['1']){
+      tempClusters[i].stages.push(tempClusters[i]['1'])
+    }
+
+    if(tempClusters[i]['2']){
+      tempClusters[i].stages.push(tempClusters[i]['2'])
+    }
+  }
+  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
+
   const newClusters = populateStages({
-    clusters:trip.clusters,
-    stages:trip.stages
+    references:trip.references,
+    clusters:tempClusters,
+    stages:trip.stages,
+    flightType:trip.metas.flightType
   });
 
   // ¿Se puede hacer esto? newClusters.clusters
   const comparisonFlights = populateComparisonFlights({
+    references:trip.references,
     comparisonFlights:newClusters.clusters,
   });
   
-  const clustersFiltered = getClustersWithFilter({newClusters,paginate,showItemsByPage,filters})
+  const clustersFiltered =populateCluster({
+    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters})
+  })
+
 
   return { 
     ...newfilters,
-    flightClusters:clustersFiltered,
+    flightClusters:clustersFiltered.flightClusters,
     comparisonFlights:comparisonFlights,
     countItems : newClusters.flightClusters.length
   }
@@ -177,6 +207,7 @@ const WithApolloComponentSearch = compose(
     props: mapResultsToProps,
     skip: (ownProps) => !(ownProps.leg === 'multitrip'),
   }),    
+
 )(SearchResults)
 
 

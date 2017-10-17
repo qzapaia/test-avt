@@ -1,22 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Container from "./tripSubscribe.styled";
+import Container from "./styled";
 
-import InputText from "../InputText";
-import Button from "../Button";
-import Text from "../Text";
-import Icon from "../Icon";
+import InputText from "../../InputText";
+import Button from "../../Button";
+import Text from "../../Text";
+import Icon from "../../Icon";
 
 import {
   ERROR_STATE,
   SUCCESS_STATE,
   INITIAL_STATE,
   SEARCH_TYPE
-} from "./constants";
+} from "../constants";
 
 const preventFormatAndContinueWith = (next, email, value) => e => {
   e.preventDefault();
-  next(SEARCH_TYPE, {
+  next({
+    type: SEARCH_TYPE,
     email: email,
     city: value.city
   });
@@ -40,7 +41,6 @@ const TripSubscribe = ({
         <form
           onSubmit={preventFormatAndContinueWith(onSubscribe, email, value)}
         >
-          <input type="HIDDEN" name="city" value={value.city} />
           <InputText
             label={"Email"}
             value={email}

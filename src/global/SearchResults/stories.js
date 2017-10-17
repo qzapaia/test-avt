@@ -16,7 +16,7 @@ const enhace = withState('counter','increment',0);
 
 let search = {
   origin: 'BUE',
-  destination: 'MIA',
+  destination: 'COR',
   departureDate: '11-03-2018',
   returningDate: '20-03-2018',
   passengers: {
@@ -27,7 +27,52 @@ let search = {
   cabinClass: 'Economy',
   channel: 'DESKTOP',
   portal:'AVANTRIP',
-  leg:"roundtrip",
+  leg:"oneway",
+}
+
+let searchOneWay = {
+  origin: 'BUE',
+  destination: 'COR',
+  departureDate: '11-03-2018',
+  passengers: {
+    adults: 1,
+    children: 0,
+    infants:0
+  },
+  cabinClass: 'Economy',
+  channel: 'DESKTOP',
+  portal:'AVANTRIP',
+  leg:"oneway",
+}
+
+const searchMultiTrip = {
+  origin: ["BUE","COR","MDZ"],
+  destination: ["COR","MDZ","BUE"],
+  departureDate: ["10-03-2018","17-03-2018","25-03-2018"],
+  passengers: {
+    adults: 1,
+    children: 0,
+    infants:0
+  },
+  cabinClass: "Economy",
+  channel: "desktop",
+  portal: "Avantrip",
+  leg:"multitrip",
+}
+
+let multiTripSearch = {
+  origin: ["BUE","MIA","LHR"],
+  destination: ["MIA","LHR","DME"],
+  departureDate: ["10-01-2018","17-01-2018","25-01-2018"],
+  passengers: {
+    adults: 1,
+    children: 0,
+    infants:0
+  },
+  cabinClass: 'Economy',
+  channel: 'DESKTOP',
+  portal:'AVANTRIP',
+  leg:"multitrip",
 }
 
 const SearchResultsWithState =  enhace((props) => {
@@ -146,8 +191,21 @@ storiesOf('global/SearchResults', module)
       filters={newFilters} 
       clusters={newclusters}/>
   ))
-
-  .add('With data', () => (
+  .add('oneway', () => (
+    <SearchResultsWithData
+      origin={searchOneWay.origin}
+      destination={searchOneWay.destination}
+      departureDate={searchOneWay.departureDate}
+      passengersAdults={searchOneWay.passengers.adults}
+      passengersChildren= {searchOneWay.passengers.children}
+      passengersInfants={searchOneWay.passengers.infants}
+      cabinClass={searchOneWay.cabinClass}
+      channel={searchOneWay.channel}
+      portal={searchOneWay.portal}
+      leg={searchOneWay.leg} 
+      showItemsByPage={50}/>
+  ))
+  .add('roundtrip', () => (
     <SearchResultsWithData
       origin={search.origin}
       destination={search.destination}
@@ -160,5 +218,33 @@ storiesOf('global/SearchResults', module)
       channel={search.channel}
       portal={search.portal}
       leg={search.leg} 
+      showItemsByPage={50}/>
+  ))
+  .add('Multitrip', () => (
+    <SearchResultsWithData
+      origin={searchMultiTrip.origin}
+      destination={searchMultiTrip.destination}
+      departureDate={searchMultiTrip.departureDate}
+      passengersAdults={searchMultiTrip.passengers.adults}
+      passengersChildren= {searchMultiTrip.passengers.children}
+      passengersInfants={searchMultiTrip.passengers.infants}
+      cabinClass={searchMultiTrip.cabinClass}
+      channel={searchMultiTrip.channel}
+      portal={searchMultiTrip.portal}
+      leg={searchMultiTrip.leg} 
+      showItemsByPage={50}/>
+  ))
+  .add('With multi trip data', () => (
+    <SearchResultsWithData
+      origin={multiTripSearch.origin}
+      destination={multiTripSearch.destination}
+      departureDate={multiTripSearch.departureDate}
+      passengersAdults={multiTripSearch.passengers.adults}
+      passengersChildren= {multiTripSearch.passengers.children}
+      passengersInfants={multiTripSearch.passengers.infants}
+      cabinClass={multiTripSearch.cabinClass}
+      channel={multiTripSearch.channel}
+      portal={multiTripSearch.portal}
+      leg={multiTripSearch.leg} 
       showItemsByPage={20}/>
   ))

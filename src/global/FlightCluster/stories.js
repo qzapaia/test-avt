@@ -6,11 +6,9 @@ import { action } from '@storybook/addon-actions';
 import { withState, compose } from 'recompose';
 
 import generalDecorator from '../../stories.decorator.js';
-import FlightClusterWithData from './withData';
 
 import theme from '../styled.theme';
 import readme from './README.md';
-import reducer from "./reducer";
 
 import { defaultsDeep } from 'lodash'
 
@@ -18,7 +16,7 @@ const generateCluster = () => {
   let cluster = {};
   cluster.additionalInfo = '¡Hasta 12 cuotas sin interés con Visa y Master del Banco Francés!'
   cluster.disclaimerText = '¿Qué incluye el precio?'
-  cluster.routes = {};
+  cluster.routes = [];
   cluster.fareDetail = {
     'referencePrice': 12802,
     'items': [{
@@ -88,7 +86,6 @@ const generateCluster = () => {
     }
   }
 
-
   const flightSample3 = {
     departure:{
       iata:'ATL',
@@ -111,8 +108,6 @@ const generateCluster = () => {
       class:'Económica',
     }
   }
-
-
 
   const sampleRouteOption1 = {
     'summaryInfo': {
@@ -282,49 +277,24 @@ const generateCluster = () => {
     'options':[sampleRouteOption4,sampleRouteOption5,sampleRouteOption6]
   }
 
-
-  cluster.routes.first = sampleRoute1;
-  cluster.routes.second = sampleRoute2;
-  cluster.routes.third = sampleRoute3;
+  cluster.routes = [sampleRoute1, sampleRoute2, sampleRoute3];
 
   return cluster;
 }
 
-const enhace = compose(
-  withState('cluster','selectRoute', generateCluster()),
-  withState('selectedOptions','selectRouteOption',
-    {
-      firstRouteOptionId:123,
-      secondRouteOptionId:12,
-      thirdRouteOptionId:4567
-    }
-  )
-)
+const enhace = withState('selectedCluster','onCheckout', {});
 
 const FlightClusterWithState = enhace((props) => {
-  const { cluster, selectRoute, selectedOptions, selectRouteOption } = props;
+  const { selectedCluster} = props;
 
-  const onCheckout = () => {
-    console.log('ON CHECKOUT');
-  }
-
-  const onSelectedRouteOption = (selectedOption) => {
-    const clonedOptions = {};
-    defaultsDeep(clonedOptions, selectedOptions);
-
-    clonedOptions.firstRouteOptionId = selectedOption.firstRouteOptionId || clonedOptions.firstRouteOptionId;
-    clonedOptions.secondRouteOptionId = selectedOption.secondRouteOptionId || clonedOptions.secondRouteOptionId;
-    clonedOptions.thirdRouteOptionId = selectedOption.thirdRouteOptionId || clonedOptions.thirdRouteOptionId;
-
-    selectRouteOption(clonedOptions);
+  const checkoutHandler = (cluster) => {
+    action('ON CHECKOUT')(JSON.stringify(cluster));
   }
 
   return (
     <FlightCluster {...props}
-      onCheckout={onCheckout}
-      selectRouteOptions={selectedOptions}
-      onSelectedRouteOption={onSelectedRouteOption}
-      data={cluster}
+      onCheckout={checkoutHandler}
+      data={generateCluster()}
     />
   )
 })
@@ -333,15 +303,7 @@ storiesOf('global/FlightCluster', module)
   .addDecorator(generalDecorator({
     readme,
     theme,
-    reducer:{
-      FlightCluster: reducer,
-    },
   }))
   .add('Default', () => (
-    <FlightClusterWithState></FlightClusterWithState>
+    <FlightClusterWithState />
   ))
-  /*
-  .add('With data', () => (
-    <FlightClusterWithData></FlightClusterWithData>
-  ))
-  */

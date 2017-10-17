@@ -1,145 +1,107 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import FareDetail from '../FareDetail';
-import FlightClusterRoute from './FlightClusterRoute';
-import FlightClusterRouteOption from './FlightClusterRouteOption';
-import JustOne from '../JustOne';
-import Text from '../Text';
-import Icon from '../Icon';
-import {FareDetailContainer, Container, AdditionalInfo} from './styled';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { map } from 'lodash'
+import FareDetail from "../FareDetail";
+import FlightClusterRoute from "./FlightClusterRoute";
+import FlightClusterRouteOption from "./FlightClusterRouteOption";
+import JustOne from "../JustOne";
+import Text from "../Text";
+import Icon from "../Icon";
+import Button from "../Button";
+
+import { FareDetailContainer, Container, AdditionalInfo } from "./styled";
+
+import { withState } from "recompose";
+
+import { map, get } from "lodash";
 
 const containerStyle = {
-  backgroundColor:'white',
-  minWidth:'200px',
-  minHeight:'200px',
-  display:'flex'
-}
+  backgroundColor: "white",
+  minWidth: "200px",
+  minHeight: "200px",
+  display: "flex"
+};
 
 const routeContainer = {
-  flexGrow:3
-}
+  flexGrow: 3
+};
 
-const OptionsSelector = JustOne(({select, selected, options, selectedOption})=>{
-  return(<div>
-    {
-      map(options, (o, key) => (
-          <FlightClusterRouteOption
-            data={o}
-            onClick={ e => select(o.summaryInfo.id) }
-            selected={ selectedOption == o.summaryInfo.id ? true : false }
-          />
-      ))
-    }
-  </div>)
-})
+const Comp = ({ select, selected, options, selectedOption }) => (
+  <div>
+    {map(options, option => (
+      <FlightClusterRouteOption
+        key={option.summaryInfo.id}
+        data={option}
+        onClick={select(option.summaryInfo.id)}
+        selected={selectedOption == option.summaryInfo.id ? true : false}
+      />
+    ))}
+  </div>
+);
 
-const FlightCluster = ({
-  onCheckout,
-  selectRouteOptions,
-  onSelectedRouteOption,
+const OptionsSelector = JustOne(Comp);
+
+const enhace = withState("selectedRouteOption", "changeSelectedRouteOption");
+
+const FlightClusterWithState = enhace(({
   data,
+  selectedRouteOption,
+  changeSelectedRouteOption,
+  onCheckout
 }) => {
+    const onSelectedHandler = (selectedOption) =>{
+      selectedRouteOption[selectedOption.numberRoute] = selectedOption.value;
+      changeSelectedRouteOption(selectedRouteOption);
+    }
 
-  return (
-    <Container>
+    if (!selectedRouteOption) {
+      selectedRouteOption=[];
+      changeSelectedRouteOption(map(data.routes, route => (
+        get(route, "options[0].summaryInfo.id")
+      )));
+    }
 
-      <AdditionalInfo type='s' color='success'>
-        <Icon id='Mood' color='success' />
-        {data.additionalInfo}
-      </AdditionalInfo>
-      <div style={containerStyle}>
-        <div style={routeContainer}>
-
-
-            {data.routes.first &&
-              <div>
-                <FlightClusterRoute
-                  title={data.routes.first.header.title}
-                  date={data.routes.first.header.date}
-                  departureCity={data.routes.first.header.departureCity}
-                  arrivalCity={data.routes.first.header.arrivalCity}
-                >
-                  <OptionsSelector
-                    /*
-                    selectedOption={selectRouteOptions.firstRouteOptionId}
-
-                    onChange={ selectedOption => onSelectedRouteOption(
-                      { 'firstRouteOptionId':selectedOption }
-                    )}
-                    */
-                    options={data.routes.first.options}
-                    />
-                </FlightClusterRoute>
-              </div>
-            }
-
-            {data.routes.second &&
-              <div>
-                <FlightClusterRoute
-                  title={data.routes.second.header.title}
-                  date={data.routes.second.header.date}
-                  departureCity={data.routes.second.header.departureCity}
-                  arrivalCity={data.routes.second.header.arrivalCity}
-                >
-                  <OptionsSelector
-                    /*
-                    selectedOption={selectRouteOptions.secondRouteOptionId}
-                    onChange={ selectedOption => onSelectedRouteOption(
-                      { 'secondRouteOptionId':selectedOption }
-                    )}
-                    */
-                    options={data.routes.second.options}
-                    />
-                </FlightClusterRoute>
-              </div>
-            }
-
-            {data.routes.third &&
-              <div>
-                <FlightClusterRoute
-                  title={data.routes.third.header.title}
-                  date={data.routes.third.header.date}
-                  departureCity={data.routes.third.header.departureCity}
-                  arrivalCity={data.routes.third.header.arrivalCity}
-                >
-                  <OptionsSelector
-                    /*
-                    selectedOption={selectRouteOptions.thirdRouteOptionId}
-                    onChange={ selectedOption => onSelectedRouteOption(
-                      { 'thirdRouteOptionId':selectedOption }
-                    )}
-                    */
-                    options={data.routes.third.options}
-                    />
-                </FlightClusterRoute>
-              </div>
-            }
-
-          <div style={{'padding':'10px','color':'blue'}}>
-            {data.disclaimerText}
+    return (
+      <Container>
+        <AdditionalInfo type="s" color="success">
+          <Icon id="Mood" color="success" />
+          {data.additionalInfo}
+        </AdditionalInfo>
+        <div style={containerStyle}>
+          <div style={routeContainer}>
+            {map(data.routes, (route, index) => (
+              <FlightClusterRoute
+                key={route.header.departureCity+route.header.arrivalCity+route.header.date}
+                title={route.header.title}
+                date={route.header.date}
+                departureCity={route.header.departureCity}
+                arrivalCity={route.header.arrivalCity}
+              >
+                <OptionsSelector
+                  selectedOption={selectedRouteOption[index]}
+                  onChange={selectedOption =>
+                    onSelectedHandler({
+                      numberRoute: index,
+                      value: selectedOption
+                    })}
+                  options={route.options}
+                />
+              </FlightClusterRoute>
+            ))}
+            <div style={{ padding: "10px", color: "blue" }}>
+              {data.disclaimerText}
+            </div>
           </div>
+          <FareDetailContainer>
+            <FareDetail currency="ARS" detailInfo={data.fareDetail} />
+            <Button onClick={()=>onCheckout(selectedRouteOption)} type="cta">
+              Comprar
+            </Button>
+          </FareDetailContainer>
         </div>
+      </Container>
+    );
+  }
+);
 
-
-        <FareDetailContainer>
-          <FareDetail currency="ARS" detailInfo={data.fareDetail}></FareDetail>
-        </FareDetailContainer>
-
-      </div>
-    </Container>
-
-  )
-}
-
-
-FlightCluster.propTypes = {
-
-}
-
-FlightCluster.defaultProps = {
-
-}
-
-export default FlightCluster;
+export default FlightClusterWithState;

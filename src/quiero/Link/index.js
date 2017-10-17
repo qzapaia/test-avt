@@ -1,24 +1,16 @@
-
 import React from 'react';
-import PropTypes from 'prop-types';
+import GlobalLink from '../../global/Link';
+import { ThemeProvider } from 'styled-components';
 
-import ContainerLink from './container.styled';
+const componentTheme = {
+  linkColor : "#ff6600",
+  linkDeco: "none",
+  decoHover: "underline",
+  decoVisited: "none"
+}
 
-const Link = ({href, icon, target, children}) => (
-  <ContainerLink href={href} target={target}>
-    {icon}{children}
-  </ContainerLink>
+export default (props) => (
+  <ThemeProvider theme={componentTheme}>
+    <GlobalLink {...props} />
+  </ThemeProvider>
 )
-
-Link.propTypes = {
-  target: PropTypes.oneOf(["_blank", "_self","_parent","_top", "framename"]),
-  href: PropTypes.string,
-  icon: PropTypes.node
-}
-
-
-Link.defaultProps = {
-  target: '_self'
-}
-
-export default Link;

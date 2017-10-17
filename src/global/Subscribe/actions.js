@@ -6,12 +6,10 @@ import {
   SEARCH_TYPE
 } from "./constants";
 
-export const SUBSCRIPTION_INIT = "SUBSCRIPTION_INIT";
 export const SUBSCRIPTION_COMPLETE = "SUBSCRIPTION_COMPLETE";
 export const SUBSCRIPTION_SET_EMAIL = "SUBSCRIPTION_SET_EMAIL";
-export const SUBSCRIPTION_SET_CITY = "SUBSCRIPTION_SET_CITY";
 
-export const subscribe = (type, data) => async dispatch => {
+export const subscribe = (data) => async dispatch => {
   let customBody = {
     email: data.email,
     customFields: {
@@ -21,7 +19,7 @@ export const subscribe = (type, data) => async dispatch => {
     businessUnit: "Vuelos"
   };
 
-  switch (type) {
+  switch (data.type) {
     case HOME_TYPE:
       customBody.customFields["ref"] = "Home";
       break;
@@ -59,13 +57,6 @@ export const setEmail = email => ({
   type: SUBSCRIPTION_SET_EMAIL,
   payload: {
     email: email
-  }
-});
-
-export const setCity = city => ({
-  type: SUBSCRIPTION_SET_CITY,
-  payload: {
-    city: city
   }
 });
 
