@@ -7,18 +7,18 @@ import {
   InputContainer,
   FormChildsContainer,
   Form
-} from "./homeSubscribe.styled";
+} from "./styled";
 
-import InputText from "../InputText";
-import Text from "../Text";
-import Button from "../Button";
+import InputText from "../../InputText";
+import Text from "../../Text";
+import Button from "../../Button";
 
 import {
   ERROR_STATE,
   SUCCESS_STATE,
   INITIAL_STATE,
   HOME_TYPE
-} from "./constants";
+} from "../constants";
 
 const Subscribe = ({
   onSubscribe,
@@ -41,7 +41,7 @@ const Subscribe = ({
         <Form
           onSubmit={e => {
             e.preventDefault();
-            onSubscribe(HOME_TYPE, {"email":email});
+            onSubscribe({"type":HOME_TYPE, "email":email});
           }}
         >
           <FormChildsContainer>

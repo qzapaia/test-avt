@@ -143,8 +143,8 @@ const getRouteOption = ro => {
     })
   }
 
-  routeOption.extendedInfo.header = 
-    `${routeOption.extendedInfo.flights[0].departure.city} hacia 
+  routeOption.extendedInfo.header =
+    `${routeOption.extendedInfo.flights[0].departure.city} hacia
     ${routeOption.extendedInfo.flights[routeOption.extendedInfo.flights.length-1].arrival.city}`
 
   return routeOption;
@@ -170,21 +170,10 @@ const getFlightCluster = c => {
 
   fc.additionalInfo = c.additionalInfo;
   fc.disclaimerText = c.disclaimerText;
-  fc.routes = {};
 
-  if(c.stages.length>0){
-    if(c.stages[0]){
-      fc.routes.first = getRoute(c.stages[0], getStageLabel(c.flightType, 0));      
-    }
-
-    if(c.stages[1]){
-      fc.routes.second = getRoute(c.stages[1], getStageLabel(c.flightType, 1));      
-    }
-
-    if(c.stages[2]){
-      fc.routes.third = getRoute(c.stages[2], getStageLabel(c.flightType, 2));      
-    }
-  }
+  fc.routes = map(c.stages, (stage, index) => (
+    getRoute(stage, getStageLabel(c.flightType, index))
+  ));
 
   fc.fareDetail = {
     'referencePrice': c.price.totalPrice,
@@ -206,16 +195,12 @@ const getFlightCluster = c => {
   return fc;
 }
 
-const setPaginteToList = (clusters,state) => {
-  //console.log(state);
-}
-
 export const populateStages = (state={}) => {
 
   const masterStages = state.stages;
 
   references.set(state.references);
-  
+
   const clusters = state.clusters.map(c=> ({
     ...c,
     stages:map(c.stages,stage=>({
@@ -231,11 +216,21 @@ export const populateStages = (state={}) => {
     return getFlightCluster(c)
   })
 
-  setPaginteToList(flightClusters,state)
-
   return {
     ...state,
     clusters,
     flightClusters
+  };
+}
+
+export const populateCluster = (state={}) => {
+
+  const flightClusters = map(state.clusters, c => {
+    return getFlightCluster(c)
+  })
+
+  return {
+    ...state,
+    flightClusters:flightClusters
   };
 }

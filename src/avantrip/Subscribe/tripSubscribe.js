@@ -1,6 +1,6 @@
 
 import React from 'react';
-import GlobalSubscribe from '../../global/Subscribe/tripSubscribeWithData';
+import GlobalSubscribe from '../../global/Subscribe/TripSubscribe/withData';
 import { ThemeProvider } from 'styled-components';
 
 const componentTheme = {}

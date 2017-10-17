@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import { connect } from "react-redux";
 import { getData } from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
-import { populateStages } from '../SearchResultsList/reducer'
+import { populateStages , populateCluster } from '../SearchResultsList/reducer'
 import { getClustersWithFilter } from '../SearchResults/reducer'
 import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
 
@@ -176,12 +176,15 @@ const mapResultsToProps = ({ownProps, data }) => {
     references:trip.references,
     comparisonFlights:newClusters.clusters,
   });
+  
+  const clustersFiltered =populateCluster({
+    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters})
+  })
 
-  const clustersFiltered = getClustersWithFilter({newClusters,paginate,showItemsByPage,filters})
 
   return {
     ...newfilters,
-    flightClusters:clustersFiltered,
+    flightClusters:clustersFiltered.flightClusters,
     comparisonFlights:comparisonFlights,
     countItems : newClusters.flightClusters.length
   }

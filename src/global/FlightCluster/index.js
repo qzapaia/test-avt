@@ -41,38 +41,24 @@ const Comp = ({ select, selected, options, selectedOption }) => (
 
 const OptionsSelector = JustOne(Comp);
 
-const enhace = withState("selectedRouteOption", "onSelectedRouteOption");
+const enhace = withState("selectedRouteOption", "changeSelectedRouteOption");
 
-const FlightClusterWithState = enhace(
-  ({ data, selectedRouteOption, onSelectedRouteOption, onCheckout }) => {
-
-    const onSelectedHandler = selectedOption =>
-      onSelectedRouteOption({
-        ...selectedRouteOption,
-        ...selectedOption
-      });
+const FlightClusterWithState = enhace(({
+  data,
+  selectedRouteOption,
+  changeSelectedRouteOption,
+  onCheckout
+}) => {
+    const onSelectedHandler = (selectedOption) =>{
+      selectedRouteOption[selectedOption.numberRoute] = selectedOption.value;
+      changeSelectedRouteOption(selectedRouteOption);
+    }
 
     if (!selectedRouteOption) {
-      let temp = {};
-      if (data.routes.first) {
-        temp["firstRouteOptionId"] = get(
-          data,
-          "routes.first.options[0].summaryInfo.id"
-        );
-      }
-      if (data.routes.second) {
-        temp["secondRouteOptionId"] = get(
-          data,
-          "routes.second.options[0].summaryInfo.id"
-        );
-      }
-      if (data.routes.third) {
-        temp["thirdRouteOptionId"] = get(
-          data,
-          "routes.third.options[0].summaryInfo.id"
-        );
-      }
-      onSelectedHandler(temp);
+      selectedRouteOption=[];
+      changeSelectedRouteOption(map(data.routes, route => (
+        get(route, "options[0].summaryInfo.id")
+      )));
     }
 
     return (
@@ -83,73 +69,25 @@ const FlightClusterWithState = enhace(
         </AdditionalInfo>
         <div style={containerStyle}>
           <div style={routeContainer}>
-            {data.routes.first && (
+            {map(data.routes, (route, index) => (
               <FlightClusterRoute
-                title={data.routes.first.header.title}
-                date={data.routes.first.header.date}
-                departureCity={data.routes.first.header.departureCity}
-                arrivalCity={data.routes.first.header.arrivalCity}
+                key={route.header.departureCity+route.header.arrivalCity+route.header.date}
+                title={route.header.title}
+                date={route.header.date}
+                departureCity={route.header.departureCity}
+                arrivalCity={route.header.arrivalCity}
               >
                 <OptionsSelector
-                  selectedOption={get(
-                    selectedRouteOption,
-                    "firstRouteOptionId"
-                  )}
+                  selectedOption={selectedRouteOption[index]}
                   onChange={selectedOption =>
                     onSelectedHandler({
-                      firstRouteOptionId: selectedOption
+                      numberRoute: index,
+                      value: selectedOption
                     })}
-                  options={data.routes.first.options}
+                  options={route.options}
                 />
               </FlightClusterRoute>
-            )}
-
-            {data.routes.second && (
-              <div>
-                <FlightClusterRoute
-                  title={data.routes.second.header.title}
-                  date={data.routes.second.header.date}
-                  departureCity={data.routes.second.header.departureCity}
-                  arrivalCity={data.routes.second.header.arrivalCity}
-                >
-                  <OptionsSelector
-                    selectedOption={get(
-                      selectedRouteOption,
-                      "secondRouteOptionId"
-                    )}
-                    onChange={selectedOption =>
-                      onSelectedHandler({
-                        secondRouteOptionId: selectedOption
-                      })}
-                    options={data.routes.second.options}
-                  />
-                </FlightClusterRoute>
-              </div>
-            )}
-
-            {data.routes.third && (
-              <div>
-                <FlightClusterRoute
-                  title={data.routes.third.header.title}
-                  date={data.routes.third.header.date}
-                  departureCity={data.routes.third.header.departureCity}
-                  arrivalCity={data.routes.third.header.arrivalCity}
-                >
-                  <OptionsSelector
-                    selectedOption={get(
-                      selectedRouteOption,
-                      "thirdRouteOptionId"
-                    )}
-                    onChange={selectedOption =>
-                      onSelectedHandler({
-                        thirdRouteOptionId: selectedOption
-                      })}
-                    options={data.routes.third.options}
-                  />
-                </FlightClusterRoute>
-              </div>
-            )}
-
+            ))}
             <div style={{ padding: "10px", color: "blue" }}>
               {data.disclaimerText}
             </div>

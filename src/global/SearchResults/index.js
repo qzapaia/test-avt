@@ -22,10 +22,10 @@ const SearchResults = ({
   return (
     <Container>
       <div style={{display:"flex"}}>
-        <div style={{flexGrow:"1"}}>
+        <div style={{flexGrow:"8"}}>
           <FlightsFiltersWithData options={filters} />
         </div>
-        <div style={{flexGrow:"10"}}>
+        <div style={{flexGrow:"5"}}>
           <FlightsComparisonTableWithData flights={comparisonFlights} />
           <SearchResultsListWithData flightClusters={flightClusters} />
           <Paginate  pageCount={countPage} />
