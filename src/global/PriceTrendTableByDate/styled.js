@@ -44,6 +44,7 @@ export const PriceData = styled.article`
   flex-wrap: wrap;
   justify-content: center;
   will-change: border-color;
+  cursor: pointer;
   > div{
     display: flex;
     flex-wrap: wrap;
@@ -53,12 +54,16 @@ export const PriceData = styled.article`
     text-align: center;
   }
 `
+export const PriceDataTitle = PriceData.extend`
+  cursor: inherit;
+`
 
 export const PriceDataContainer = styled.article`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  ${'' /* max-width: 150px; */}
   flex: 1;
   will-change: background;
   will-change: color;
@@ -66,7 +71,8 @@ export const PriceDataContainer = styled.article`
   text-align: center;
   border: 1px solid ${props=>props.theme.colors.gray};
   *{
-    font-weight: 400
+    font-weight: 400;
+    word-break: break-all;
   }
   &.bestPrice{
     background: ${props=>props.theme.colors.success};
@@ -95,7 +101,11 @@ export const PriceDataContainer = styled.article`
 
 `;
 
-
+export const PriceColor = styled.p`
+  *{
+    color: ${props=>props.theme.colors.primary}
+  }
+`
 
 export const RowContainer = styled.div`
   display: flex;

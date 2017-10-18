@@ -8,7 +8,7 @@ import { map } from "lodash";
 
 import matrixGenerator from "./selector";
 
-import {Container, PriceDataContainer, RowContainer, FixWidthContainer, PriceData} from "./styled";
+import {Container, PriceDataContainer, RowContainer, FixWidthContainer, PriceData, PriceDataTitle, PriceColor} from "./styled";
 import Price from "../Price";
 import Text from "../Text";
 
@@ -75,11 +75,17 @@ const PriceTrendTableByDate = ({
                     }
                     onMouseOver={e => onMouseOver({})}
                   >
-                    <PriceData>
-                      <div>{fColumn.title}</div>
-                      <div>{fColumn.day}</div>
-                      <div>{fColumn.date}</div>
-                    </PriceData>
+                    <PriceDataTitle>
+                      <Text tag='div' color='primary'>
+                        {fColumn.title}
+                      </Text>
+                      <Text tag='div' type='xs'>
+                        {fColumn.day}
+                      </Text>
+                      <Text tag='div' type='xs'>
+                        {fColumn.date}
+                      </Text>
+                    </PriceDataTitle>
                   </PriceDataContainer>
                 )) ||
                 (!fColumn.title && (
@@ -118,9 +124,9 @@ const PriceTrendTableByDate = ({
                             </Text>
                           )}
                         </div>
-                        <div>
+                        <PriceColor>
                           <Price price={fColumn.price} />
-                        </div>
+                        </PriceColor>
                       </PriceData>
                     )}
                   </PriceDataContainer>
