@@ -22,7 +22,7 @@ const SearchResultsListWithState =  enhace((props) => {
   }
 
   return (
-    <SearchResultsList {...props} clusters={clusters} onCheckout={clickHandler} />
+    <SearchResultsList {...props} clusters={clusters} onBuy={clickHandler} />
   )
 })
 let search = {

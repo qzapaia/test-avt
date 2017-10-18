@@ -1,6 +1,6 @@
 import { get, unset, clone, forEach } from 'lodash';
 
-export const onCheckout = (value, data, leg) => {
+export const onBuy = (value, data, leg) => {
 
   let searchParams = clone(get(data.orchestrator.availability, leg, []));
   const clusterSelected = searchParams.clusters[value.id];
@@ -17,16 +17,18 @@ export const onCheckout = (value, data, leg) => {
   searchParams.stages = stagesSelected;
   searchParams.clusters.push(clusterSelected);
 
-  fetch('//search-parser.api.int.devtrip.com.ar/search-parser/flight', {
+    fetch('//search-parser.api.int.devtrip.com.ar/search-parser/flight', {
       headers: {
-        'Content-Type': 'application/json',
-        'postman-token': 'cc76bd1d-9ea3-5cbd-86cc-6370913ec53f'
+        'Content-Type': 'application/json'
       },
       method: 'post',
-      body: searchParams
+      body: JSON.stringify(searchParams)
     })
     .then((res) => {
-      console.log(res.json());
+      return res.text();
     })
+    .then((res) => {
+      global.location.href = res;
+    });
 
 }

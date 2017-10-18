@@ -10,14 +10,14 @@ const onCustomCheckout = (next, value) => {
 }
 
 
-const SearchResultsList = ({clusters, flightClusters, onCheckout}) => {
+const SearchResultsList = ({clusters, flightClusters, onBuy}) => {
   let children = [];
   map(flightClusters, fc => {
     children.push(
       <div style={{ padding: "20px" }}>
         <FlightCluster data={fc} 
-          onCheckout={(selectedOptions) => {
-           onCheckout({
+          onBuy={(selectedOptions) => {
+           onBuy({
             id:fc.id, 
             options: selectedOptions
           })

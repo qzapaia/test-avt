@@ -65,6 +65,16 @@ storiesOf("avantrip/Subscribe", module)
       }
     })
   )
+  .add("Suscribirme a newsletters", () => (
+    <HomeSubscribeWithState title="Recibí nuestras últimas ofertas" />
+  ))
+  .add("Suscribirme a newsletters de un destino", () => (
+    <TripSubscribeWithState
+      value={{ city: "Buenos Aires" }}
+      title={`Te avisamos cuando tengamos los precios
+      más bajos a [city].`}
+    />
+  ))
   .add("Suscribirme a newsletters withData", () => (
     <HomeSubscribe title="Recibí nuestras últimas ofertas" />
   ))

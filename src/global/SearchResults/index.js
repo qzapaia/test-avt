@@ -8,11 +8,18 @@ import Paginate from '../Paginate/withData'
 import { Container } from './styled';
 import { indexOf, find, map } from 'lodash';
 
-const onCheckoutHandler = next => value => {
+const onBuyHandler = next => value => {
   next(value);
 }
 
-const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems, comparisonFlights, onBuy }) =>  {
+const SearchResults = ({
+  showItemsByPage,
+  filters,
+  flightClusters,
+  countItems,
+  comparisonFlights,
+  onBuy
+}) =>  {
 
   const countPage = Math.ceil((countItems/showItemsByPage));
   //applyPaginate(getState())
@@ -25,7 +32,7 @@ const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems, c
         </div>
         <div style={{flexGrow:"5"}}>
           <FlightsComparisonTableWithData flights={comparisonFlights} />
-          <SearchResultsListWithData flightClusters={flightClusters} onCheckout={onBuy} />
+          <SearchResultsListWithData flightClusters={flightClusters} onBuy={onBuy} />
           <Paginate  pageCount={countPage} />
         </div>
       </div>
@@ -35,9 +42,9 @@ const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems, c
 
 SearchResults.propTypes = {
   showItemsByPage: PropTypes.number,
-  filters: PropTypes.arr,
-  clusters: PropTypes.arr,
-  onCheckout: PropTypes.func
+  filters: PropTypes.object,
+  clusters: PropTypes.object,
+  onBuy: PropTypes.func
 }
 
 export default SearchResults;
