@@ -8,8 +8,7 @@ import { map } from "lodash";
 
 import matrixGenerator from "./selector";
 
-import RowContainer from "./RowContainer.styled";
-import PriceDataContainer from "./PriceDataContainer.styled";
+import {Container, PriceDataContainer, RowContainer, FixWidthContainer, PriceData} from "./styled";
 import Price from "../Price";
 import Text from "../Text";
 
@@ -55,77 +54,84 @@ const PriceTrendTableByDate = ({
   );
 
   return (
-    <div>
-      {map(flightDatesMatrix, (fRow, rowIndex) => (
-        <RowContainer key={"row" + rowIndex}>
-          {map(
-            fRow,
-            (fColumn, columnIndex) =>
-              (fColumn.title && (
-                <PriceDataContainer
-                  key={"title" + columnIndex + fColumn.rawDate}
-                  type={
-                    getTypeField(
+    <Container>
+      <FixWidthContainer>
+
+        {map(flightDatesMatrix, (fRow, rowIndex) => (
+          <RowContainer key={"row" + rowIndex}>
+            {map(
+              fRow,
+              (fColumn, columnIndex) =>
+                (fColumn.title && (
+                  <PriceDataContainer
+                    key={"title" + columnIndex + fColumn.rawDate}
+                    type={
+                      getTypeField(
+                        selectedDate,
+                        selectedReturningDate,
+                        selectedDepartureDate,
+                        fColumn
+                      ) || "title"
+                    }
+                    onMouseOver={e => onMouseOver({})}
+                  >
+                    <PriceData>
+                      <div>{fColumn.title}</div>
+                      <div>{fColumn.day}</div>
+                      <div>{fColumn.date}</div>
+                    </PriceData>
+                  </PriceDataContainer>
+                )) ||
+                (!fColumn.title && (
+                  <PriceDataContainer
+                    key={"field" + columnIndex + fColumn.rawDate}
+                    onClick={e => onClick(fColumn)}
+                    onMouseOver={e => onMouseOver(fColumn)}
+                    type={getTypeField(
                       selectedDate,
                       selectedReturningDate,
                       selectedDepartureDate,
                       fColumn
-                    ) || "title"
-                  }
-                  onMouseOver={e => onMouseOver({})}
-                >
-                  <div>{fColumn.title}</div>
-                  <div>{fColumn.day}</div>
-                  <div>{fColumn.date}</div>
-                </PriceDataContainer>
-              )) ||
-              (!fColumn.title && (
-                <PriceDataContainer
-                  key={"field" + columnIndex + fColumn.rawDate}
-                  onClick={e => onClick(fColumn)}
-                  onMouseOver={e => onMouseOver(fColumn)}
-                  type={getTypeField(
-                    selectedDate,
-                    selectedReturningDate,
-                    selectedDepartureDate,
-                    fColumn
-                  )}
-                >
-                  {(fColumn.title || fColumn.price) && (
-                    <div>
-                      <div>
-                        {getTypeField(
-                          selectedDate,
-                          selectedReturningDate,
-                          selectedDepartureDate,
-                          fColumn
-                        ) == "bestPrice" ||
-                        getTypeField(
-                          selectedDate,
-                          selectedReturningDate,
-                          selectedDepartureDate,
-                          fColumn
-                        ) == "bestPriceSelectedDate" ? (
-                          <Text type="xs" color="warning">
-                            El precio más bajo
-                          </Text>
-                        ) : (
-                          <Text type="xs" color="primary">
-                            Desde
-                          </Text>
-                        )}
-                      </div>
-                      <div>
-                        <Price price={fColumn.price} />
-                      </div>
-                    </div>
-                  )}
-                </PriceDataContainer>
-              ))
-          )}
-        </RowContainer>
-      ))}
-    </div>
+                    )}
+                  >
+                    {(fColumn.title || fColumn.price) && (
+                      <PriceData>
+                        <div>
+                          <div>
+                            {getTypeField(
+                              selectedDate,
+                              selectedReturningDate,
+                              selectedDepartureDate,
+                              fColumn
+                            ) == "bestPrice" ||
+                            getTypeField(
+                              selectedDate,
+                              selectedReturningDate,
+                              selectedDepartureDate,
+                              fColumn
+                            ) == "bestPriceSelectedDate" ? (
+                              <Text type="xs" color="white">
+                                El precio más bajo
+                              </Text>
+                            ) : (
+                              <Text type="xs" color="darkergray">
+                                Desde
+                              </Text>
+                            )}
+                          </div>
+                          <div>
+                            <Price price={fColumn.price} />
+                          </div>
+                        </div>
+                      </PriceData>
+                    )}
+                  </PriceDataContainer>
+                ))
+            )}
+          </RowContainer>
+        ))}
+      </FixWidthContainer>
+    </Container>
   );
 };
 
