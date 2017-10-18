@@ -3,11 +3,17 @@ const next = require('next')
 const compression = require('compression');
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+
 const ui = process.env.UI || 'avantrip';
 const uiBasePath = '/' + ui;
 const fs = require('fs');
+const projectDir = './src/' + ui;
+
+const app = next({
+  dev,
+  // dir:projectDir
+})
+const handle = app.getRequestHandler()
 
 app.prepare()
 .then(() => {

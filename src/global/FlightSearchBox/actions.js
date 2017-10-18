@@ -1,6 +1,6 @@
 import { reduce, has } from 'lodash';
 import moment from 'moment';
-
+import Router from 'next/router'
 export const CREATE_SEARCH = 'CREATE_SEARCH';
 export const SET_SEARCH_BOX_VALUE = 'SET_SEARCH_BOX_VALUE';
 export const SET_DESTINATION_DATA = 'SET_DESTINATION_DATA';
@@ -24,7 +24,8 @@ export const setDestinations = data => ({
 
 export const createSearch = value => (dispatch, getState) => {
   const state = getState();
-  let SEODestinations = 'http://avantrip.apps.int.devtrip.com.ar/vuelos/';
+  // let SEODestinations = 'http://avantrip.apps.int.devtrip.com.ar/vuelos/';
+  let SEODestinations = '/vuelos';
   const destinations = reduce(value.flights, (init, flight,idx) => {
     let dateStart = '';
     let dateEnd = '';
@@ -56,7 +57,7 @@ export const createSearch = value => (dispatch, getState) => {
 
   const url = `${SEODestinations}?av-seleccion-grupo=on&${destinations}isMulticity=${value.flights.length>1 && 'true'}&round_trip=${(value.leg == 2) ?'on':''}&adults=${value.adults}&children=${value.children}&${(value.leg == 2 || value.leg == 3)? 'dateTo=&': ''}babies=${value.infants}&${(value.flexibleDates || value.leg == 3)? 'flexibleDates=on&':''}flightClass=${value.class == 1 ?'NMO.GBL.SCL.ECO':'NMO.GBL.SCL.BSN'}`;
 
-  console.log(url)
+  Router.push(url)
 }
 
 export const setSearchBoxValue = value => {
