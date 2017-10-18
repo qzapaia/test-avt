@@ -1,6 +1,7 @@
 import withData from '../../utils/withData';
 import theme from '../styled.theme';
 import homeReducer from '../Home/reducer';
+import searchResultsReducer from '../SearchResults/reducer';
 import { persistStore, autoRehydrate } from 'redux-persist'
 
 (typeof window != 'undefined') && (window.global = window);
@@ -9,7 +10,10 @@ export default withData({
   theme:theme,
   redux:{
     enhacers:[autoRehydrate()],
-    reducers:homeReducer,
+    reducers:{
+      ...homeReducer,
+      ...searchResultsReducer
+    },
   },
   apollo:{
     networkInterface:{
