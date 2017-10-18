@@ -10,9 +10,11 @@ class HomePage extends Component{
     }
   }
   render(){
+    const pathname = this.props;
+
     return (
       <MainLayout>
-        <Home></Home>
+        <Home pathname={pathname}></Home>
       </MainLayout>
     )
   }

@@ -10,17 +10,25 @@ if (process.browser && window.__REDUX_DEVTOOLS_EXTENSION__) {
   devtools = window.__REDUX_DEVTOOLS_EXTENSION__()
 }
 
-function create (apollo, initialState = {}, config) {
+function create (
+  apollo,
+  initialState = {},
+  {
+    reducers,
+    enhacers
+  }
+){
+
   return createStore(
     combineReducers({ // Setup reducers
-      ...config.reducers,
+      ...reducers,
       media: mediaReducer,
       apollo: apollo.reducer()
     }),
     initialState, // Hydrate the store with server-side data
     compose(
-      ...(config.enhacers || []),
       applyMiddleware(thunk, apollo.middleware()), // Add additional middleware here
+      ...(enhacers || []),
       devtools
     )
   )

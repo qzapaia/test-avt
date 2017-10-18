@@ -16,7 +16,7 @@ const InputDate = props => (
   </div>
 );
 
-const enhace = compose(withState("focused", "onFocusChange", false));
+const enhace = compose(withState("focused", "onFocusChange", null));
 
 const DateRangePickerWithState = enhace(props => {
   const {
@@ -27,7 +27,10 @@ const DateRangePickerWithState = enhace(props => {
     onFocusChange,
     focused,
     numberOfMonths,
-    displayFormat
+    displayFormat,
+    placeholder,
+    startDatePlaceholderText,
+    endDatePlaceholderText
   } = props;
 
   return range ? (
@@ -41,13 +44,17 @@ const DateRangePickerWithState = enhace(props => {
       initialVisibleMonth={initialVisibleMonth(props)}
       onDatesChange={onChange}
       focusedInput={focused || null}
+      startDatePlaceholderText={startDatePlaceholderText}
+      endDatePlaceholderText={endDatePlaceholderText}
     />
   ) : (
     <SingleDatePicker
       date={moment(dates)}
+      focused={focused || null}
       onDateChange={val=>{
         forceDatesFormat ? onChange({startDate:val}) : onChange(val);
       }}
+      placeholder={placeholder}
       numberOfMonths={numberOfMonths || 1}
       isOutsideRange={isOutsideRange(props)}
       initialVisibleMonth={initialVisibleMonth(props)}
