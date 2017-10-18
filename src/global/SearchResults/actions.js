@@ -1,38 +1,33 @@
 export const SET_BUY_REQUEST = 'SET_BUY_REQUEST';
 
-import { get, unset, clone, forEach } from 'lodash';
+import { unset, forEach } from 'lodash';
 
-export const onBuy = (value, data, leg) => async dispatch => {
+export const onBuy = (value, originalData) => async dispatch => {
 
-  let searchParams = clone(get(data.orchestrator.availability, leg, []));
-  const clusterSelected = searchParams.clusters[value.id];
+  const clusterSelected = originalData.clusters[value.id];
   const stagesSelected = {};
 
   forEach(value.options, optionId => {
-    stagesSelected[optionId] = searchParams.stages[optionId]
+    stagesSelected[optionId] = originalData.stages[optionId]
   })
 
-  unset(searchParams, 'searchParams.clusters');
-  unset(searchParams, 'searchParams.stages');
+  unset(originalData, 'originalData.clusters');
+  unset(originalData, 'originalData.stages');
 
-  searchParams.clusters = [];
-  searchParams.stages = stagesSelected;
-  searchParams.clusters.push(clusterSelected);
+  originalData.clusters = [];
+  originalData.stages = stagesSelected;
+  originalData.clusters.push(clusterSelected);
 
-    fetch('//search-parser.api.int.devtrip.com.ar/search-parser/flight', {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'post',
-      body: JSON.stringify(searchParams)
-    })
-    .then((res) => {
-      return res.text();
-    })
-    .then((res) => {
-      global.location.href = res;
-    });
+  const response = await fetch('//search-parser.api.int.devtrip.com.ar/search-parser/flight', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'post',
+    body: JSON.stringify(originalData)
+  });
 
-    dispatch({type:'SET_BUY_REQUEST'});
+  const data = await response.text();
+  global.location.href = data;
+  dispatch({type:'SET_BUY_REQUEST'});
 
 }
