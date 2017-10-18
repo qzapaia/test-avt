@@ -217,7 +217,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
                     index != data.extendedInfo.flights.length-1 &&
                     <DelayContainer>
                       <Delay tag='h3'>
-                        Escala en {f.arrival.city} con espera de 23hs 59m
+                        Escala en {f.arrival.city} con espera de {formatMinutes(f.common.waitingTime)}
                       </Delay>
                     </DelayContainer>
                   }
