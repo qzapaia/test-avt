@@ -16,7 +16,7 @@ const InputDate = props => (
   </div>
 );
 
-const enhace = compose(withState("focused", "onFocusChange", false));
+const enhace = compose(withState("focused", "onFocusChange", null));
 
 const DateRangePickerWithState = enhace(props => {
   const {
@@ -45,6 +45,7 @@ const DateRangePickerWithState = enhace(props => {
   ) : (
     <SingleDatePicker
       date={moment(dates)}
+      focused={focused || null}
       onDateChange={val=>{
         forceDatesFormat ? onChange({startDate:val}) : onChange(val);
       }}
