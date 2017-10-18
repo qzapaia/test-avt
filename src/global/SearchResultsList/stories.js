@@ -17,13 +17,12 @@ const enhace = withState('counter','increment',0);
 const SearchResultsListWithState =  enhace((props) => {
   const { counter, increment } = props;
   const clusters = [];
-  const clickHandler = () => {
-    action('click')(counter+1);
-    increment(counter+1);
+  const clickHandler = (selectedOptions) => {
+    action('click')(selectedOptions);
   }
 
   return (
-    <SearchResultsList {...props} clusters={clusters} onClick={clickHandler} />
+    <SearchResultsList {...props} clusters={clusters} onCheckout={clickHandler} />
   )
 })
 let search = {

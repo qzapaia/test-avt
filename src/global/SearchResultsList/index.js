@@ -5,13 +5,23 @@ import List from '../List';
 import FlightCluster from '../FlightCluster';
 
 
-const SearchResultsList = ({clusters, flightClusters, onClick}) => {
-  let children = [];
+const onCustomCheckout = (next, value) => {
+  next(value);
+}
 
+
+const SearchResultsList = ({clusters, flightClusters, onCheckout}) => {
+  let children = [];
   map(flightClusters, fc => {
     children.push(
       <div style={{ padding: "20px" }}>
-        <FlightCluster data={fc} />
+        <FlightCluster data={fc} 
+          onCheckout={(selectedOptions) => {
+           onCheckout({
+            id:fc.id, 
+            options: selectedOptions
+          })
+        }} />
       </div>
     );
   });

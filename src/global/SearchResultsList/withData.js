@@ -4,7 +4,7 @@ import SearchResultsList from './'
 import { connect } from "react-redux";
 
 const SearchResultsListWithData = (props) => {
-    return (<SearchResultsList flightClusters={props.flightClusters}/>)
+    return (<SearchResultsList {...props}/>)
 }
 
 //const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);

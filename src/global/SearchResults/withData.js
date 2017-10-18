@@ -3,7 +3,7 @@ import { gql, graphql,compose } from 'react-apollo';
 import SearchResults from './'
 import { get } from 'lodash';
 import { connect } from "react-redux";
-import { getData } from './actions';
+import { onCheckout} from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
 import { populateStages , populateCluster } from '../SearchResultsList/reducer'
 import { getClustersWithFilter } from '../SearchResults/reducer'
@@ -19,8 +19,9 @@ const mapStateToProps = (state) => {
   }
 };
 
+
 const mapDispatchToProps = {
-  //getRepos:getData
+  onCheckout:onCheckout
 };
 
 const SearchQuery = {
@@ -129,7 +130,7 @@ const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,pas
 };
 
 const mapResultsToProps = ({ownProps, data }) => {
-  const {paginate, showItemsByPage,filters} = ownProps;
+  const {paginate, showItemsByPage,filters, onCheckout} = ownProps;
   const trip = get(data,`orchestrator.availability.${ownProps.leg}`, { 
     metas:[],
     references:[],
@@ -186,7 +187,10 @@ const mapResultsToProps = ({ownProps, data }) => {
     ...newfilters,
     flightClusters:clustersFiltered.flightClusters,
     comparisonFlights:comparisonFlights,
-    countItems : newClusters.flightClusters.length
+    countItems : newClusters.flightClusters.length,
+    onBuy: (clusterSelected) => {
+      onCheckout(clusterSelected, data, ownProps.leg)
+    }
   }
 };
 
