@@ -17,13 +17,13 @@ const enhace = withState('selectedCluster','onBuy', {});
 const FlightClusterWithState = enhace((props) => {
   const { selectedCluster} = props;
 
-  const checkoutHandler = (cluster) => {
+  const buyHandler = (cluster) => {
     action('ON BUY')(JSON.stringify(cluster));
   }
 
   return (
     <FlightCluster {...props}
-      onBuy={checkoutHandler}
+      onBuy={buyHandler}
       data={mockCluster}
     />
   )
