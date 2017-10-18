@@ -27,7 +27,10 @@ const DateRangePickerWithState = enhace(props => {
     onFocusChange,
     focused,
     numberOfMonths,
-    displayFormat
+    displayFormat,
+    placeholder,
+    startDatePlaceholderText,
+    endDatePlaceholderText
   } = props;
 
   return range ? (
@@ -41,6 +44,8 @@ const DateRangePickerWithState = enhace(props => {
       initialVisibleMonth={initialVisibleMonth(props)}
       onDatesChange={onChange}
       focusedInput={focused || null}
+      startDatePlaceholderText={startDatePlaceholderText}
+      endDatePlaceholderText={endDatePlaceholderText}
     />
   ) : (
     <SingleDatePicker
@@ -49,6 +54,7 @@ const DateRangePickerWithState = enhace(props => {
       onDateChange={val=>{
         forceDatesFormat ? onChange({startDate:val}) : onChange(val);
       }}
+      placeholder={placeholder}
       numberOfMonths={numberOfMonths || 1}
       isOutsideRange={isOutsideRange(props)}
       initialVisibleMonth={initialVisibleMonth(props)}

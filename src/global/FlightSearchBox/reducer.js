@@ -1,5 +1,6 @@
 import {
   clone,
+  cloneDeep,
   set,
   head,
   has,
@@ -55,7 +56,7 @@ export default mapActionToReducer({
     }
   },
   SET_SEARCH_BOX_VALUE(state, {payload, type}){
-    let originState = clone(state);
+    let originState = cloneDeep(state);
     let path = Object.keys(payload)[0];
     let val = payload[path];
 
@@ -91,6 +92,7 @@ export default mapActionToReducer({
           const flightAux = [head(originState.values.flights)];
           delete originState.values.flights;
           originState.values.flights = flightAux;
+          originState.values.flights[0].dates = {}
 
           if(state.values.flights[0].dates) {
             originState.values.flights[0].dates.startDate = state.values.flights[0].dates
@@ -150,7 +152,7 @@ export default mapActionToReducer({
     return originState;
   },
   SET_SEARCH_BOX_FLIGHT(state, {payload, type}){
-    const originStateLeg = clone(state);
+    const originStateLeg = cloneDeep(state);
     if(payload == 'add') {
 
       if(originStateLeg.values.flights.length <= 2) {
