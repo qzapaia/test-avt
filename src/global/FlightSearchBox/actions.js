@@ -30,4 +30,3 @@ export const setSearchBoxValue = value => {
     payload:value
   }
 }
-

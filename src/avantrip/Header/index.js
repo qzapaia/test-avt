@@ -9,7 +9,9 @@ import {
   MaxWidth,
   RightNav,
   MyPurchaseContainer,
-  SignupFacebookContainer
+  SignupFacebookContainer,
+  Login,
+  MyPurchaseButton
 } from "./styled";
 import Logo from "../Logo";
 import Text from "../Text";
@@ -35,7 +37,7 @@ const Header = ({
   media,
   isVisible,
   clickVisible,
-  layout 
+  layout
 }) => (
   <Container layout={media.size}>
     <MaxWidth >
@@ -46,20 +48,20 @@ const Header = ({
       <RightNav>
         {!userData.facebook && (
           <SignupFacebookContainer>
-            <span
+            <Login
               onClick={e => changeVisibleState(isVisible, "signup", clickVisible)}>
               <Icon color="primary" id="Person" width="16px" height="16px" />
               Ingresar
-            </span>
+            </Login>
             {isVisible == "signup" && <Signup />}
           </SignupFacebookContainer>
         )}
         <MyPurchaseContainer>
-          <span
+          <MyPurchaseButton
             onClick={ e => changeVisibleState(isVisible, "myPurchase", clickVisible)}>
             <Icon color="primary" id="Description" width="16px" height="16px" />
             Mi Compra
-          </span>
+          </MyPurchaseButton>
           {isVisible == "myPurchase" && <PurchaseAccess />}
         </MyPurchaseContainer>
         <ContactAndPhoneInfo phoneText={phoneText} />

@@ -148,7 +148,7 @@ const getRoute = ( r, stageLabel ) => {
     title:stageLabel,
     departureCity: getCityName(route.options[0].summaryInfo.departureIata),
     arrivalCity: getCityName(route.options[0].summaryInfo.arrivalIata),
-    date:new Date()
+    date:route.options[0].summaryInfo.departureDate
   }
 
   return route;
@@ -200,7 +200,7 @@ export const populateStages = (state={}) => {
   const masterStages = state.stages;
 
   references.set(state.references);
-  
+
   const clusters = state.clusters.map(c=> ({
     ...c,
     stages:map(c.stages,stage=>({
@@ -211,7 +211,6 @@ export const populateStages = (state={}) => {
     disclaimerText : "¿Qué incluye el precio?",
     flightType: state.flightType
   }))
-
 
   const flightClusters = map(clusters, c => {
     return getFlightCluster(c)
