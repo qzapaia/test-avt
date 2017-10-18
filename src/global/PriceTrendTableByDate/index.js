@@ -8,8 +8,7 @@ import { map } from "lodash";
 
 import matrixGenerator from "./selector";
 
-import RowContainer from "./RowContainer.styled";
-import PriceDataContainer from "./PriceDataContainer.styled";
+import {Container, PriceDataContainer, RowContainer, FixWidthContainer, PriceData, PriceDataTitle, PriceColor} from "./styled";
 import Price from "../Price";
 import Text from "../Text";
 
@@ -55,77 +54,88 @@ const PriceTrendTableByDate = ({
   );
 
   return (
-    <div>
-      {map(flightDatesMatrix, (fRow, rowIndex) => (
-        <RowContainer key={"row" + rowIndex}>
-          {map(
-            fRow,
-            (fColumn, columnIndex) =>
-              (fColumn.title && (
-                <PriceDataContainer
-                  key={"title" + columnIndex + fColumn.rawDate}
-                  type={
-                    getTypeField(
+    <Container>
+      <FixWidthContainer>
+
+        {map(flightDatesMatrix, (fRow, rowIndex) => (
+          <RowContainer key={"row" + rowIndex}>
+            {map(
+              fRow,
+              (fColumn, columnIndex) =>
+                (fColumn.title && (
+                  <PriceDataContainer
+                    key={"title" + columnIndex + fColumn.rawDate}
+                    className={
+                      getTypeField(
+                        selectedDate,
+                        selectedReturningDate,
+                        selectedDepartureDate,
+                        fColumn
+                      ) || "title"
+                    }
+                    onMouseOver={e => onMouseOver({})}
+                  >
+                    <PriceDataTitle>
+                      <Text tag='div' color='primary'>
+                        {fColumn.title}
+                      </Text>
+                      <Text tag='div' type='xs'>
+                        {fColumn.day}
+                      </Text>
+                      <Text tag='div' type='xs'>
+                        {fColumn.date}
+                      </Text>
+                    </PriceDataTitle>
+                  </PriceDataContainer>
+                )) ||
+                (!fColumn.title && (
+                  <PriceDataContainer
+                    key={"field" + columnIndex + fColumn.rawDate}
+                    onClick={e => onClick(fColumn)}
+                    onMouseOver={e => onMouseOver(fColumn)}
+                    className={getTypeField(
                       selectedDate,
                       selectedReturningDate,
                       selectedDepartureDate,
                       fColumn
-                    ) || "title"
-                  }
-                  onMouseOver={e => onMouseOver({})}
-                >
-                  <div>{fColumn.title}</div>
-                  <div>{fColumn.day}</div>
-                  <div>{fColumn.date}</div>
-                </PriceDataContainer>
-              )) ||
-              (!fColumn.title && (
-                <PriceDataContainer
-                  key={"field" + columnIndex + fColumn.rawDate}
-                  onClick={e => onClick(fColumn)}
-                  onMouseOver={e => onMouseOver(fColumn)}
-                  type={getTypeField(
-                    selectedDate,
-                    selectedReturningDate,
-                    selectedDepartureDate,
-                    fColumn
-                  )}
-                >
-                  {(fColumn.title || fColumn.price) && (
-                    <div>
-                      <div>
-                        {getTypeField(
-                          selectedDate,
-                          selectedReturningDate,
-                          selectedDepartureDate,
-                          fColumn
-                        ) == "bestPrice" ||
-                        getTypeField(
-                          selectedDate,
-                          selectedReturningDate,
-                          selectedDepartureDate,
-                          fColumn
-                        ) == "bestPriceSelectedDate" ? (
-                          <Text type="xs" color="warning">
-                            El precio más bajo
-                          </Text>
-                        ) : (
-                          <Text type="xs" color="primary">
-                            Desde
-                          </Text>
-                        )}
-                      </div>
-                      <div>
-                        <Price price={fColumn.price} />
-                      </div>
-                    </div>
-                  )}
-                </PriceDataContainer>
-              ))
-          )}
-        </RowContainer>
-      ))}
-    </div>
+                    )}
+                  >
+                    {(fColumn.title || fColumn.price) && (
+                      <PriceData>
+                        <div>
+                          {getTypeField(
+                            selectedDate,
+                            selectedReturningDate,
+                            selectedDepartureDate,
+                            fColumn
+                          ) == "bestPrice" ||
+                          getTypeField(
+                            selectedDate,
+                            selectedReturningDate,
+                            selectedDepartureDate,
+                            fColumn
+                          ) == "bestPriceSelectedDate" ? (
+                            <Text type="xs" color="white">
+                              El precio más bajo
+                            </Text>
+                          ) : (
+                            <Text type="xs" color="darkergray">
+                              Desde
+                            </Text>
+                          )}
+                        </div>
+                        <PriceColor>
+                          <Price price={fColumn.price} />
+                        </PriceColor>
+                      </PriceData>
+                    )}
+                  </PriceDataContainer>
+                ))
+            )}
+          </RowContainer>
+        ))}
+      </FixWidthContainer>
+    </Container>
   );
 };
 
