@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {InputContainer, InputStyle, Input, LabelContainer} from './styled';
+import {
+  InputContainer,
+  InputStyle,
+  Input,
+  LabelContainer
+} from './styled';
 
 const InputCheckbox = ({onChange, id, label, checked, disabled, type}) => (
   <InputContainer>

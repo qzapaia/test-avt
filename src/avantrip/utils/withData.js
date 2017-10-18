@@ -1,17 +1,19 @@
 import withData from '../../utils/withData';
 import theme from '../styled.theme';
 import homeReducer from '../Home/reducer';
-import persistState from 'redux-localstorage'
+import searchResultsReducer from '../SearchResults/reducer';
+import { persistStore, autoRehydrate } from 'redux-persist'
 
-(typeof window != 'undefined') && (window.global = window)
+(typeof window != 'undefined') && (window.global = window);
 
 export default withData({
   theme:theme,
   redux:{
-    enhacers:[
-      persistState(['search'])
-    ],
-    reducers:homeReducer,
+    enhacers:[autoRehydrate()],
+    reducers:{
+      ...homeReducer,
+      ...searchResultsReducer
+    },
   },
   apollo:{
     networkInterface:{
@@ -19,6 +21,11 @@ export default withData({
     }
   }
 }, (apollo, redux)=>{
+  // solo persiste la key 'search' de redux
+  persistStore(redux,{
+    whitelist:['search']
+  });
+
   const setResize = () => redux.dispatch({
     type:'UPDATE_SCREEN_SIZE'
   });
