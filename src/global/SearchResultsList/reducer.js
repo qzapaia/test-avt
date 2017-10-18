@@ -58,22 +58,18 @@ const getScaleLabel = scale => {
     case 1:
       return '1 escala';
     break;
-    case 2:
-      return '2 escalas';
-    break;
     default:
-      return 'Directo'
+      return scale + ' escalas'
   }
 }
 
-const getFlightSegments = ( f, index ) => {
+const getFlightSegments = f => {
   let flightSegments = [];
 
-  map(f.segments, (fs, segmentsIndex)  => {
+  map(f.segments, fs => {
     let flight = {};
 
     flight.common = {
-      'flightStep': index+segmentsIndex+1,
       'flightNumber': f.code,
       'airlines': getAirlines([f.marketingCarrier]),
       'class': 'Económica',
@@ -138,8 +134,22 @@ const getRouteOption = ro => {
   }
 
   routeOption.extendedInfo = {
-    'flights': flatMap(ro.flights, ( r, index )  => {
-      return getFlightSegments( r, index )
+    'flights': flatMap(ro.flights, r => getFlightSegments(r))
+  }
+
+  routeOption.extendedInfo = {
+    'flights': map(routeOption.extendedInfo.flights, ( f, index ) => {
+      f.common.flightStep = index + 1;
+
+      if(routeOption.extendedInfo.flights[index+1]){
+        if(routeOption.extendedInfo.flights[index].arrival.iata != routeOption.extendedInfo.flights[index+1].departure.iata){
+          f.common.changeAirport = true;
+          routeOption.extendedInfo.flights[index].arrival.changeAirport = true;
+          routeOption.extendedInfo.flights[index+1].departure.changeAirport = true;
+        }
+      }
+
+      return f;
     })
   }
 
@@ -170,7 +180,7 @@ const getFlightCluster = c => {
 
   fc.additionalInfo = c.additionalInfo;
   fc.disclaimerText = c.disclaimerText;
-
+  fc.id = c.id;
   fc.routes = map(c.stages, (stage, index) => (
     getRoute(stage, getStageLabel(c.flightType, index))
   ));
@@ -201,7 +211,8 @@ export const populateStages = (state={}) => {
 
   references.set(state.references);
 
-  const clusters = state.clusters.map(c=> ({
+  const clusters = state.clusters.map((c, id) => ({
+    id,
     ...c,
     stages:map(c.stages,stage=>({
       options:stage.options.map(o=>masterStages[o])
