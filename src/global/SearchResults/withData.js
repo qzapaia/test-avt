@@ -81,7 +81,7 @@ const SearchQuery = {
     $passengersInfants: Int!,
     $cabinClass: FligthCabinClassInput!,
     $channel: String!,
-    $portal: String!){ 
+    $portal: String!){
       orchestrator{
         availability{
           multitrip(origin:$origin,destination:$destination,departureDate:$departureDate,
@@ -97,7 +97,7 @@ const SearchQuery = {
 }
 
 const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,passengersAdults,passengersChildren,passengersInfants,cabinClass,channel,portal,leg }) => {
-  
+
   const values = {
     origin,
     destination,
@@ -118,7 +118,7 @@ const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,pas
       },
     };
   }
-  
+
   return {
     variables: {
       ...values
@@ -128,7 +128,7 @@ const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,pas
 
 const mapResultsToProps = ({ownProps, data }) => {
   const {paginate, showItemsByPage,filters} = ownProps;
-  const trip = get(data,`orchestrator.availability.${ownProps.leg}`, { 
+  const trip = get(data,`orchestrator.availability.${ownProps.leg}`, {
     metas:[],
     references:[],
     clusters:[]
@@ -158,7 +158,7 @@ const mapResultsToProps = ({ownProps, data }) => {
   })
 
 
-  return { 
+  return {
     ...newfilters,
     flightClusters:clustersFiltered.flightClusters,
     comparisonFlights:comparisonFlights,
@@ -182,8 +182,7 @@ const WithApolloComponentSearch = compose(
     options: mapPropsToOptions,
     props: mapResultsToProps,
     skip: (ownProps) => !(ownProps.leg === 'multitrip'),
-  }),    
-
+  }),
 )(SearchResults)
 
 
