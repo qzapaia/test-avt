@@ -18,6 +18,19 @@ const FareDetail = ({
     {expanded &&
       <ExpandContainer>
         <Text type='l'>
+          {
+            detailInfo.lastPlacesCount < 6 ? (
+              detailInfo.lastPlacesCount == 1 ? (
+                'Último lugar'
+              ) : (
+                'Últimos ' +detailInfo.lastPlacesCount+' lugares'
+              )
+            ) : (
+              ''
+            )
+          }
+        </Text>
+        <Text type='l'>
           {title}
         </Text>
         <Price
@@ -87,6 +100,19 @@ const FareDetail = ({
       </ExpandContainer>
     }
     <FinalPrice>
+      <Text type='l'>
+          {
+            detailInfo.lastPlacesCount < 6 ? (
+              detailInfo.lastPlacesCount == 1 ? (
+                'Último lugar'
+              ) : (
+                'Últimos ' +detailInfo.lastPlacesCount+' lugares'
+              )
+            ) : (
+              ''
+            )
+          }
+      </Text>
       <Text>
         Precio final
       </Text>

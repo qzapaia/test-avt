@@ -1,5 +1,5 @@
 import { SET_REPOS } from './actions';
-import { get, find, map, flatMap } from 'lodash';
+import { get, find, map, flatMap, minBy, min } from 'lodash';
 
 const initialState = {
   repos:[]
@@ -147,6 +147,9 @@ const getRouteOption = ro => {
           routeOption.extendedInfo.flights[index].arrival.changeAirport = true;
           routeOption.extendedInfo.flights[index+1].departure.changeAirport = true;
         }
+
+        //Lo paso a minutos para estandarizar con totalTime
+        f.common.waitingTime = (routeOption.extendedInfo.flights[index+1].departure.date - routeOption.extendedInfo.flights[index].arrival.date)/1000/60;
       }
 
       return f;
@@ -175,6 +178,8 @@ const getRoute = ( r, stageLabel ) => {
   return route;
 }
 
+const getLastFlightPlacesCount = paxFare => min(map(paxFare.stageFares, f => minBy(f.flightFares, 'avlStatus').avlStatus));
+
 const getFlightCluster = c => {
   let fc = {};
 
@@ -199,7 +204,8 @@ const getFlightCluster = c => {
     }],
     'taxes': 14633,
     'charges': 0,
-    'finalPrice': 69.177
+    'finalPrice': 69.177,
+    'lastPlacesCount': getLastFlightPlacesCount(c.paxFare[0])
   }
 
   return fc;
