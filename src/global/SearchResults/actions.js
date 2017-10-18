@@ -2,28 +2,28 @@ export const SET_BUY_REQUEST = 'SET_BUY_REQUEST';
 
 import { unset, forEach } from 'lodash';
 
-export const onBuy = (value, OriginalData) => async dispatch => {
+export const onBuy = (value, originalData) => async dispatch => {
 
-  const clusterSelected = OriginalData.clusters[value.id];
+  const clusterSelected = originalData.clusters[value.id];
   const stagesSelected = {};
 
   forEach(value.options, optionId => {
-    stagesSelected[optionId] = OriginalData.stages[optionId]
+    stagesSelected[optionId] = originalData.stages[optionId]
   })
 
-  unset(OriginalData, 'OriginalData.clusters');
-  unset(OriginalData, 'OriginalData.stages');
+  unset(originalData, 'originalData.clusters');
+  unset(originalData, 'originalData.stages');
 
-  OriginalData.clusters = [];
-  OriginalData.stages = stagesSelected;
-  OriginalData.clusters.push(clusterSelected);
+  originalData.clusters = [];
+  originalData.stages = stagesSelected;
+  originalData.clusters.push(clusterSelected);
 
   const response = await fetch('//search-parser.api.int.devtrip.com.ar/search-parser/flight', {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'post',
-    body: JSON.stringify(OriginalData)
+    body: JSON.stringify(originalData)
   });
 
   const data = await response.text();
