@@ -5,8 +5,22 @@ import SearchResultsListWithData from '../SearchResultsList/withData'
 import FlightsFiltersWithData from  '../FlightsFilters/withData'
 import FlightsComparisonTableWithData from  '../FlightsComparisonTable/withData'
 import Paginate from '../Paginate/withData'
+import Tabs, { Tab } from "../Tabs";
+import PriceTrendCalendar from "../PriceTrendCalendar/withData";
+import Text from "../Text";
+
 import { Container } from './styled';
 
+import { withState } from 'recompose';
+
+const enhace = withState('selectedtab', 'setTab', "tab1");
+
+const TabsWithState = enhace(Tabs);
+
+const calendarTitle = <div>
+  <div><Text>¡Nuevo!</Text></div>
+  <div><Text>Tendencia de tarifas</Text></div>
+</div>;
 
 const SearchResults = ({
   showItemsByPage,
@@ -26,7 +40,14 @@ const SearchResults = ({
           <FlightsFiltersWithData options={filters} />
         </div>
         <div style={{flexGrow:"5"}}>
-          <FlightsComparisonTableWithData flights={comparisonFlights} />
+          <Tabs>
+            <Tab id="tab1" title="Precio más Bajo">
+              <FlightsComparisonTableWithData flights={comparisonFlights} />
+            </Tab>
+            <Tab id="tab2" title={calendarTitle}>
+              Agregar calendario de tendencia de precios.
+            </Tab>
+          </Tabs>
           <SearchResultsListWithData flightClusters={flightClusters} />
           <Paginate  pageCount={countPage} />
         </div>
