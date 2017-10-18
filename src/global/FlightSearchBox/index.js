@@ -132,6 +132,9 @@ const FlightSearchBox = ({
     {
       map(values.flights, (flight, idx) => (
         <div key={idx}>
+          {values.leg == 3 && 
+            <p>Vuelo {(idx+1)}</p>
+          }
           <FromTo>
             <InputText
               onChange={customOnChange(onChange, `flights[${idx}].originCity` )}
