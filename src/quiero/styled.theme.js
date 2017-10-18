@@ -3,10 +3,15 @@ export default {
     brand:'#ff6600',
     primary:'#333',
     secondary:'#c11127',
-    alert:'#F90',
+    alert:'#e90010',
     success:'#3f9f10',
-    warning:'#F90',
-    danger:'#F90',
+    warning:'#e90010',
+    danger:'#e90010',
+    white:'#FFF',
+    gray:'#efefef',
+    darkgray:'#999',
+    darkergray:'#666',
+    blue: '#2A3069'
   },
   texts:{
     hxxl:{
@@ -30,7 +35,7 @@ export default {
       weight:'300'
     },
     s:{
-      size:'13px',
+      size:'14px',
       weight:'300'
     },
     xs:{
@@ -43,32 +48,32 @@ export default {
       normal:{
         bgc:'brand',
         color:'white',
-        fontSize:'16px',
+        fontSize:'20px',
       }
     },
     scta:{
       normal:{
         bgc:'primary',
         color:'white',
-        fontSize:'16px',
+        fontSize:'20px',
       }
     },
     ghst:{
       normal:{
         bgc:'secondary',
         color:'white',
-        fontSize:'16px',
+        fontSize:'20px',
       }
     },
     link:{
       normal:{
         bgc:'alert',
         color:'white',
-        fontSize:'16px',
+        fontSize:'20px',
       }
     }
   },
-  viewport:{
-    desktop: '1280px'
+  fonts:{
+    main: 'Stag-Sans'
   }
 }

@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Text from '../Text';
 
-const Item = ({ name, defaultPoints, businessPoints }) => (
+const Item = ({ name, defaultPoints, businessPoints }) => {
 
-    <div>
-      <div>{ name }</div>
-      <div>{ defaultPoints }</div>
-      <div>{ businessPoints }</div>
+    return <div>
+      <Text tag="p" type="m" color="brand">{ name }</Text>
+      <Text tag="p" type="m" color="secondary">{ defaultPoints }</Text>
+      { businessPoints && <Text tag="p" type="m" color="blue">{businessPoints}</Text> }
     </div>
-)
+}
 
 Item.propTypes = {
   name: PropTypes.string.isRequired,
