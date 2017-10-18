@@ -9,4 +9,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { onClick:setCurrency };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrencySelector);;
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencySelector);
