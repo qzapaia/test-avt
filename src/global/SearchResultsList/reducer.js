@@ -64,7 +64,7 @@ const getScaleLabel = scale => {
     default:
       return 'Directo'
   }
-} 
+}
 
 const getFlightSegments = ( f, index ) => {
   let flightSegments = [];
@@ -75,9 +75,12 @@ const getFlightSegments = ( f, index ) => {
     flight.common = {
       'flightStep': index+segmentsIndex+1,
       'flightNumber': f.code,
-      'airlineLogo': getAirlineLogos([f.marketingCarrier]),
-      'provider': references.get().carriers[f.marketingCarrier],
+      'airlines': getAirlines([f.marketingCarrier]),
       'class': 'Económica',
+    }
+
+    if(f.operatingCarrier != f.marketingCarrier ){
+      flight.common['provider'] = getAirlines([f.operatingCarrier]);
     }
 
     flight.departure = {
@@ -94,16 +97,18 @@ const getFlightSegments = ( f, index ) => {
       'airport': `${references.get().airports[fs.arrival.location]}`
     }
 
-    flightSegments.push(flight);    
+    flightSegments.push(flight);
   })
 
   return flightSegments;
 }
 
-//¿Esto debería ser un componente aparte?
-const getAirlineLogos = airlineIatas => (
-  map(airlineIatas, a => `https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/${a}.png?adq-20170927-0`)
-)
+const getAirlines = airlinesCodes => (
+  map(airlinesCodes, code =>({
+      "code": code,
+      "name": references.get().carriers[code]
+  }))
+);
 
 const getRouteOption = ro => {
   let routeOption = {};
@@ -114,9 +119,8 @@ const getRouteOption = ro => {
   // Duration que significa
 
   routeOption.summaryInfo = {
-    'id': ro.index, 
-    'airlineLogos': getAirlineLogos(ro.marketingCarriers), //validar
-    'provider':`Operado por ${references.get().carriers[ro.validatingCarrier]}`, //validar
+    'id': ro.index,
+    'airlines': getAirlines(ro.marketingCarriers),
     'departureIata': ro.departureAirport,
     'departureDate': ro.departureDate,
     'arrivalIata': ro.arrivalAirport,
@@ -126,14 +130,21 @@ const getRouteOption = ro => {
     'isSelected':false
   }
 
+  if(ro.codeshare){
+    const provider = find(ro.flights, (flight) =>{
+      return flight.operatingCarrier != flight.marketingCarrier;
+    });
+    routeOption.summaryInfo["provider"] =  getAirlines([provider.operatingCarrier]);
+  }
+
   routeOption.extendedInfo = {
     'flights': flatMap(ro.flights, ( r, index )  => {
-      return getFlightSegments( r, index ) 
+      return getFlightSegments( r, index )
     })
   }
 
-  routeOption.extendedInfo.header = 
-    `${routeOption.extendedInfo.flights[0].departure.city} hacia 
+  routeOption.extendedInfo.header =
+    `${routeOption.extendedInfo.flights[0].departure.city} hacia
     ${routeOption.extendedInfo.flights[routeOption.extendedInfo.flights.length-1].arrival.city}`
 
   return routeOption;
@@ -159,21 +170,10 @@ const getFlightCluster = c => {
 
   fc.additionalInfo = c.additionalInfo;
   fc.disclaimerText = c.disclaimerText;
-  fc.routes = {};
 
-  if(c.stages.length>0){
-    if(c.stages[0]){
-      fc.routes.first = getRoute(c.stages[0], getStageLabel(c.flightType, 0));      
-    }
-
-    if(c.stages[1]){
-      fc.routes.second = getRoute(c.stages[1], getStageLabel(c.flightType, 1));      
-    }
-
-    if(c.stages[2]){
-      fc.routes.third = getRoute(c.stages[2], getStageLabel(c.flightType, 2));      
-    }
-  }
+  fc.routes = map(c.stages, (stage, index) => (
+    getRoute(stage, getStageLabel(c.flightType, index))
+  ));
 
   fc.fareDetail = {
     'referencePrice': c.price.totalPrice,
