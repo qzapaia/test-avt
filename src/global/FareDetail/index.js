@@ -5,6 +5,17 @@ import Price from '../Price';
 import {Container, DetailInfo, FarePerPerson, ViewDetails, ExpandContainer, FinalPrice} from './styled';
 import ExpansionPanelEnhacer from "../ExpansionPanel/enhacer";
 
+const getLastPlacesLabel = placesCount => {
+  if(placesCount < 6){
+    if(placesCount == 1){
+      return 'Último lugar'
+    } else {
+      return 'Últimos ' +placesCount+' lugares'
+    }
+  } else {
+    return '';
+  }
+}
 
 const FareDetail = ({
                       title,
@@ -19,15 +30,7 @@ const FareDetail = ({
       <ExpandContainer>
         <Text type='l'>
           {
-            detailInfo.lastPlacesCount < 6 ? (
-              detailInfo.lastPlacesCount == 1 ? (
-                'Último lugar'
-              ) : (
-                'Últimos ' +detailInfo.lastPlacesCount+' lugares'
-              )
-            ) : (
-              ''
-            )
+            getLastPlacesLabel(detailInfo.lastPlacesCount)
           }
         </Text>
         <Text type='l'>
@@ -102,15 +105,7 @@ const FareDetail = ({
     <FinalPrice>
       <Text type='l'>
           {
-            detailInfo.lastPlacesCount < 6 ? (
-              detailInfo.lastPlacesCount == 1 ? (
-                'Último lugar'
-              ) : (
-                'Últimos ' +detailInfo.lastPlacesCount+' lugares'
-              )
-            ) : (
-              ''
-            )
+            getLastPlacesLabel(detailInfo.lastPlacesCount)
           }
       </Text>
       <Text>
