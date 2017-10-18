@@ -75,5 +75,8 @@ export default {
   },
   fonts:{
     main: 'Stag-Sans'
+  },
+  viewport:{
+    desktop: '1280px'
   }
 }
