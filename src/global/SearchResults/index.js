@@ -8,7 +8,13 @@ import Paginate from '../Paginate/withData'
 import { Container } from './styled';
 
 
-const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems, comparisonFlights }) =>  {
+const SearchResults = ({
+  showItemsByPage,
+  filters,
+  flightClusters,
+  countItems,
+  comparisonFlights
+}) =>  {
 
   const countPage = Math.ceil((countItems/showItemsByPage));
   //applyPaginate(getState())
@@ -31,8 +37,8 @@ const SearchResults = ({ showItemsByPage, filters, flightClusters, countItems, c
 
 SearchResults.propTypes = {
   showItemsByPage: PropTypes.number,
-  filters: PropTypes.arr,
-  clusters: PropTypes.arr,
+  filters: PropTypes.object,
+  clusters: PropTypes.object,
 }
 
 export default SearchResults;

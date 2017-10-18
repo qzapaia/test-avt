@@ -51,7 +51,7 @@ const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) =>
 
 FlightClusterRoute.propTypes = {
   title: PropTypes.string.isRequired,
-  date: PropTypes.object.isRequired,
+  date: PropTypes.number.isRequired,
   departureCity: PropTypes.string.isRequired,
   arrivalCity: PropTypes.string.isRequired
 }
