@@ -58,6 +58,7 @@
     "recompose": "^0.25.0",
     "redux": "^3.7.2",
     "redux-action-reducer-mapper": "^1.0.2",
+    "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.2.0",
     "replace-in-file": "^3.0.0-beta.2",
     "styled-components": "^2.1.2",

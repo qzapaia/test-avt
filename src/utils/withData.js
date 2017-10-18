@@ -32,7 +32,7 @@ export default (config, cb) => ComposedComponent => {
       // and extract the resulting data
       if (!process.browser) {
         const apollo = initApollo(config.apollo)
-        const redux = initRedux(apollo, {}, config.reducers)
+        const redux = initRedux(apollo, {}, config.redux)
         // Provide the `url` prop data in case a GraphQL query uses it
         const url = {query: ctx.query, pathname: ctx.pathname}
 
@@ -77,7 +77,7 @@ export default (config, cb) => ComposedComponent => {
     constructor (props) {
       super(props)
       this.apollo = initApollo(config.apollo)
-      this.redux = initRedux(this.apollo, this.props.serverState, config.reducers)
+      this.redux = initRedux(this.apollo, this.props.serverState, config.redux)
       cb && cb(this.apollo, this.redux);
     }
 

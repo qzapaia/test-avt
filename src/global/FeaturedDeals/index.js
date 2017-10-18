@@ -18,7 +18,11 @@ const FeaturedDeals = ({
   <Container>
     <Slider>
       {map(deals, deal => (
-        <Slide bg={optimizeImage(deal.image)} href={deal.url} />
+        <Slide
+          bg={optimizeImage(deal.image)}
+          href={deal.url}
+          key={deal.url} 
+        />
       ))}
     </Slider>
   </Container>

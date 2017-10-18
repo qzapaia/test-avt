@@ -72,22 +72,21 @@ const optionsToIterate = (values, fieldName) => {
 
   return fieldName == 'adults'? drop(optionsValues) :optionsValues;
 }
-      
+
 const createOptionsDestinations = (allDestinations, flight) => {
-
-  const options = [];
-  forEach(allDestinations, (destination) => {
-     if(flight.originCity != destination.iata_code){
-        options.push(<option 
-          city={destination.city} 
-          value={destination.iata_code}
-        >{destination.description + ' ' + destination.iata_code}</option>)
-      }
-  });
-
-  return options;
+  return allDestinations.filter(destination=>(
+    flight.originCity != destination.iata_code
+  )).map(destination=>(
+    <option
+      key={destination.city+destination.iata_code}
+      city={destination.city}
+      value={destination.iata_code}
+    >
+      {destination.description + ' ' + destination.iata_code}
+    </option>
+  ));
 }
-  
+
 const FlightSearchBox = ({
   title,
   onChange,
@@ -99,7 +98,10 @@ const FlightSearchBox = ({
   expanded,
   toggleExpand
 }) => {
-  return (<Container>
+  
+  return (
+    <Container>
+
     <TopSearch>
       <MainTitle type='m' tag='h1'>
         <Icon id='Vuelos' width='18px' height='18px' />
@@ -129,24 +131,25 @@ const FlightSearchBox = ({
     </Radios>
     {
       map(values.flights, (flight, idx) => (
-        <div>
+        <div key={idx}>
           <FromTo>
             <InputText
               onChange={customOnChange(onChange, `flights[${idx}].originCity` )}
               placeholder= 'Desde'
               value={flight.originCity}
-              requiresExistingValue='true'
+              requiresExistingValue={true}
             >
               {
                 map(destinations, destination => (
-                  <option 
-                    city={destination.city} 
+                  <option
+                    key={destination.city + destination.iata_code}
+                    city={destination.city}
                     value={destination.iata_code}
                   >{`${destination.description} ${destination.iata_code}`}</option>
                 ))
               }
             </InputText>
-            
+
             <InputText
               onChange={customOnChange(onChange, `flights[${idx}].destinationCity`)}
               placeholder= 'Hacia'
@@ -293,9 +296,7 @@ const FlightSearchBox = ({
   </Container>)
 }
 
-FlightSearchBox.propTypes = {
-  text: PropTypes.node.isRequired
-}
+FlightSearchBox.propTypes = {}
 
 FlightSearchBox.defaultProps = {
   values:{
