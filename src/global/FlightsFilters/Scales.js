@@ -10,7 +10,7 @@ import {ExpandButton} from "./styled";
 
 
 const labelFlightsTramos = (type,position) => {
-  if(type == 'multidestino'){
+  if(type == 'multitrip'){
     return `Vuelo ${position + 1}`
   }
   return (position == 0)? "Ida" : "Vuelta"

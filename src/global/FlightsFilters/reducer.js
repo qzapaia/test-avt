@@ -97,16 +97,27 @@ export const populateFilters = (state={}) => {
     return { options: opts }
   });
 
+  const getLabelCitiesAirport = (aiport) => {
+    const codeCity = references.hierarchies[aiport].city;
+    return references.cities[codeCity]
+  }
+
   const newAirports = map(Object.keys(airports),(code,k) => {
-    const objectValue = airports[code];
+     const objectValue = airports[code];
      return Object.keys(objectValue).map((airport,j) => {
+      let codeAirport; 
       const keyDeparture = objectValue[airport];
-      const opts =  Object.keys(keyDeparture).map((v,i) => ({
+      const opts =  Object.keys(keyDeparture).map((v,i) => {
+        codeAirport = v;
+        return {
           label: `${get(references,`airports.${v}`)} - ${v} (${keyDeparture[v]})` ,
-          value:v,   
-      }));
+          value:v,
+          
+        }
+      });
       return {
-        options: opts
+        options: opts,
+        city: getLabelCitiesAirport(codeAirport),
       }
     }).reverse();  
   });
@@ -117,7 +128,7 @@ export const populateFilters = (state={}) => {
     schedules : newSchedules,
     airports: {
       items:newAirports,
-      cities: map(references.cities,code => code)
+      hierarchies: references.hierarchies
     },
     flightType,
   }
