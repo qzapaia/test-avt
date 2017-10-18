@@ -7,15 +7,6 @@ const mapStateToProps = state => ({
   value: state.currency.value
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onClick: value => {
-      dispatch(setCurrency(value))
-    }
-  }
-};
+const mapDispatchToProps = { onClick:setCurrency };
 
-
-const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(CurrencySelector);
-
-export default WithDataComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencySelector);;
