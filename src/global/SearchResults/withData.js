@@ -9,8 +9,6 @@ import { populateStages , populateCluster } from '../SearchResultsList/reducer'
 import { getClustersWithFilter } from '../SearchResults/reducer'
 import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
 
-import { defaultsDeep } from 'lodash';
-
 const mapStateToProps = (state) => {
   const {paginate,flightsFilters} =  state;
   return {
@@ -136,37 +134,15 @@ const mapResultsToProps = ({ownProps, data }) => {
     clusters:[]
   })
 
-  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
-  let tempClusters = [];
-  defaultsDeep(tempClusters, trip.clusters);
-  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
-
   const newfilters =  populateFilters({
     filters:trip.metas.filters,
     references:trip.references,
     flightType:trip.metas.flightType
   });
 
-  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
-  for(var i=0; i<tempClusters.length; i++){
-    if(tempClusters[i]['0']){
-      tempClusters[i].stages = [];
-      tempClusters[i].stages.push(tempClusters[i]['0'])
-    }
-    
-    if(tempClusters[i]['1']){
-      tempClusters[i].stages.push(tempClusters[i]['1'])
-    }
-
-    if(tempClusters[i]['2']){
-      tempClusters[i].stages.push(tempClusters[i]['2'])
-    }
-  }
-  ///////////////////////hot fix hasta que el servicio graphql de multitrip venga bien.
-
   const newClusters = populateStages({
     references:trip.references,
-    clusters:tempClusters,
+    clusters:trip.clusters,
     stages:trip.stages,
     flightType:trip.metas.flightType
   });
