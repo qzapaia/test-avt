@@ -1,6 +1,8 @@
+export const SET_BUY_REQUEST = 'SET_BUY_REQUEST';
+
 import { get, unset, clone, forEach } from 'lodash';
 
-export const onBuy = (value, data, leg) => {
+export const onBuy = (value, data, leg) => async dispatch => {
 
   let searchParams = clone(get(data.orchestrator.availability, leg, []));
   const clusterSelected = searchParams.clusters[value.id];
@@ -30,5 +32,7 @@ export const onBuy = (value, data, leg) => {
     .then((res) => {
       global.location.href = res;
     });
+
+    dispatch({type:'SET_BUY_REQUEST'});
 
 }
