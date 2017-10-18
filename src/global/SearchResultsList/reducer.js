@@ -180,7 +180,7 @@ const getFlightCluster = c => {
 
   fc.additionalInfo = c.additionalInfo;
   fc.disclaimerText = c.disclaimerText;
-
+  fc.id = c.id;
   fc.routes = map(c.stages, (stage, index) => (
     getRoute(stage, getStageLabel(c.flightType, index))
   ));
@@ -211,7 +211,8 @@ export const populateStages = (state={}) => {
 
   references.set(state.references);
 
-  const clusters = state.clusters.map(c=> ({
+  const clusters = state.clusters.map((c, id) => ({
+    id,
     ...c,
     stages:map(c.stages,stage=>({
       options:stage.options.map(o=>masterStages[o])

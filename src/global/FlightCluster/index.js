@@ -47,7 +47,7 @@ const FlightClusterWithState = enhace(({
   data,
   selectedRouteOption,
   changeSelectedRouteOption,
-  onCheckout
+  onBuy
 }) => {
     const onSelectedHandler = (selectedOption) =>{
       selectedRouteOption[selectedOption.numberRoute] = selectedOption.value;
@@ -94,7 +94,7 @@ const FlightClusterWithState = enhace(({
           </div>
           <FareDetailContainer>
             <FareDetail currency="ARS" detailInfo={data.fareDetail} />
-            <Button onClick={()=>onCheckout(selectedRouteOption)} type="cta">
+            <Button onClick={()=>onBuy(selectedRouteOption)} type="cta">
               Comprar
             </Button>
           </FareDetailContainer>
