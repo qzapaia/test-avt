@@ -8,8 +8,9 @@ import { map } from "lodash";
 
 import { setSelectedMonth, setSelectedDay } from "./actions";
 
-const mapStateToProps = state => ({
-  selectedMonth: state.histogram.selectedMonth
+const mapStateToProps = ({media, histogram:{selectedMonth}}) => ({
+  media,
+  selectedMonth
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

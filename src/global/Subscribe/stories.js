@@ -58,7 +58,7 @@ const TripSubscribeWithState = enhace((props)=>{
   />
 });
 
-storiesOf("global/ReSubscribe", module)
+storiesOf("global/Subscribe", module)
   .addDecorator(
     generalDecorator({
       readme,
