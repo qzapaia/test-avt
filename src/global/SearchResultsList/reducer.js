@@ -165,31 +165,45 @@ const getRoute = ( r, stageLabel ) => {
   return route;
 }
 
-const getFlightCluster = c => {
+const getFormatPrices = (prices,currencyValue) => {
+  console.log(prices,currencyValue,Math.round((prices/currencyValue)));
+  return Math.round((prices/currencyValue))
+}
+
+const getCurrencyValue = (currency) =>{
+  if(currency.value == 'REAL')
+    return 3.2;
+  if(currency.value == 'USD')
+    return 17.8
+  
+  return 1
+}
+
+const getFlightCluster = (cluster,currency) => {
   let fc = {};
 
-  fc.additionalInfo = c.additionalInfo;
-  fc.disclaimerText = c.disclaimerText;
+  fc.additionalInfo = cluster.additionalInfo;
+  fc.disclaimerText = cluster.disclaimerText;
 
-  fc.routes = map(c.stages, (stage, index) => (
-    getRoute(stage, getStageLabel(c.flightType, index))
+  fc.routes = map(cluster.stages, (stage, index) => (
+    getRoute(stage, getStageLabel(cluster.flightType, index))
   ));
 
   fc.fareDetail = {
-    'referencePrice': c.price.totalPrice,
+    'referencePrice': getFormatPrices(Number.parseInt(cluster.price.totalPrice),getCurrencyValue(currency)),
     'items': [{
       'label': '2 Adultos',
-      'price': 25604
+      'price': getFormatPrices(25604,getCurrencyValue(currency))
     },{
       'label': '2 Niños',
-      'price': 24048
+      'price': getFormatPrices(24048,getCurrencyValue(currency))
     },{
       'label': '2 Bebés',
-      'price': 622
+      'price': getFormatPrices(622,getCurrencyValue(currency))
     }],
-    'taxes': 14633,
-    'charges': 0,
-    'finalPrice': 69.177
+    'taxes': getFormatPrices(14633,getCurrencyValue(currency)),
+    'charges': getFormatPrices(0,getCurrencyValue(currency)),
+    'finalPrice': getFormatPrices(69177,getCurrencyValue(currency))
   }
 
   return fc;
@@ -212,21 +226,16 @@ export const populateStages = (state={}) => {
     flightType: state.flightType
   }))
 
-  const flightClusters = map(clusters, c => {
-    return getFlightCluster(c)
-  })
-
   return {
     ...state,
     clusters,
-    flightClusters
   };
 }
 
 export const populateCluster = (state={}) => {
-
-  const flightClusters = map(state.clusters, c => {
-    return getFlightCluster(c)
+  const { clusters, currency } = state
+  const flightClusters = map(clusters, c => {
+    return getFlightCluster(c,currency)
   })
 
   return {

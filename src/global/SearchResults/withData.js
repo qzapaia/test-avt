@@ -10,10 +10,11 @@ import { getClustersWithFilter } from '../SearchResults/reducer'
 import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
 
 const mapStateToProps = (state) => {
-  const {paginate,flightsFilters} =  state;
+  const {paginate,flightsFilters,currency} =  state;
   return {
     paginate: paginate,
-    filters: flightsFilters
+    filters: flightsFilters,
+    currency: currency
   }
 };
 
@@ -127,7 +128,9 @@ const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,pas
 };
 
 const mapResultsToProps = ({ownProps, data }) => {
-  const {paginate, showItemsByPage,filters} = ownProps;
+  const {paginate, showItemsByPage,filters,currency} = ownProps;
+  const {error, loading } = data;
+
   const trip = get(data,`orchestrator.availability.${ownProps.leg}`, {
     metas:[],
     references:[],
@@ -154,7 +157,8 @@ const mapResultsToProps = ({ownProps, data }) => {
   });
   
   const clustersFiltered =populateCluster({
-    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters})
+    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters}),
+    currency : currency
   })
 
 
@@ -162,7 +166,10 @@ const mapResultsToProps = ({ownProps, data }) => {
     ...newfilters,
     flightClusters:clustersFiltered.flightClusters,
     comparisonFlights:comparisonFlights,
-    countItems : newClusters.flightClusters.length
+    countItems : clustersFiltered.flightClusters.length,
+    loading: loading,
+    error: error,
+    currency: currency,
   }
 };
 

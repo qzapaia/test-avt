@@ -1,5 +1,6 @@
-import filterReducer from "../FlightsFilters/reducer";
-import paginateReducer from "../Paginate/reducer"
+import filterReducer from '../FlightsFilters/reducer'
+import paginateReducer from '../Paginate/reducer'
+import currencyReducer from '../CurrencySelector/reducer'
 import { chunk, get, filter, map, set, clone, some, every} from 'lodash';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
@@ -13,6 +14,7 @@ const FILTER_AIRPORTS = 'airports';
 export default {
   paginate:paginateReducer,
   flightsFilters:filterReducer,
+  currency:currencyReducer,
 }
 
 /**
