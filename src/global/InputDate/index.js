@@ -26,24 +26,25 @@ const DateRangePickerWithState = enhace(props => {
     forceDatesFormat,
     onFocusChange,
     focused,
-    numberOfMonths
+    numberOfMonths,
+    displayFormat
   } = props;
 
   return range ? (
     <DateRangePicker
-      {...props}
-      startDate={get(dates, "startDate")}
-      endDate={get(dates, "endDate")}
+      onFocusChange={onFocusChange}
+      displayFormat={displayFormat}
+      startDate={dates ? moment(dates.startDate) : null}
+      endDate={dates ? moment(dates.endDate) : null}
       numberOfMonths={numberOfMonths || 3}
       isOutsideRange={isOutsideRange(props)}
       initialVisibleMonth={initialVisibleMonth(props)}
       onDatesChange={onChange}
-      focusedInput={focused}
+      focusedInput={focused || null}
     />
   ) : (
     <SingleDatePicker
-      {...props}
-      date={dates}
+      date={moment(dates)}
       onDateChange={val=>{
         forceDatesFormat ? onChange({startDate:val}) : onChange(val);
       }}
@@ -51,6 +52,7 @@ const DateRangePickerWithState = enhace(props => {
       isOutsideRange={isOutsideRange(props)}
       initialVisibleMonth={initialVisibleMonth(props)}
       onFocusChange={({ focused }) => onFocusChange(focused)}
+      displayFormat={displayFormat}
     />
   );
 });

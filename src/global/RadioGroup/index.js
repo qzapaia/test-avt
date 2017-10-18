@@ -11,10 +11,10 @@ const RadioGroup = ({options, onChange, label, value, direction}) => (
       {options.map(option => (
             <InputCheckbox
               key={ option.value }
-              id={ option.value.toString() }
+              id={ option.value }
               type ="radio"
               label ={ option.label }
-              checked ={ value == option.value.toString() }
+              checked={value == option.value}
               onChange ={ e => onChange(option.value) }
             />
       ))}

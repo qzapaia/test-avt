@@ -33,7 +33,7 @@ const Nav = ({currentPathname, children}) => {
       <NavList>
         <MaxWidth>
         {children.map( item =>
-            <Item>
+            <Item key={item.props.id}>
               <LinkNav isActive={ currentPage == item.props.id }>
                 <LinkContainer href={ item.props.href }>
                   <Icon id={ item.props.icon } width='18px' height='18px' />
