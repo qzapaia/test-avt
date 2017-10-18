@@ -7,4 +7,8 @@ const FlightsComparisonTableWithData = (props) => {
   return (<FlightsComparisonTable flights={props.flights.comparisonFlights}/>)
 }
 
+FlightsComparisonTableWithData.defaultProps = {
+  flights:[]
+}
+
 export default FlightsComparisonTableWithData;
