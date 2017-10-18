@@ -1,5 +1,6 @@
 import React from 'react';
 import CurrencySelector from './';
+import CurrencySelectorWithData from './withData';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -9,46 +10,34 @@ import generalDecorator from '../../stories.decorator.js';
 
 import theme from '../styled.theme';
 import readme from './README.md';
+import reducer from "./reducer";
 
-const enhace = withState('value','changeCurrency','1');
+
 
 let initialOptions = [{
-  value: 1,
+  value: "ARS",
   label: "ARS"
 },
 {
-  value: 2,
+  value: "USD",
   label: "USD"
 },
 {
-  value: 3,
+  value: "REAL",
   label: "REAL"
 }];
 
 
-const CurrencySelectorWithState =  enhace((props) => {
-  const { value, changeCurrency } = props;
-
-  const onClickHandler = (value) => {
-    action('Change Currency')('Selected Option: ' + value);
-    changeCurrency(value);
-  }
-
-  return (
-    <CurrencySelector 
-      options={initialOptions} 
-      onClick={onClickHandler} 
-      value={value} 
-    />
-  )
-})
-
 storiesOf('global/CurrencySelector', module)
   .addDecorator(generalDecorator({
     readme,
-    theme
+    theme,
+    reducer:{
+      currency: reducer,
+    }
   }))
   .add('Default', () => (
-    <CurrencySelectorWithState></CurrencySelectorWithState>
+    <CurrencySelectorWithData 
+      options={initialOptions}    />
   ))
 
