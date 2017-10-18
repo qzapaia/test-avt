@@ -17,6 +17,7 @@ export default withData({
     }
   }
 }, (apollo, redux)=>{
+  // solo persiste la key 'search' de redux
   persistStore(redux,{
     whitelist:['search']
   });
