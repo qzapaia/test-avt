@@ -65,7 +65,7 @@ const PriceTrendTableByDate = ({
                 (fColumn.title && (
                   <PriceDataContainer
                     key={"title" + columnIndex + fColumn.rawDate}
-                    type={
+                    className={
                       getTypeField(
                         selectedDate,
                         selectedReturningDate,
@@ -87,7 +87,7 @@ const PriceTrendTableByDate = ({
                     key={"field" + columnIndex + fColumn.rawDate}
                     onClick={e => onClick(fColumn)}
                     onMouseOver={e => onMouseOver(fColumn)}
-                    type={getTypeField(
+                    className={getTypeField(
                       selectedDate,
                       selectedReturningDate,
                       selectedDepartureDate,
@@ -97,31 +97,29 @@ const PriceTrendTableByDate = ({
                     {(fColumn.title || fColumn.price) && (
                       <PriceData>
                         <div>
-                          <div>
-                            {getTypeField(
-                              selectedDate,
-                              selectedReturningDate,
-                              selectedDepartureDate,
-                              fColumn
-                            ) == "bestPrice" ||
-                            getTypeField(
-                              selectedDate,
-                              selectedReturningDate,
-                              selectedDepartureDate,
-                              fColumn
-                            ) == "bestPriceSelectedDate" ? (
-                              <Text type="xs" color="white">
-                                El precio más bajo
-                              </Text>
-                            ) : (
-                              <Text type="xs" color="darkergray">
-                                Desde
-                              </Text>
-                            )}
-                          </div>
-                          <div>
-                            <Price price={fColumn.price} />
-                          </div>
+                          {getTypeField(
+                            selectedDate,
+                            selectedReturningDate,
+                            selectedDepartureDate,
+                            fColumn
+                          ) == "bestPrice" ||
+                          getTypeField(
+                            selectedDate,
+                            selectedReturningDate,
+                            selectedDepartureDate,
+                            fColumn
+                          ) == "bestPriceSelectedDate" ? (
+                            <Text type="xs" color="white">
+                              El precio más bajo
+                            </Text>
+                          ) : (
+                            <Text type="xs" color="darkergray">
+                              Desde
+                            </Text>
+                          )}
+                        </div>
+                        <div>
+                          <Price price={fColumn.price} />
                         </div>
                       </PriceData>
                     )}

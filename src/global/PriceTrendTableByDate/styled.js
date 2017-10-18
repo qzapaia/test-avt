@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
-const getBackgroundColor = flag => {
-  switch (flag) {
-    case "bestPrice":
-      return "best";
-      break;
-    case "currentPrice":
-      return "lightblue";
-      break;
-    case "title":
-    case "selectedDate":
-    case "bestPriceSelectedDate":
-      return "hover";
-      break;
-    default:
-      return "selected";
-  }
-};
+// const getBackgroundColor = flag => {
+//   switch (flag) {
+//     case "bestPrice":
+//       return "best";
+//       break;
+//     case "currentPrice":
+//       return "lightblue";
+//       break;
+//     case "title":
+//     case "selectedDate":
+//     case "bestPriceSelectedDate":
+//       return "hover";
+//       break;
+//     default:
+//       return "selected";
+//   }
+// };
 
 const isSeletedDate = type => {
   return type == "selectedDate" || type == "bestPriceSelectedDate";
@@ -42,30 +42,62 @@ export const PriceData = styled.article`
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center;
+  will-change: border-color;
+  > div{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
 `
 
-export const PriceDataContainer = styled.div`
-  ${'' /* width: 90px; */}
-  ${'' /* min-width: 90px; */}
-  ${'' /* max-width: 90px; */}
-  height: 60px;
+export const PriceDataContainer = styled.article`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: ${props => (isSeletedDate(props.type) ? "1px" : "1px")} solid ${props=>props.theme.colors.gray};
   flex-direction: column;
-  background-color: ${props => getBackgroundColor(props.type)=='best'?props.theme.colors.success:getBackgroundColor(props.type)=='hover'?props.theme.colors.gray:getBackgroundColor(props.type)!='selected'?props.theme.colors.primary:'white'};
-  color: ${props => getBackgroundColor(props.type)=='best'?'white':getBackgroundColor(props.type)=='hover'?props.theme.colors.darkergray:getBackgroundColor(props.type)!='selected'?'white':props.theme.colors.darkergray};
   flex: 1;
-  ${PriceData}{
-    border-color: ${props => (isSeletedDate(props.type) ? props.theme.colors.primary:'' )}
+  will-change: background;
+  will-change: color;
+  background: white;
+  text-align: center;
+  border: 1px solid ${props=>props.theme.colors.gray};
+  *{
+    font-weight: 400
   }
+  &.bestPrice{
+    background: ${props=>props.theme.colors.success};
+    *{
+      color: white;
+    }
+  }
+  &.title{
+    background: ${props=>props.theme.colors.gray};
+  }
+  &.currentPrice{
+    background: ${props=>props.theme.colors.primary};
+    *{
+      color: white;
+    }
+  }
+  &.bestPriceSelectedDate, &.selectedDate{
+    background: ${props=>props.theme.colors.gray};
+    *{
+      color: ${props=>props.theme.colors.darkergray};
+    }
+    ${PriceData}{
+      border-color: ${props=>props.theme.colors.primary}
+    }
+  }
+
 `;
 
 
 
 export const RowContainer = styled.div`
   display: flex;
-  flex: 1;
+  flex: 1 1 100%;
 `
