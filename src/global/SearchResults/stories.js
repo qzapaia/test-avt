@@ -28,8 +28,8 @@ let search = {
 
 let searchOneWay = {
   origin: 'BUE',
-  destination: 'COR',
-  departureDate: '11-03-2018',
+  destination: 'DME',
+  departureDate: '01-05-2018',
   passengers: {
     adults: 1,
     children: 0,
@@ -42,9 +42,9 @@ let searchOneWay = {
 }
 
 const searchMultiTrip = {
-  origin: ["BUE","COR","MDZ"],
-  destination: ["COR","MDZ","BUE"],
-  departureDate: ["10-03-2018","17-03-2018","25-03-2018"],
+  origin: ["BUE","BUE","BUE"],
+  destination: ["MOW","PEK","MEL"],
+  departureDate: ["10-01-2018","17-01-2018","25-01-2018"],
   passengers: {
     adults: 1,
     children: 0,
