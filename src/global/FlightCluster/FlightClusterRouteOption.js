@@ -144,7 +144,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
                       {moment(f.departure.date).format('ddd. DD MMM [de] YYYY')}
                     </MediumBold>
                     <IataBold tag='strong' type='xl'>
-                      {f.departure.iata}
+                      {f.departure.iata} {f.departure.changeAirport?'Cambio de Aeropuerto':''} 
                     </IataBold>
                     <MediumBold type='m' tag='strong'>
                       {moment(f.departure.date).format('HH:mm[hs]')}
@@ -200,7 +200,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
                       {moment(f.arrival.date).format('ddd. DD MMM [de] YYYY')}
                     </MediumBold>
                     <IataBold tag='strong' type='xl'>
-                      {f.arrival.iata}
+                      {f.arrival.iata} {f.arrival.changeAirport?'Cambio de Aeropuerto':''} 
                     </IataBold>
                     <MediumBold type='m' tag='strong'>
                       {moment(f.arrival.date).format('HH:mm[hs]')}
