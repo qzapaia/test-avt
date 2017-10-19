@@ -3,12 +3,12 @@ import { gql, graphql } from 'react-apollo';
 import FlightsComparisonTable from './'
 import { connect } from "react-redux";
 
+const mapStateToProps = ({media}) => ({
+  media
+});
+
 const FlightsComparisonTableWithData = (props) => {
-  return (<FlightsComparisonTable flights={props.flights.comparisonFlights}/>)
+  return (<FlightsComparisonTable media={props.media} flights={props.flights.comparisonFlights}/>)
 }
 
-FlightsComparisonTableWithData.defaultProps = {
-  flights:[]
-}
-
-export default FlightsComparisonTableWithData;
+export default connect(mapStateToProps)(FlightsComparisonTableWithData);
