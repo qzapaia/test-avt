@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-const ContainerBreadcrumb = styled.ul`
+export const ContainerBreadcrumb = styled.ul`
   display: flex;
   flex-direction: 'row';
   flex-wrap: 'wrap'};
 `
-
-export default ContainerBreadcrumb;
+export const Arrow = styled.span`
+  margin: 0 5px;
+  font-size: 10px;
+`
