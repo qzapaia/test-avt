@@ -13,9 +13,17 @@ import Select from "../Select";
 import Breadcrumb from "../Breadcrumb";
 import FlightSearchBox from "../FlightSearchBox/withData";
 import Subscribe from "../Subscribe/TripSubscribe/withData";
+import Link from "../Link";
 
 import { Container } from './styled';
-import { indexOf, find, map } from 'lodash';
+import {
+  indexOf,
+  find,
+  map,
+  get,
+  head,
+  last
+} from 'lodash';
 
 const onBuyHandler = next => value => {
   next(value);
@@ -45,20 +53,23 @@ const SearchResults = ({
   filters,
   flightClusters,
   countItems,
+  countFlights,
   comparisonFlights,
-  onBuy
+  onBuy,
+  origin,
+  destination,
+  leg
 }) =>  {
-
   const countPage = Math.ceil((countItems/showItemsByPage));
+  const isNotMultitrip = leg != "multitrip";
   //applyPaginate(getState())
-
   return (
     <Container>
       <Breadcrumb>
-        <a href="https://www.avantrip.com">Avantrip.com</a>
-        <a href="https://www.avantrip.com/vuelos">Vuelos</a>
+        <Link href="https://www.avantrip.com">Avantrip.com</Link>
+        <Link href="https://www.avantrip.com/vuelos">Vuelos</Link>
         <span>
-          {`[Numero_vuelos] vuelos a [Ciudad_Hasta] desde [Ciudad_Desde]`}
+          {`${countFlights} vuelos a ${head(destination).name} desde ${last(origin).name}`}
         </span>
       </Breadcrumb>
       <div style={{display:"flex"}}>
@@ -67,16 +78,18 @@ const SearchResults = ({
             title='Buscá tu vuelo'
           />
           <Subscribe
-            value={{ city: "[Ciudad_Hasta]" }}
+            value={{ city: head(destination).name }}
             title={`Te avisamos cuando tengamos los precios
               más bajos a [city].`}/>
           <FlightsFiltersWithData options={filters} />
         </div>
         <div >
           <Tabs>
-            <Tab id="tab1" title="Precio más Bajo">
-              <FlightsComparisonTableWithData flights={comparisonFlights} />
-            </Tab>
+            {isNotMultitrip &&
+              <Tab id="tab1" title="Precio más Bajo">
+                <FlightsComparisonTableWithData flights={comparisonFlights} />
+              </Tab>
+            }
             <Tab id="tab2" title={calendarTitle}>
               Agregar calendario de tendencia de precios.
             </Tab>
@@ -108,8 +121,13 @@ const SearchResults = ({
 SearchResults.propTypes = {
   showItemsByPage: PropTypes.number,
   filters: PropTypes.object,
-  clusters: PropTypes.object,
-  onBuy: PropTypes.func
+  flightClusters: PropTypes.object,
+  onBuy: PropTypes.func,
+  countItems: PropTypes.number,
+  countFlights: PropTypes.number,
+  comparisonFlights: PropTypes.array,
+  origin: PropTypes.object,
+  destination: PropTypes.object
 }
 
 export default SearchResults;

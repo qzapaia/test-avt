@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { gql, graphql,compose } from 'react-apollo';
 import SearchResults from './'
-import { get, clone } from 'lodash';
+import { get, clone, map } from 'lodash';
 import { connect } from "react-redux";
 import { onBuy } from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
@@ -16,7 +16,6 @@ const mapStateToProps = (state) => {
     filters: flightsFilters
   }
 };
-
 
 const mapDispatchToProps = {
   onBuy
@@ -97,7 +96,19 @@ const SearchQuery = {
     }`
 }
 
-const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,passengersAdults,passengersChildren,passengersInfants,cabinClass,channel,portal,leg }) => {
+const mapPropsToOptions = ({
+  origin,
+  destination,
+  departureDate,
+  returningDate,
+  passengersAdults,
+  passengersChildren,
+  passengersInfants,
+  cabinClass,
+  channel,
+  portal,
+  leg
+}) => {
 
   const values = {
     origin,
@@ -153,20 +164,31 @@ const mapResultsToProps = ({ownProps, data }) => {
     references:trip.references,
     comparisonFlights:newClusters.clusters,
   });
-  
-  const clustersFiltered =populateCluster({
+
+  const clustersFiltered = populateCluster({
+    references:trip.references,
     clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters})
   })
 
+  const getCityByIATA = cities => (
+    map(cities, city => ({
+      code: city,
+      name: get(trip, `references.cities[${city}]`, "")
+    }))
+  );
 
   return {
     ...newfilters,
-    flightClusters:clustersFiltered.flightClusters,
-    comparisonFlights:comparisonFlights,
-    countItems : newClusters.flightClusters.length,
+    flightClusters: clustersFiltered,
+    comparisonFlights: comparisonFlights,
+    countItems: newClusters.flightClusters.length,
+    countFlights: newClusters.clusters.length,
     onBuy: (clusterSelected) => {
       onBuy(clusterSelected, clone(get(data.orchestrator.availability, ownProps.leg, [])))
-    }
+    },
+    origin: getCityByIATA(ownProps.origin),
+    destination: getCityByIATA(ownProps.destination),
+    leg: ownProps.leg
   }
 };
 

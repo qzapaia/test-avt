@@ -215,6 +215,7 @@ export const populateStages = (state={}) => {
 
   const masterStages = state.stages;
 
+
   references.set(state.references);
 
   const clusters = state.clusters.map((c, id) => ({
@@ -227,11 +228,9 @@ export const populateStages = (state={}) => {
     additionalInfo : "¡Hasta 12 cuotas sin interés con Visa y Master del Banco Francés!",
     disclaimerText : "¿Qué incluye el precio?",
     flightType: state.flightType
-  }))
+  }));
 
-  const flightClusters = map(clusters, c => {
-    return getFlightCluster(c)
-  })
+  const flightClusters = map(clusters, c => getFlightCluster(c));
 
   return {
     ...state,
@@ -240,14 +239,8 @@ export const populateStages = (state={}) => {
   };
 }
 
-export const populateCluster = (state={}) => {
-
-  const flightClusters = map(state.clusters, c => {
+export const populateCluster = (state={}) => (
+  map(state.clusters, c => {
     return getFlightCluster(c)
   })
-
-  return {
-    ...state,
-    flightClusters:flightClusters
-  };
-}
+);
