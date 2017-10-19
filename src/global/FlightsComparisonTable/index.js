@@ -13,7 +13,7 @@ const getBestPriceByStop = flights =>
 	})
 
 
-const getBestPricesByStop = groupedFlightsByAirline => 
+const getBestPricesByStop = groupedFlightsByAirline =>
 	_.map(groupedFlightsByAirline, ( flights , airlineName ) => {
     return {
     	airlineName: airlineName,
@@ -26,15 +26,15 @@ const getBestPricesByStop = groupedFlightsByAirline =>
 
 const getBestPricesByStopWithGroupedFlights = groupedFlights => {
 
-	const stopsAndPrices = _.reduce(groupedFlights, ( acc, current ) => 
+	const stopsAndPrices = _.reduce(groupedFlights, ( acc, current ) =>
 		acc.concat(current.stops), [])
- 
+
 	const groupedByStops = _.groupBy(stopsAndPrices, 'stopType');
 
 	const bestPricesByStops = _.map(groupedByStops, f => _.minBy(f, 'price'))
 
 	return bestPricesByStops;
-} 
+}
 
 const containerStyle = {
 	backgroundColor : 'white',
@@ -114,7 +114,7 @@ const FlightsComparisonTable = ({flights}) => {
           --------Izquierda
         </div>
 
-        {_.map(groupedFlightsByAirlines, (flights, airlineName) => 
+        {_.map(groupedFlightsByAirlines, (flights, airlineName) =>
           (
 
             <div style={flightGroupStyle} >
