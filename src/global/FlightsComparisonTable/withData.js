@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { gql, graphql } from 'react-apollo';
 import FlightsComparisonTable from './'
 import { connect } from "react-redux";
 
-const FlightsComparisonTableWithData = (props) => {
-  return (<FlightsComparisonTable flights={props.flights.comparisonFlights}/>)
-}
+const mapStateToProps = ({media}) => ({
+  media
+});
+
+const FlightsComparisonTableWithData = (props) => (
+  <FlightsComparisonTable media={props.media} flights={props.flights}/>
+);
 
 FlightsComparisonTableWithData.defaultProps = {
   flights:[]
 }
 
-export default FlightsComparisonTableWithData;
+export default connect(mapStateToProps)(FlightsComparisonTableWithData);

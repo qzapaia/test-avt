@@ -1,5 +1,5 @@
 import React from 'react';
-import FlightsComparisonTable from './';
+import FlightsComparisonTable from './withData';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -27,7 +27,7 @@ airlinesBase.push({logo:AA_AIRLINE_LOGO, label:AA_AIRLINE_LABEL, name: AA_AIRLIN
 airlinesBase.push({logo:UA_AIRLINE_LOGO, label:UA_AIRLINE_LABEL, name: UA_AIRLINE_NAME});
 airlinesBase.push({logo:LA_AIRLINE_LOGO, label:LA_AIRLINE_LABEL, name: LA_AIRLINE_NAME});
 
-const generateRandomFlights = (airlinesBase, randomFlightsQty) => { 
+const generateRandomFlights = (airlinesBase, randomFlightsQty) => {
   let randomFlights = [];
 
   for(var i=0; i<randomFlightsQty; i++){
@@ -42,7 +42,7 @@ const generateRandomFlights = (airlinesBase, randomFlightsQty) => {
   }
 
   return randomFlights;
-} 
+}
 
 const enhace = withState('flights','updateFlights', generateRandomFlights(airlinesBase, 50));
 
@@ -66,4 +66,3 @@ storiesOf('avantrip/FlightsComparisonTable', module)
   .add('Default', () => (
     <FlightsComparisonTableWithState></FlightsComparisonTableWithState>
   ))
-
