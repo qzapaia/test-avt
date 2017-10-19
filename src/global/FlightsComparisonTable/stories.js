@@ -10,22 +10,19 @@ import generalDecorator from '../../stories.decorator.js';
 import theme from '../styled.theme';
 import readme from './README.md';
 
-const AA_AIRLINE_LOGO = 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/AA.png?adq-20170911-0';
 const AA_AIRLINE_LABEL = 'American Airlines';
 const AA_AIRLINE_NAME = 'AA';
 
-const UA_AIRLINE_LOGO = 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/UA.png?adq-20170911-0';
 const UA_AIRLINE_LABEL = 'United Airlines';
 const UA_AIRLINE_NAME = 'UA';
 
-const LA_AIRLINE_LOGO = 'https://cdn.avantrip.com/vuelos-desktop/bundles/avantripflight/images/ui/airlines/LA.png?adq-20170911-0';
 const LA_AIRLINE_LABEL = 'LATAM Airlines';
 const LA_AIRLINE_NAME = 'LA';
 
 const airlinesBase = [];
-airlinesBase.push({logo:AA_AIRLINE_LOGO, label:AA_AIRLINE_LABEL, name: AA_AIRLINE_NAME});
-airlinesBase.push({logo:UA_AIRLINE_LOGO, label:UA_AIRLINE_LABEL, name: UA_AIRLINE_NAME});
-airlinesBase.push({logo:LA_AIRLINE_LOGO, label:LA_AIRLINE_LABEL, name: LA_AIRLINE_NAME});
+airlinesBase.push({name:AA_AIRLINE_LABEL, code: AA_AIRLINE_NAME});
+airlinesBase.push({name:UA_AIRLINE_LABEL, code: UA_AIRLINE_NAME});
+airlinesBase.push({name:LA_AIRLINE_LABEL, code: LA_AIRLINE_NAME});
 
 const generateRandomFlights = (airlinesBase, randomFlightsQty) => {
   let randomFlights = [];
@@ -33,9 +30,10 @@ const generateRandomFlights = (airlinesBase, randomFlightsQty) => {
   for(var i=0; i<randomFlightsQty; i++){
     let randomAirlineIndex = Math.floor(Math.random() * airlinesBase.length);
     randomFlights.push({
-      'airlineName': airlinesBase[randomAirlineIndex].name,
-      'label': airlinesBase[randomAirlineIndex].label,
-      'logo': airlinesBase[randomAirlineIndex].logo,
+      'airline': {
+        'name': airlinesBase[randomAirlineIndex].name,
+        'code': airlinesBase[randomAirlineIndex].code
+      },
       'price': Math.floor(Math.random() * 100000),
       'stopType': Math.floor(Math.random() * 3 )
     });
