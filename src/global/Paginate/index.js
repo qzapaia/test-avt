@@ -32,4 +32,9 @@ Paginate.propTypes = {
   onPageSelected:PropTypes.func.isRequired
 }
 
+Paginate.defaultProps =  {
+  onPageSelected: ()=>{}
+}
+
+
 export default Paginate;

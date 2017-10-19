@@ -18,7 +18,7 @@ import readme from '../../global/Chart/README.md';
 const addReadme = comp => withReadme(readme, comp);
 
 const data = [];
-
+const bestPrice = 2453;
 let date = moment();
 for (var i = 0; i < 31; i++) {
   date = date.add(1, "days");
@@ -27,6 +27,15 @@ for (var i = 0; i < 31; i++) {
     price: Math.random() * (20000 - 1000) + 1000
   });
 }
+
+// agregamos el ultimo para que conincida el best price y se pinte de verde
+data.push({
+  price: bestPrice,
+  date: date.format("YYYY-MM-DD"),
+  month:9,
+  label: date.format("DD MMM"),
+  travelDays:-30,
+});
 
 const clickHandler = value => {
   action("click")(value);
@@ -54,12 +63,17 @@ storiesOf("avantrip/Chart", module)
     "With custom Bar",
     addReadme(() => (
       <ThemeProvider theme={theme}>
-        <Chart
+         <Chart
           data={data}
           value="price"
-          label="name"
+          label="label"
           onClick={clickHandler}
-          renderBar={args => (args.fill = "green") && args}
+          renderBar={args => {
+          if (args.price == bestPrice) {
+            args.fill = "#94c627";
+          }
+          return args;
+          }}
         />
       </ThemeProvider>
     ))
@@ -68,12 +82,18 @@ storiesOf("avantrip/Chart", module)
     "With custom Tooltip",
     addReadme(() => (
       <ThemeProvider theme={theme}>
-        <Chart
-          data={data}
-          value="price"
-          label="name"
-          onClick={clickHandler}
-          CustomTooltip={CustomTooltip}
-        />
+       <Chart
+        data={data}
+        value="price"
+        label="label"
+        onClick={clickHandler}
+        CustomTooltip={CustomTooltip}
+        renderBar={args => {
+        if (args.price == bestPrice) {
+          args.fill = "#94c627";
+        }
+        return args;
+        }}
+      />
       </ThemeProvider>
     )))
