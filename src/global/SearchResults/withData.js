@@ -174,8 +174,6 @@ const mapResultsToProps = ({ownProps, data }) => {
   })
 
   const getCityByIATA = cities => {
-    console.log("cities", cities);
-    console.log("references.cities", trip.references.cities);
     return map(cities, city => ({
       code: city,
       name: get(trip, `references.cities[${city}]`, "")

@@ -72,8 +72,8 @@ const SearchResults = ({
           {`${countFlights} vuelos a ${head(destination).name} desde ${last(origin).name}`}
         </span>
       </Breadcrumb>
-      <div style={{display:"flex"}}>
-        <div >
+      <div>
+        <div>
           <FlightSearchBox
             title='Buscá tu vuelo'
           />
