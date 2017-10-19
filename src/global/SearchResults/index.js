@@ -9,7 +9,7 @@ import Paginate from '../Paginate/withData'
 import Tabs, { Tab } from "../Tabs";
 import PriceTrendCalendarWithData from "../PriceTrendCalendar/withData";
 import Text from "../Text";
-import CurrencySelector from "../CurrencySelector";
+import CurrencySelectorWithData from "../CurrencySelector/withData";
 import Select from "../Select";
 import Breadcrumb from "../Breadcrumb";
 import FlightSearchBox from "../FlightSearchBox/withData";
@@ -70,9 +70,9 @@ const SearchResults = (props) =>  {
   }else if(error){
 
   }else{
-    const isMultitrip = leg === 'multitirp';
+    const isNotMultitrip = (leg != 'multitrip');
     const countPage = Math.ceil((countItems/showItemsByPage));
-    const pricesTrendCalendar = isMultitrip && {
+    const pricesTrendCalendar = isNotMultitrip && {
         dest : destination[0],
         ori: origin[0],
         dateFrom:departureDate[0],
@@ -107,11 +107,12 @@ const SearchResults = (props) =>  {
           </div>
 
           <div >
+            
             <Tabs>
               <Tab id="tab1" title="Precio más Bajo">
                 <FlightsComparisonTableWithData flights={comparisonFlights} />
               </Tab>
-              { isMultitrip && (
+              { isNotMultitrip ? (
               <Tab id="tab2" title={calendarTitle}>
                 <PriceTrendCalendarWithData
                   origin={pricesTrendCalendar.ori}
@@ -126,11 +127,11 @@ const SearchResults = (props) =>  {
                   minDepartureDate={pricesTrendCalendar.minDepartureDate}
                   maxDepartureDate={pricesTrendCalendar.maxDepartureDate}
                  />
-              </Tab>)
+              </Tab>): null
               }
             </Tabs>
             <div>
-              <CurrencySelector options={initialOptions}/>
+              <CurrencySelectorWithData options={initialOptions}/>
               <div>
                 <span>Ordenar por</span>
                 <Select

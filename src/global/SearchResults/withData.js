@@ -160,7 +160,6 @@ const mapResultsToProps = ({ownProps, data }) => {
   
   const clustersFiltered =populateCluster({
     clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters}),
-    currency : currency
   })
 
 

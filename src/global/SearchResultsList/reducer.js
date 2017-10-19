@@ -194,7 +194,7 @@ const getCurrencyValue = (currency) =>{
 
 const getLastFlightPlacesCount = paxFare => min(map(paxFare.stageFares, f => minBy(f.flightFares, 'avlStatus').avlStatus));
 
-const getFlightCluster = (cluster,currency) => {
+const getFlightCluster = (cluster) => {
   let fc = {};
 
   fc.additionalInfo = cluster.additionalInfo;
@@ -205,21 +205,21 @@ const getFlightCluster = (cluster,currency) => {
   ));
 
   fc.fareDetail = {
-    'referencePrice': getFormatPrices(Number.parseInt(cluster.price.totalPrice),getCurrencyValue(currency)),
+    'referencePrice': cluster.price.totalPrice,
     'items': [{
       'label': '2 Adultos',
-      'price': getFormatPrices(25604,getCurrencyValue(currency))
+      'price': 25604,
     },{
       'label': '2 Niños',
-      'price': getFormatPrices(24048,getCurrencyValue(currency))
+      'price': 24048,
     },{
       'label': '2 Bebés',
-      'price': getFormatPrices(622,getCurrencyValue(currency))
+      'price': 622,
     }],
-    'taxes': getFormatPrices(14633,getCurrencyValue(currency)),
-    'charges': getFormatPrices(0,getCurrencyValue(currency)),
-    'finalPrice': getFormatPrices(69177,getCurrencyValue(currency)),
-    'lastPlacesCount': getLastFlightPlacesCount(c.paxFare[0])
+    'taxes': 14633,
+    'charges': 0,
+    'finalPrice': 69177,
+    'lastPlacesCount': getLastFlightPlacesCount(cluster.paxFare[0])
   }
 
   return fc;
@@ -251,9 +251,9 @@ export const populateStages = (state={}) => {
 }
 
 export const populateCluster = (state={}) => {
-  const { clusters, currency } = state
+  const { clusters } = state
   const flightClusters = map(clusters, c => {
-    return getFlightCluster(c,currency)
+    return getFlightCluster(c)
   })
 
   return {
