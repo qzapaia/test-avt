@@ -8,14 +8,15 @@ import Text from "../Text";
 import Icon from "../Icon";
 import {ExpandButton} from "./styled";
 
-const labelFlightsAirports = (type,position,city) => {
-  if(type == 'multidestino'){
-    return `Vuelo ${position + 1}`
+const labelFlightsAirports = (type,position,positionTramo,city) => {
+  if(type == 'multitrip'){
+    return (position == 0)?`Vuelo ${positionTramo + 1} ${city}`:`${city}`
   }
   return (position == 0)? `Salida ${city}` : `Regreso ${city}`
 }
 
 const Airports = ({options, onChange, values, expanded, toggleExpand, onClear}) => {
+  console.log(options.airports.cities)
   return(
     <List>
       <ExpandButton expanded={expanded} onClick={toggleExpand}>
@@ -26,21 +27,21 @@ const Airports = ({options, onChange, values, expanded, toggleExpand, onClear}) 
       </ExpandButton>
       {expanded &&
         map(options.airports.items, (airports, k) => (
-          map(airports,(optionsAirports,i)=>(
-            <Text tag='li' type='xs'>
-              <CheckboxGroup
-              label={ labelFlightsAirports(options.flightType,k,options.airports.cities[i]) }
-              onChange={onChangeHandler(`airports.${k}.${i}`)(onChange)}
-              options={optionsAirports.options}
-              values={ get(values,`airports.${k}.${i}`)}
-              onClear={()=>onClear(`airports.${k}.${i}`)}
-              allOptions={{
-                label:<span>Todos los Aeropuertos</span>,
-                checked:false}}
-              />
-            </Text>
+            map(airports,(optionsAirports,i)=> (
+                <Text tag='li' type='xs'>
+                  <CheckboxGroup
+                  label={ labelFlightsAirports(options.flightType,i,k,optionsAirports.city) }
+                  onChange={onChangeHandler(`airports.${k}.${i}`)(onChange)}
+                  options={optionsAirports.options}
+                  values={ get(values,`airports.${k}.${i}`)}
+                  onClear={()=>onClear(`airports.${k}.${i}`)}
+                  allOptions={{
+                    label:<span>Todos los Aeropuertos</span>,
+                    checked:false}}
+                  />
+                </Text>
+              ))
           ))
-        ))
       }
     </List>
   )

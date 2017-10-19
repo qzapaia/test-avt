@@ -1,4 +1,4 @@
-export const SET_CURRENCY = 'FLIGHT_RESULT_CURRENCY';
+export const SET_CURRENCY = 'SET_CURRENCY';
 
 export const setCurrency = data => ({
   type:SET_CURRENCY,

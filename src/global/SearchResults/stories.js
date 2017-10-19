@@ -32,8 +32,8 @@ let searchOneWay = {
   departureDate: '01-05-2018',
   passengers: {
     adults: 1,
-    children: 0,
-    infants:0
+    children: 1,
+    infants:1
   },
   cabinClass: 'Economy',
   channel: 'DESKTOP',
