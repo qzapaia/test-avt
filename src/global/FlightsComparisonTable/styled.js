@@ -65,8 +65,13 @@ export const PriceContainer = ScalesButton.extend`
 
 export const AirlinesSlider = styled.div`
   overflow: hidden;
-  align-self: center;
   flex: ${props=>props.layout < 2?'1 1 100%':'1 1 50%'};
+  > div{
+    height: 100%;
+  }
+  .slick-slider, .slick-list, .slick-track{
+    height: 100%;
+  }
   .slick-track {
     display: flex;
   }
@@ -105,11 +110,11 @@ export const AirlinesSlider = styled.div`
   }
   .slick-prev{
     left: 0;
-    top: ${props=>props.layout < 2?'20px':''};
+    top: ${props=>props.layout < 2?'20px':'0'};
   }
   .slick-next{
     right: 0;
-    top: ${props=>props.layout < 2?'20px':''};
+    top: ${props=>props.layout < 2?'20px':'0'};
   }
   .slick-slide{
     display: ${props=>props.layout < 2?'flex':''};
@@ -119,10 +124,6 @@ export const AirlinesSlider = styled.div`
 
 export const FlightItem = styled.article`
   padding: 0;
-`
-export const FlightItemContainer = styled.ul`
-  padding: 0;
-  max-width: 150px;
 `
 
 export const ListItem = styled.li`
@@ -134,4 +135,25 @@ export const ListItem = styled.li`
   &:not(:first-child){
     border-top: 1px dashed ${props=>props.theme.colors.gray};
   }
+
+`
+export const FlightItemContainer = styled.ul`
+  padding: 0;
+  max-width: 150px;
+  height: 100%;
+  ${ListItem}:not(:first-child){
+    *{
+      font-weight: 400;
+    }
+  }
+`
+
+export const Title = Text.extend`
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+`
+
+export const AirlineLogoName = styled.figure`
+  height: 37.5px;
 `

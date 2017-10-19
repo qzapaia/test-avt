@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Container, ScalesButton, Column, ColumnCenter, PriceContainer, AirlinesSlider, FlightItem, ListItem, FlightItemContainer} from './styled';
+import {Container, ScalesButton, Column, ColumnCenter, PriceContainer, AirlinesSlider, FlightItem, ListItem, FlightItemContainer, Title, AirlineLogoName} from './styled';
 import Text from '../Text';
 import Price from '../Price';
 import Icon from '../Icon';
@@ -63,9 +63,9 @@ const FlightsComparisonTable = ({flights, media}) => {
   return(
     <Container>
       <Column>
-        <Text tag='h2'>
+        <Title tag='h2'>
           Precio más bajo por adulto
-        </Text>
+        </Title>
         <ScalesButton tag='p'>
           Vuelo directo
         </ScalesButton>
@@ -78,10 +78,10 @@ const FlightsComparisonTable = ({flights, media}) => {
       </Column>
 
       <ColumnCenter>
-        <Text tag='p' color='success'>
+        <Title tag='h2' color='success'>
 					<Icon id='Pass' width='16px' height='14px' color='success' />
           Mejor precio
-        </Text>
+        </Title>
 
         {_.map(groupedBestFlightsByPrice, f =>
 
@@ -98,10 +98,12 @@ const FlightsComparisonTable = ({flights, media}) => {
 	            <FlightItem>
 								<FlightItemContainer>
 	                <ListItem>
-	                  <img src={flights.logo} />
-										<Text type='xs'>
-											{flights.label}
-										</Text>
+										<AirlineLogoName>
+											<img src={flights.logo} />
+											<Text type='xs'>
+												{flights.label}
+											</Text>
+										</AirlineLogoName>
 	                </ListItem>
 		              {_.map(flights.stops, f =>
 		                <ListItem>
