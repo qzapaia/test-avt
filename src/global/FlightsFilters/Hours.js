@@ -9,7 +9,7 @@ import Icon from "../Icon";
 import {ExpandButton} from "./styled";
 
 const labelFlightsSchedules = (type,position) => {
-  if(type == 'multidestino'){
+  if(type == 'multitrip'){
     return `Vuelo ${position + 1}`
   }
   return (position == 0)? "Salida" : "Regreso"

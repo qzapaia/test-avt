@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gql, graphql,compose } from 'react-apollo';
 import SearchResults from './'
-import { get } from 'lodash';
+import { get, clone } from 'lodash';
 import { connect } from "react-redux";
-import { onBuy} from './actions';
+import { onBuy } from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
 import { populateStages , populateCluster } from '../SearchResultsList/reducer'
 import { getClustersWithFilter } from '../SearchResults/reducer'
@@ -173,7 +173,7 @@ const mapResultsToProps = ({ownProps, data }) => {
     error: error,
     currency: currency,
     onBuy: (clusterSelected) => {
-      onBuy(clusterSelected, data, ownProps.leg)
+      onBuy(clusterSelected, clone(get(data.orchestrator.availability, ownProps.leg, [])))
     }
   }
 };

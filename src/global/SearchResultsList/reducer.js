@@ -1,5 +1,5 @@
 import { SET_REPOS } from './actions';
-import { get, find, map, flatMap } from 'lodash';
+import { get, find, map, flatMap, minBy, min } from 'lodash';
 
 const initialState = {
   repos:[]
@@ -147,6 +147,9 @@ const getRouteOption = ro => {
           routeOption.extendedInfo.flights[index].arrival.changeAirport = true;
           routeOption.extendedInfo.flights[index+1].departure.changeAirport = true;
         }
+
+        //Lo paso a minutos para estandarizar con totalTime
+        f.common.waitingTime = (routeOption.extendedInfo.flights[index+1].departure.date - routeOption.extendedInfo.flights[index].arrival.date)/1000/60;
       }
 
       return f;
@@ -188,6 +191,9 @@ const getCurrencyValue = (currency) =>{
   return 1
 }
 
+
+const getLastFlightPlacesCount = paxFare => min(map(paxFare.stageFares, f => minBy(f.flightFares, 'avlStatus').avlStatus));
+
 const getFlightCluster = (cluster,currency) => {
   let fc = {};
 
@@ -212,7 +218,8 @@ const getFlightCluster = (cluster,currency) => {
     }],
     'taxes': getFormatPrices(14633,getCurrencyValue(currency)),
     'charges': getFormatPrices(0,getCurrencyValue(currency)),
-    'finalPrice': getFormatPrices(69177,getCurrencyValue(currency))
+    'finalPrice': getFormatPrices(69177,getCurrencyValue(currency)),
+    'lastPlacesCount': getLastFlightPlacesCount(c.paxFare[0])
   }
 
   return fc;
