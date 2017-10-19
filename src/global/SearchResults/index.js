@@ -15,6 +15,11 @@ import FlightSearchBox from "../FlightSearchBox/withData";
 import Subscribe from "../Subscribe/TripSubscribe/withData";
 
 import { Container } from './styled';
+import { indexOf, find, map } from 'lodash';
+
+const onBuyHandler = next => value => {
+  next(value);
+}
 
 const calendarTitle = <div>
   <div><Text>¡Nuevo!</Text></div>
@@ -40,7 +45,8 @@ const SearchResults = ({
   filters,
   flightClusters,
   countItems,
-  comparisonFlights
+  comparisonFlights,
+  onBuy
 }) =>  {
 
   const countPage = Math.ceil((countItems/showItemsByPage));
@@ -91,7 +97,7 @@ const SearchResults = ({
                 ]} />
             </div>
           </div>
-          <SearchResultsListWithData flightClusters={flightClusters} />
+          <SearchResultsListWithData flightClusters={flightClusters} onBuy={onBuy} />
           <Paginate  pageCount={countPage} />
         </div>
       </div>
@@ -103,6 +109,7 @@ SearchResults.propTypes = {
   showItemsByPage: PropTypes.number,
   filters: PropTypes.object,
   clusters: PropTypes.object,
+  onBuy: PropTypes.func
 }
 
 export default SearchResults;

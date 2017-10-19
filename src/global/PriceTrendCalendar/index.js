@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Chart from "../Chart/withData";
 import Text from "../Text";
 
-import Container from "./styled";
+import {Container, Disclaimer} from "./styled";
 import HistogramMonth from "./HistogramMonth";
 import CustomTooltip from "./CustomTooltip";
 
@@ -92,7 +92,9 @@ const PriceTrendCalendar = ({
       onMonthSelected={onMonthSelected}
       layout={media.size}
     />
-    <div><Text>{disclaimer}</Text></div>
+    <Disclaimer type='xs'>
+      {disclaimer}
+    </Disclaimer>
   </Container>
 };
 

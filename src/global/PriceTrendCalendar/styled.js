@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Text from '../Text'
 
-export default styled.div`
+export const Container = styled.div`
   .recharts-tooltip-cursor{
     fill: none;
   }
@@ -121,4 +121,12 @@ export const ContainerMonth = styled.div`
 export const CenterText = Text.extend`
   display: flex;
   align-items: center;
+`
+export const Disclaimer = Text.extend`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  border-top: 1px solid ${props=>props.theme.colors.darkgray};
+  margin-top: 10px;
 `
