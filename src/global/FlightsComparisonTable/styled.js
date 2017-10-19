@@ -4,8 +4,8 @@ import Text from '../Text'
 export const Container = styled.article`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   background: white;
+  padding: 10px 0;
 `
 export const ScalesButton = Text.extend`
   background: none;
@@ -44,8 +44,11 @@ export const ColumnCenter = styled.div`
   padding: 10px;
   border: 1px solid ${props=>props.theme.colors.success};
   > *{
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     text-align: center;
+
   }
 `
 
@@ -62,7 +65,8 @@ export const PriceContainer = ScalesButton.extend`
 
 export const AirlinesSlider = styled.div`
   overflow: hidden;
-  flex: 1 1 50%;
+  align-self: center;
+  flex: ${props=>props.layout < 2?'1 1 100%':'1 1 50%'};
   .slick-track {
     display: flex;
   }
@@ -87,19 +91,47 @@ export const AirlinesSlider = styled.div`
       width: 14px;
       height: 14px;
       border-width: 4px;
-      border-bottom-color: ${props=>props.theme.colors.primary};
-      border-left-color: ${props=>props.theme.colors.primary};
+      border-bottom-color: ${props=>props.theme.colors.darkgray};
+      border-left-color: ${props=>props.theme.colors.darkgray};
       left: 7.5px;
       top: 7.5px;
     }
+    &:hover{
+      &:after{
+        border-bottom-color: ${props=>props.theme.colors.primary};
+        border-left-color: ${props=>props.theme.colors.primary};
+      }
+    }
   }
   .slick-prev{
-    left: ${props=>props.layout < 2?'0':''};
+    left: 0;
     top: ${props=>props.layout < 2?'20px':''};
   }
   .slick-next{
-    right: ${props=>props.layout < 2?'0':''};
+    right: 0;
     top: ${props=>props.layout < 2?'20px':''};
   }
+  .slick-slide{
+    display: ${props=>props.layout < 2?'flex':''};
+    justify-content: ${props=>props.layout < 2?'center':''};
+  }
+`
 
+export const FlightItem = styled.article`
+  padding: 0;
+`
+export const FlightItemContainer = styled.ul`
+  padding: 0;
+  max-width: 150px;
+`
+
+export const ListItem = styled.li`
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  padding: 2.5px;
+  margin-top: 2.5px;
+  &:not(:first-child){
+    border-top: 1px dashed ${props=>props.theme.colors.gray};
+  }
 `

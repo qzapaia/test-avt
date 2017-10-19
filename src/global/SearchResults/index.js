@@ -47,7 +47,7 @@ const SearchResults = ({
   //applyPaginate(getState())
 
   return (
-    <Container style={{maxWidth: '1200px',  flexWrap: 'wrap'}}>
+    <Container>
       <Breadcrumb>
         <a href="https://www.avantrip.com">Avantrip.com</a>
         <a href="https://www.avantrip.com/vuelos">Vuelos</a>
@@ -55,8 +55,8 @@ const SearchResults = ({
           {`[Numero_vuelos] vuelos a [Ciudad_Hasta] desde [Ciudad_Desde]`}
         </span>
       </Breadcrumb>
-      <div style={{display:"flex"}}>
-        <div >
+      <div>
+        <div>
           <FlightSearchBox
             title='Buscá tu vuelo'
           />

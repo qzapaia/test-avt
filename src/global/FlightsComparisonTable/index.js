@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Container, ScalesButton, Column, ColumnCenter, PriceContainer, AirlinesSlider} from './styled';
+import {Container, ScalesButton, Column, ColumnCenter, PriceContainer, AirlinesSlider, FlightItem, ListItem, FlightItemContainer} from './styled';
 import Text from '../Text';
 import Price from '../Price';
 import Icon from '../Icon';
@@ -42,12 +42,6 @@ const getBestPricesByStopWithGroupedFlights = groupedFlights => {
 }
 
 
-const flightGroupStyle = {
-	display: 'flex',
-	flexDirection: 'column',
-	margin:'10px'
-}
-
 const sliderSettings = {
   dots: false,
   slidesToShow: 3,
@@ -84,7 +78,7 @@ const FlightsComparisonTable = ({flights, media}) => {
       </Column>
 
       <ColumnCenter>
-        <Text tag='strong' color='success'>
+        <Text tag='p' color='success'>
 					<Icon id='Pass' width='16px' height='14px' color='success' />
           Mejor precio
         </Text>
@@ -97,27 +91,25 @@ const FlightsComparisonTable = ({flights, media}) => {
 
         )}
       </ColumnCenter>
-      <AirlinesSlider>
+      <AirlinesSlider layout={media.size}>
         <Slider settings={media.size < 2 ? mobileSliderSettings:sliderSettings}>
 					{_.map(groupedFlightsByAirlines, (flights, airlineName) =>
 	          (
-	            <div style={flightGroupStyle} >
-	              <div>
-	                <div>
+	            <FlightItem>
+								<FlightItemContainer>
+	                <ListItem>
 	                  <img src={flights.logo} />
-	                </div>
-	                <div>
-	                  {flights.label}
-	                </div>
-	              </div>
-	              {_.map(flights.stops, f =>
-	                <div>
-	                  -------------
-	                  <br />
-	                  {f.price}
-	                </div>
-	              )}
-	            </div>
+										<Text type='xs'>
+											{flights.label}
+										</Text>
+	                </ListItem>
+		              {_.map(flights.stops, f =>
+		                <ListItem>
+											<Price price={f.price} color='primary' />
+		                </ListItem>
+		              )}
+								</FlightItemContainer>
+	            </FlightItem>
 	          )
 	        )}
 				</Slider>
