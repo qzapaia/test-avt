@@ -14,5 +14,15 @@ export const BreadcrumbContainer = styled.div`
   margin: 20px 0;
 `
 export const LeftContainer = styled.section`
-  flex: 1 1 25%;
+  flex: 1 1 30%;
+  padding-right: 20px;
+`
+export const RightContainer = styled.section`
+  flex: 1 1 70%;
+`
+export const SearchResult = styled.section`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `

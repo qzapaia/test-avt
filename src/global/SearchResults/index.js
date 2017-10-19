@@ -15,7 +15,7 @@ import Breadcrumb from "../Breadcrumb";
 import FlightSearchBox from "../FlightSearchBox/withData";
 import Subscribe from "../Subscribe/TripSubscribe/withData";
 
-import { Container, MaxWidth, BreadcrumbContainer, LeftContainer } from './styled';
+import { Container, MaxWidth, BreadcrumbContainer, LeftContainer, RightContainer, SearchResult } from './styled';
 import { indexOf, find, map } from 'lodash';
 
 const onBuyHandler = next => value => {
@@ -73,21 +73,24 @@ const SearchResults = ({
             </Text>
           </Breadcrumb>
         </BreadcrumbContainer>
-        <div>
-          <div>
-            <FlightSearchBox
-              title='Buscá tu vuelo'
-            />
-            <Subscribe
-              value={{ city: "[Ciudad_Hasta]" }}
-              title={`Te avisamos cuando tengamos los precios
-                más bajos a [city].`}/>
-            <FlightsFiltersWithData options={filters} />
-          </div>
-          <div >
+
+        <SearchResult>
+          <LeftContainer>
+            <div>
+              <FlightSearchBox
+                title='Buscá tu vuelo'
+              />
+              <Subscribe
+                value={{ city: "[Ciudad_Hasta]" }}
+                title={`Te avisamos cuando tengamos los precios
+                  más bajos a [city].`}/>
+              <FlightsFiltersWithData options={filters} />
+            </div>
+          </LeftContainer>
+          <RightContainer>
             <Tabs>
               <Tab id="tab1" title="Precio más Bajo">
-                <FlightsComparisonTableWithData flights={comparisonFlights} />
+                {/* <FlightsComparisonTableWithData flights={comparisonFlights} /> */}
               </Tab>
               <Tab id="tab2" title={calendarTitle}>
                 Agregar calendario de tendencia de precios.
@@ -111,8 +114,8 @@ const SearchResults = ({
             </div>
             <SearchResultsListWithData flightClusters={flightClusters} onBuy={onBuy} />
             <Paginate  pageCount={countPage} />
-          </div>
-        </div>
+          </RightContainer>
+        </SearchResult>
       </MaxWidth>
     </Container>
   )
