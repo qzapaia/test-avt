@@ -178,34 +178,48 @@ const getRoute = ( r, stageLabel ) => {
   return route;
 }
 
+const getFormatPrices = (prices,currencyValue) => {
+  return Math.round((prices/currencyValue))
+}
+
+const getCurrencyValue = (currency) =>{
+  if(currency.value == 'REAL')
+    return 3.2;
+  if(currency.value == 'USD')
+    return 17.8
+  
+  return 1
+}
+
+
 const getLastFlightPlacesCount = paxFare => min(map(paxFare.stageFares, f => minBy(f.flightFares, 'avlStatus').avlStatus));
 
-const getFlightCluster = c => {
+const getFlightCluster = (cluster) => {
   let fc = {};
 
-  fc.additionalInfo = c.additionalInfo;
-  fc.disclaimerText = c.disclaimerText;
-  fc.id = c.id;
-  fc.routes = map(c.stages, (stage, index) => (
-    getRoute(stage, getStageLabel(c.flightType, index))
+  fc.additionalInfo = cluster.additionalInfo;
+  fc.disclaimerText = cluster.disclaimerText;
+  fc.id = cluster.id;
+  fc.routes = map(cluster.stages, (stage, index) => (
+    getRoute(stage, getStageLabel(cluster.flightType, index))
   ));
 
   fc.fareDetail = {
-    'referencePrice': c.price.totalPrice,
+    'referencePrice': cluster.price.totalPrice,
     'items': [{
       'label': '2 Adultos',
-      'price': 25604
+      'price': 25604,
     },{
       'label': '2 Niños',
-      'price': 24048
+      'price': 24048,
     },{
       'label': '2 Bebés',
-      'price': 622
+      'price': 622,
     }],
     'taxes': 14633,
     'charges': 0,
-    'finalPrice': 69.177,
-    'lastPlacesCount': getLastFlightPlacesCount(c.paxFare[0])
+    'finalPrice': 69177,
+    'lastPlacesCount': getLastFlightPlacesCount(cluster.paxFare[0])
   }
 
   return fc;
@@ -214,7 +228,6 @@ const getFlightCluster = c => {
 export const populateStages = (state={}) => {
 
   const masterStages = state.stages;
-
 
   references.set(state.references);
 
@@ -228,19 +241,22 @@ export const populateStages = (state={}) => {
     additionalInfo : "¡Hasta 12 cuotas sin interés con Visa y Master del Banco Francés!",
     disclaimerText : "¿Qué incluye el precio?",
     flightType: state.flightType
-  }));
-
-  const flightClusters = map(clusters, c => getFlightCluster(c));
+  }))
 
   return {
     ...state,
     clusters,
-    flightClusters
   };
 }
 
-export const populateCluster = (state={}) => (
-  map(state.clusters, c => {
+export const populateCluster = (state={}) => {
+  const { clusters } = state
+  const flightClusters = map(clusters, c => {
     return getFlightCluster(c)
   })
-);
+
+  return {
+    ...state,
+    flightClusters:flightClusters
+  };
+}

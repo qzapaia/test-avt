@@ -8,7 +8,7 @@ import Paginate from '../Paginate/withData'
 import Tabs, { Tab } from "../Tabs";
 import PriceTrendCalendar from "../PriceTrendCalendar/withData";
 import Text from "../Text";
-import CurrencySelector from "../CurrencySelector";
+import CurrencySelector from "../CurrencySelector/withData";
 import Select from "../Select";
 import Breadcrumb from "../Breadcrumb";
 import FlightSearchBox from "../FlightSearchBox/withData";
@@ -85,7 +85,7 @@ const SearchResults = ({
         </div>
         <div >
           <Tabs>
-            {isNotMultitrip &&
+            { isNotMultitrip &&
               <Tab id="tab1" title="Precio más Bajo">
                 <FlightsComparisonTableWithData flights={comparisonFlights} />
               </Tab>
@@ -126,8 +126,9 @@ SearchResults.propTypes = {
   countItems: PropTypes.number,
   countFlights: PropTypes.number,
   comparisonFlights: PropTypes.array,
-  origin: PropTypes.object,
-  destination: PropTypes.object
+  origin: PropTypes.array,
+  destination: PropTypes.array,
+  leg: PropTypes.string,
 }
 
 export default SearchResults;

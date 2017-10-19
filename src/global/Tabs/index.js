@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withState } from "recompose";
-import { get, head } from "lodash";
+import { get, head,compact } from "lodash";
 
 const Tab = ({id, title, children}) => (
   <div>
@@ -18,19 +18,18 @@ Tab.propTypes = {
 const enhace = withState('selectedTab', 'setTab', null);
 
 const Tabs = ({selectedTab, setTab, children}) => {
-
+  const childs = compact(children, c => c != false)
   const currentSelectedTab = selectedTab || get(head(children), "props.id", null);
-
   return <div>
     <nav>
-      {children.map(c =>(
+      {childs.map(c =>(
         <button key={c.props.id} onClick={e=>setTab(c.props.id)}>
           {c.props.title}
         </button>
       ))}
     </nav>
     <div>
-      {children.find(c =>(currentSelectedTab==c.props.id))}
+      {childs.find(c =>(currentSelectedTab==c.props.id))}
     </div>
   </div>
 }

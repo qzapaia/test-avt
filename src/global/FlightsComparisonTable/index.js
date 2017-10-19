@@ -68,7 +68,8 @@ const containerStyle = {
 const firstColumnStyle = {
 	display : 'flex',
 	flexDirection : 'column',
-	margin:'20px'
+	margin:'20px',
+  width: '100px'
 }
 const secondColumnStyle = {
 	display : 'flex',
@@ -127,10 +128,11 @@ const FlightsComparisonTable = ({ flights, onSearch }) => {
         </div>
         {map(groupedBestFlightsByPrice, f => (
           <div>
-            {f.price != "" &&
+            {f && f.price != "" &&
               <Price price={f.price} onClick={e => onHandlerPrice(onSearch, f.price)}/>
             }
-            {f.price == "" && "-" }
+            {f && f.price == "" && "-" }
+            {!f && "-"}
           </div>
         ))}
       </div>

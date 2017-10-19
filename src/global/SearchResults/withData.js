@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql,compose } from 'react-apollo';
 import SearchResults from './'
 import { get, clone, map } from 'lodash';
@@ -10,10 +11,11 @@ import { getClustersWithFilter } from '../SearchResults/reducer'
 import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
 
 const mapStateToProps = (state) => {
-  const {paginate,flightsFilters} =  state;
+  const {paginate,flightsFilters,currency} =  state;
   return {
     paginate: paginate,
-    filters: flightsFilters
+    filters: flightsFilters,
+    currency: currency
   }
 };
 
@@ -139,7 +141,9 @@ const mapPropsToOptions = ({
 };
 
 const mapResultsToProps = ({ownProps, data }) => {
-  const {paginate, showItemsByPage,filters, onBuy} = ownProps;
+  const {paginate, showItemsByPage,filters,currency,onBuy} = ownProps;
+  const {error, loading } = data;
+
   const trip = get(data,`orchestrator.availability.${ownProps.leg}`, {
     metas:[],
     references:[],
@@ -166,23 +170,28 @@ const mapResultsToProps = ({ownProps, data }) => {
   });
 
   const clustersFiltered = populateCluster({
-    references:trip.references,
-    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters})
+    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters}),
   })
 
-  const getCityByIATA = cities => (
-    map(cities, city => ({
+  const getCityByIATA = cities => {
+    console.log("cities", cities);
+    console.log("references.cities", trip.references.cities);
+    return map(cities, city => ({
       code: city,
       name: get(trip, `references.cities[${city}]`, "")
     }))
-  );
+
+  }
 
   return {
     ...newfilters,
-    flightClusters: clustersFiltered,
+    flightClusters: clustersFiltered.flightClusters,
     comparisonFlights: comparisonFlights,
-    countItems: newClusters.flightClusters.length,
+    countItems: clustersFiltered.flightClusters.length,
     countFlights: newClusters.clusters.length,
+    loading: loading,
+    error: error,
+    currency: currency,
     onBuy: (clusterSelected) => {
       onBuy(clusterSelected, clone(get(data.orchestrator.availability, ownProps.leg, [])))
     },
@@ -210,6 +219,21 @@ const WithApolloComponentSearch = compose(
     skip: (ownProps) => !(ownProps.leg === 'multitrip'),
   }),
 )(SearchResults)
+
+WithApolloComponentSearch.propTypes = {
+  origin: PropTypes.array,
+  destination: PropTypes.array,
+  departureDate: PropTypes.any,
+  returningDate: PropTypes.any,
+  passengersAdults: PropTypes.number.isRequired,
+  passengersChildren: PropTypes.number.isRequired,
+  passengersInfants: PropTypes.number.isRequired,
+  cabinClass: PropTypes.string.isRequired,
+  channel: PropTypes.string.isRequired,
+  portal: PropTypes.string.isRequired,
+  leg: PropTypes.string.isRequired,
+  showItemsByPage: PropTypes.number,
+}
 
 
 const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);
