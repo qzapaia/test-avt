@@ -72,7 +72,7 @@ const getFlightSegments = ( f, flightFare ) => {
     flight.common = {
       'flightNumber': f.code,
       'airlines': getAirlines([f.marketingCarrier]),
-      'class': flightFare.cabin == "M"?'Económica':'Business'
+      'class': flightFare.cabin == "F" || flightFare.cabin == "C" ?'Business':'Económica'
     }
 
     if(f.operatingCarrier != f.marketingCarrier ){

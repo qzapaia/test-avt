@@ -28,8 +28,8 @@ let search = {
 
 let searchOneWay = {
   origin: 'BUE',
-  destination: 'DME',
-  departureDate: '01-05-2018',
+  destination: 'MOW',
+  departureDate: '01-01-2018',
   passengers: {
     adults: 1,
     children: 1,
