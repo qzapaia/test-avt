@@ -10,25 +10,9 @@ import theme from '../styled.theme';
 import readme from './README.md';
 import reducer from "./reducer";
 
-let search = {
-  origin: 'BUE',
-  destination: 'COR',
-  departureDate: '11-03-2018',
-  returningDate: '20-03-2018',
-  passengers: {
-    adults: 1,
-    children: 0,
-    infants:0
-  },
-  cabinClass: 'Economy',
-  channel: 'DESKTOP',
-  portal:'AVANTRIP',
-  leg:"oneway",
-}
-
 let searchOneWay = {
   origin: ['BUE'],
-  destination: ['DME'],
+  destination: ['MOW'],
   departureDate: ['01-05-2018'],
   passengers: {
     adults: 1,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gql, graphql,compose } from 'react-apollo';
 import SearchResults from './'
-import { get, clone } from 'lodash';
+import { get, clone, map } from 'lodash';
 import { connect } from "react-redux";
 import { onBuy } from './actions';
 import { populateFilters } from '../FlightsFilters/reducer'
@@ -18,7 +18,6 @@ const mapStateToProps = (state) => {
     currency: currency
   }
 };
-
 
 const mapDispatchToProps = {
   onBuy
@@ -99,7 +98,19 @@ const SearchQuery = {
     }`
 }
 
-const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,passengersAdults,passengersChildren,passengersInfants,cabinClass,channel,portal,leg }) => {
+const mapPropsToOptions = ({
+  origin,
+  destination,
+  departureDate,
+  returningDate,
+  passengersAdults,
+  passengersChildren,
+  passengersInfants,
+  cabinClass,
+  channel,
+  portal,
+  leg
+}) => {
 
   const values = {
     origin,
@@ -132,7 +143,7 @@ const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,pas
 const mapResultsToProps = ({ownProps, data }) => {
   const {paginate, showItemsByPage,filters,currency,onBuy} = ownProps;
   const {error, loading } = data;
-  
+
   const trip = get(data,`orchestrator.availability.${ownProps.leg}`, {
     metas:[],
     references:[],
@@ -157,23 +168,34 @@ const mapResultsToProps = ({ownProps, data }) => {
     references:trip.references,
     comparisonFlights:newClusters.clusters,
   });
-  
-  const clustersFiltered =populateCluster({
+
+  const clustersFiltered = populateCluster({
     clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters}),
   })
 
+  const getCityByIATA = cities => {
+    return map(cities, city => ({
+      code: city,
+      name: get(trip, `references.cities[${city}]`, "")
+    }))
+
+  }
 
   return {
     ...newfilters,
-    flightClusters:clustersFiltered.flightClusters,
-    comparisonFlights:comparisonFlights,
-    countItems : clustersFiltered.flightClusters.length,
+    flightClusters: clustersFiltered.flightClusters,
+    comparisonFlights: comparisonFlights,
+    countItems: clustersFiltered.flightClusters.length,
+    countFlights: newClusters.clusters.length,
     loading: loading,
     error: error,
     currency: currency,
     onBuy: (clusterSelected) => {
       onBuy(clusterSelected, clone(get(data.orchestrator.availability, ownProps.leg, [])))
-    }
+    },
+    origin: getCityByIATA(ownProps.origin),
+    destination: getCityByIATA(ownProps.destination),
+    leg: ownProps.leg
   }
 };
 
@@ -197,8 +219,8 @@ const WithApolloComponentSearch = compose(
 )(SearchResults)
 
 WithApolloComponentSearch.propTypes = {
-  origin: PropTypes.any,
-  destination: PropTypes.any,
+  origin: PropTypes.array,
+  destination: PropTypes.array,
   departureDate: PropTypes.any,
   returningDate: PropTypes.any,
   passengersAdults: PropTypes.number.isRequired,

@@ -246,7 +246,6 @@ export const populateStages = (state={}) => {
   return {
     ...state,
     clusters,
-    
   };
 }
 

@@ -16,7 +16,6 @@ const labelFlightsAirports = (type,position,positionTramo,city) => {
 }
 
 const Airports = ({options, onChange, values, expanded, toggleExpand, onClear}) => {
-  console.log(options.airports.cities)
   return(
     <List>
       <ExpandButton expanded={expanded} onClick={toggleExpand}>
