@@ -7,6 +7,10 @@ const TextWrapper = styled(({tag, children, ...props}) => createElement(tag, pro
   font-size: ${props=>props.theme.texts[props.type].size};
   font-weight: ${props=>props.theme.texts[props.type].weight};
   color: ${props=>props.theme.colors[props.color] || 'inherit'};
+${'' /* ATENCION Le clavé un display inline-flex porque siempre que le meto un icono se deschaveta en el align */}
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
 `
 
 
