@@ -27,9 +27,9 @@ let search = {
 }
 
 let searchOneWay = {
-  origin: 'BUE',
-  destination: 'DME',
-  departureDate: '01-05-2018',
+  origin: ['BUE'],
+  destination: ['DME'],
+  departureDate: ['01-05-2018'],
   passengers: {
     adults: 1,
     children: 1,
@@ -59,8 +59,8 @@ const searchMultiTrip = {
 let searchRoundtrip = {
   origin: ["BUE"],
   destination: ["MIA"],
-  departureDate: '11-03-2018',
-  returningDate: '20-03-2018',
+  departureDate: ['11-03-2018'],
+  returningDate: ['20-03-2018'],
   passengers: {
     adults: 1,
     children: 0,

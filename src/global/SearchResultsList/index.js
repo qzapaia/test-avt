@@ -26,17 +26,6 @@ const SearchResultsList = ({clusters, flightClusters, onBuy}) => {
     );
   });
 
-  /*
-  clusters.map((cluster,i) => {
-    children.push(
-    <div key={i}>
-                hash: {cluster.price.hash},
-                fee: {cluster.price.fee},
-                totalPrice: {cluster.price.totalPrice},
-                originalPrice: {cluster.price.originalPrice}
-    </div>);
-  });
-  */
 
   return (
     <List type="list">

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql,compose } from 'react-apollo';
 import SearchResults from './'
 import { get, clone } from 'lodash';
@@ -10,10 +11,11 @@ import { getClustersWithFilter } from '../SearchResults/reducer'
 import { populateComparisonFlights } from '../FlightsComparisonTable/reducer'
 
 const mapStateToProps = (state) => {
-  const {paginate,flightsFilters} =  state;
+  const {paginate,flightsFilters,currency} =  state;
   return {
     paginate: paginate,
-    filters: flightsFilters
+    filters: flightsFilters,
+    currency: currency
   }
 };
 
@@ -128,7 +130,9 @@ const mapPropsToOptions = ({ origin, destination,departureDate,returningDate,pas
 };
 
 const mapResultsToProps = ({ownProps, data }) => {
-  const {paginate, showItemsByPage,filters, onBuy} = ownProps;
+  const {paginate, showItemsByPage,filters,currency,onBuy} = ownProps;
+  const {error, loading } = data;
+  
   const trip = get(data,`orchestrator.availability.${ownProps.leg}`, {
     metas:[],
     references:[],
@@ -155,7 +159,7 @@ const mapResultsToProps = ({ownProps, data }) => {
   });
   
   const clustersFiltered =populateCluster({
-    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters})
+    clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters}),
   })
 
 
@@ -163,7 +167,10 @@ const mapResultsToProps = ({ownProps, data }) => {
     ...newfilters,
     flightClusters:clustersFiltered.flightClusters,
     comparisonFlights:comparisonFlights,
-    countItems : newClusters.flightClusters.length,
+    countItems : clustersFiltered.flightClusters.length,
+    loading: loading,
+    error: error,
+    currency: currency,
     onBuy: (clusterSelected) => {
       onBuy(clusterSelected, clone(get(data.orchestrator.availability, ownProps.leg, [])))
     }
@@ -188,6 +195,21 @@ const WithApolloComponentSearch = compose(
     skip: (ownProps) => !(ownProps.leg === 'multitrip'),
   }),
 )(SearchResults)
+
+WithApolloComponentSearch.propTypes = {
+  origin: PropTypes.any,
+  destination: PropTypes.any,
+  departureDate: PropTypes.any,
+  returningDate: PropTypes.any,
+  passengersAdults: PropTypes.number.isRequired,
+  passengersChildren: PropTypes.number.isRequired,
+  passengersInfants: PropTypes.number.isRequired,
+  cabinClass: PropTypes.string.isRequired,
+  channel: PropTypes.string.isRequired,
+  portal: PropTypes.string.isRequired,
+  leg: PropTypes.string.isRequired,
+  showItemsByPage: PropTypes.number,
+}
 
 
 const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);
