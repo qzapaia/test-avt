@@ -39,7 +39,7 @@ const customOnChange = (next, name) => value => {
 const setDateAccordingFlight = (values) => {
   let valor = '';
   if(values.index == 0 && !has(values.flights[values.index].dates, 'startDate')) {
-    valor = moment().add('days', 2).format("YYYY-MM-DD")
+    valor = moment().add(2, 'days').format("YYYY-MM-DD")
   } else if(values.index == 0 && has(values.flights[values.index].dates, 'startDate')) {
     valor = moment(values.flights[values.index].dates.startDate).format("YYYY-MM-DD");
   } else {
@@ -169,7 +169,7 @@ const FlightSearchBox = ({
               onChange={customOnChange(onChange, `flights[${idx}].dates`)}
               dates={flight.dates}
               min={setDateAccordingFlight({'flights':values.flights, 'leg': values.leg, 'index': idx}) }
-              max={moment().add('days', 360).format("YYYY-MM-DD")}
+              max={moment().add(360, 'days').format("YYYY-MM-DD")}
               forceDatesFormat={true}
               startDatePlaceholderText='Partida'
               endDatePlaceholderText='Regreso'
