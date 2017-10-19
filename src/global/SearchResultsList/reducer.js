@@ -63,7 +63,7 @@ const getScaleLabel = scale => {
   }
 }
 
-const getFlightSegments = f => {
+const getFlightSegments = ( f, flightFare ) => {
   let flightSegments = [];
 
   map(f.segments, fs => {
@@ -72,7 +72,7 @@ const getFlightSegments = f => {
     flight.common = {
       'flightNumber': f.code,
       'airlines': getAirlines([f.marketingCarrier]),
-      'class': 'Económica',
+      'class': flightFare.cabin == "M"?'Económica':'Business'
     }
 
     if(f.operatingCarrier != f.marketingCarrier ){
@@ -106,7 +106,7 @@ const getAirlines = airlinesCodes => (
   }))
 );
 
-const getRouteOption = ro => {
+const getRouteOption = ( ro, stageFare ) => {
   let routeOption = {};
 
   // Me falta el id de la ruta
@@ -127,14 +127,12 @@ const getRouteOption = ro => {
   }
 
   if(ro.codeshare){
-    const provider = find(ro.flights, (flight) =>{
-      return flight.operatingCarrier != flight.marketingCarrier;
-    });
+    const provider = find(ro.flights, flight => flight.operatingCarrier != flight.marketingCarrier );
     routeOption.summaryInfo["provider"] =  getAirlines([provider.operatingCarrier]);
   }
 
   routeOption.extendedInfo = {
-    'flights': flatMap(ro.flights, r => getFlightSegments(r))
+    'flights': flatMap(ro.flights, (r, index) => getFlightSegments(r, stageFare.flightFares[index]))
   }
 
   routeOption.extendedInfo = {
@@ -163,10 +161,10 @@ const getRouteOption = ro => {
   return routeOption;
 }
 
-const getRoute = ( r, stageLabel ) => {
-  let route = {};
+const getRoute = ( r, stageLabel, stageFare ) => {
+  let route = {}
 
-  route.options = map(r.options, ro => getRouteOption(ro));
+  route.options = map(r.options, ro => getRouteOption(ro, stageFare));
 
   route.header = {
     title:stageLabel,
@@ -186,8 +184,9 @@ const getFlightCluster = c => {
   fc.additionalInfo = c.additionalInfo;
   fc.disclaimerText = c.disclaimerText;
   fc.id = c.id;
+
   fc.routes = map(c.stages, (stage, index) => (
-    getRoute(stage, getStageLabel(c.flightType, index))
+    getRoute(stage, getStageLabel(c.flightType, index), c.paxFare[0].stageFares[index])
   ));
 
   fc.fareDetail = {
