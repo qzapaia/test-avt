@@ -155,7 +155,8 @@ FlightsComparisonTable.propTypes = {
 }
 
 FlightsComparisonTable.defaultProps = {
-  flights: []
+  flights: [],
+  media: {}
 }
 
 export default FlightsComparisonTable;
