@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Container, ScalesButton, Column, ColumnCenter, PriceContainer, AirlinesSlider, FlightItem, ListItem, FlightItemContainer, Title, AirlineLogoName} from './styled';
+import Text from '../Text';
+import Price from '../Price';
+import Icon from '../Icon';
+import Slider from '../Slider';
 
 const groupByAirlineName = flights => _.groupBy(flights, 'airlineName');
 
@@ -13,7 +18,7 @@ const getBestPriceByStop = flights =>
 	})
 
 
-const getBestPricesByStop = groupedFlightsByAirline => 
+const getBestPricesByStop = groupedFlightsByAirline =>
 	_.map(groupedFlightsByAirline, ( flights , airlineName ) => {
     return {
     	airlineName: airlineName,
@@ -26,130 +31,92 @@ const getBestPricesByStop = groupedFlightsByAirline =>
 
 const getBestPricesByStopWithGroupedFlights = groupedFlights => {
 
-	const stopsAndPrices = _.reduce(groupedFlights, ( acc, current ) => 
+	const stopsAndPrices = _.reduce(groupedFlights, ( acc, current ) =>
 		acc.concat(current.stops), [])
- 
+
 	const groupedByStops = _.groupBy(stopsAndPrices, 'stopType');
 
 	const bestPricesByStops = _.map(groupedByStops, f => _.minBy(f, 'price'))
 
 	return bestPricesByStops;
-} 
+}
 
-const containerStyle = {
-	backgroundColor : 'white',
-	display : 'flex',
-	alignItems: 'center'
+
+const sliderSettings = {
+  dots: false,
+  slidesToShow: 3,
+  infinite: false,
 };
-const firstColumnStyle = {
-	display : 'flex',
-	flexDirection : 'column',
-	margin:'20px'
-}
-const secondColumnStyle = {
-	display : 'flex',
-	flexDirection : 'column',
-	margin:'20px'
-}
-const thirdColumnStyle = {
-	display : 'flex',
-	flexDirection : 'row',
-	alignItems: 'center',
-	margin:'20px'
-}
+const mobileSliderSettings = {
+  dots: false,
+  slidesToShow: 2,
+  infinite: false,
+  centerMode: true
+};
 
-const flightGroupStyle = {
-	display: 'flex',
-	flexDirection: 'column',
-	margin:'10px'
-}
 
-const FlightsComparisonTable = ({flights}) => {
+const FlightsComparisonTable = ({flights, media}) => {
   const groupedFlightsByAirlines = getBestPricesByStop(groupByAirlineName(flights));
 
   const groupedBestFlightsByPrice = getBestPricesByStopWithGroupedFlights(groupedFlightsByAirlines);
 
   return(
-    <div style={containerStyle}>
-      <div style={firstColumnStyle}>
-        <div>
+    <Container>
+      <Column>
+        <Title tag='h2'>
           Precio más bajo por adulto
-        </div>
-        <div>
-          <div>------------------</div>
-          <div>
-            Vuelo directo
-          </div>
-          <div>------------------</div>
-          <div>
-            1 escala
-          </div>
-          <div>------------------</div>
-          <div>
-            2 o más escalas
-          </div>
-        </div>
-      </div>
+        </Title>
+        <ScalesButton tag='p'>
+          Vuelo directo
+        </ScalesButton>
+        <ScalesButton tag='p'>
+          1 escala
+        </ScalesButton>
+        <ScalesButton tag='p'>
+          2 o más escalas
+        </ScalesButton>
+      </Column>
 
-      <div style={secondColumnStyle}>
-        <div>
-          <div>
-            Mejor precio
-          </div>
-        </div>
+      <ColumnCenter>
+        <Title tag='h2' color='success'>
+					<Icon id='Pass' width='16px' height='14px' color='success' />
+          Mejor precio
+        </Title>
 
         {_.map(groupedBestFlightsByPrice, f =>
 
-          <div>
-            -------------
-            <br />
-            {f.price}
-          </div>
+          <PriceContainer>
+						<Price price={f.price} color='primary' />
+          </PriceContainer>
 
         )}
-      </div>
-
-      <div style={thirdColumnStyle}>
-        <div>
-          --------Izquierda
-        </div>
-
-        {_.map(groupedFlightsByAirlines, (flights, airlineName) => 
-          (
-
-            <div style={flightGroupStyle} >
-
-              <div>
-                <div>
-                  <img src={flights.logo} />
-                </div>
-                <div>
-                  {flights.label}
-                </div>
-              </div>
-
-              {_.map(flights.stops, f =>
-
-                <div>
-                  -------------
-                  <br />
-                  {f.price}
-                </div>
-
-              )}
-
-            </div>
-
-          )
-        )}
-
-        <div>
-          --------Derecha
-        </div>
-      </div>
-
-
-    </div>
+      </ColumnCenter>
+      <AirlinesSlider layout={media.size}>
+        <Slider settings={media.size < 2 ? mobileSliderSettings:sliderSettings}>
+					{_.map(groupedFlightsByAirlines, (flights, airlineName) =>
+	          (
+	            <FlightItem>
+								<FlightItemContainer>
+	                <ListItem>
+										<AirlineLogoName>
+											<img src={flights.logo} />
+											<Text type='xs'>
+												{flights.label}
+											</Text>
+										</AirlineLogoName>
+	                </ListItem>
+		              {_.map(flights.stops, f =>
+		                <ListItem>
+											<Price price={f.price} color='primary' />
+		                </ListItem>
+		              )}
+								</FlightItemContainer>
+	            </FlightItem>
+	          )
+	        )}
+				</Slider>
+      </AirlinesSlider>
+    </Container>
   )
 }
 

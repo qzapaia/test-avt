@@ -61,8 +61,8 @@ const SearchResults = ({
           {`[Numero_vuelos] vuelos a [Ciudad_Hasta] desde [Ciudad_Desde]`}
         </span>
       </Breadcrumb>
-      <div style={{display:"flex"}}>
-        <div >
+      <div>
+        <div>
           <FlightSearchBox
             title='Buscá tu vuelo'
           />
