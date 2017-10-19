@@ -47,7 +47,7 @@ const SearchResults = ({
   //applyPaginate(getState())
 
   return (
-    <Container>
+    <Container style={{maxWidth: '1200px',  flexWrap: 'wrap'}}>
       <Breadcrumb>
         <a href="https://www.avantrip.com">Avantrip.com</a>
         <a href="https://www.avantrip.com/vuelos">Vuelos</a>

@@ -29,6 +29,7 @@ export const Column = styled.div`
   flex-direction : column;
   align-items: flex-start;
   padding: 10px;
+  flex: 1;
   > *{
     width: 100%;
     text-align: left;
@@ -36,6 +37,7 @@ export const Column = styled.div`
   }
 `
 export const ColumnCenter = styled.div`
+  flex: 1;
   display : flex;
   flex-direction : column;
   align-items: center;
@@ -60,6 +62,7 @@ export const PriceContainer = ScalesButton.extend`
 
 export const AirlinesSlider = styled.div`
   overflow: hidden;
+  flex: 1 1 50%;
   .slick-track {
     display: flex;
   }

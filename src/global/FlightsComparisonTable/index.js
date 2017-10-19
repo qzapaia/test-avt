@@ -50,7 +50,7 @@ const flightGroupStyle = {
 
 const sliderSettings = {
   dots: false,
-  slidesToShow: 5,
+  slidesToShow: 3,
   infinite: false,
 };
 const mobileSliderSettings = {
