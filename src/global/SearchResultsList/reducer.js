@@ -63,7 +63,7 @@ const getScaleLabel = scale => {
   }
 }
 
-const getFlightSegments = f => {
+const getFlightSegments = ( f, flightFare ) => {
   let flightSegments = [];
 
   map(f.segments, fs => {
@@ -72,7 +72,7 @@ const getFlightSegments = f => {
     flight.common = {
       'flightNumber': f.code,
       'airlines': getAirlines([f.marketingCarrier]),
-      'class': 'Económica',
+      'class': flightFare.cabin == "F" || flightFare.cabin == "C" ?'Business':'Económica'
     }
 
     if(f.operatingCarrier != f.marketingCarrier ){
@@ -106,13 +106,8 @@ const getAirlines = airlinesCodes => (
   }))
 );
 
-const getRouteOption = ro => {
+const getRouteOption = ( ro, stageFare ) => {
   let routeOption = {};
-
-  // Me falta el id de la ruta
-  // Me faltan los logos de la aerolinea
-  // Me falta mapear el provider
-  // Duration que significa
 
   routeOption.summaryInfo = {
     'id': ro.index,
@@ -127,14 +122,12 @@ const getRouteOption = ro => {
   }
 
   if(ro.codeshare){
-    const provider = find(ro.flights, (flight) =>{
-      return flight.operatingCarrier != flight.marketingCarrier;
-    });
+    const provider = find(ro.flights, flight => flight.operatingCarrier != flight.marketingCarrier );
     routeOption.summaryInfo["provider"] =  getAirlines([provider.operatingCarrier]);
   }
 
   routeOption.extendedInfo = {
-    'flights': flatMap(ro.flights, r => getFlightSegments(r))
+    'flights': flatMap(ro.flights, (r, index) => getFlightSegments(r, stageFare.flightFares[index]))
   }
 
   routeOption.extendedInfo = {
@@ -163,10 +156,10 @@ const getRouteOption = ro => {
   return routeOption;
 }
 
-const getRoute = ( r, stageLabel ) => {
-  let route = {};
+const getRoute = ( r, stageLabel, stageFare ) => {
+  let route = {}
 
-  route.options = map(r.options, ro => getRouteOption(ro));
+  route.options = map(r.options, ro => getRouteOption(ro, stageFare));
 
   route.header = {
     title:stageLabel,
@@ -201,7 +194,7 @@ const getFlightCluster = (cluster) => {
   fc.disclaimerText = cluster.disclaimerText;
   fc.id = cluster.id;
   fc.routes = map(cluster.stages, (stage, index) => (
-    getRoute(stage, getStageLabel(cluster.flightType, index))
+    getRoute(stage, getStageLabel(cluster.flightType, index), cluster.paxFare[0].stageFares[index])
   ));
 
   fc.fareDetail = {
@@ -245,13 +238,13 @@ export const populateStages = (state={}) => {
 
   return {
     ...state,
-    clusters,
+    clusters
   };
 }
 
 export const populateCluster = (state={}) => {
-  const { clusters } = state
-  const flightClusters = map(clusters, c => {
+
+  const flightClusters = map(state.clusters, c => {
     return getFlightCluster(c)
   })
 
