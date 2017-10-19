@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql,compose } from 'react-apollo';
 import SearchResults from './'
 import { get } from 'lodash';
@@ -195,6 +196,21 @@ const WithApolloComponentSearch = compose(
     skip: (ownProps) => !(ownProps.leg === 'multitrip'),
   }),
 )(SearchResults)
+
+WithApolloComponentSearch.propTypes = {
+  origin: PropTypes.any,
+  destination: PropTypes.any,
+  departureDate: PropTypes.any,
+  returningDate: PropTypes.any,
+  passengersAdults: PropTypes.number.isRequired,
+  passengersChildren: PropTypes.number.isRequired,
+  passengersInfants: PropTypes.number.isRequired,
+  cabinClass: PropTypes.string.isRequired,
+  channel: PropTypes.string.isRequired,
+  portal: PropTypes.string.isRequired,
+  leg: PropTypes.string.isRequired,
+  showItemsByPage: PropTypes.number,
+}
 
 
 const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);

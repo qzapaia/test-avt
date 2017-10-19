@@ -7,7 +7,7 @@ import FlightsComparisonTableWithData from  '../FlightsComparisonTable/withData'
 import SearchResultsPlaceHolder from  '../SearchResultsPlaceHolder'
 import Paginate from '../Paginate/withData'
 import Tabs, { Tab } from "../Tabs";
-import PriceTrendCalendar from "../PriceTrendCalendar/withData";
+import PriceTrendCalendarWithData from "../PriceTrendCalendar/withData";
 import Text from "../Text";
 import CurrencySelector from "../CurrencySelector";
 import Select from "../Select";
@@ -17,6 +17,8 @@ import Subscribe from "../Subscribe/TripSubscribe/withData";
 
 import { Container } from './styled';
 import { indexOf, find, map } from 'lodash';
+import moment from "moment";
+
 
 const onBuyHandler = next => value => {
   next(value);
@@ -41,23 +43,49 @@ const initialOptions = [{
   label: "REAL"
 }];
 
-const SearchResults = ({
-  showItemsByPage,
-  filters,
-  flightClusters,
-  countItems,
-  comparisonFlights,
-  loading,
-  error,
-  onBuy
-}) =>  {
+const SearchResults = (props) =>  {
+  
+  const {
+    showItemsByPage,
+    filters,
+    flightClusters,
+    countItems,
+    comparisonFlights,
+    loading,
+    error,
+    onBuy,
+    currency,
+    destination,
+    origin,
+    departureDate,
+    returningDate,
+    passengersAdults,
+    passengersChildren,
+    passengersInfants,
+    leg,
+  } = props;
 
-  const countPage = Math.ceil((countItems/showItemsByPage));
   if(loading){
     return <SearchResultsPlaceHolder />
   }else if(error){
 
   }else{
+    const isMultitrip = leg === 'multitirp';
+    const countPage = Math.ceil((countItems/showItemsByPage));
+    const pricesTrendCalendar = isMultitrip && {
+        dest : destination[0],
+        ori: origin[0],
+        dateFrom:departureDate[0],
+        dateTo:returningDate[0],
+        adults:passengersAdults,
+        children:passengersChildren,
+        babies:passengersInfants,
+        minDepartureMonthYear: moment(departureDate[0]).format("YYYY-MM"),
+        maxDepartureMonthYear: moment(departureDate[0]).add(1, "year").format("YYYY-MM"),
+        minDepartureDate: moment(departureDate[0]).add(2, "day").format("YYYY-MM-DD"),
+        maxDepartureDate: moment(departureDate[0]).add(1, "year").format("YYYY-MM-DD")
+    }
+
     return (
       <Container>
         <Breadcrumb>
@@ -74,23 +102,35 @@ const SearchResults = ({
             />
             <Subscribe
               value={{ city: "[Ciudad_Hasta]" }}
-              title={`Te avisamos cuando tengamos los precios
-                más bajos a [city].`}/>
+              title={`Te avisamos cuando tengamos los precios más bajos a [city].`}/>
             <FlightsFiltersWithData options={filters} />
           </div>
+
           <div >
             <Tabs>
               <Tab id="tab1" title="Precio más Bajo">
                 <FlightsComparisonTableWithData flights={comparisonFlights} />
               </Tab>
+              { isMultitrip && (
               <Tab id="tab2" title={calendarTitle}>
-                Agregar calendario de tendencia de precios.
-              </Tab>
+                <PriceTrendCalendarWithData
+                  origin={pricesTrendCalendar.ori}
+                  destination={pricesTrendCalendar.dest}
+                  dateTo={pricesTrendCalendar.dateTo}
+                  dateFrom={pricesTrendCalendar.dateFrom}
+                  adults={pricesTrendCalendar.adults}
+                  children={pricesTrendCalendar.children}
+                  babies={pricesTrendCalendar.babies}
+                  minDepartureMonthYear={pricesTrendCalendar.minDepartureMonthYear}
+                  maxDepartureMonthYear={pricesTrendCalendar.maxDepartureMonthYear}
+                  minDepartureDate={pricesTrendCalendar.minDepartureDate}
+                  maxDepartureDate={pricesTrendCalendar.maxDepartureDate}
+                 />
+              </Tab>)
+              }
             </Tabs>
             <div>
-              <CurrencySelector
-                options={initialOptions}
-              />
+              <CurrencySelector options={initialOptions}/>
               <div>
                 <span>Ordenar por</span>
                 <Select
