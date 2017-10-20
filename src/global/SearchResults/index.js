@@ -15,7 +15,7 @@ import Breadcrumb from "../Breadcrumb";
 import FlightSearchBox from "../FlightSearchBox/withData";
 import Subscribe from "../Subscribe/TripSubscribe/withData";
 
-import { Container, MaxWidth, BreadcrumbContainer, LeftContainer, RightContainer, SearchResult } from './styled';
+import { Container, MaxWidth, BreadcrumbContainer, LeftContainer, RightContainer, SearchResult, SubscribeContainer, FlightsFiltersContainer } from './styled';
 import { indexOf, find, map } from 'lodash';
 
 const onBuyHandler = next => value => {
@@ -76,17 +76,20 @@ const SearchResults = ({
 
         <SearchResult>
           <LeftContainer>
-            <div>
-              <FlightSearchBox
-                title='Buscá tu vuelo'
-              />
+            <FlightSearchBox
+              title='Buscá tu vuelo'
+            />
+            <SubscribeContainer>
               <Subscribe
                 value={{ city: "[Ciudad_Hasta]" }}
                 title={`Te avisamos cuando tengamos los precios
                   más bajos a [city].`}/>
+            </SubscribeContainer>
+            <FlightsFiltersContainer>
               <FlightsFiltersWithData options={filters} />
-            </div>
+            </FlightsFiltersContainer>
           </LeftContainer>
+
           <RightContainer>
             <Tabs>
               <Tab id="tab1" title="Precio más Bajo">

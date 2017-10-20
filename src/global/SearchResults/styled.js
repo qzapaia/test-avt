@@ -26,3 +26,9 @@ export const SearchResult = styled.section`
   flex-wrap: wrap;
   justify-content: space-between;
 `
+export const SubscribeContainer = styled.section`
+  margin-top: 20px;
+`
+export const FlightsFiltersContainer = styled.section`
+  margin-top: 20px;
+`
