@@ -8,23 +8,14 @@ import JustOne from "../JustOne";
 import Text from "../Text";
 import Icon from "../Icon";
 import Button from "../Button";
+import ReactTooltip from "react-tooltip";
 
-import { FareDetailContainer, Container, AdditionalInfo } from "./styled";
+import { FareDetailContainer, Container, AdditionalInfo, FlightContainer, DisclaimerPrice, ClusterContainer, TitleMargin } from "./styled";
 
 import { withState } from "recompose";
 
 import { map, get } from "lodash";
 
-const containerStyle = {
-  backgroundColor: "white",
-  minWidth: "200px",
-  minHeight: "200px",
-  display: "flex"
-};
-
-const routeContainer = {
-  flexGrow: 3
-};
 
 const Comp = ({ select, selected, options, selectedOption }) => (
   <div>
@@ -67,8 +58,8 @@ const FlightClusterWithState = enhace(({
           <Icon id="Mood" color="success" />
           {data.additionalInfo}
         </AdditionalInfo>
-        <div style={containerStyle}>
-          <div style={routeContainer}>
+        <ClusterContainer>
+          <FlightContainer>
             {map(data.routes, (route, index) => (
               <FlightClusterRoute
                 key={route.header.departureCity+route.header.arrivalCity+route.header.date}
@@ -88,17 +79,31 @@ const FlightClusterWithState = enhace(({
                 />
               </FlightClusterRoute>
             ))}
-            <div style={{ padding: "10px", color: "blue" }}>
-              {data.disclaimerText}
-            </div>
-          </div>
+            <DisclaimerPrice>
+              <Text data-tip data-for="disclaimerPrice" color='primary'>
+                <Icon id='Help' color='primary' />
+                {data.disclaimerText}
+              </Text>
+              <ReactTooltip id='disclaimerPrice'>
+                <Text type='xs' color='white'>
+                  El precio es final e incluye cargos e impuestos para todos los pasajeros. Tené en cuenta que algunas líneas aéreas pueden cobrar cargos adicionales por el equipaje despachado, por la selección anticipada de asientos o para brindar servicio de desayuno/almuerzo/cena a bordo. Para el caso de que la selección de asientos no importe un coste adicional para el usuario, el transportista puede modificar discrecionalmente la selección que pudiera realizar el usuario (dentro de la cabina que corresponda a la tarifa adquirida).
+                </Text>
+                <TitleMargin tag='h2' type='s'>
+                  Menores y bebés
+                </TitleMargin>
+                <Text type='xs'>
+                  Según cada aerolínea y cada clase de vuelo, los bebés pagan aproximadamente un 10% de la tarifa del adulto y los niños entre un 50% y un 75%.
+                </Text>
+              </ReactTooltip>
+            </DisclaimerPrice>
+          </FlightContainer>
           <FareDetailContainer>
             <FareDetail currency="ARS" detailInfo={data.fareDetail} />
             <Button onClick={()=>onBuy(selectedRouteOption)} type="cta">
               Comprar
             </Button>
           </FareDetailContainer>
-        </div>
+        </ClusterContainer>
       </Container>
     );
   }

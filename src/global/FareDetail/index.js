@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Text from '../Text';
+import Icon from '../Icon';
 import Price from '../Price';
-import {Container, DetailInfo, FarePerPerson, ViewDetails, ExpandContainer, FinalPrice} from './styled';
+import {Container, DetailInfo, FarePerPerson, ViewDetails, ExpandContainer, FinalPrice, LastPlace} from './styled';
 import ExpansionPanelEnhacer from "../ExpansionPanel/enhacer";
 
 const getLastPlacesLabel = placesCount => {
@@ -13,10 +14,9 @@ const getLastPlacesLabel = placesCount => {
       return 'Últimos ' +placesCount+' lugares'
     }
   } else {
-    return '';
+    return null;
   }
 }
-
 const FareDetail = ({
                       title,
                       currency,
@@ -25,14 +25,17 @@ const FareDetail = ({
                       toggleExpand
                    }) => (
   <Container>
-
+    {getLastPlacesLabel(detailInfo.lastPlacesCount) &&
+      <LastPlace tag='h2' type='m' color='alert'>
+        <Icon id='Hot' color='alert' />
+        {
+          getLastPlacesLabel(detailInfo.lastPlacesCount)
+        }
+      </LastPlace>
+    }
     {expanded &&
       <ExpandContainer>
-        <Text type='l'>
-          {
-            getLastPlacesLabel(detailInfo.lastPlacesCount)
-          }
-        </Text>
+
         <Text type='l'>
           {title}
         </Text>
@@ -102,12 +105,7 @@ const FareDetail = ({
         }
       </ExpandContainer>
     }
-    <FinalPrice>
-      <Text type='l'>
-          {
-            getLastPlacesLabel(detailInfo.lastPlacesCount)
-          }
-      </Text>
+    <FinalPrice expanded={expanded}>
       <Text>
         Precio final
       </Text>

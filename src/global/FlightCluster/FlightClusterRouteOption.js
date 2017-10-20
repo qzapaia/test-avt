@@ -34,7 +34,8 @@ import {
   AirlineDetail,
   BoldText,
   FlightNumber,
-  Disclaimer
+  Disclaimer,
+  ClassDetail
 } from "./styled";
 
 import { withState } from 'recompose';
@@ -45,7 +46,7 @@ const formatMinutes = totalMinutes => {
   const hours = Math.floor(totalMinutes/60);
   const minutes = (totalMinutes/60 - hours) * 60;
 
-  return moment.duration(hours, 'hours').asHours() + 'hs ' + Math.round(moment.duration(minutes, 'minutes').asMinutes()) + 'm' 
+  return moment.duration(hours, 'hours').asHours() + 'hs ' + Math.round(moment.duration(minutes, 'minutes').asMinutes()) + 'm'
 }
 
 const FlightClusterRouteOption = ({data, onClick, selected}) => (
@@ -144,7 +145,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
                       {moment(f.departure.date).format('ddd. DD MMM [de] YYYY')}
                     </MediumBold>
                     <IataBold tag='strong' type='xl'>
-                      {f.departure.iata} {f.departure.changeAirport?'Cambio de Aeropuerto':''} 
+                      {f.departure.iata} {f.departure.changeAirport?'Cambio de Aeropuerto':''}
                     </IataBold>
                     <MediumBold type='m' tag='strong'>
                       {moment(f.departure.date).format('HH:mm[hs]')}
@@ -173,14 +174,14 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
                         </Text>
                       }
                     </AirlineDetail>
-                    <Text>
+                    <ClassDetail>
                       <Text>
                         Clase:
                       </Text>
                       <BoldText>
                         {f.common.class}
                       </BoldText>
-                    </Text>
+                    </ClassDetail>
                     <FlightNumber>
                       <Icon id='Vuelos' width='12px' height='12px'/>
                       <Text>
@@ -200,7 +201,7 @@ const FlightClusterRouteOption = ({data, onClick, selected}) => (
                       {moment(f.arrival.date).format('ddd. DD MMM [de] YYYY')}
                     </MediumBold>
                     <IataBold tag='strong' type='xl'>
-                      {f.arrival.iata} {f.arrival.changeAirport?'Cambio de Aeropuerto':''} 
+                      {f.arrival.iata} {f.arrival.changeAirport?'Cambio de Aeropuerto':''}
                     </IataBold>
                     <MediumBold type='m' tag='strong'>
                       {moment(f.arrival.date).format('HH:mm[hs]')}

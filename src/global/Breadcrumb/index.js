@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ContainerBreadcrumb from './styled';
+import {ContainerBreadcrumb, Arrow} from './styled';
 
 const Breadcrumb = ({children}) => {
   const numberOfChildren = children.length-1;
@@ -9,10 +9,10 @@ const Breadcrumb = ({children}) => {
     {
       children.map((child, index) =>{
         return (
-          <div key={index}>
+          <li key={index}>
             {child}
-            { index != numberOfChildren && ">" }
-          </div>
+            { index != numberOfChildren && <Arrow>></Arrow> }
+          </li>
         )
       })
     }

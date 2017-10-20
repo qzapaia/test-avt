@@ -16,7 +16,7 @@ import FlightSearchBox from "../FlightSearchBox/withData";
 import Subscribe from "../Subscribe/TripSubscribe/withData";
 import Link from "../Link";
 
-import { Container } from "./styled";
+import { Container, MaxWidth, BreadcrumbContainer, LeftContainer, RightContainer, SearchResult, SubscribeContainer, FlightsFiltersContainer, CurrencySelectorContainer, OrderBy, OrderBySelectContainer } from './styled';
 import { indexOf, find, map, get, head, last } from "lodash";
 import moment from "moment";
 
@@ -97,81 +97,104 @@ const SearchResults = ({
         .format("YYYY-MM-DD")
     };
 
+  // const countPage = Math.ceil((countItems/showItemsByPage));
+  //applyPaginate(getState())
+
     return (
       <Container>
-        <Breadcrumb>
-          <Link href="https://www.avantrip.com">Avantrip.com</Link>
-          <Link href="https://www.avantrip.com/vuelos">Vuelos</Link>
-          <span>
-            {`${countFlights} vuelos a ${head(destination).name} desde ${last(
-              origin
-            ).name}`}
-          </span>
-        </Breadcrumb>
-        <div>
-          <div>
-            <FlightSearchBox title="Buscá tu vuelo" />
-            <Subscribe
-              value={{ city: head(destination).name }}
-              title={`Te avisamos cuando tengamos los precios más bajos a [city].`}
-            />
-            <FlightsFiltersWithData options={filters} />
-          </div>
+        <MaxWidth>
+          <BreadcrumbContainer>
+            <Breadcrumb>
+              <Link href="https://www.avantrip.com">
+                <Text type='xs' color='primary'>
+                  Avantrip.com
+                </Text>
+              </Link>
+              <Link href="https://www.avantrip.com/vuelos">
+                <Text type='xs' color='primary'>
+                  Vuelos
+                </Text>
+              </Link>
+              <Text type='xs' tag='strong'>
+                {`${countFlights} vuelos a ${head(destination).name} desde ${last(
+                  origin
+                ).name}`}
+              </Text>
+            </Breadcrumb>
+          </BreadcrumbContainer>
 
-          <div>
-            <Tabs>
-              <Tab id="tab1" title="Precio más Bajo">
-                <FlightsComparisonTableWithData flights={comparisonFlights} />
-              </Tab>
-              {isNotMultitrip ? (
-                <Tab id="tab2" title={calendarTitle}>
-                  <PriceTrendCalendarWithData
-                    origin={pricesTrendCalendar.ori}
-                    destination={pricesTrendCalendar.dest}
-                    dateTo={pricesTrendCalendar.dateTo}
-                    dateFrom={pricesTrendCalendar.dateFrom}
-                    adults={pricesTrendCalendar.adults}
-                    children={pricesTrendCalendar.children}
-                    babies={pricesTrendCalendar.babies}
-                    minDepartureMonthYear={
-                      pricesTrendCalendar.minDepartureMonthYear
-                    }
-                    maxDepartureMonthYear={
-                      pricesTrendCalendar.maxDepartureMonthYear
-                    }
-                    minDepartureDate={pricesTrendCalendar.minDepartureDate}
-                    maxDepartureDate={pricesTrendCalendar.maxDepartureDate}
-                  />
-                </Tab>
-              ) : null}
-            </Tabs>
-            <div>
-              <CurrencySelectorWithData options={initialOptions} />
-              <div>
-                <span>Ordenar por</span>
-                <Select
-                  value="one"
-                  options={[
-                    { value: "one", label: "Menor Precio" },
-                    { value: "two", label: "Mayor Precio" },
-                    { value: "three", label: "Menos Escalas" },
-                    { value: "four", label: "Más Escalas" }
-                  ]}
+          <SearchResult>
+            <LeftContainer>
+              <FlightSearchBox
+                title='Buscá tu vuelo'
+              />
+              <SubscribeContainer>
+                <Subscribe
+                  value={{ city: head(destination).name }}
+                  title={`Te avisamos cuando tengamos los precios más bajos a [city].`}
                 />
-              </div>
-            </div>
-            <SearchResultsListWithData
-              flightClusters={flightClusters}
-              onBuy={onBuy}
-            />
-            <Paginate pageCount={countPage} />
-          </div>
-        </div>
-      </Container>
-    );
-  }
-};
+              </SubscribeContainer>
+              <FlightsFiltersContainer>
+                <FlightsFiltersWithData options={filters} />
+              </FlightsFiltersContainer>
+            </LeftContainer>
 
+            <RightContainer>
+              <Tabs>
+                <Tab id="tab1" title="Precio más Bajo">
+                  {/* <FlightsComparisonTableWithData flights={comparisonFlights} /> */}
+                </Tab>
+                {isNotMultitrip ? (
+                  <Tab id="tab2" title={calendarTitle}>
+                    <PriceTrendCalendarWithData
+                      origin={pricesTrendCalendar.ori}
+                      destination={pricesTrendCalendar.dest}
+                      dateTo={pricesTrendCalendar.dateTo}
+                      dateFrom={pricesTrendCalendar.dateFrom}
+                      adults={pricesTrendCalendar.adults}
+                      children={pricesTrendCalendar.children}
+                      babies={pricesTrendCalendar.babies}
+                      minDepartureMonthYear={
+                        pricesTrendCalendar.minDepartureMonthYear
+                      }
+                      maxDepartureMonthYear={
+                        pricesTrendCalendar.maxDepartureMonthYear
+                      }
+                      minDepartureDate={pricesTrendCalendar.minDepartureDate}
+                      maxDepartureDate={pricesTrendCalendar.maxDepartureDate}
+                    />
+                  </Tab>
+                ) : null}
+              </Tabs>
+              <CurrencySelectorContainer>
+                <CurrencySelectorWithData
+                  options={initialOptions}
+                />
+                <OrderBy>
+                  <Text>
+                    Ordenar por
+                  </Text>
+                  <OrderBySelectContainer>
+                    <Select
+                      value='one'
+                      options={[
+                        {value: 'one', label: 'Menor Precio'},
+                        {value: 'two', label: 'Mayor Precio'},
+                        {value: 'three', label: 'Menos Escalas'},
+                        {value: 'four', label: 'Más Escalas'}
+                      ]} />
+                  </OrderBySelectContainer>
+                </OrderBy>
+              </CurrencySelectorContainer>
+              <SearchResultsListWithData flightClusters={flightClusters} onBuy={onBuy} />
+              <Paginate  pageCount={countPage} />
+            </RightContainer>
+          </SearchResult>
+        </MaxWidth>
+      </Container>
+    )
+  }
+}
 SearchResults.propTypes = {
   showItemsByPage: PropTypes.number,
   filters: PropTypes.object,

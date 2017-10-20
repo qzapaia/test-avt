@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Container from "./styled";
+import {Container, FormContainer, SubscribeContainer, MainTitle, Status} from "./styled";
 
 import InputText from "../../InputText";
 import Button from "../../Button";
@@ -33,35 +33,43 @@ const TripSubscribe = ({
 }) => (
   <Container>
     {subscriptionStatus == INITIAL_STATE && (
-      <div>
-        <Text>
-          <Icon id="Notifications" size="l" />
-          {title && title.replace("[city]", value.city)}
-        </Text>
-        <form
+      <SubscribeContainer>
+        <MainTitle>
+          <Icon id="Notifications" width='32px' height='32px' color='primary' />
+          <Text type='m'>
+            {title && title.replace("[city]", value.city)}
+          </Text>
+        </MainTitle>
+        <FormContainer
           onSubmit={preventFormatAndContinueWith(onSubscribe, email, value)}
         >
           <InputText
-            label={"Email"}
+            placeholder={"Ingresá tu email"}
             value={email}
             onChange={value => onChange(value)}
           />
           <Button type="scta">Crear Alerta</Button>
-        </form>
-      </div>
+        </FormContainer>
+      </SubscribeContainer>
     )}
     {subscriptionStatus == SUCCESS_STATE && (
-      <div>
-        <Icon id="Mood" />
+      <Status>
+        <Icon id="Mood" width='32px' height='32px' color='success' />
         <Text>
           Tu alerta de Vuelos baratos a
-          <strong>{value.city}</strong> fue creada con éxito! Te vamos a avisar
-          cuando tengamos los mejores precios.
+          <Text tag='strong'>{value.city}</Text>
+          <Text>
+            fue creada con éxito! Te vamos a avisar
+            cuando tengamos los mejores precios.
+          </Text>
         </Text>
-      </div>
+      </Status>
     )}
     {subscriptionStatus == ERROR_STATE && (
-      <Text>Ocurrió un error. Intentalo más tarde.</Text>
+      <Status>
+        <Icon id="MoodBad" width='32px' height='32px' color='danger' />
+        <Text>Ocurrió un error. Intentalo más tarde.</Text>
+      </Status>
     )}
   </Container>
 );

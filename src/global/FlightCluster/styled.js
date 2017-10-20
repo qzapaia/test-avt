@@ -4,6 +4,11 @@ import Text from '../Text';
 export const Container = styled.article`
   display: block;
   background: white;
+  padding: 5px 10px;
+  transition: 0.3s ease;
+  &:hover{
+    box-shadow: 0px 5px 10px ${props=>props.theme.colors.gray};
+  }
 `
 
 export const ClusterItem = styled.article`
@@ -11,7 +16,7 @@ export const ClusterItem = styled.article`
   align-items: center;
   cursor: pointer;
   &:not(:last-of-type){
-    border-bottom: 1px dotted ${props=>props.theme.colors.darkgray};
+    border-bottom: 1px dashed ${props=>props.theme.colors.darkgray};
   }
   transition: 0.3s ease;
 
@@ -50,7 +55,7 @@ export const FromTo = styled.div`
   margin-left: 5.5%;
 `
 export const Detail = styled.div`
-  margin-left: 40px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,13 +84,13 @@ export const Scale = styled.div`
     content: "";
     flex: 1;
     margin: 0 10px;
-    border-bottom: 1px dotted ${props=>props.theme.colors.darkgray};
+    border-bottom: 1px dashed ${props=>props.theme.colors.darkgray};
   }
   &:after{
     content: "";
     flex: 1;
     margin: 0 10px;
-    border-bottom: 1px dotted ${props=>props.theme.colors.darkgray};
+    border-bottom: 1px dashed ${props=>props.theme.colors.darkgray};
   }
 
 `
@@ -136,7 +141,7 @@ export const DetailFlight = styled.article`
     width: 100%;
     text-align: center;
     &:not(:last-child){
-      border-bottom: 1px dotted ${props=>props.theme.colors.darkgray};
+      border-bottom: 1px dashed ${props=>props.theme.colors.darkgray};
     }
   }
 `
@@ -149,10 +154,13 @@ export const DelayContainer = styled.article`
   flex: 1 1 100%;
 `
 export const Delay = Text.extend`
-  border-top: 1px dotted ${props=>props.theme.colors.darkgray};
-  border-bottom: 1px dotted ${props=>props.theme.colors.darkgray};
+  border-top: 1px dashed ${props=>props.theme.colors.darkgray};
+  border-bottom: 1px dashed ${props=>props.theme.colors.darkgray};
   padding: 10px;
   text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `
 
 export const Step = styled.h2`
@@ -190,12 +198,106 @@ export const Disclaimer = Text.extend`
   margin: 5px;
 `
 export const FareDetailContainer = styled.article`
-  flex: 1;
-  min-width: 220px;
-  padding: 0 20px;
+  flex: 1 1 25%;
+  padding-left: 20px;
 `
 export const AdditionalInfo = Text.extend`
-  padding: 5px 10px;
+  padding: 5px 0px;
   display: flex;
   align-items: center;
+`
+export const ClassDetail = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+export const FlightContainer = styled.article`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 75%;
+`
+export const DisclaimerPrice = styled.article`
+  flex: 1 1 100%;
+  align-self: flex-end;
+`
+export const TitleMargin = Text.extend`
+  margin: 10px 0;
+`
+
+export const ClusterContainer = styled.article`
+  display: flex;
+  flex-wrap: wrap;
+
+  .__react_component_tooltip{
+    max-width: 320px;
+    background: ${props=>props.theme.colors.primary};
+  }
+  .__react_component_tooltip.type-dark.place-top:after {
+    border-top-color: ${props=>props.theme.colors.primary}
+`
+export const FlightClusterRouteContainer = styled.article`
+  flex: 1 1 100%;
+  display: flex;
+  background: ${props => props.theme.colors.gray};
+  align-items: center;
+  overflow: hidden;
+  padding: 0 10px;
+`
+
+export const FlightInfo = styled.div`
+  flex: 1 1 100%;
+`
+//////////////////////////
+
+export const DateContainer = styled.article`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 35%;
+`
+export const DateTitle = styled.h4`
+  margin-top: 4px;
+  margin-bottom: 0;
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  line-height: 18px;
+`
+export const IconContainer = styled.div`
+  transform: rotate(-180deg);
+  height: 14px;
+`
+
+
+export const DateContent = styled.span`
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: lighter;
+
+`
+export const CitiesContainer = styled.article`
+  display: flex;
+  flex: 1 0 50%;
+  max-width: 300px;
+  margin-left: 40px;
+  align-items: center;
+  justify-content: space-between;
+
+`
+export const City = Text.extend`
+  flex: 1;
+  display: flex;
+  &:first-of-type{
+    justify-content: flex-end;
+    padding-right: 5px;
+  }
+  &:last-of-type{
+    justify-content: flex-start;
+    padding-left: 5px;
+  }
+
+`
+
+export const Separator = styled.div`
+  flex: 1.75;
+  border-bottom: 1px dashed ${props => props.theme.colors.darkgray};
 `

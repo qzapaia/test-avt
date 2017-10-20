@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const SelectContainer = styled.div`
+  width: 100%;
   .Select-control{
     border-radius: 0;
     border-color: ${props=>props.theme.colors.gray}
