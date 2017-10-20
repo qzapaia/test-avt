@@ -112,4 +112,10 @@ SearchResults.propTypes = {
   onBuy: PropTypes.func
 }
 
+SearchResults.defaultProps = {
+  channel:'desktop',
+  portal:'avantrip',
+  showItemsByPage:50
+}
+
 export default SearchResults;

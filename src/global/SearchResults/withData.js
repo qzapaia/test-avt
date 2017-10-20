@@ -153,12 +153,12 @@ const mapResultsToProps = ({ownProps, data }) => {
     references:trip.references,
     comparisonFlights:newClusters.clusters,
   });
-  
+
   const clustersFiltered =populateCluster({
     clusters: getClustersWithFilter({newClusters , paginate, showItemsByPage, filters})
   })
 
-
+  console.log(clustersFiltered);
   return {
     ...newfilters,
     flightClusters:clustersFiltered.flightClusters,

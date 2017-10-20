@@ -11,7 +11,6 @@ const projectDir = './src/' + ui;
 
 const app = next({
   dev,
-  // dir:projectDir
 })
 const handle = app.getRequestHandler()
 
@@ -22,18 +21,12 @@ app.prepare()
   !dev && server.use(compression()) && console.log('gzip');
 
   server.use('/storybook', express.static('storybook-static'));
-
   server.use(express.static('./statics'));
 
-  server.get('*', (req, res, n) => {
-    const pagePath = __dirname + '/pages' + uiBasePath + req.url;
-    try{
-      require.resolve(pagePath)
-      app.render(req, res, uiBasePath + req.url, req.query)
-    }catch(e){
-      n()
-    }
-  });
+  server.get('/vuelos/*', (req, res) => {
+    console.log('vuelos');
+    return app.render(req, res, `/vuelos`, req.query)
+  })
 
   server.get('*', (req, res) => {
     return handle(req, res)
