@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Moment from 'moment';
 import Text from '../Text/index';
 import Icon from '../Icon/index';
-import {Container, DateContainer, DateTitle, DateContent, CitiesContainer, Separator, IconContainer, City} from './containerFlightClusterRoute.styled'
+import {DateContainer, DateTitle, DateContent, CitiesContainer, Separator, IconContainer, City, FlightClusterRouteContainer, FlightInfo} from './styled'
 
 // TODO: Resolver locales
 
@@ -15,8 +15,8 @@ const parseDate = date => {
 }
 
 const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) => (
-  <div>
-    <Container>
+  <FlightInfo>
+    <FlightClusterRouteContainer>
       <DateContainer>
       	<DateTitle>
           <IconContainer>
@@ -44,9 +44,10 @@ const FlightClusterRoute = ({title,date,departureCity,arrivalCity, children}) =>
       		{arrivalCity}
       	</City>
       </CitiesContainer>
-    </Container>
+    </FlightClusterRouteContainer>
     {children}
-  </div>
+  </FlightInfo>
+
 )
 
 FlightClusterRoute.propTypes = {

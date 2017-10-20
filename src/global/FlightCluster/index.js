@@ -9,22 +9,12 @@ import Text from "../Text";
 import Icon from "../Icon";
 import Button from "../Button";
 
-import { FareDetailContainer, Container, AdditionalInfo } from "./styled";
+import { FareDetailContainer, Container, AdditionalInfo, FlightContainer, DisclaimerPrice, ClusterContainer } from "./styled";
 
 import { withState } from "recompose";
 
 import { map, get } from "lodash";
 
-const containerStyle = {
-  backgroundColor: "white",
-  minWidth: "200px",
-  minHeight: "200px",
-  display: "flex"
-};
-
-const routeContainer = {
-  flexGrow: 3
-};
 
 const Comp = ({ select, selected, options, selectedOption }) => (
   <div>
@@ -67,8 +57,8 @@ const FlightClusterWithState = enhace(({
           <Icon id="Mood" color="success" />
           {data.additionalInfo}
         </AdditionalInfo>
-        <div style={containerStyle}>
-          <div style={routeContainer}>
+        <ClusterContainer>
+          <FlightContainer>
             {map(data.routes, (route, index) => (
               <FlightClusterRoute
                 key={route.header.departureCity+route.header.arrivalCity+route.header.date}
@@ -88,17 +78,17 @@ const FlightClusterWithState = enhace(({
                 />
               </FlightClusterRoute>
             ))}
-            <div style={{ padding: "10px", color: "blue" }}>
+            <DisclaimerPrice>
               {data.disclaimerText}
-            </div>
-          </div>
+            </DisclaimerPrice>
+          </FlightContainer>
           <FareDetailContainer>
             <FareDetail currency="ARS" detailInfo={data.fareDetail} />
             <Button onClick={()=>onBuy(selectedRouteOption)} type="cta">
               Comprar
             </Button>
           </FareDetailContainer>
-        </div>
+        </ClusterContainer>
       </Container>
     );
   }

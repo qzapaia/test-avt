@@ -2,10 +2,11 @@ import filterReducer from '../FlightsFilters/reducer'
 import paginateReducer from '../Paginate/reducer'
 import currencyReducer from '../CurrencySelector/reducer'
 import pricesTrendCalendarReducer from '../PriceTrendCalendar/reducer'
+import flightSearchBoxReducer from '../FlightSearchBox/reducer'
 import { chunk, get, filter, map, set, clone, some, every} from 'lodash';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
- 
+
 const moment = extendMoment(Moment);
 const FILTER_SCALES = 'scales';
 const FILTER_AIRLINES = 'airlines';
@@ -17,18 +18,19 @@ export default {
   flightsFilters:filterReducer,
   currency:currencyReducer,
   histogram:pricesTrendCalendarReducer,
+  search:flightSearchBoxReducer,
 }
 
 /**
  * aplica filtro por escala para el tramo especifico
- * @param {*} tramo 
- * @param {*} clusters 
+ * @param {*} tramo
+ * @param {*} clusters
  * @param {*} scales
  */
 const filterClusterByScales = (tramo,clusters,scales) => {
   const filterSelectedTramo = get(scales,tramo,[])
   return filter(clusters, cluster => {
-      return some(get(cluster.stages,tramo,[]), option => {   
+      return some(get(cluster.stages,tramo,[]), option => {
           return some(option,opt => {
               return filterSelectedTramo.includes(opt.scales.toString())
           })
@@ -37,9 +39,9 @@ const filterClusterByScales = (tramo,clusters,scales) => {
 }
 
 /**
- * 
- * @param {*} clusters 
- * @param {*} airlines 
+ *
+ * @param {*} clusters
+ * @param {*} airlines
  */
 
 const filterClusterByAirline = (clusters,airlines) => {
@@ -47,17 +49,17 @@ const filterClusterByAirline = (clusters,airlines) => {
       return some(cluster.stages, stage => {
         return some(stage.options, option => {
           return some(option.marketingCarriers, mk => {
-            return airlines.includes(mk) 
+            return airlines.includes(mk)
           });
         })
       });
-  });   
+  });
 }
 
 /**
  * funcion que de acuerdo al schedule que se le pase retorna un range
- * @param {*} date 
- * @param {*} schedule 
+ * @param {*} date
+ * @param {*} schedule
  */
 const getRangeBySchedule = (date,schedule) => {
   const ScheduleNight = "Por la noche - 20 a 06hs";
@@ -84,14 +86,14 @@ const getRangeBySchedule = (date,schedule) => {
     end.hour(6)
     return moment.range(start,end);
   }
-  
+
 }
 
 /**
  * funsion que aplicar los filtros por schedule
- * @param {*} tramo 
- * @param {*} clusters 
- * @param {*} schedules 
+ * @param {*} tramo
+ * @param {*} clusters
+ * @param {*} schedules
  */
 const filterClusterBySchedule = (tramo,clusters,schedules) => {
   return filter(clusters, cluster => {
@@ -108,11 +110,11 @@ const filterClusterBySchedule = (tramo,clusters,schedules) => {
 }
 
 /**
- * 
- * @param {*} tramo 
- * @param {*} subTramo 
- * @param {*} clusters 
- * @param {*} airports 
+ *
+ * @param {*} tramo
+ * @param {*} subTramo
+ * @param {*} clusters
+ * @param {*} airports
  */
 const filterClusterByAirports = (tramo,subTramo,clusters,airports) =>{
   return filter(clusters,cluster => {
@@ -144,7 +146,7 @@ export const getClustersWithFilter = (state={}) => {
           valuesTramos.forEach(tramo => {
             clusterFiltered = filterClusterByScales(tramo,clusters,values)
           })
-       break; 
+       break;
 
        case FILTER_AIRLINES:
           clusterFiltered = filterClusterByAirline(clusterFiltered,values);
@@ -165,7 +167,7 @@ export const getClustersWithFilter = (state={}) => {
               if(airportbySubTramo.length === 0) return;
               clusterFiltered = filterClusterByAirports(tramo,subTramo,clusterFiltered,airportbySubTramo)
             })
-            
+
           })
        break;
     }
@@ -177,5 +179,4 @@ export const getClustersWithFilter = (state={}) => {
     return values[paginate.selectedPage];
   }
   return [];
-} 
-
+}
