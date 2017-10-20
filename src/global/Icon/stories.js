@@ -29,7 +29,7 @@ storiesOf('global/Icon', module)
   .add('Default', () => (
     <div>
       {map(SVGS,(s,k)=>(
-        <PlaceholderItem>
+        <PlaceholderItem key={k}>
           <Icon id={k} size="l"></Icon> {k} 
         </PlaceholderItem>
       ))}

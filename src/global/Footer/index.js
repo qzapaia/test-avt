@@ -176,10 +176,13 @@ const Footer = ({layout, media}) => (
          </Twitter>
 
        </SocialLinks>
-
+       
      </RockBottom>
    </MaxWidth>
  </FooterContainer>
 )
 
+Footer.defaultProps = {
+  media:{}
+}
 export default Footer;
