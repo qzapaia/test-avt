@@ -218,6 +218,7 @@ export const FlightContainer = styled.article`
 `
 export const DisclaimerPrice = styled.article`
   flex: 1 1 100%;
+  align-self: flex-end;
 `
 export const TitleMargin = Text.extend`
   margin: 10px 0;
