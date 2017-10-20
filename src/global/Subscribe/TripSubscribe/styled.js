@@ -30,3 +30,10 @@ export const MainTitle = styled.article`
     margin-left: 10px;
   }
 `
+export const Status = styled.article`
+  display: flex;
+  align-items: center;
+  ${Text}{
+    margin-left: 10px;
+  }
+`

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Container, FormContainer, SubscribeContainer, MainTitle} from "./styled";
+import {Container, FormContainer, SubscribeContainer, MainTitle, Status} from "./styled";
 
 import InputText from "../../InputText";
 import Button from "../../Button";
@@ -53,17 +53,23 @@ const TripSubscribe = ({
       </SubscribeContainer>
     )}
     {subscriptionStatus == SUCCESS_STATE && (
-      <div>
-        <Icon id="Mood" />
+      <Status>
+        <Icon id="Mood" width='32px' height='32px' color='success' />
         <Text>
           Tu alerta de Vuelos baratos a
-          <strong>{value.city}</strong> fue creada con éxito! Te vamos a avisar
-          cuando tengamos los mejores precios.
+          <Text tag='strong'>{value.city}</Text>
+          <Text>
+            fue creada con éxito! Te vamos a avisar
+            cuando tengamos los mejores precios.
+          </Text>
         </Text>
-      </div>
+      </Status>
     )}
     {subscriptionStatus == ERROR_STATE && (
-      <Text>Ocurrió un error. Intentalo más tarde.</Text>
+      <Status>
+        <Icon id="MoodBad" width='32px' height='32px' color='danger' />
+        <Text>Ocurrió un error. Intentalo más tarde.</Text>
+      </Status>
     )}
   </Container>
 );
