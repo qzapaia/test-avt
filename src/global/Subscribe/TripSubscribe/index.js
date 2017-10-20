@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Container from "./styled";
+import {Container, FormContainer, SubscribeContainer, MainTitle} from "./styled";
 
 import InputText from "../../InputText";
 import Button from "../../Button";
@@ -33,22 +33,24 @@ const TripSubscribe = ({
 }) => (
   <Container>
     {subscriptionStatus == INITIAL_STATE && (
-      <div>
-        <Text>
-          <Icon id="Notifications" size="l" />
-          {title && title.replace("[city]", value.city)}
-        </Text>
-        <form
+      <SubscribeContainer>
+        <MainTitle>
+          <Icon id="Notifications" width='32px' height='32px' color='primary' />
+          <Text type='m'>
+            {title && title.replace("[city]", value.city)}
+          </Text>
+        </MainTitle>
+        <FormContainer
           onSubmit={preventFormatAndContinueWith(onSubscribe, email, value)}
         >
           <InputText
-            label={"Email"}
+            placeholder={"Ingresá tu email"}
             value={email}
             onChange={value => onChange(value)}
           />
           <Button type="scta">Crear Alerta</Button>
-        </form>
-      </div>
+        </FormContainer>
+      </SubscribeContainer>
     )}
     {subscriptionStatus == SUCCESS_STATE && (
       <div>
