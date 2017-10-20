@@ -36,8 +36,8 @@ export const createSearch = value => (dispatch, getState) => {
     'destinationFromId':(flights.map(f=>f.originCity)),
     'destinationToId':(flights.map(f=>f.destinationCity)),
     'round_trip':(value.leg == 1 ? 'on' : ''),
-    'dateFrom':(flights.map(f=> moment(value.leg == 2 ? f.dates : f.dates.startDate).format("DD-MM-YYYY"))),
-    'dateTo':(value.leg == 1 ? flights[0].endDate:''),
+    'dateFrom':(flights.map(f=> moment(value.leg == 3 ? f.dates : f.dates.startDate).format("DD-MM-YYYY"))),
+    'dateTo':(value.leg == 1 ? [moment(flights[0].dates.endDate).format("DD-MM-YYYY")] : '' ),
     'adults':value.adults,
     'children':value.children,
     'babies':value.infants,
@@ -46,8 +46,8 @@ export const createSearch = value => (dispatch, getState) => {
 
   const queryString = qs.stringify(newParams,{
     arrayFormat:'index'
-  })
-
+  });
+  console.log(value);
   Router.push(basePath + '?' + queryString)
 }
 

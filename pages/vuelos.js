@@ -13,7 +13,7 @@ class HomePage extends Component{
       asPath
     } = ctx;
 
-    const queryString = qs.parse(asPath,{
+    const queryString = qs.parse(asPath.split('?')[1],{
       arrayFormat:'index'
     })
 
@@ -36,11 +36,11 @@ class HomePage extends Component{
       destination:destinationToId,
       departureDate:dateFrom,
       returningDate:dateTo,
-      passengersAdults:Number.parseInt(adults) || 0,
+      passengersAdults:Number.parseInt(adults) || 1,
       passengersChildren:Number.parseInt(children) || 0,
       passengersInfants:Number.parseInt(babies) || 0,
-      cabinClass:flightClass,
-      leg:(round_trip && '1' || isMulticity && '3' || '2'),
+      cabinClass: flightClass == 'NMO.GBL.SCL.BSN' ? 'Business' : 'Economy',
+      leg:(round_trip && 'roundtrip' || (isMulticity != 'false' && 'multitrip') || 'oneway'),
     }
 
     return {
@@ -53,7 +53,7 @@ class HomePage extends Component{
       pathname,
       searchArgs
     } = this.props;
-    console.log(searchArgs);
+    
     return (
       <MainLayout>
         <SearchResults
