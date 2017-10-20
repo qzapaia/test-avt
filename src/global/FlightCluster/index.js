@@ -8,8 +8,9 @@ import JustOne from "../JustOne";
 import Text from "../Text";
 import Icon from "../Icon";
 import Button from "../Button";
+import ReactTooltip from "react-tooltip";
 
-import { FareDetailContainer, Container, AdditionalInfo, FlightContainer, DisclaimerPrice, ClusterContainer } from "./styled";
+import { FareDetailContainer, Container, AdditionalInfo, FlightContainer, DisclaimerPrice, ClusterContainer, TitleMargin } from "./styled";
 
 import { withState } from "recompose";
 
@@ -79,7 +80,21 @@ const FlightClusterWithState = enhace(({
               </FlightClusterRoute>
             ))}
             <DisclaimerPrice>
-              {data.disclaimerText}
+              <Text data-tip data-for="disclaimerPrice" color='primary'>
+                <Icon id='Help' color='primary' />
+                {data.disclaimerText}
+              </Text>
+              <ReactTooltip id='disclaimerPrice'>
+                <Text type='xs' color='white'>
+                  El precio es final e incluye cargos e impuestos para todos los pasajeros. Tené en cuenta que algunas líneas aéreas pueden cobrar cargos adicionales por el equipaje despachado, por la selección anticipada de asientos o para brindar servicio de desayuno/almuerzo/cena a bordo. Para el caso de que la selección de asientos no importe un coste adicional para el usuario, el transportista puede modificar discrecionalmente la selección que pudiera realizar el usuario (dentro de la cabina que corresponda a la tarifa adquirida).
+                </Text>
+                <TitleMargin tag='h2' type='s'>
+                  Menores y bebés
+                </TitleMargin>
+                <Text type='xs'>
+                  Según cada aerolínea y cada clase de vuelo, los bebés pagan aproximadamente un 10% de la tarifa del adulto y los niños entre un 50% y un 75%.
+                </Text>
+              </ReactTooltip>
             </DisclaimerPrice>
           </FlightContainer>
           <FareDetailContainer>

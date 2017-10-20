@@ -45,4 +45,11 @@ export const OrderBy = styled.div`
   align-items: center;
   flex: 1;
   max-width: 250px;
+  margin-left: 20px;
+`
+export const OrderBySelectContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1;
 `

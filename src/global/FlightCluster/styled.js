@@ -219,9 +219,20 @@ export const FlightContainer = styled.article`
 export const DisclaimerPrice = styled.article`
   flex: 1 1 100%;
 `
+export const TitleMargin = Text.extend`
+  margin: 10px 0;
+`
+
 export const ClusterContainer = styled.article`
   display: flex;
   flex-wrap: wrap;
+
+  .__react_component_tooltip{
+    max-width: 320px;
+    background: ${props=>props.theme.colors.primary};
+  }
+  .__react_component_tooltip.type-dark.place-top:after {
+    border-top-color: ${props=>props.theme.colors.primary}
 `
 export const FlightClusterRouteContainer = styled.article`
   flex: 1 1 100%;
