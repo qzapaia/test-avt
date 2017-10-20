@@ -1,6 +1,7 @@
-import { reduce, has } from 'lodash';
+import { reduce, has, pick } from 'lodash';
 import moment from 'moment';
-
+import Router from 'next/router'
+import qs from 'query-string';
 export const CREATE_SEARCH = 'CREATE_SEARCH';
 export const SET_SEARCH_BOX_VALUE = 'SET_SEARCH_BOX_VALUE';
 export const SET_DESTINATION_DATA = 'SET_DESTINATION_DATA';
@@ -24,39 +25,30 @@ export const setDestinations = data => ({
 
 export const createSearch = value => (dispatch, getState) => {
   const state = getState();
-  let SEODestinations = 'http://avantrip.apps.int.devtrip.com.ar/vuelos/';
-  const destinations = reduce(value.flights, (init, flight,idx) => {
-    let dateStart = '';
-    let dateEnd = '';
-    const originCity = find(state.destinations, ['iata_code', flight.originCity]);
-    const destinationCity = find(state.destinations, ['iata_code', flight.destinationCity]);
+  const { search:{values, values:{flights}} } = state;
 
-    if(originCity && destinationCity) {
-      SEODestinations += `${kebabCase(destinationCity.city)}-desde-${kebabCase(originCity.city)}`;
-      if(value.flights.length>1 && idx+1 < value.flights.length) {
-        SEODestinations += '-y-';
-      }
-    }
+  // const basePath = 'http://avantrip.apps.int.devtrip.com.ar/vuelos/';
+  const basePath = '/vuelos';
 
-    if(has(flight.dates, 'startDate')) {
-      dateStart = flight.dates.startDate;
-      dateEnd = `dateTo=${moment(flight.dates.endDate).format("DD-MM-YYYY")}&`;
-    } else {
-      dateStart = flight.dates;
-    }
+  const newParams = {
+    'av-seleccion-grupo':'on',
+    'isMulticity':(flights.length>1),
+    'destinationFromId':(flights.map(f=>f.originCity)),
+    'destinationToId':(flights.map(f=>f.destinationCity)),
+    'round_trip':(value.leg == 1 ? 'on' : ''),
+    'dateFrom':(flights.map(f=> moment(value.leg == 3 ? f.dates : f.dates.startDate).format("DD-MM-YYYY"))),
+    'dateTo':(value.leg == 1 ? [moment(flights[0].dates.endDate).format("DD-MM-YYYY")] : '' ),
+    'adults':value.adults,
+    'children':value.children,
+    'babies':value.infants,
+    'flightClass':(value.class == 1 ?'NMO.GBL.SCL.ECO':'NMO.GBL.SCL.BSN'),
+  }
 
-    init +=
-     `destinationFromId%5B${idx}%5D=${flight.originCity}&destinationToId%5B${idx}%5D=${flight.destinationCity}&dateFrom%5B${idx}%5D=${moment(dateStart).format("DD-MM-YYYY")}&`;
-      if(value.leg == 1) {
-        init += dateEnd;
-      }
-      return init;
-  }, '');
-
-
-  const url = `${SEODestinations}?av-seleccion-grupo=on&${destinations}isMulticity=${value.flights.length>1 && 'true'}&round_trip=${(value.leg == 2) ?'on':''}&adults=${value.adults}&children=${value.children}&${(value.leg == 2 || value.leg == 3)? 'dateTo=&': ''}babies=${value.infants}&${(value.flexibleDates || value.leg == 3)? 'flexibleDates=on&':''}flightClass=${value.class == 1 ?'NMO.GBL.SCL.ECO':'NMO.GBL.SCL.BSN'}`;
-
-  console.log(url)
+  const queryString = qs.stringify(newParams,{
+    arrayFormat:'index'
+  });
+  console.log(value);
+  Router.push(basePath + '?' + queryString)
 }
 
 export const setSearchBoxValue = value => {

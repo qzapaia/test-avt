@@ -41,6 +41,7 @@
     "moment-range": "^3.0.3",
     "next": "^4.0.3",
     "prop-types": "^15.5.10",
+    "query-string": "^5.0.0",
     "react": "^16.0.0",
     "react-addons-shallow-compare": "^15.6.0",
     "react-apollo": "^1.4.12",

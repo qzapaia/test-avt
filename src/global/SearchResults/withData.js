@@ -233,6 +233,12 @@ WithApolloComponentSearch.propTypes = {
   showItemsByPage: PropTypes.number,
 }
 
+WithApolloComponentSearch.defaultProps = {
+  channel:'desktop',
+  portal:'avantrip',
+  showItemsByPage:50,
+}
+
 
 const WithDataComponent = connect(mapStateToProps, mapDispatchToProps)(WithApolloComponentSearch);
 export default WithDataComponent;

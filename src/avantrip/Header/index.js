@@ -21,6 +21,7 @@ import Icon from "../Icon";
 import Signup from "../Signup/withData";
 import PurchaseAccess from "../PurchaseAccess/withData";
 import UserNav from "../UserNav/withData";
+import Navigate from '../../global/Navigate';
 
 import { withState, compose } from "recompose";
 
@@ -40,11 +41,13 @@ const Header = ({
   layout
 }) => (
   <Container layout={media.size}>
-    <MaxWidth >
-      <LogoContainer mobile={media.size < 2}>
-        <Logo href="http://www.avantrip.com/" />
-        <Slogan tag='h1' color="brand">Viajar es la guita mejor invertida</Slogan>
-      </LogoContainer>
+    <MaxWidth>
+      <Navigate href='/'>
+        <LogoContainer mobile={media.size < 2}>
+          <Logo />
+          <Slogan tag='h1' color="brand">Viajar es la guita mejor invertida</Slogan>
+        </LogoContainer>
+      </Navigate>
       <RightNav>
         {!userData.facebook && (
           <SignupFacebookContainer>

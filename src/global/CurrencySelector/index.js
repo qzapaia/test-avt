@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const CurrencySelector = ({options, onClick, value}) => {
@@ -7,7 +7,7 @@ return(
   <span>
     {options.map((option, idx) => (
       <span>
-        {(option.value != value) ? 
+        {(option.value != value) ?
           <a
             onClick = { () => onClick(option.label.toString()) }
             value={option.label}>{option.label}</a>
@@ -23,7 +23,7 @@ return(
 );
 }
 CurrencySelector.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   onClick: PropTypes.func
 }

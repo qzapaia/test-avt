@@ -208,4 +208,8 @@ SearchResults.propTypes = {
   leg: PropTypes.string
 };
 
+SearchResults.defaultProps = {
+  
+}
+
 export default SearchResults;
