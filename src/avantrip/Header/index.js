@@ -75,6 +75,10 @@ const Header = ({
   </Container>
 );
 
+Header.defaultProps = {
+  currentPathname: ''
+}
+
 Header.propTypes = {
   currentPathname: PropTypes.string.isRequired,
   phoneText: PropTypes.string

@@ -1,164 +1,162 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const groupByAirlineName = flights => _.groupBy(flights, 'airlineName');
+import {Container, ScalesButton, Column, ColumnCenter, PriceContainer, AirlinesSlider, FlightItem, ListItem, FlightItemContainer, Title, AirlineLogoName} from './styled';
+import Text from '../Text';
+import Price from '../Price';
+import Icon from '../Icon';
+import Slider from '../Slider';
+import AirlineLogo from "../AirlineLogo";
 
+import {
+  map,
+  orderBy,
+  groupBy,
+  minBy,
+  reduce,
+  filter
+} from 'lodash';
 
-const getBestPriceByStop = flights =>
-	_.map(flights, (flightData, stopType) => {
-		return {
-   		'stopType' : stopType,
-   		'price' : _.minBy(flightData,'price').price
-		}
-	})
+const onHandlerStop = (next, value) =>{
+  next({
+    type:"stop",
+    value
+  });
+}
 
+const onHandlerPrice = (next, value) =>{
+  next({
+    type:"price",
+    value
+  });
+}
 
-const getBestPricesByStop = groupedFlightsByAirline => 
-	_.map(groupedFlightsByAirline, ( flights , airlineName ) => {
+const groupByAirlineName = flights => groupBy(flights, 'airline.name');
+
+const getBestPriceByStop = flights =>{
+  const temp = [];
+  for (var i = 0; i < 3; i++) {
+    temp.push({
+   		'stopType' : i,
+   		'price' : flights[i] ? minBy(flights[i],'price').price : ""
+		});
+  }
+  return temp;
+}
+
+const getBestPricesByStop = groupedFlightsByAirline =>
+	map(groupedFlightsByAirline, flights => {
     return {
-    	airlineName: airlineName,
-    	label:flights[0].label,
-    	logo: flights[0].logo,
-    	stops: _.orderBy(getBestPriceByStop(_.groupBy( flights , 'stopType')), 'stopType')
+    	...flights[0],
+    	stops: orderBy(getBestPriceByStop(groupBy( flights , 'stopType')), 'stopType')
     }
   })
 
 
 const getBestPricesByStopWithGroupedFlights = groupedFlights => {
 
-	const stopsAndPrices = _.reduce(groupedFlights, ( acc, current ) => 
+	const stopsAndPrices = reduce(groupedFlights, ( acc, current ) =>
 		acc.concat(current.stops), [])
- 
-	const groupedByStops = _.groupBy(stopsAndPrices, 'stopType');
 
-	const bestPricesByStops = _.map(groupedByStops, f => _.minBy(f, 'price'))
+	const groupedByStops = groupBy(stopsAndPrices, 'stopType');
 
-	return bestPricesByStops;
-} 
+	return map(groupedByStops, f => minBy(filter(f, fl =>( fl.price != "")), 'price'));
+}
 
-const containerStyle = {
-	backgroundColor : 'white',
-	display : 'flex',
-	alignItems: 'center'
+const sliderSettings = {
+  autoplay: false,
+  dots: false,
+  infinite: false,
+  slidesToShow: 3,
 };
-const firstColumnStyle = {
-	display : 'flex',
-	flexDirection : 'column',
-	margin:'20px'
-}
-const secondColumnStyle = {
-	display : 'flex',
-	flexDirection : 'column',
-	margin:'20px'
-}
-const thirdColumnStyle = {
-	display : 'flex',
-	flexDirection : 'row',
-	alignItems: 'center',
-	margin:'20px'
-}
+const mobileSliderSettings = {
+  ...sliderSettings,
+  slidesToShow: 2,
+  centerMode: true
+};
 
-const flightGroupStyle = {
-	display: 'flex',
-	flexDirection: 'column',
-	margin:'10px'
-}
+const FlightsComparisonTable = ({ flights, media, onSearch }) => {
+  const groupedFlightsByAirlines = getBestPricesByStop(
+    groupByAirlineName(flights)
+  );
 
-const FlightsComparisonTable = ({flights}) => {
-  const groupedFlightsByAirlines = getBestPricesByStop(groupByAirlineName(flights));
-
-  const groupedBestFlightsByPrice = getBestPricesByStopWithGroupedFlights(groupedFlightsByAirlines);
+  const groupedBestFlightsByPrice = getBestPricesByStopWithGroupedFlights(
+    groupedFlightsByAirlines
+  );
 
   return(
-    <div style={containerStyle}>
-      <div style={firstColumnStyle}>
-        <div>
+    <Container>
+      <Column>
+        <Title tag='h2'>
           Precio más bajo por adulto
-        </div>
-        <div>
-          <div>------------------</div>
-          <div>
-            Vuelo directo
-          </div>
-          <div>------------------</div>
-          <div>
-            1 escala
-          </div>
-          <div>------------------</div>
-          <div>
-            2 o más escalas
-          </div>
-        </div>
-      </div>
+        </Title>
+        <ScalesButton onClick={e => onHandlerStop(onSearch, 0)} tag='p'>
+          Vuelo directo
+        </ScalesButton>
+        <ScalesButton onClick={e => onHandlerStop(onSearch, 1)} tag='p'>
+          1 escala
+        </ScalesButton>
+        <ScalesButton onClick={e => onHandlerStop(onSearch, 2)} tag='p'>
+          2 o más escalas
+        </ScalesButton>
+      </Column>
 
-      <div style={secondColumnStyle}>
-        <div>
-          <div>
-            Mejor precio
-          </div>
-        </div>
+      <ColumnCenter>
+        <Title tag='h2' color='success'>
+					<Icon id='Pass' width='16px' height='14px' color='success' />
+          Mejor precio
+        </Title>
 
-        {_.map(groupedBestFlightsByPrice, f =>
+        {map(groupedBestFlightsByPrice, f =>
 
-          <div>
-            -------------
-            <br />
-            {f.price}
-          </div>
+          <PriceContainer>
+            {f && f.price != "" &&
+              <Price price={f.price} color='primary' onClick={e => onHandlerPrice(onSearch, f.price)} />
+            }
+            {f && f.price == "" && "-" }
+            {!f && "-"}
+          </PriceContainer>
 
         )}
-      </div>
-
-      <div style={thirdColumnStyle}>
-        <div>
-          --------Izquierda
-        </div>
-
-        {_.map(groupedFlightsByAirlines, (flights, airlineName) => 
-          (
-
-            <div style={flightGroupStyle} >
-
-              <div>
-                <div>
-                  <img src={flights.logo} />
-                </div>
-                <div>
-                  {flights.label}
-                </div>
-              </div>
-
-              {_.map(flights.stops, f =>
-
-                <div>
-                  -------------
-                  <br />
-                  {f.price}
-                </div>
-
-              )}
-
-            </div>
-
-          )
-        )}
-
-        <div>
-          --------Derecha
-        </div>
-      </div>
-
-
-    </div>
+      </ColumnCenter>
+      <AirlinesSlider layout={media.size}>
+        <Slider settings={media.size < 2 ? mobileSliderSettings:sliderSettings}>
+	  {map(groupedFlightsByAirlines, flights => (
+	            <FlightItem>
+								<FlightItemContainer>
+	                <ListItem>
+										<AirlineLogoName>
+											<AirlineLogo width="24px" code={flights.airline.code} />
+											<Text type='xs'>
+												{flights.airline.name}
+											</Text>
+										</AirlineLogoName>
+	                </ListItem>
+		              {map(flights.stops, f =>
+		                <ListItem>
+				  {f.price != "" &&
+                  <Price price={f.price} color='primary' onClick={e => onHandlerPrice(onSearch, f.price)}/>}
+                  {f.price == "" && "-" }
+		                </ListItem>
+		              )}
+								</FlightItemContainer>
+	            </FlightItem>
+	          )
+	        )}
+				</Slider>
+      </AirlinesSlider>
+    </Container>
   )
 }
 
 FlightsComparisonTable.propTypes = {
-  flights: PropTypes.array.isRequired
+  flights: PropTypes.array.isRequired,
+  onSearch: PropTypes.func
 }
 
 FlightsComparisonTable.defaultProps = {
-
+  flights: [],
+  media: {}
 }
 
 export default FlightsComparisonTable;

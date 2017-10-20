@@ -9,45 +9,51 @@ const SearchResults = dynamic(import('../src/avantrip/SearchResults/withData'), 
 
 class HomePage extends Component{
   static getInitialProps(ctx) {
-
     const {
-      req:{
-        query:{
-          adults,
-          babies,
-          children,
-          dateFrom,
-          dateTo,
-          destinationFromId,
-          destinationToId,
-          flightClass,
-          isMulticity,
-          round_trip,
-        }
-      },
       asPath
     } = ctx;
 
+    const queryString = qs.parse(asPath,{
+      arrayFormat:'index'
+    })
+
+    const {
+      adults,
+      babies,
+      children,
+      dateFrom,
+      dateTo,
+      destinationFromId,
+      destinationToId,
+      flightClass,
+      isMulticity,
+      round_trip,
+    } = queryString;
+
+
+    const searchArgs = {
+      origin:destinationFromId,
+      destination:destinationToId,
+      departureDate:dateFrom,
+      returningDate:dateTo,
+      passengersAdults:Number.parseInt(adults) || 0,
+      passengersChildren:Number.parseInt(children) || 0,
+      passengersInfants:Number.parseInt(babies) || 0,
+      cabinClass:flightClass,
+      leg:(round_trip && '1' || isMulticity && '3' || '2'),
+    }
+
     return {
       pathname:asPath,
-      searchArgs:{
-        origin:destinationFromId,
-        destination:destinationToId,
-        departureDate:dateFrom,
-        returningDate:dateTo,
-        passengersAdults:adults,
-        passengersChildren:children,
-        passengersInfants:babies,
-        cabinClass:flightClass,
-        leg:(round_trip && 1 || isMulticity && 3 || 2),
-      }
+      searchArgs
     }
   }
   render(){
-    const {pathname, searchArgs} = this.props;
-
+    const {
+      pathname,
+      searchArgs
+    } = this.props;
     console.log(searchArgs);
-
     return (
       <MainLayout>
         <SearchResults
