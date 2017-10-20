@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { get, find, map } from 'lodash';
 import List from '../List';
 import FlightCluster from '../FlightCluster';
-
+import {ClusterItem} from './styled';
 
 const onCustomCheckout = (next, value) => {
   next(value);
@@ -14,15 +14,15 @@ const SearchResultsList = ({clusters, flightClusters, onBuy}) => {
   let children = [];
   map(flightClusters, fc => {
     children.push(
-      <div style={{ padding: "20px" }}>
-        <FlightCluster data={fc} 
+      <ClusterItem>
+        <FlightCluster data={fc}
           onBuy={(selectedOptions) => {
            onBuy({
-            id:fc.id, 
+            id:fc.id,
             options: selectedOptions
           })
         }} />
-      </div>
+      </ClusterItem>
     );
   });
 

@@ -32,3 +32,17 @@ export const SubscribeContainer = styled.section`
 export const FlightsFiltersContainer = styled.section`
   margin-top: 20px;
 `
+export const CurrencySelectorContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+`
+export const OrderBy = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1;
+  max-width: 250px;
+`

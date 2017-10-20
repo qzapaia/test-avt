@@ -29,6 +29,10 @@ export const FinalPrice = styled.div`
   justify-content: center;
   margin: 5px 0;
   align-self: center;
+  ${Text}:first-child{
+    margin-bottom: 10px;
+    margin-top: ${props=>props.expanded?'10px':''};
+  }
 `
 
 export const FarePerPerson = Text.extend`
@@ -44,6 +48,7 @@ export const ViewDetails = styled.button`
   align-self: center;
   background: none;
   border: none;
+  margin-bottom: 10px;
 `
 
 export const ExpandContainer = Container.extend`
@@ -58,4 +63,18 @@ export const ExpandContainer = Container.extend`
     }
 
   }
+`
+
+export const LastPlace = Text.extend`
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed ${props=>props.theme.colors.gray};
+  text-align: center;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  min-height: 40px;
+  font-weight: 400;
 `

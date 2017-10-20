@@ -4,6 +4,11 @@ import Text from '../Text';
 export const Container = styled.article`
   display: block;
   background: white;
+  padding: 5px 10px;
+  transition: 0.3s ease;
+  &:hover{
+    box-shadow: 0px 5px 10px ${props=>props.theme.colors.gray};
+  }
 `
 
 export const ClusterItem = styled.article`
@@ -195,7 +200,7 @@ export const FareDetailContainer = styled.article`
   padding: 0 20px;
 `
 export const AdditionalInfo = Text.extend`
-  padding: 5px 10px;
+  padding: 5px 0px;
   display: flex;
   align-items: center;
 `

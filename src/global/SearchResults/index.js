@@ -16,7 +16,7 @@ import FlightSearchBox from "../FlightSearchBox/withData";
 import Subscribe from "../Subscribe/TripSubscribe/withData";
 import Link from "../Link";
 
-import { Container, MaxWidth, BreadcrumbContainer, LeftContainer, RightContainer, SearchResult, SubscribeContainer, FlightsFiltersContainer } from './styled';
+import { Container, MaxWidth, BreadcrumbContainer, LeftContainer, RightContainer, SearchResult, SubscribeContainer, FlightsFiltersContainer, CurrencySelectorContainer, OrderBy } from './styled';
 import { indexOf, find, map, get, head, last } from "lodash";
 import moment from "moment";
 
@@ -166,12 +166,14 @@ const SearchResults = ({
                   </Tab>
                 ) : null}
               </Tabs>
-              <div>
+              <CurrencySelectorContainer>
                 <CurrencySelectorWithData
                   options={initialOptions}
                 />
-                <div>
-                  <span>Ordenar por</span>
+                <OrderBy>
+                  <Text>
+                    Ordenar por
+                  </Text>
                   <Select
                     value='one'
                     options={[
@@ -180,8 +182,8 @@ const SearchResults = ({
                       {value: 'three', label: 'Menos Escalas'},
                       {value: 'four', label: 'Más Escalas'}
                     ]} />
-                </div>
-              </div>
+                </OrderBy>
+              </CurrencySelectorContainer>
               <SearchResultsListWithData flightClusters={flightClusters} onBuy={onBuy} />
               <Paginate  pageCount={countPage} />
             </RightContainer>
