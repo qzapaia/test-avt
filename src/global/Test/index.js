@@ -1,7 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from './styled';
-import { getSize } from '../../utils/media';
+import {Container} from './styled';
+import {getSize} from '../../utils/media';
+import {ThemeProvider} from 'styled-components';
+import {defaults} from 'lodash';
+
+const defaultTheme = {
+  bgColor:'#F00',
+}
+
+const componentTheme = (parentTheme) => defaults(
+  parentTheme,
+  defaultTheme
+);
 
 const Test = ({
   text,
@@ -10,26 +21,28 @@ const Test = ({
   getRepos,
   flights,
 }) => (
-  <Container size={getSize()}>
-    Test component
-    <br/>
-    Counter {text}
-    <br/>
-    <strong>Click to increment</strong>
+  <ThemeProvider theme={componentTheme}>
+    <Container size={getSize()}>
+      Test component
+      <br/>
+      Counter {text}
+      <br/>
+      <strong>Click to increment</strong>
 
-    <h3>Vuelos</h3>
-    {flights.map(r=>(
-      <div key={r.url}> {r.destination_name} </div>
-    ))}
-
-    <div>
-      <h3>Repos</h3>
-      <button onClick={getRepos}>Get Repos</button>
-      {repos.map(r=>(
-        <div key={r.name}> {r.name} </div>
+      <h3>Vuelos</h3>
+      {flights.map(r=>(
+        <div key={r.url}> {r.destination_name} </div>
       ))}
-    </div>
-  </Container>
+
+      <div>
+        <h3>Repos</h3>
+        <button onClick={getRepos}>Get Repos</button>
+        {repos.map(r=>(
+          <div key={r.name}> {r.name} </div>
+        ))}
+      </div>
+    </Container>
+  </ThemeProvider>
 )
 
 Test.propTypes = {
